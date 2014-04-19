@@ -17,7 +17,9 @@
 #include "gpu.h"
 #include "swap.h"
 
-static int mylog2(int val)
+static void printProgramInfoLog(GLuint obj);
+
+static inline int mylog2(int val)
 {
 	int i;
 	for (i=1; i<31; i++)
@@ -49,7 +51,7 @@ static int mylog2(int val)
 		return NO;
 	}
 	
-	[self setPixelFormat:pixFmt];
+	self.openGLPixelFormat = pixFmt;
 	
 	return NO;
 }
@@ -157,7 +159,7 @@ static int mylog2(int val)
 		
 		glGetShaderInfoLog(myShader, logsize, &logsize, log);
 		NSLog(@"impossible de compiler le shader '%@' :\n%s",
-			  [filename path], log);
+			  [[filename path] stringByAbbreviatingWithTildeInPath], log);
 		
 		/* ne pas oublier de liberer la memoire et notre shader */
 		free(log);

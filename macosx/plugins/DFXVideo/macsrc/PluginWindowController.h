@@ -20,6 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PluginGLView.h"
+#import <Quartz/Quartz.h>
 
 @class PluginWindowController;
 
@@ -29,12 +30,12 @@ extern PluginWindowController *gameController;
 @interface NetSfPeopsSoftGPUPluginWindowController : NSWindowController <NSWindowDelegate>
 {
 	NSWindow *fullWindow;
+	PluginGLView *glLayer;
 }
 
 @property (strong) NSString *outputString;
-@property (weak) IBOutlet NSOpenGLView *glView;
+@property (weak) IBOutlet NSView *glView;
 @property (getter = isFullscreen) BOOL fullscreen;
-@property (weak) IBOutlet NSTextField *outputTextView;
 
 + (id)openGameView;
 - (PluginGLView *)openGLView;

@@ -38,7 +38,7 @@ NetSfPeopsSoftGPUPluginWindowController *gameController;
 NSRect windowFrame;
 
 @interface NetSfPeopsSoftGPUPluginWindowController ()
-@property (strong) NSTimer *textFadeOutTimer;
+//@property (strong) NSTimer *textFadeOutTimer;
 @end
 
 @implementation NetSfPeopsSoftGPUPluginWindowController
@@ -76,7 +76,7 @@ NSRect windowFrame;
 
 - (PluginGLView *)openGLView
 {
-	return (PluginGLView *)glView;
+	return glLayer;
 }
 
 - (void)dealloc
@@ -86,7 +86,6 @@ NSRect windowFrame;
 	}
 	fullWindow = nil;
 	[self removeObserver:self forKeyPath:@"outputString"];
-	[self.textFadeOutTimer invalidate];
 	
 	windowFrame = [[self window] frame];
 }
@@ -113,28 +112,67 @@ NSRect windowFrame;
 	return self;
 }
 
-- (void)fadeText:(NSTimer *)unused
+-(void)awakeFromNib
 {
-	[self.textFadeOutTimer invalidate];
-	self.textFadeOutTimer = nil;
-	//CALayer *theLayer = [self.outputTextView layer];
-	//[theLayer setOpacity:0.0];
-	[self.outputTextView setAlphaValue:0.0];
-
+	glLayer = [PluginGLView layer];
+	glLayer.asynchronous = YES;
+	[glView setLayer:glLayer];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (object == self && [keyPath isEqualToString:@"outputString"]) {
 		NSString *theStr = change[NSKeyValueChangeNewKey];
-		NSUInteger stringLen = [theStr length];
+		NSUInteger stringLen;
+		if ([theStr isKindOfClass:[NSNull class]]) {
+			stringLen = 0;
+		} else
+			stringLen = [theStr length];
 		if (stringLen != 0) {
-			NSTimer *outTimer = [NSTimer timerWithTimeInterval:1.2 * stringLen + 5 target:self selector:@selector(fadeText:) userInfo:nil repeats:NO];
-			self.textFadeOutTimer = outTimer;
-			[[NSRunLoop mainRunLoop] addTimer:self.textFadeOutTimer forMode:NSRunLoopCommonModes];
-			[self.outputTextView setAlphaValue:1.0];
-			//CALayer *theLayer = [self.outputTextView layer];
-			//[theLayer setOpacity:1.0];
+			CATextLayer *titleLayer = [CATextLayer layer];
+			titleLayer.string = theStr;
+			titleLayer.font = (__bridge CFTypeRef)(@"Helvetica");
+			titleLayer.fontSize = glView.bounds.size.height / 6;
+			titleLayer.alignmentMode = kCAAlignmentCenter;
+			titleLayer.bounds = CGRectMake(0, 0, glView.bounds.size.width, glView.bounds.size.height / 6);
+			titleLayer.foregroundColor = [[NSColor redColor]CGColor];
+			titleLayer.opacity = 0.0;
+
+			
+			//create a fadeInOut CAKeyframeAnimation on opacticy
+			CAKeyframeAnimation *fadeInAndOut = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
+			
+			//set duration
+			fadeInAndOut.duration = 5.0;
+			
+			//autoreverses defaults to NO so we don't need this.
+			//fadeInAndOut.autoreverses = NO;
+			
+			//keyTimes are time points on duration timeline as a fraction of animation duration (here 5 seconds).
+			fadeInAndOut.keyTimes = @[@0.0f,
+									  @0.20f,
+									  @0.80f,
+									  @1.0f];
+			
+			
+			//set opacity values at various points during the 5second animation
+			fadeInAndOut.values = @[@0.0f,//opacity 0 at 0s (corresponds to keyTime = 0s/5s)
+									@1.0f,//opacity 1 at 1s (corresponds to keyTime = 1s/5s)
+									@1.0f,//opacity 1 upto 4s (corresponds to keyTime = 4s/5s)
+									@0.0f];//opacity 0 at 5s (corresponds to keyTime = 5s/5s)
+			
+			//delay in start of animation. What we are essentially saying is to start the 5second animation after 1second.
+			fadeInAndOut.beginTime = 1.0;
+			fadeInAndOut.autoreverses = NO;
+
+			//don't remove the animation on completion.
+			fadeInAndOut.removedOnCompletion = NO;
+			
+			//fill mode. In most cases we won't need this.
+			fadeInAndOut.fillMode = kCAFillModeBoth;
+			
+			//add the animation to layer
+			[titleLayer addAnimation:fadeInAndOut forKey:@"myAnim"];
 		}
     }
 }
@@ -186,8 +224,9 @@ NSRect windowFrame;
 							screen:screen];
 		
 		//[[glView openGLContext] setFullScreen];
-		[[glView openGLContext] setView:[fullWindow contentView]];
-		[glView reshape];
+		
+		//[[glView openGLContext] setView:[fullWindow contentView]];
+		//[glView reshape];
 		//[[glView openGLContext] update];
 		//[fullWindow setContentView:glView];
 		
@@ -210,8 +249,8 @@ NSRect windowFrame;
 			[fullWindow orderOut:self];
 			fullWindow = nil;
 			
-			[[glView openGLContext] setView:glView];
-			[glView reshape];
+			//[[glView openGLContext] setView:glView];
+			//[glView reshape];
 			//[window setContentView:glView];
 		}
 		

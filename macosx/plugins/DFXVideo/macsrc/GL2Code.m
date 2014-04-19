@@ -21,7 +21,7 @@
 #include <time.h>
 extern time_t tStart;
 
-static int mylog2(int val)
+static inline int mylog2(int val)
 {
 	int i;
 	for (i=1; i<31; i++)
@@ -68,7 +68,7 @@ static int mylog2(int val)
 		}
 	}
 	
-	[self setPixelFormat:pixFmt];
+	self.openGLPixelFormat = pixFmt;
 	
 	/*
 	 long swapInterval = 1 ;
@@ -135,7 +135,7 @@ static int mylog2(int val)
 	// Call for a redisplay
 	noDisplay = YES;
 	PSXDisplay.Disabled = 1;
-	[self setNeedsDisplay:YES];
+	[self setNeedsDisplay];
 	return YES;
 }
 
@@ -181,13 +181,14 @@ static int mylog2(int val)
 	[NSOpenGLContext clearCurrentContext];
 }
 
-- (void)renderScreenGL2
+-(void)drawInCGLContext2:(CGLContextObj)glContext pixelFormat:(CGLPixelFormatObj)pixelFormat forLayerTime:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp
 {
 	int bufferIndex = whichImage;
 	
 	if (1/*[glLock tryLock]*/) {
 		// Make this context current
-		[[self openGLContext] makeCurrentContext];
+		// Set the current context to the one given to us.
+		CGLSetCurrentContext(glContext);
 		
 		if (PSXDisplay.Disabled) {
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -436,7 +437,6 @@ static int mylog2(int val)
 
 - (void)swapBufferGL2
 {
-	
 	//printf("y=%i",PSXDisplay.DisplayPosition.y);
 	
 	unsigned char * surf;
@@ -560,7 +560,6 @@ static int mylog2(int val)
 		// Swap image buffer
 		whichImage = 1 - whichImage;
 		
-		[self renderScreenGL2];
 		[glLock unlock];
 	}
 }
