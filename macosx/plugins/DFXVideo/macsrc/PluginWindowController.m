@@ -21,11 +21,28 @@
 #include "externals.h"
 #undef BOOL
 
+void CALLBACK GPUdisplayText(char * pText)             // some debug func
+{
+	if(!pText) {
+		szDebugText[0] = 0;
+		return;
+	}
+	if (strlen(pText) > 511)
+		return;
+	strcpy(szDebugText,pText);
+	gameController.outputString = @(szDebugText);
+}
+
 NSWindow *gameWindow;
-PluginWindowController *gameController;
+NetSfPeopsSoftGPUPluginWindowController *gameController;
 NSRect windowFrame;
 
-@implementation PluginWindowController
+@interface NetSfPeopsSoftGPUPluginWindowController ()
+@property (strong) NSTimer *textFadeOutTimer;
+@end
+
+@implementation NetSfPeopsSoftGPUPluginWindowController
+@synthesize glView;
 
 + (id)openGameView
 {
@@ -36,7 +53,7 @@ NSRect windowFrame;
 		gameWindow = [gameController window];
 	}
 	
-	windowFrame = NSMakeRect(0, 0, iResX + 8, iResY + 4);
+	windowFrame = NSMakeRect(0, 0, iResX, iResY);
 	
 	windowFrame = [NSWindow contentRectForFrameRect:windowFrame styleMask:NSTitledWindowMask];
 
@@ -68,6 +85,8 @@ NSRect windowFrame;
 		[fullWindow orderOut:self];
 	}
 	fullWindow = nil;
+	[self removeObserver:self forKeyPath:@"outputString"];
+	[self.textFadeOutTimer invalidate];
 	
 	windowFrame = [[self window] frame];
 }
@@ -83,6 +102,41 @@ NSRect windowFrame;
 	if (self.fullscreen) {
 		[self setFullscreen:NO];
 	}
+}
+
+- (instancetype)initWithWindow:(NSWindow *)window
+{
+	if (self = [super initWithWindow:window]) {
+		[self addObserver:self forKeyPath:@"outputString" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:NULL];
+	}
+	
+	return self;
+}
+
+- (void)fadeText:(NSTimer *)unused
+{
+	[self.textFadeOutTimer invalidate];
+	self.textFadeOutTimer = nil;
+	//CALayer *theLayer = [self.outputTextView layer];
+	//[theLayer setOpacity:0.0];
+	[self.outputTextView setAlphaValue:0.0];
+
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object == self && [keyPath isEqualToString:@"outputString"]) {
+		NSString *theStr = change[NSKeyValueChangeNewKey];
+		NSUInteger stringLen = [theStr length];
+		if (stringLen != 0) {
+			NSTimer *outTimer = [NSTimer timerWithTimeInterval:1.2 * stringLen + 5 target:self selector:@selector(fadeText:) userInfo:nil repeats:NO];
+			self.textFadeOutTimer = outTimer;
+			[[NSRunLoop mainRunLoop] addTimer:self.textFadeOutTimer forMode:NSRunLoopCommonModes];
+			[self.outputTextView setAlphaValue:1.0];
+			//CALayer *theLayer = [self.outputTextView layer];
+			//[theLayer setOpacity:1.0];
+		}
+    }
 }
 
 - (BOOL)isFullscreen

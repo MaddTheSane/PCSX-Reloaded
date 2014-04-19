@@ -208,6 +208,7 @@ BOOL FreeKernel32(void)
 #include <time.h>
 time_t tStart;
 
+#if 0
 void CALLBACK GPUdisplayText(char * pText)             // some debug func
 {
  if(!pText) {szDebugText[0]=0;return;}
@@ -215,6 +216,7 @@ void CALLBACK GPUdisplayText(char * pText)             // some debug func
  time(&tStart);
  strcpy(szDebugText,pText);
 }
+#endif
 
 ////////////////////////////////////////////////////////////////////////
 

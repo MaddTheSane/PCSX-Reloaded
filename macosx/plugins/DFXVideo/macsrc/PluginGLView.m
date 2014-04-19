@@ -77,6 +77,7 @@ extern time_t tStart;
 {
 	// Check if an update has occured to the buffer
 	if ([self lockFocusIfCanDraw]) {
+		CALayer *curLayer = [self layer];
 		
 		// Make this context current
 		if (drawBG) {
