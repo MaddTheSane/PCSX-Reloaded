@@ -1,5 +1,21 @@
 #!/bin/bash
 
-VER=`svnversion -n ../`
-#VER=`expr ${VER} + 0`
-echo $VER
+git rev-list HEAD | sort > config.git-hash
+LOCALVER=`wc -l config.git-hash | awk '{print $1}'`
+
+if [ $LOCALVER \> 1 ] ; then
+	VER=`git rev-list origin/master | sort | join config.git-hash - | wc -l | awk '{print $1}'`
+
+	if [ $VER != $LOCALVER ] ; then
+		VER=$LOCALVER
+	fi
+
+	## there is no base of the svn version
+	VER=`expr ${VER}`
+
+	echo $VER
+
+else
+	VER="unknown"
+fi
+rm -f config.git-hash
