@@ -17,9 +17,7 @@
 #include "gpu.h"
 #include "swap.h"
 
-static void printProgramInfoLog(GLuint obj);
-
-static inline int mylog2(int val)
+static int mylog2(int val)
 {
 	int i;
 	for (i=1; i<31; i++)
@@ -51,7 +49,7 @@ static inline int mylog2(int val)
 		return NO;
 	}
 	
-	self.openGLPixelFormat = pixFmt;
+	[self setPixelFormat:pixFmt];
 	
 	return NO;
 }

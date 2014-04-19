@@ -29,14 +29,13 @@ extern PluginWindowController *gameController;
 
 @interface NetSfPeopsSoftGPUPluginWindowController : NSWindowController <NSWindowDelegate>
 {
+	IBOutlet NSOpenGLView *glView;
+	
 	NSWindow *fullWindow;
-	PluginGLView *glLayer;
 }
-
-@property (strong) NSString *outputString;
-@property (weak) IBOutlet NSView *glView;
 @property (getter = isFullscreen) BOOL fullscreen;
 
+- (void)setOutputString:(NSString *)outputString;
 + (id)openGameView;
 - (PluginGLView *)openGLView;
 

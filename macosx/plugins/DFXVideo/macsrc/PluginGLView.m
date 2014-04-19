@@ -29,21 +29,24 @@ extern time_t tStart;
 @implementation PluginGLView
 @synthesize glLock;
 
-- (id)init
+//- (id)initWithFrame:(NSRect)frameRect
+- (id) initWithCoder: (NSCoder *) coder
 {
-	if (self = [super init]){
-		glLock = [[NSLock alloc] init];
-		if (nil == glLock) {
-			return nil;
-		}
-		
-		if ([self setupOpenGL3]) {
-			oglProfile = NSOpenGLProfileVersion3_2Core;
-		} else if ([self setupOpenGL2]) {
-			oglProfile = NSOpenGLProfileVersionLegacy;
-		} else
-			return nil;
+	if ((self = [super initWithCoder:coder]) == nil)
+		return nil;
+	
+	glLock = [[NSLock alloc] init];
+	if (nil == glLock) {
+		return nil;
 	}
+	
+	if ([self setupOpenGL3]) {
+		oglProfile = NSOpenGLProfileVersion3_2Core;
+	} else if ([self setupOpenGL2]) {
+		oglProfile = NSOpenGLProfileVersionLegacy;
+	} else
+		return nil;
+	
 	return self;
 }
 
@@ -70,13 +73,10 @@ extern time_t tStart;
 	return NO;
 }
 
-#if 0
-
 - (void)drawRect:(NSRect)aRect
 {
 	// Check if an update has occured to the buffer
 	if ([self lockFocusIfCanDraw]) {
-		CALayer *curLayer = [self layer];
 		
 		// Make this context current
 		if (drawBG) {
@@ -91,7 +91,6 @@ extern time_t tStart;
 		[self unlockFocus];
 	}
 }
-#endif
 
 #if 0
 - (void)update  // moved or resized
@@ -113,19 +112,36 @@ extern time_t tStart;
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity(); 
 
-	[self setNeedsDisplay];
+	//[self setNeedsDisplay:true];
 }
 #endif
 
--(void)drawInCGLContext:(CGLContextObj)glContext pixelFormat:(CGLPixelFormatObj)pixelFormat forLayerTime:(CFTimeInterval) timeInterval displayTime:(const CVTimeStamp *)timeStamp
+- (void)reshape	// scrolled, moved or resized
 {
+	[glLock lock];
 	
-if (oglProfile == NSOpenGLProfileVersionLegacy) {
-		[self drawInCGLContext2:glContext pixelFormat:pixelFormat forLayerTime:timeInterval displayTime:timeStamp];
+	[super reshape];
+	
+	if (oglProfile == NSOpenGLProfileVersionLegacy) {
+		[self reshapeGL2];
+		[self renderScreenGL2];
+	} else if (oglProfile == NSOpenGLProfileVersion3_2Core) {
+		[self reshapeGL3];
+		[self renderScreenGL3];
+	}
+	
+	//[self setNeedsDisplay:true];
+	
+	[glLock unlock];
+}
+
+- (void)renderScreen
+{
+	if (oglProfile == NSOpenGLProfileVersionLegacy) {
+		[self renderScreenGL2];
 	} else if (oglProfile == NSOpenGLProfileVersion3_2Core) {
 		[self renderScreenGL3];
 	}
-	//[super drawInCGLContext:glContext pixelFormat:pixelFormat forLayerTime:timeInterval displayTime:timeStamp];
 }
 
 - (void)loadTextures:(GLboolean)first
@@ -158,7 +174,7 @@ if (oglProfile == NSOpenGLProfileVersionLegacy) {
 		//[self loadTextures:NO];
 	} else {
 		noDisplay = YES;
-		//[self setNeedsDisplay];
+		//[self setNeedsDisplay:true];
 	}
 }
 

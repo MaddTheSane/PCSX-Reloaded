@@ -20,7 +20,6 @@
 
 #import <Cocoa/Cocoa.h>
 #include <OpenGL/gltypes.h>
-#import <QuartzCore/QuartzCore.h>
 #include <sys/time.h>
 
 #define IMAGE_COUNT 2
@@ -34,7 +33,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t block)
 	}
 }
 
-@interface PluginGLView : NSOpenGLLayer
+@interface PluginGLView : NSOpenGLView
 {
 	GLubyte  *image_base;
 	GLubyte  *image[IMAGE_COUNT];
@@ -72,10 +71,12 @@ static inline void RunOnMainThreadSync(dispatch_block_t block)
 }
 @property (readonly, strong) NSLock *glLock;
 
+- (void)renderScreen;
 - (void)swapBuffer;
 - (void)clearBuffer:(BOOL)display;
 - (void)loadTextures:(GLboolean)first;
 + (char*)loadSource:(NSURL *)filename;
+void printProgramInfoLog(GLuint obj);
 
 @end
 
@@ -84,7 +85,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t block)
 - (BOOL)setupOpenGL2;
 - (void)cleanupGL2;
 - (void)reshapeGL2;
-- (void)drawInCGLContext2:(CGLContextObj)glContext pixelFormat:(CGLPixelFormatObj)pixelFormat forLayerTime:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp;
+- (void)renderScreenGL2;
 - (void)loadTexturesGL2:(GLboolean)first;
 - (void)swapBufferGL2;
 
