@@ -34,9 +34,9 @@ private func imagesFromMcd(_ theBlock: UnsafePointer<McdBlock>) -> [NSImage] {
 					//let x = v % 16
 					//let y = v / 16
 					let c = iconArray[Int(i * 256) + v]
-					let r: Int32 = Int32(c & 0x001F) << 3
-					let g: Int32 = (Int32(c & 0x03E0) >> 5) << 3
-					let b: Int32 = (Int32(c & 0x7C00) >> 10) << 3
+					let r = (c & 0x001F) << 3
+					let g = ((c & 0x03E0) >> 5) << 3
+					let b = ((c & 0x7C00) >> 10) << 3
 					cocoaImageData[v] = PSXRGBColor(r: UInt8(r), g: UInt8(g), b: UInt8(b))
 				}
 			})

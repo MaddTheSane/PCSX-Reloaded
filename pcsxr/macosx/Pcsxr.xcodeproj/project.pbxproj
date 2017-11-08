@@ -1082,7 +1082,6 @@
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2BBD6C1D04C893F500A83E33 /* PlugIns */,
 				2BB3D6D105427FE200831ACB /* PCSXR.app */,
 				551A75CE17868C4E0052D185 /* Bladesio1.psxplugin */,
 				551A767A178690500052D185 /* DFCdrom.psxplugin */,
@@ -1116,13 +1115,6 @@
 				553FECCE18DF5A8300C7B007 /* Localizable.strings */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		2BBD6C1D04C893F500A83E33 /* PlugIns */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = PlugIns;
 			sourceTree = "<group>";
 		};
 		2BC4787804C7FDBD00CAB520 /* MacOSX */ = {
