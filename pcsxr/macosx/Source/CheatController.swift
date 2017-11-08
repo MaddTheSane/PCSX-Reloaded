@@ -75,18 +75,19 @@ final class CheatController: NSWindowController, NSWindowDelegate {
 	private func reloadCheats() {
 		let manager = FileManager.default
 		let tmpURL = (try! manager.url(for: .itemReplacementDirectory, in: .userDomainMask, appropriateFor: Bundle.main.bundleURL, create: true)).appendingPathComponent("temp.cht", isDirectory: false)
-		var tmpStr = ""
 		let tmp = cheats.map { (val) -> String in
 			return val.description
 		}
-		tmpStr = tmp.joined(separator: "\n")
+		let tmpStr = tmp.joined(separator: "\n")
 		do {
-			try tmpStr.write(to: tmpURL, atomically: false, encoding: String.Encoding.utf8)
+			try tmpStr.write(to: tmpURL, atomically: false, encoding: .utf8)
 		} catch _ {
 			NSSound.beep()
 			return
 		}
-		LoadCheats((tmpURL as NSURL).fileSystemRepresentation)
+		tmpURL.withUnsafeFileSystemRepresentation { (fsr) -> Void in
+			LoadCheats(fsr)
+		}
 		do {
 			try manager.removeItem(at: tmpURL)
 		} catch _ {
@@ -115,17 +116,17 @@ final class CheatController: NSWindowController, NSWindowDelegate {
 		saveDlg.beginSheetModal(for: window!, completionHandler: { (retVal) -> Void in
 			if retVal.rawValue == NSFileHandlingPanelOKButton {
 				let url = saveDlg.url!
-				let saveString: NSString = {
+				let saveString: String = {
 					var toRet = ""
 					for ss in self.cheats {
 						toRet += ss.description + "\n"
 					}
 					
-					return toRet as NSString
+					return toRet
 					}()
 				do {
 					//let saveString = (self.cheats as NSArray).componentsJoinedByString("\n") as NSString
-					try saveString.write(to: url, atomically: true, encoding: String.Encoding.utf8.rawValue)
+					try saveString.write(to: url, atomically: true, encoding: .utf8)
 				} catch _ {
 					NSSound.beep()
 				}

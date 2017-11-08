@@ -1499,8 +1499,8 @@
 				551A75C517868C400052D185 /* typedefs.h */,
 			);
 			name = src;
-			path = ../../../plugins/bladesio1;
-			sourceTree = "<group>";
+			path = ../plugins/bladesio1;
+			sourceTree = SOURCE_ROOT;
 		};
 		551A75D817868E180052D185 /* Resources */ = {
 			isa = PBXGroup;
@@ -1524,8 +1524,8 @@
 				551A75FB17868E640052D185 /* util.c */,
 			);
 			name = src;
-			path = ../../../plugins/dfcdrom;
-			sourceTree = "<group>";
+			path = ../plugins/dfcdrom;
+			sourceTree = SOURCE_ROOT;
 		};
 		551A760817868EC10052D185 /* Resoruces */ = {
 			isa = PBXGroup;
@@ -1569,8 +1569,8 @@
 				551A762917868EF00052D185 /* xa.h */,
 			);
 			name = src;
-			path = ../../../plugins/dfsound;
-			sourceTree = "<group>";
+			path = ../plugins/dfsound;
+			sourceTree = SOURCE_ROOT;
 		};
 		551A762A17868F270052D185 /* src */ = {
 			isa = PBXGroup;
@@ -1599,8 +1599,8 @@
 				551A764617868F280052D185 /* zn.c */,
 			);
 			name = src;
-			path = ../../../plugins/dfxvideo;
-			sourceTree = "<group>";
+			path = ../plugins/dfxvideo;
+			sourceTree = SOURCE_ROOT;
 		};
 		551A764717868F3D0052D185 /* Resources */ = {
 			isa = PBXGroup;
@@ -1645,8 +1645,8 @@
 			);
 			indentWidth = 1;
 			name = src;
-			path = ../../../plugins/peopsxgl;
-			sourceTree = "<group>";
+			path = ../plugins/peopsxgl;
+			sourceTree = SOURCE_ROOT;
 			usesTabs = 0;
 		};
 		551A766417868F870052D185 /* Resources */ = {
@@ -1672,8 +1672,8 @@
 				551A766D1786901F0052D185 /* sdljoy.c */,
 			);
 			name = src;
-			path = ../../../plugins/dfinput;
-			sourceTree = "<group>";
+			path = ../plugins/dfinput;
+			sourceTree = SOURCE_ROOT;
 		};
 		551A7671178690280052D185 /* Resources */ = {
 			isa = PBXGroup;
@@ -1696,8 +1696,8 @@
 				551A777817869E830052D185 /* unix.c */,
 			);
 			name = src;
-			path = ../../../plugins/dfnet;
-			sourceTree = "<group>";
+			path = ../plugins/dfnet;
+			sourceTree = SOURCE_ROOT;
 		};
 		5525BC6219421A760018AF2F /* Psx-Memcard */ = {
 			isa = PBXGroup;
