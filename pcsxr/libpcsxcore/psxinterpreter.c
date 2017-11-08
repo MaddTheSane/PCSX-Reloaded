@@ -38,15 +38,15 @@ static u32 branchPC;
 	#define debugI()
 #endif
 
-static inline void execI();
+static inline void execI(void);
 
 // Subsets
-void (*psxBSC[64])();
-void (*psxSPC[64])();
-void (*psxREG[32])();
-void (*psxCP0[32])();
-void (*psxCP2[64])();
-void (*psxCP2BSC[32])();
+void (*psxBSC[64])(void);
+void (*psxSPC[64])(void);
+void (*psxREG[32])(void);
+void (*psxCP0[32])(void);
+void (*psxCP2[64])(void);
+void (*psxCP2BSC[32])(void);
 
 static void delayRead(int reg, u32 bpc) {
 	u32 rold, rnew;
@@ -1014,7 +1014,7 @@ void psxHLE() {
 	psxHLEt[psxRegs.code & 0x07]();		// HDHOSHY experimental patch
 }
 
-void (*psxBSC[64])() = {
+void (*psxBSC[64])(void) = {
 	psxSPECIAL, psxREGIMM, psxJ   , psxJAL  , psxBEQ , psxBNE , psxBLEZ, psxBGTZ,
 	psxADDI   , psxADDIU , psxSLTI, psxSLTIU, psxANDI, psxORI , psxXORI, psxLUI ,
 	psxCOP0   , psxNULL  , psxCOP2, psxNULL , psxNULL, psxNULL, psxNULL, psxNULL,
@@ -1026,7 +1026,7 @@ void (*psxBSC[64])() = {
 };
 
 
-void (*psxSPC[64])() = {
+void (*psxSPC[64])(void) = {
 	psxSLL , psxNULL , psxSRL , psxSRA , psxSLLV   , psxNULL , psxSRLV, psxSRAV,
 	psxJR  , psxJALR , psxNULL, psxNULL, psxSYSCALL, psxBREAK, psxNULL, psxNULL,
 	psxMFHI, psxMTHI , psxMFLO, psxMTLO, psxNULL   , psxNULL , psxNULL, psxNULL,
@@ -1037,21 +1037,21 @@ void (*psxSPC[64])() = {
 	psxNULL, psxNULL , psxNULL, psxNULL, psxNULL   , psxNULL , psxNULL, psxNULL
 };
 
-void (*psxREG[32])() = {
+void (*psxREG[32])(void) = {
 	psxBLTZ  , psxBGEZ  , psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL,
 	psxNULL  , psxNULL  , psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL,
 	psxBLTZAL, psxBGEZAL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL,
 	psxNULL  , psxNULL  , psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL
 };
 
-void (*psxCP0[32])() = {
+void (*psxCP0[32])(void) = {
 	psxMFC0, psxNULL, psxCFC0, psxNULL, psxMTC0, psxNULL, psxCTC0, psxNULL,
 	psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL,
 	psxRFE , psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL,
 	psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL
 };
 
-void (*psxCP2[64])() = {
+void (*psxCP2[64])(void) = {
 	psxBASIC, gteRTPS , psxNULL , psxNULL, psxNULL, psxNULL , gteNCLIP, psxNULL, // 00
 	psxNULL , psxNULL , psxNULL , psxNULL, gteOP  , psxNULL , psxNULL , psxNULL, // 08
 	gteDPCS , gteINTPL, gteMVMVA, gteNCDS, gteCDP , psxNULL , gteNCDT , psxNULL, // 10
@@ -1062,7 +1062,7 @@ void (*psxCP2[64])() = {
 	psxNULL , psxNULL , psxNULL , psxNULL, psxNULL, gteGPF  , gteGPL  , gteNCCT  // 38
 };
 
-void (*psxCP2BSC[32])() = {
+void (*psxCP2BSC[32])(void) = {
 	psxMFC2, psxNULL, psxCFC2, psxNULL, gteMTC2, psxNULL, gteCTC2, psxNULL,
 	psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL,
 	psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL, psxNULL,
