@@ -111,6 +111,9 @@ static NSImage *MemoryImageAtIndex(NSArray<PcsxrMemoryObject*> *memArray, NSInte
 OSStatus GenerateThumbnailForMemCard(void *thisInterface, QLThumbnailRequestRef thumbnail, NSURL *url, NSDictionary *options, CGSize maxSize)
 {
 	NSArray<PcsxrMemoryObject*> *memCards = CreateArrayByEnumeratingMemoryCardAtURL(url);
+	if (QLThumbnailRequestIsCancelled(thumbnail)) {
+		return kQLReturnNoError;
+	}
 	if (!memCards) {
 		return noErr;
 	}
@@ -147,16 +150,25 @@ OSStatus GenerateThumbnailForMemCard(void *thisInterface, QLThumbnailRequestRef 
 			curImage = blankImage;
 		}
 		[curImage drawInRect:NSMakeRect(x, y, ImageDivider, ImageDivider) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+		if (QLThumbnailRequestIsCancelled(thumbnail)) {
+			[memImages unlockFocus];
+			return kQLReturnNoError;
+		}
 	}
-	NSURL *psxMemURL = [Bundle URLForResource:@"pcsxrmemcard" withExtension:@"icns"];
-	NSImage *psxMemIcon = [[NSImage alloc] initByReferencingURL:psxMemURL];
+	NSImage *psxMemIcon = [Bundle imageForResource:@"pcsxrmemcard"];
 	psxMemIcon.size = NSMakeSize(ImageDivider, ImageDivider);
 	[psxMemIcon drawInRect:NSMakeRect(0, 3 * ImageDivider, ImageDivider, ImageDivider) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 	
 	[memImages unlockFocus];
 	
-	NSData *data = [memImages TIFFRepresentation];
-	QLThumbnailRequestSetImageWithData(thumbnail, (__bridge CFDataRef)(data), NULL);
+	NSRect fullRect = (NSRect){NSZeroPoint, memImages.size};
+	CGImageRef cgImg = [memImages CGImageForProposedRect:&fullRect context:nil hints:nil];
+	if (cgImg) {
+		QLThumbnailRequestSetImage(thumbnail, cgImg, NULL);
+	} else {
+		NSData *data = [memImages TIFFRepresentation];
+		QLThumbnailRequestSetImageWithData(thumbnail, (__bridge CFDataRef)(data), NULL);
+	}
 	
 	return noErr;
 }

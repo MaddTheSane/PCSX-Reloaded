@@ -84,6 +84,9 @@ OSStatus GeneratePreviewForFreeze(void *thisInterface, QLPreviewRequestRef previ
 static OSStatus GeneratePreviewForMemCard(void *thisInterface, QLPreviewRequestRef preview, NSURL *url, NSDictionary *options)
 {
 	NSArray *memCards = CreateArrayByEnumeratingMemoryCardAtURL(url);
+	if (QLPreviewRequestIsCancelled(preview)) {
+		return kQLReturnNoError;
+	}
 	
 	if (!memCards) {
 		return noErr;
@@ -99,11 +102,15 @@ static OSStatus GeneratePreviewForMemCard(void *thisInterface, QLPreviewRequestR
 	}
 	int i = 0;
 	
-	NSDictionary *gifPrep = @{(NSString *) kCGImagePropertyGIFDictionary: @{(NSString *) kCGImagePropertyGIFDelayTime: @0.30f}};
+	NSDictionary *gifPrep = @{(NSString *)kCGImagePropertyGIFDictionary:
+								  @{(NSString *)kCGImagePropertyGIFDelayTime: @0.30f}};
 	
 	for (PcsxrMemoryObject *obj in memCards) {
+		if (QLPreviewRequestIsCancelled(preview)) {
+			return kQLReturnNoError;
+		}
 		if (!obj.hasImages || obj.iconCount == 1) {
-			NSMutableData *pngData = [[NSMutableData alloc] init];
+			NSMutableData *pngData = [[NSMutableData alloc] initWithCapacity:1024*8];
 			{
 				CGImageDestinationRef dst = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)pngData, kUTTypePNG, 1, NULL);
 				NSImage *theImage = [obj firstImage];
@@ -115,14 +122,14 @@ static OSStatus GeneratePreviewForMemCard(void *thisInterface, QLPreviewRequestR
 				CFRelease(dst);
 			}
 			
-			NSDictionary *imgProps = @{(NSString *)kQLPreviewPropertyAttachmentDataKey: pngData,
+			NSDictionary *imgProps = @{(NSString *)kQLPreviewPropertyAttachmentDataKey: [pngData copy],
 									   (NSString *)kQLPreviewPropertyMIMETypeKey: @"image/png"};
 			NSString *imgName = [[@(i++) stringValue] stringByAppendingPathExtension:@"png"];
 			[htmlStr appendFormat:@"\t\t\t<tr><td><img src=\"cid:%@\"></td> <td>%@</td> <td>%li</td></tr>\n", imgName, obj.title, (long)obj.blockSize];
 			htmlDict[imgName] = imgProps;
 			continue;
 		}
-		NSMutableData *gifData = [[NSMutableData alloc] init];
+		NSMutableData *gifData = [[NSMutableData alloc] initWithCapacity:1024*16];
 		
 		CGImageDestinationRef dst = CGImageDestinationCreateWithData((__bridge CFMutableDataRef)gifData, kUTTypeGIF, obj.iconCount, NULL);
 		for (NSImage *theImage in obj.imageArray) {
@@ -132,11 +139,15 @@ static OSStatus GeneratePreviewForMemCard(void *thisInterface, QLPreviewRequestR
 		CGImageDestinationFinalize(dst);
 		CFRelease(dst);
 		
-		NSDictionary *imgProps = @{(NSString *)kQLPreviewPropertyAttachmentDataKey: gifData,
+		NSDictionary *imgProps = @{(NSString *)kQLPreviewPropertyAttachmentDataKey: [gifData copy],
 								   (NSString *)kQLPreviewPropertyMIMETypeKey: @"image/gif"};
 		NSString *imgName = [[@(i++) stringValue] stringByAppendingPathExtension:@"gif"];
 		[htmlStr appendFormat:@"\t\t\t<tr><td><img src=\"cid:%@\"></td> <td>%@</td> <td>%li</td></tr>\n", imgName, obj.title, (long)obj.blockSize];
 		htmlDict[imgName] = imgProps;
+	}
+	
+	if (QLPreviewRequestIsCancelled(preview)) {
+		return kQLReturnNoError;
 	}
 	
 	NSURL *cssURL = [Bundle URLForResource:@"template" withExtension:@"html"];
