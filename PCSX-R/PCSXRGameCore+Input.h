@@ -22,23 +22,27 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include <stdio.h>
+#import "PCSXRGameCore.h"
+#include "psemu_plugin_defs.h"
 
-void AboutDlgProc(void)
-{
-	
-}
+long PADTest(void);
+void PADAbout(void);
+long PADConfigure(void);
+long PADQuery(void);
+long PADClose(void);
+long PADOpen(unsigned long *Disp);
+long PADShutdown(void);
+long PADInit(long flags);
+void PADSetMode(const int pad, const int mode);
+char *PADGetLibName(void);
+uint32_t PADGetLibType(void);
+uint32_t PADGetLibVersion(void);
+long PADReadPort1(PadDataS *pad);
+long PADReadPort2(PadDataS *pad);
+long PADKeyPressed(void);
+unsigned char PADStartPoll(int pad);
+unsigned char PADPoll(unsigned char value);
 
-void DlgProc(void)
-{
-	
-}
+@interface PCSXRGameCore (Input)
 
-long CDRconfigure()
-{
-	return 0;
-}
-
-void CDRabout()
-{
-}
+@end

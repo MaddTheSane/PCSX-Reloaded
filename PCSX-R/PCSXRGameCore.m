@@ -35,11 +35,13 @@
 #include "peopsxgl/externals.h"
 #undef BOOL
 #import "PCSXRGameCore.h"
+#import "PCSXRGameCore+Input.h"
 #import <OpenEmuBase/OERingBuffer.h>
 #include <sys/time.h>
 #import <OpenGL/gl.h>
 #import "OEPSXSystemResponderClient.h"
 #import "EmuThread.h"
+#include "PlugInBridges.h"
 
 @interface PCSXRGameCore() <OEPSXSystemResponderClient>
 
@@ -346,6 +348,107 @@ void ReadConfig(void)
 
 int OpenPlugins(void)
 {
+	PAD1_configure = PADConfigure;
+	PAD1_about = PADAbout;
+	PAD1_init = PADInit;
+	PAD1_shutdown = PADShutdown;
+	PAD1_test = PADTest;
+	PAD1_open = PADOpen;
+	PAD1_close = PADClose;
+	PAD1_query = PADQuery;
+	PAD1_readPort1 = PADReadPort1;
+	PAD1_keypressed = PADKeyPressed;
+	PAD1_startPoll = PADStartPoll;
+	PAD1_poll = PADPoll;
+	PAD1_setSensitive = NULL;
+	PAD1_registerVibration = NULL;
+	PAD1_registerCursor = NULL;
+	
+	PAD2_configure = PADConfigure;
+	PAD2_about = PADAbout;
+	PAD2_init = PADInit;
+	PAD2_shutdown = PADShutdown;
+	PAD2_test = PADTest;
+	PAD2_open = PADOpen;
+	PAD2_close = PADClose;
+	PAD2_query = PADQuery;
+	PAD2_readPort2 = PADReadPort2;
+	PAD2_keypressed = PADKeyPressed;
+	PAD2_startPoll = PADStartPoll;
+	PAD2_poll = PADPoll;
+	PAD2_setSensitive = NULL;
+	PAD2_registerVibration = NULL;
+	PAD2_registerCursor = NULL;
+
+	GPU_updateLace = GPUUpdateLace_bridge;
+	GPU_init = GPUInit_bridge;
+	GPU_shutdown = GPUShutdown_bridge;
+	GPU_configure = GPUConfigure_bridge;
+	GPU_test = GPUTest_bridge;
+	GPU_about = GPUAbout_bridge;
+	GPU_open = GPUOpen_bridge;
+	GPU_close = GPUClose_bridge;
+	GPU_readStatus = GPUReadStatus_bridge;
+	GPU_readData = GPUReadData_bridge;
+	GPU_readDataMem = GPUReadDataMem_bridge;
+	GPU_writeStatus = GPUWriteStatus_bridge;
+	GPU_writeData = GPUWriteData_bridge;
+	GPU_writeDataMem = GPUWriteDataMem_bridge;
+	GPU_dmaChain = GPUDmaChain_bridge;
+	GPU_keypressed = GPUKeypressed_bridge;
+	GPU_displayText = NULL;
+	GPU_makeSnapshot = GPUMakeSnapshot_bridge;
+	GPU_freeze = (void*)GPUFreeze_bridge;
+	GPU_getScreenPic = GPUGetScreenPic_bridge;
+	GPU_showScreenPic = GPUShowScreenPic_bridge;
+	GPU_clearDynarec = NULL;
+	GPU_hSync = GPUHSync_bridge;
+	GPU_vBlank = GPUVBlank_bridge;
+	GPU_visualVibration = GPUVisualVibration_bridge;
+	GPU_cursor = GPUCursor_bridge;
+	GPU_addVertex = GPUAddVertex_bridge;
+	GPU_setSpeed = GPUSetSpeed_bridge;
+	
+	CDR_init = CDRInit_bridge;
+	CDR_shutdown = CDRShutdown_bridge;
+	CDR_open = CDROpen_bridge;
+	CDR_close = CDRClose_bridge;
+	CDR_test = CDRTest_bridge;
+	CDR_getTN = CDRGetTN_bridge;
+	CDR_getTD = CDRGetTD_bridge;
+	CDR_readTrack = CDRReadTrack_bridge;
+	CDR_getBuffer = CDRGetBuffer_bridge;
+	CDR_play = CDRPlay_bridge;
+	CDR_stop = CDRStop_bridge;
+	CDR_getStatus = CDRGetStatus_bridge;
+	CDR_getDriveLetter = NULL;
+	CDR_getBufferSub = CDRGetBufferSub_bridge;
+	CDR_configure = CDRConfigure_bridge;
+	CDR_about = CDRAbout_bridge;
+	CDR_setfilename = NULL;
+	CDR_readCDDA = CDRReadCDDA_bridge;
+	CDR_getTE = CDRGetTE_bridge;
+	
+	SPU_configure = SPUConfigure_bridge;
+	SPU_about = SPUAbout_bridge;
+	SPU_init = SPUInit_bridge;
+	SPU_shutdown = SPUShutdown_bridge;
+	SPU_test = SPUTest_bridge;
+	SPU_open = SPUOpen_bridge;
+	SPU_close = SPUClose_bridge;
+	SPU_playSample = NULL;
+	SPU_writeRegister = SPUWriteRegister_bridge;
+	SPU_readRegister = SPUReadRegister_bridge;
+	SPU_writeDMA = SPUWriteDMA_bridge;
+	SPU_readDMA = SPUReadDMA_bridge;
+	SPU_writeDMAMem = SPUWriteDMAMem_bridge;
+	SPU_readDMAMem = SPUReadDMAMem_bridge;
+	SPU_playADPCMchannel = (void*)SPUPlayADPCMchannel_bridge;
+	SPU_freeze = (void*)SPUFreeze_bridge;
+	SPU_registerCallback = SPURegisterCallback_bridge;
+	SPU_async = SPUAsync_bridge;
+	SPU_playCDDAchannel = SPUPlayCDDAchannel_bridge;
+	
 	return 0;
 }
 
