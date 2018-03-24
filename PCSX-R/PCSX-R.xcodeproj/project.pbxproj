@@ -1,0 +1,605 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		55BA70A0206648A5004FBA45 /* OpenEmuBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BA70A1206648A5004FBA45 /* OpenEmuBase.framework */; };
+		55BA70F120664931004FBA45 /* gpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70A720664931004FBA45 /* gpu.c */; };
+		55BA70F420664931004FBA45 /* decode_xa.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70AD20664931004FBA45 /* decode_xa.c */; };
+		55BA70F520664931004FBA45 /* spu.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70B120664931004FBA45 /* spu.c */; };
+		55BA70F720664931004FBA45 /* cdriso.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70B520664931004FBA45 /* cdriso.c */; };
+		55BA70F820664931004FBA45 /* disr3000a.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70B820664931004FBA45 /* disr3000a.c */; };
+		55BA70F920664931004FBA45 /* cdrom.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70B920664931004FBA45 /* cdrom.c */; };
+		55BA70FE20664931004FBA45 /* plugins.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70C420664931004FBA45 /* plugins.c */; };
+		55BA70FF20664931004FBA45 /* r3000a.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70C520664931004FBA45 /* r3000a.c */; };
+		55BA710020664931004FBA45 /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70C620664931004FBA45 /* socket.c */; };
+		55BA710120664931004FBA45 /* psxdma.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70C720664931004FBA45 /* psxdma.c */; };
+		55BA710220664931004FBA45 /* mdec.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70CA20664931004FBA45 /* mdec.c */; };
+		55BA710320664931004FBA45 /* sio.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70CB20664931004FBA45 /* sio.c */; };
+		55BA710420664931004FBA45 /* ix86_fpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70CD20664931004FBA45 /* ix86_fpu.c */; };
+		55BA710520664931004FBA45 /* iR3000A-64.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70CF20664931004FBA45 /* iR3000A-64.c */; };
+		55BA710620664931004FBA45 /* ix86_sse.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D120664931004FBA45 /* ix86_sse.c */; };
+		55BA710720664931004FBA45 /* ix86_3dnow.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D220664931004FBA45 /* ix86_3dnow.c */; };
+		55BA710820664931004FBA45 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 55BA70D320664931004FBA45 /* README */; };
+		55BA710920664931004FBA45 /* ix86_mmx.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D420664931004FBA45 /* ix86_mmx.c */; };
+		55BA710A20664931004FBA45 /* ix86_cpudetect.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D520664931004FBA45 /* ix86_cpudetect.c */; };
+		55BA710B20664931004FBA45 /* ix86-64.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D620664931004FBA45 /* ix86-64.c */; };
+		55BA710C20664931004FBA45 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D820664931004FBA45 /* debug.c */; };
+		55BA710D20664931004FBA45 /* cheat.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70DA20664931004FBA45 /* cheat.c */; };
+		55BA710E20664931004FBA45 /* psxcommon.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70DB20664931004FBA45 /* psxcommon.c */; };
+		55BA710F20664931004FBA45 /* psxbios.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70DD20664931004FBA45 /* psxbios.c */; };
+		55BA711020664931004FBA45 /* psxhle.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70DF20664931004FBA45 /* psxhle.c */; };
+		55BA711120664931004FBA45 /* psxmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70E120664931004FBA45 /* psxmem.c */; };
+		55BA711220664931004FBA45 /* psxhw.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70E220664931004FBA45 /* psxhw.c */; };
+		55BA711320664931004FBA45 /* gte.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70E320664931004FBA45 /* gte.c */; };
+		55BA711420664931004FBA45 /* psxinterpreter.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70E420664931004FBA45 /* psxinterpreter.c */; };
+		55BA711520664931004FBA45 /* misc.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70E720664931004FBA45 /* misc.c */; };
+		55BA711620664931004FBA45 /* ppf.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70EA20664931004FBA45 /* ppf.c */; };
+		55BA711720664931004FBA45 /* psxcounters.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70EC20664931004FBA45 /* psxcounters.c */; };
+		55BA711D20664A63004FBA45 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55BA711F20664A63004FBA45 /* Localizable.strings */; };
+		55BA712020664A66004FBA45 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55BA712220664A66004FBA45 /* InfoPlist.strings */; };
+		55BA712820664A88004FBA45 /* PCSXRGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712320664A86004FBA45 /* PCSXRGameController.m */; };
+		55BA712920664A88004FBA45 /* PCSXRHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712420664A87004FBA45 /* PCSXRHelpers.m */; };
+		55BA712A20664A88004FBA45 /* PCSXRGameCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712520664A87004FBA45 /* PCSXRGameCore.m */; };
+		55BA71332066C09B004FBA45 /* drawgl.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71312066C09A004FBA45 /* drawgl.m */; };
+		55BA71372066C0FB004FBA45 /* EmuThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71352066C0FB004FBA45 /* EmuThread.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		55BA70962066481A004FBA45 /* PCSX-R.oecoreplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PCSX-R.oecoreplugin"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55BA70992066481A004FBA45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55BA70A1206648A5004FBA45 /* OpenEmuBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenEmuBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55BA70A420664931004FBA45 /* cheat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cheat.h; sourceTree = "<group>"; };
+		55BA70A520664931004FBA45 /* psxbios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psxbios.h; sourceTree = "<group>"; };
+		55BA70A620664931004FBA45 /* psxcommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psxcommon.h; sourceTree = "<group>"; };
+		55BA70A720664931004FBA45 /* gpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gpu.c; sourceTree = "<group>"; };
+		55BA70AD20664931004FBA45 /* decode_xa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = decode_xa.c; sourceTree = "<group>"; };
+		55BA70AE20664931004FBA45 /* sjisfont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sjisfont.h; sourceTree = "<group>"; };
+		55BA70AF20664931004FBA45 /* sio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sio.h; sourceTree = "<group>"; };
+		55BA70B020664931004FBA45 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
+		55BA70B120664931004FBA45 /* spu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = spu.c; sourceTree = "<group>"; };
+		55BA70B220664931004FBA45 /* gte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gte.h; sourceTree = "<group>"; };
+		55BA70B320664931004FBA45 /* psxhw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psxhw.h; sourceTree = "<group>"; };
+		55BA70B520664931004FBA45 /* cdriso.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdriso.c; sourceTree = "<group>"; };
+		55BA70B620664931004FBA45 /* psxmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psxmem.h; sourceTree = "<group>"; };
+		55BA70B720664931004FBA45 /* psxhle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psxhle.h; sourceTree = "<group>"; };
+		55BA70B820664931004FBA45 /* disr3000a.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = disr3000a.c; sourceTree = "<group>"; };
+		55BA70B920664931004FBA45 /* cdrom.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdrom.c; sourceTree = "<group>"; };
+		55BA70BA20664931004FBA45 /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
+		55BA70C420664931004FBA45 /* plugins.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = plugins.c; sourceTree = "<group>"; };
+		55BA70C520664931004FBA45 /* r3000a.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = r3000a.c; sourceTree = "<group>"; };
+		55BA70C620664931004FBA45 /* socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
+		55BA70C720664931004FBA45 /* psxdma.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = psxdma.c; sourceTree = "<group>"; };
+		55BA70C820664931004FBA45 /* ppf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ppf.h; sourceTree = "<group>"; };
+		55BA70C920664931004FBA45 /* psxcounters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psxcounters.h; sourceTree = "<group>"; };
+		55BA70CA20664931004FBA45 /* mdec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mdec.c; sourceTree = "<group>"; };
+		55BA70CB20664931004FBA45 /* sio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sio.c; sourceTree = "<group>"; };
+		55BA70CD20664931004FBA45 /* ix86_fpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ix86_fpu.c; sourceTree = "<group>"; };
+		55BA70CE20664931004FBA45 /* iGte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iGte.h; sourceTree = "<group>"; };
+		55BA70CF20664931004FBA45 /* iR3000A-64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "iR3000A-64.c"; sourceTree = "<group>"; };
+		55BA70D020664931004FBA45 /* ix86-64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ix86-64.h"; sourceTree = "<group>"; };
+		55BA70D120664931004FBA45 /* ix86_sse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ix86_sse.c; sourceTree = "<group>"; };
+		55BA70D220664931004FBA45 /* ix86_3dnow.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ix86_3dnow.c; sourceTree = "<group>"; };
+		55BA70D320664931004FBA45 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		55BA70D420664931004FBA45 /* ix86_mmx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ix86_mmx.c; sourceTree = "<group>"; };
+		55BA70D520664931004FBA45 /* ix86_cpudetect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ix86_cpudetect.c; sourceTree = "<group>"; };
+		55BA70D620664931004FBA45 /* ix86-64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "ix86-64.c"; sourceTree = "<group>"; };
+		55BA70D720664931004FBA45 /* spu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spu.h; sourceTree = "<group>"; };
+		55BA70D820664931004FBA45 /* debug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = debug.c; sourceTree = "<group>"; };
+		55BA70D920664931004FBA45 /* decode_xa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = decode_xa.h; sourceTree = "<group>"; };
+		55BA70DA20664931004FBA45 /* cheat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cheat.c; sourceTree = "<group>"; };
+		55BA70DB20664931004FBA45 /* psxcommon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = psxcommon.c; sourceTree = "<group>"; };
+		55BA70DC20664931004FBA45 /* gpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gpu.h; sourceTree = "<group>"; };
+		55BA70DD20664931004FBA45 /* psxbios.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = psxbios.c; sourceTree = "<group>"; };
+		55BA70DE20664931004FBA45 /* cdrom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdrom.h; sourceTree = "<group>"; };
+		55BA70DF20664931004FBA45 /* psxhle.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = psxhle.c; sourceTree = "<group>"; };
+		55BA70E020664931004FBA45 /* cdriso.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdriso.h; sourceTree = "<group>"; };
+		55BA70E120664931004FBA45 /* psxmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = psxmem.c; sourceTree = "<group>"; };
+		55BA70E220664931004FBA45 /* psxhw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = psxhw.c; sourceTree = "<group>"; };
+		55BA70E320664931004FBA45 /* gte.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gte.c; sourceTree = "<group>"; };
+		55BA70E420664931004FBA45 /* psxinterpreter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = psxinterpreter.c; sourceTree = "<group>"; };
+		55BA70E520664931004FBA45 /* system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = system.h; sourceTree = "<group>"; };
+		55BA70E620664931004FBA45 /* psemu_plugin_defs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psemu_plugin_defs.h; sourceTree = "<group>"; };
+		55BA70E720664931004FBA45 /* misc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = misc.c; sourceTree = "<group>"; };
+		55BA70E820664931004FBA45 /* ecm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ecm.h; sourceTree = "<group>"; };
+		55BA70E920664931004FBA45 /* coff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coff.h; sourceTree = "<group>"; };
+		55BA70EA20664931004FBA45 /* ppf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ppf.c; sourceTree = "<group>"; };
+		55BA70EB20664931004FBA45 /* mdec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mdec.h; sourceTree = "<group>"; };
+		55BA70EC20664931004FBA45 /* psxcounters.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = psxcounters.c; sourceTree = "<group>"; };
+		55BA70ED20664931004FBA45 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
+		55BA70EE20664931004FBA45 /* r3000a.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = r3000a.h; sourceTree = "<group>"; };
+		55BA70EF20664931004FBA45 /* psxdma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psxdma.h; sourceTree = "<group>"; };
+		55BA70F020664931004FBA45 /* plugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plugins.h; sourceTree = "<group>"; };
+		55BA711E20664A63004FBA45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55BA712120664A66004FBA45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		55BA712320664A86004FBA45 /* PCSXRGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSXRGameController.m; sourceTree = "<group>"; };
+		55BA712420664A87004FBA45 /* PCSXRHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSXRHelpers.m; sourceTree = "<group>"; };
+		55BA712520664A87004FBA45 /* PCSXRGameCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSXRGameCore.m; sourceTree = "<group>"; };
+		55BA712620664A87004FBA45 /* PCSXRGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCSXRGameController.h; sourceTree = "<group>"; };
+		55BA712720664A88004FBA45 /* PCSXRGameCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCSXRGameCore.h; sourceTree = "<group>"; };
+		55BA712B20664B45004FBA45 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		55BA71302066C09A004FBA45 /* ExtendedKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedKeys.h; sourceTree = "<group>"; };
+		55BA71312066C09A004FBA45 /* drawgl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drawgl.m; sourceTree = "<group>"; };
+		55BA71322066C09A004FBA45 /* drawgl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawgl.h; sourceTree = "<group>"; };
+		55BA71352066C0FB004FBA45 /* EmuThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmuThread.m; path = ../../../../../../pcsxr/pcsxr/macosx/Source/EmuThread.m; sourceTree = "<group>"; };
+		55BA71362066C0FB004FBA45 /* EmuThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmuThread.h; path = ../../../../../../pcsxr/pcsxr/macosx/Source/EmuThread.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		55BA70932066481A004FBA45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55BA70A0206648A5004FBA45 /* OpenEmuBase.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		55BA708D2066481A004FBA45 = {
+			isa = PBXGroup;
+			children = (
+				55BA70A2206648F3004FBA45 /* From PCSXR */,
+				55BA70982066481A004FBA45 /* PCSX-R */,
+				55BA70972066481A004FBA45 /* Products */,
+				55BA709F206648A5004FBA45 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		55BA70972066481A004FBA45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				55BA70962066481A004FBA45 /* PCSX-R.oecoreplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		55BA70982066481A004FBA45 /* PCSX-R */ = {
+			isa = PBXGroup;
+			children = (
+				55BA712F2066C067004FBA45 /* Plugins */,
+				55BA712620664A87004FBA45 /* PCSXRGameController.h */,
+				55BA712320664A86004FBA45 /* PCSXRGameController.m */,
+				55BA712720664A88004FBA45 /* PCSXRGameCore.h */,
+				55BA712520664A87004FBA45 /* PCSXRGameCore.m */,
+				55BA712420664A87004FBA45 /* PCSXRHelpers.m */,
+				55BA711C20664A4E004FBA45 /* Resources */,
+				55BA70992066481A004FBA45 /* Info.plist */,
+				55BA712B20664B45004FBA45 /* config.h */,
+			);
+			path = "PCSX-R";
+			sourceTree = "<group>";
+		};
+		55BA709F206648A5004FBA45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55BA70A1206648A5004FBA45 /* OpenEmuBase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		55BA70A2206648F3004FBA45 /* From PCSXR */ = {
+			isa = PBXGroup;
+			children = (
+				55BA71342066C0DF004FBA45 /* Mac OS X */,
+				55BA712D2066C020004FBA45 /* Plug-ins */,
+				55BA70A320664931004FBA45 /* libpcsxcore */,
+			);
+			name = "From PCSXR";
+			path = ../pcsxr;
+			sourceTree = "<group>";
+		};
+		55BA70A320664931004FBA45 /* libpcsxcore */ = {
+			isa = PBXGroup;
+			children = (
+				55BA70CC20664931004FBA45 /* ix86_64 */,
+				55BA70B520664931004FBA45 /* cdriso.c */,
+				55BA70E020664931004FBA45 /* cdriso.h */,
+				55BA70B920664931004FBA45 /* cdrom.c */,
+				55BA70DE20664931004FBA45 /* cdrom.h */,
+				55BA70DA20664931004FBA45 /* cheat.c */,
+				55BA70A420664931004FBA45 /* cheat.h */,
+				55BA70E920664931004FBA45 /* coff.h */,
+				55BA70D820664931004FBA45 /* debug.c */,
+				55BA70B020664931004FBA45 /* debug.h */,
+				55BA70AD20664931004FBA45 /* decode_xa.c */,
+				55BA70D920664931004FBA45 /* decode_xa.h */,
+				55BA70B820664931004FBA45 /* disr3000a.c */,
+				55BA70E820664931004FBA45 /* ecm.h */,
+				55BA70A720664931004FBA45 /* gpu.c */,
+				55BA70DC20664931004FBA45 /* gpu.h */,
+				55BA70E320664931004FBA45 /* gte.c */,
+				55BA70B220664931004FBA45 /* gte.h */,
+				55BA70CA20664931004FBA45 /* mdec.c */,
+				55BA70EB20664931004FBA45 /* mdec.h */,
+				55BA70E720664931004FBA45 /* misc.c */,
+				55BA70BA20664931004FBA45 /* misc.h */,
+				55BA70C420664931004FBA45 /* plugins.c */,
+				55BA70F020664931004FBA45 /* plugins.h */,
+				55BA70EA20664931004FBA45 /* ppf.c */,
+				55BA70C820664931004FBA45 /* ppf.h */,
+				55BA70E620664931004FBA45 /* psemu_plugin_defs.h */,
+				55BA70DD20664931004FBA45 /* psxbios.c */,
+				55BA70A520664931004FBA45 /* psxbios.h */,
+				55BA70DB20664931004FBA45 /* psxcommon.c */,
+				55BA70A620664931004FBA45 /* psxcommon.h */,
+				55BA70EC20664931004FBA45 /* psxcounters.c */,
+				55BA70C920664931004FBA45 /* psxcounters.h */,
+				55BA70C720664931004FBA45 /* psxdma.c */,
+				55BA70EF20664931004FBA45 /* psxdma.h */,
+				55BA70DF20664931004FBA45 /* psxhle.c */,
+				55BA70B720664931004FBA45 /* psxhle.h */,
+				55BA70E220664931004FBA45 /* psxhw.c */,
+				55BA70B320664931004FBA45 /* psxhw.h */,
+				55BA70E420664931004FBA45 /* psxinterpreter.c */,
+				55BA70E120664931004FBA45 /* psxmem.c */,
+				55BA70B620664931004FBA45 /* psxmem.h */,
+				55BA70C520664931004FBA45 /* r3000a.c */,
+				55BA70EE20664931004FBA45 /* r3000a.h */,
+				55BA70CB20664931004FBA45 /* sio.c */,
+				55BA70AF20664931004FBA45 /* sio.h */,
+				55BA70AE20664931004FBA45 /* sjisfont.h */,
+				55BA70C620664931004FBA45 /* socket.c */,
+				55BA70ED20664931004FBA45 /* socket.h */,
+				55BA70B120664931004FBA45 /* spu.c */,
+				55BA70D720664931004FBA45 /* spu.h */,
+				55BA70E520664931004FBA45 /* system.h */,
+			);
+			path = libpcsxcore;
+			sourceTree = "<group>";
+		};
+		55BA70CC20664931004FBA45 /* ix86_64 */ = {
+			isa = PBXGroup;
+			children = (
+				55BA70CD20664931004FBA45 /* ix86_fpu.c */,
+				55BA70CE20664931004FBA45 /* iGte.h */,
+				55BA70CF20664931004FBA45 /* iR3000A-64.c */,
+				55BA70D020664931004FBA45 /* ix86-64.h */,
+				55BA70D120664931004FBA45 /* ix86_sse.c */,
+				55BA70D220664931004FBA45 /* ix86_3dnow.c */,
+				55BA70D320664931004FBA45 /* README */,
+				55BA70D420664931004FBA45 /* ix86_mmx.c */,
+				55BA70D520664931004FBA45 /* ix86_cpudetect.c */,
+				55BA70D620664931004FBA45 /* ix86-64.c */,
+			);
+			path = ix86_64;
+			sourceTree = "<group>";
+		};
+		55BA711C20664A4E004FBA45 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				55BA712220664A66004FBA45 /* InfoPlist.strings */,
+				55BA711F20664A63004FBA45 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		55BA712D2066C020004FBA45 /* Plug-ins */ = {
+			isa = PBXGroup;
+			children = (
+				55BA712E2066C04A004FBA45 /* PeopsXgl */,
+			);
+			name = "Plug-ins";
+			path = plugins;
+			sourceTree = "<group>";
+		};
+		55BA712E2066C04A004FBA45 /* PeopsXgl */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PeopsXgl;
+			path = peopsxgl;
+			sourceTree = "<group>";
+		};
+		55BA712F2066C067004FBA45 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				55BA71322066C09A004FBA45 /* drawgl.h */,
+				55BA71312066C09A004FBA45 /* drawgl.m */,
+				55BA71302066C09A004FBA45 /* ExtendedKeys.h */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		55BA71342066C0DF004FBA45 /* Mac OS X */ = {
+			isa = PBXGroup;
+			children = (
+				55BA71362066C0FB004FBA45 /* EmuThread.h */,
+				55BA71352066C0FB004FBA45 /* EmuThread.m */,
+			);
+			name = "Mac OS X";
+			path = macosx/Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		55BA70952066481A004FBA45 /* PCSX-R */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55BA709C2066481A004FBA45 /* Build configuration list for PBXNativeTarget "PCSX-R" */;
+			buildPhases = (
+				55BA70922066481A004FBA45 /* Sources */,
+				55BA70932066481A004FBA45 /* Frameworks */,
+				55BA70942066481A004FBA45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PCSX-R";
+			productName = "PCSX-R";
+			productReference = 55BA70962066481A004FBA45 /* PCSX-R.oecoreplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		55BA708E2066481A004FBA45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "C.W. Betts";
+				TargetAttributes = {
+					55BA70952066481A004FBA45 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 55BA70912066481A004FBA45 /* Build configuration list for PBXProject "PCSX-R" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 55BA708D2066481A004FBA45;
+			productRefGroup = 55BA70972066481A004FBA45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				55BA70952066481A004FBA45 /* PCSX-R */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		55BA70942066481A004FBA45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55BA710820664931004FBA45 /* README in Resources */,
+				55BA711D20664A63004FBA45 /* Localizable.strings in Resources */,
+				55BA712020664A66004FBA45 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		55BA70922066481A004FBA45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55BA711520664931004FBA45 /* misc.c in Sources */,
+				55BA711320664931004FBA45 /* gte.c in Sources */,
+				55BA712920664A88004FBA45 /* PCSXRHelpers.m in Sources */,
+				55BA710D20664931004FBA45 /* cheat.c in Sources */,
+				55BA710A20664931004FBA45 /* ix86_cpudetect.c in Sources */,
+				55BA710C20664931004FBA45 /* debug.c in Sources */,
+				55BA710B20664931004FBA45 /* ix86-64.c in Sources */,
+				55BA71332066C09B004FBA45 /* drawgl.m in Sources */,
+				55BA70FF20664931004FBA45 /* r3000a.c in Sources */,
+				55BA70FE20664931004FBA45 /* plugins.c in Sources */,
+				55BA70F520664931004FBA45 /* spu.c in Sources */,
+				55BA710E20664931004FBA45 /* psxcommon.c in Sources */,
+				55BA70F420664931004FBA45 /* decode_xa.c in Sources */,
+				55BA711620664931004FBA45 /* ppf.c in Sources */,
+				55BA710120664931004FBA45 /* psxdma.c in Sources */,
+				55BA710520664931004FBA45 /* iR3000A-64.c in Sources */,
+				55BA710220664931004FBA45 /* mdec.c in Sources */,
+				55BA71372066C0FB004FBA45 /* EmuThread.m in Sources */,
+				55BA710420664931004FBA45 /* ix86_fpu.c in Sources */,
+				55BA70F720664931004FBA45 /* cdriso.c in Sources */,
+				55BA711720664931004FBA45 /* psxcounters.c in Sources */,
+				55BA712A20664A88004FBA45 /* PCSXRGameCore.m in Sources */,
+				55BA710320664931004FBA45 /* sio.c in Sources */,
+				55BA710920664931004FBA45 /* ix86_mmx.c in Sources */,
+				55BA711220664931004FBA45 /* psxhw.c in Sources */,
+				55BA710720664931004FBA45 /* ix86_3dnow.c in Sources */,
+				55BA711020664931004FBA45 /* psxhle.c in Sources */,
+				55BA710620664931004FBA45 /* ix86_sse.c in Sources */,
+				55BA70F920664931004FBA45 /* cdrom.c in Sources */,
+				55BA711120664931004FBA45 /* psxmem.c in Sources */,
+				55BA711420664931004FBA45 /* psxinterpreter.c in Sources */,
+				55BA70F120664931004FBA45 /* gpu.c in Sources */,
+				55BA70F820664931004FBA45 /* disr3000a.c in Sources */,
+				55BA710F20664931004FBA45 /* psxbios.c in Sources */,
+				55BA712820664A88004FBA45 /* PCSXRGameController.m in Sources */,
+				55BA710020664931004FBA45 /* socket.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		55BA711F20664A63004FBA45 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55BA711E20664A63004FBA45 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		55BA712220664A66004FBA45 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55BA712120664A66004FBA45 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		55BA709A2066481A004FBA45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		55BA709B2066481A004FBA45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		55BA709D2066481A004FBA45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PCSX-R/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.maddthesane.PCSX-R";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = oecoreplugin;
+			};
+			name = Debug;
+		};
+		55BA709E2066481A004FBA45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "PCSX-R/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github.maddthesane.PCSX-R";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = oecoreplugin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		55BA70912066481A004FBA45 /* Build configuration list for PBXProject "PCSX-R" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55BA709A2066481A004FBA45 /* Debug */,
+				55BA709B2066481A004FBA45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55BA709C2066481A004FBA45 /* Build configuration list for PBXNativeTarget "PCSX-R" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55BA709D2066481A004FBA45 /* Debug */,
+				55BA709E2066481A004FBA45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 55BA708E2066481A004FBA45 /* Project object */;
+}
