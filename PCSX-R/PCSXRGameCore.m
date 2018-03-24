@@ -44,6 +44,7 @@
 @interface PCSXRGameCore() <OEPSXSystemResponderClient>
 
 @end
+
 #pragma mark SPU calls
 
 // SETUP SOUND
@@ -85,11 +86,6 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 		
     }
     return self;
-}
-
-- (const void *)videoBuffer
-{
-	return PSXVideoBuffer();
 }
 
 - (GLenum)pixelFormat
@@ -145,21 +141,21 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	{
 		NSFileManager *manager = [NSFileManager defaultManager];
 		NSURL *supportURL = [manager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
-		NSURL *url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PSX/Bios"];
+		NSURL *url = [supportURL URLByAppendingPathComponent:@"OpenEmu/BIOS"];
 		if (![url checkResourceIsReachableAndReturnError:NULL])
 			[manager createDirectoryAtPath:[url path] withIntermediateDirectories:YES attributes:nil error:NULL];
-		NSMutableArray *biosList = [NSMutableArray arrayWithCapacity:1];
-        url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PSX/MemCards"];
+		NSMutableArray<NSString *> *biosList = [NSMutableArray arrayWithCapacity:1];
+        url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PCSXR/MemCards"];
 		if (![url checkResourceIsReachableAndReturnError:NULL])
             [manager createDirectoryAtPath:[url path] withIntermediateDirectories:YES attributes:nil error:NULL];
-		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PSX/Patches"];
+		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PCSXR/Patches"];
 		if (![url checkResourceIsReachableAndReturnError:NULL])
             [manager createDirectoryAtPath:[url path] withIntermediateDirectories:YES attributes:nil error:NULL];
 
-		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PSX/Bios"];
+		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/BIOS"];
 		const char *str = [[url path] fileSystemRepresentation];
 		if (str != nil) strncpy(Config.BiosDir, str, MAXPATHLEN);
-		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PSX/Patches"];
+		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PCSXR/Patches"];
 		str = [[url path] fileSystemRepresentation];
 		if (str != nil) strncpy(Config.PatchesDir, str, MAXPATHLEN);
 
@@ -181,7 +177,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 		}
 		
 		if (([biosList count] > 0)) {
-			str = [(NSString *)[biosList objectAtIndex:0] fileSystemRepresentation];
+			str = [[biosList objectAtIndex:0] fileSystemRepresentation];
 			if (str != nil) strncpy(Config.Bios, str, MAXPATHLEN);
 			else strcpy(Config.Bios, "HLE");
 		} else {

@@ -6,6 +6,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconFile</key>
+	<string>PCSXR</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -21,6 +23,59 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2018 C.W. Betts. All rights reserved.</string>
 	<key>NSPrincipalClass</key>
-	<string></string>
+	<string>OEGameCoreController</string>
+	<key>OEGameCoreClass</key>
+	<string>PCSXRGameCore</string>
+	<key>OEGameCoreOptions</key>
+	<dict>
+		<key>openemu.system.psx</key>
+		<dict>
+			<key>OEGameCoreRequiresFiles</key>
+			<false/>
+			<key>OEGameCoreSupportsMultipleDiscs</key>
+			<true/>
+			<key>OERequiredFiles</key>
+			<array>
+				<dict>
+					<key>Description</key>
+					<string>PlayStation SCPH-5500 (v3.0 Japan) BIOS</string>
+					<key>MD5</key>
+					<string>8dd7d5296a650fac7319bce665a6a53c</string>
+					<key>Name</key>
+					<string>scph5500.bin</string>
+					<key>Size</key>
+					<integer>524288</integer>
+				</dict>
+				<dict>
+					<key>Description</key>
+					<string>PlayStation SCPH-5501 (v3.0 America) BIOS</string>
+					<key>MD5</key>
+					<string>490f666e1afb15b7362b406ed1cea246</string>
+					<key>Name</key>
+					<string>scph5501.bin</string>
+					<key>Size</key>
+					<integer>524288</integer>
+				</dict>
+				<dict>
+					<key>Description</key>
+					<string>PlayStation SCPH-5502 (v3.0 Europe) BIOS</string>
+					<key>MD5</key>
+					<string>32736f17079d0b2b7024407c39bd3050</string>
+					<key>Name</key>
+					<string>scph5502.bin</string>
+					<key>Size</key>
+					<integer>524288</integer>
+				</dict>
+			</array>
+		</dict>
+	</dict>
+	<key>OEGameCorePlayerCount</key>
+	<string>2</string>
+	<key>OEProjectURL</key>
+	<string>http://pcsxr.codeplex.com/</string>
+	<key>OESystemIdentifiers</key>
+	<array>
+		<string>openemu.system.psx</string>
+	</array>
 </dict>
 </plist>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5527D1472066DD700094179A /* PCSXR.icns in Resources */ = {isa = PBXBuildFile; fileRef = 5527D1462066DD700094179A /* PCSXR.icns */; };
 		55BA70A0206648A5004FBA45 /* OpenEmuBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BA70A1206648A5004FBA45 /* OpenEmuBase.framework */; };
 		55BA70F120664931004FBA45 /* gpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70A720664931004FBA45 /* gpu.c */; };
 		55BA70F420664931004FBA45 /* decode_xa.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70AD20664931004FBA45 /* decode_xa.c */; };
@@ -84,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		5527D1452066D02E0094179A /* OEPSXSystemResponderClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OEPSXSystemResponderClient.h; path = ../OpenEmu/PlayStation/OEPSXSystemResponderClient.h; sourceTree = SOURCE_ROOT; };
+		5527D1462066DD700094179A /* PCSXR.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = PCSXR.icns; sourceTree = "<group>"; };
 		55BA70962066481A004FBA45 /* PCSX-R.oecoreplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PCSX-R.oecoreplugin"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55BA70992066481A004FBA45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55BA70A1206648A5004FBA45 /* OpenEmuBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenEmuBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -376,6 +378,7 @@
 		55BA711C20664A4E004FBA45 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5527D1462066DD700094179A /* PCSXR.icns */,
 				55BA712220664A66004FBA45 /* InfoPlist.strings */,
 				55BA711F20664A63004FBA45 /* Localizable.strings */,
 			);
@@ -602,6 +605,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5527D1472066DD700094179A /* PCSXR.icns in Resources */,
 				55BA711D20664A63004FBA45 /* Localizable.strings in Resources */,
 				55BA712020664A66004FBA45 /* InfoPlist.strings in Resources */,
 			);
@@ -765,7 +769,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -814,7 +818,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
