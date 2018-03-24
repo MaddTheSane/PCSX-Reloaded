@@ -69,18 +69,18 @@ extern int     iUseScanLines;
 extern unsigned short usCursorActive;
 
 
-int            iResX;
-int            iResY;
+extern int     iResX;
+extern int     iResY;
 long           lLowerpart;
 
 uint32_t        sSetMassk=0;
 int            iDesktopCol=16;
-int            iWinSize; 
+extern int     iWinSize; 
 int            iUseNoStretchBlt=0;
 int            iFastFwd=0;
 int            iDebugMode=0;
 int            iFVDisplay=0;
-PSXPoint_t     ptCursorPoint[8];
+extern PSXPoint_t     ptCursorPoint[8];
 char *			Xpixels;
 char *         pCaptionText;
 
@@ -374,4 +374,9 @@ void GPUTick()
 			}
 		}
 	}
+}
+
+void ChangeWindowMode(void)
+{
+	
 }

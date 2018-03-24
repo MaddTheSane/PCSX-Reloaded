@@ -32,9 +32,9 @@
 //#include "stdafx_spu.h"
 #define _IN_OSS
 #include "dfsound/externals.h"
+#include "peopsxgl/externals.h"
 #undef BOOL
 #import "PCSXRGameCore.h"
-#import "PCSXRGameController.h"
 #import <OpenEmuBase/OERingBuffer.h>
 #include <sys/time.h>
 #import <OpenGL/gl.h>
@@ -75,8 +75,6 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 #define SAMPLERATE 44100
 
 @implementation PCSXRGameCore
-
-@synthesize romPath;
 
 - (id)init
 {
@@ -294,3 +292,64 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 }
 
 @end
+
+void ReadConfig(void)
+{
+	iVolume=2;
+	iXAPitch=0;
+	iSPUIRQWait=1;
+	iUseTimer=2;
+	iUseReverb=2;
+	iUseInterpolation=2;
+	iDisStereo=0;
+	iFreqResponse=0;
+	
+	iResX=640;
+	iResY=480;
+	iColDepth=16;
+	bChangeRes=FALSE;
+	bWindowMode=TRUE;
+	iUseScanLines=0;
+	//bFullScreen=FALSE;
+	bFullVRam=FALSE;
+	iFilterType=0;
+	bAdvancedBlend=FALSE;
+	bDrawDither=FALSE;
+	bUseLines=FALSE;
+	bUseFrameLimit=TRUE;
+	bUseFrameSkip=FALSE;
+	iFrameLimit=2;
+	fFrameRate=200.0f;
+	iOffscreenDrawing=2;
+	bOpaquePass=TRUE;
+	bUseAntiAlias=FALSE;
+	iTexQuality=0;
+	iUseMask=0;
+	iZBufferDepth=0;
+	bUseFastMdec=TRUE;
+	dwCfgFixes=0;
+	bUseFixes=FALSE;
+	iFrameTexType=1;
+	iFrameReadType=0;
+	bUse15bitMdec=FALSE;
+	iShowFPS=0;
+	bGteAccuracy=0;
+	bKeepRatio=FALSE;
+	bForceRatio43=FALSE;
+	iScanBlend=0;
+	iVRamSize=0;
+	iTexGarbageCollection=1;
+	iBlurBuffer=0;
+	iHiResTextures=0;
+	iForceVSync=-1;
+}
+
+int OpenPlugins(void)
+{
+	return 0;
+}
+
+void ClosePlugins(void)
+{
+	
+}

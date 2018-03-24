@@ -32,12 +32,6 @@
 
 OE_EXPORTED_CLASS
 @interface PCSXRGameCore : OEGameCore
-{
-    NSString             *romPath;
-}
-
-@property(copy) NSString *romPath;
-
 
 @end
 
