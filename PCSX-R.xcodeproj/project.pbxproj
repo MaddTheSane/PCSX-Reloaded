@@ -24,7 +24,6 @@
 		55BA710520664931004FBA45 /* iR3000A-64.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70CF20664931004FBA45 /* iR3000A-64.c */; };
 		55BA710620664931004FBA45 /* ix86_sse.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D120664931004FBA45 /* ix86_sse.c */; };
 		55BA710720664931004FBA45 /* ix86_3dnow.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D220664931004FBA45 /* ix86_3dnow.c */; };
-		55BA710820664931004FBA45 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 55BA70D320664931004FBA45 /* README */; };
 		55BA710920664931004FBA45 /* ix86_mmx.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D420664931004FBA45 /* ix86_mmx.c */; };
 		55BA710A20664931004FBA45 /* ix86_cpudetect.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D520664931004FBA45 /* ix86_cpudetect.c */; };
 		55BA710B20664931004FBA45 /* ix86-64.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70D620664931004FBA45 /* ix86-64.c */; };
@@ -45,11 +44,46 @@
 		55BA712820664A88004FBA45 /* PCSXRGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712320664A86004FBA45 /* PCSXRGameController.m */; };
 		55BA712920664A88004FBA45 /* PCSXRHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712420664A87004FBA45 /* PCSXRHelpers.m */; };
 		55BA712A20664A88004FBA45 /* PCSXRGameCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712520664A87004FBA45 /* PCSXRGameCore.m */; };
-		55BA71332066C09B004FBA45 /* drawgl.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71312066C09A004FBA45 /* drawgl.m */; };
 		55BA71372066C0FB004FBA45 /* EmuThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71352066C0FB004FBA45 /* EmuThread.m */; };
+		55BA715C2066C92D004FBA45 /* fmemopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA715B2066C92D004FBA45 /* fmemopen.c */; };
+		55BA71852066CB32004FBA45 /* dma.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71612066CA20004FBA45 /* dma.c */; };
+		55BA71862066CB36004FBA45 /* externals.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA716C2066CA22004FBA45 /* externals.c */; };
+		55BA71872066CB3A004FBA45 /* freeze.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71692066CA21004FBA45 /* freeze.c */; };
+		55BA71882066CB3D004FBA45 /* registers.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71672066CA21004FBA45 /* registers.c */; };
+		55BA71892066CB43004FBA45 /* spu.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA715E2066CA20004FBA45 /* spu.c */; };
+		55BA718C2066CB7C004FBA45 /* libdfsound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BA71812066CB0B004FBA45 /* libdfsound.a */; };
+		55BA71952066CBC1004FBA45 /* draw.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71392066C88B004FBA45 /* draw.c */; };
+		55BA71962066CBC5004FBA45 /* fps.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA714C2066C88E004FBA45 /* fps.c */; };
+		55BA71972066CBC8004FBA45 /* gpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71402066C88C004FBA45 /* gpu.c */; };
+		55BA71982066CBCD004FBA45 /* gte_accuracy.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71412066C88C004FBA45 /* gte_accuracy.c */; };
+		55BA71992066CBD0004FBA45 /* key.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71452066C88D004FBA45 /* key.c */; };
+		55BA719A2066CBD3004FBA45 /* menu.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA714B2066C88E004FBA45 /* menu.c */; };
+		55BA719B2066CBD7004FBA45 /* prim.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71472066C88D004FBA45 /* prim.c */; };
+		55BA719C2066CBDB004FBA45 /* soft.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA713C2066C88C004FBA45 /* soft.c */; };
+		55BA719D2066CBDE004FBA45 /* texture.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA713B2066C88C004FBA45 /* texture.c */; };
+		55BA71A02066CBF2004FBA45 /* libPeopsXgl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BA71912066CBB6004FBA45 /* libPeopsXgl.a */; };
+		55BA71A12066CC0E004FBA45 /* drawgl.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71312066C09A004FBA45 /* drawgl.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		55BA718A2066CB52004FBA45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55BA708E2066481A004FBA45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55BA71802066CB0B004FBA45;
+			remoteInfo = dfsound;
+		};
+		55BA719E2066CBED004FBA45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55BA708E2066481A004FBA45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55BA71902066CBB6004FBA45;
+			remoteInfo = PeopsXgl;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		5527D1452066D02E0094179A /* OEPSXSystemResponderClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OEPSXSystemResponderClient.h; path = ../OpenEmu/PlayStation/OEPSXSystemResponderClient.h; sourceTree = SOURCE_ROOT; };
 		55BA70962066481A004FBA45 /* PCSX-R.oecoreplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PCSX-R.oecoreplugin"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55BA70992066481A004FBA45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55BA70A1206648A5004FBA45 /* OpenEmuBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenEmuBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +161,55 @@
 		55BA71322066C09A004FBA45 /* drawgl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawgl.h; sourceTree = "<group>"; };
 		55BA71352066C0FB004FBA45 /* EmuThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmuThread.m; path = ../../../../../../pcsxr/pcsxr/macosx/Source/EmuThread.m; sourceTree = "<group>"; };
 		55BA71362066C0FB004FBA45 /* EmuThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmuThread.h; path = ../../../../../../pcsxr/pcsxr/macosx/Source/EmuThread.h; sourceTree = "<group>"; };
+		55BA71382066C88B004FBA45 /* gte_accuracy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gte_accuracy.h; sourceTree = "<group>"; };
+		55BA71392066C88B004FBA45 /* draw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = draw.c; sourceTree = "<group>"; };
+		55BA713A2066C88C004FBA45 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		55BA713B2066C88C004FBA45 /* texture.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = texture.c; sourceTree = "<group>"; };
+		55BA713C2066C88C004FBA45 /* soft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = soft.c; sourceTree = "<group>"; };
+		55BA713D2066C88C004FBA45 /* prim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prim.h; sourceTree = "<group>"; };
+		55BA713E2066C88C004FBA45 /* cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfg.h; sourceTree = "<group>"; };
+		55BA713F2066C88C004FBA45 /* cfg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cfg.c; sourceTree = "<group>"; };
+		55BA71402066C88C004FBA45 /* gpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gpu.c; sourceTree = "<group>"; };
+		55BA71412066C88C004FBA45 /* gte_accuracy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gte_accuracy.c; sourceTree = "<group>"; };
+		55BA71422066C88C004FBA45 /* key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = key.h; sourceTree = "<group>"; };
+		55BA71432066C88D004FBA45 /* fps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fps.h; sourceTree = "<group>"; };
+		55BA71442066C88D004FBA45 /* draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = draw.h; sourceTree = "<group>"; };
+		55BA71452066C88D004FBA45 /* key.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = key.c; sourceTree = "<group>"; };
+		55BA71462066C88D004FBA45 /* menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu.h; sourceTree = "<group>"; };
+		55BA71472066C88D004FBA45 /* prim.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = prim.c; sourceTree = "<group>"; };
+		55BA71482066C88D004FBA45 /* gl_ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl_ext.h; sourceTree = "<group>"; };
+		55BA71492066C88E004FBA45 /* soft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = soft.h; sourceTree = "<group>"; };
+		55BA714A2066C88E004FBA45 /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
+		55BA714B2066C88E004FBA45 /* menu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = menu.c; sourceTree = "<group>"; };
+		55BA714C2066C88E004FBA45 /* fps.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fps.c; sourceTree = "<group>"; };
+		55BA714D2066C88E004FBA45 /* externals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = externals.h; sourceTree = "<group>"; };
+		55BA714E2066C88E004FBA45 /* gpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gpu.h; sourceTree = "<group>"; };
+		55BA715A2066C92D004FBA45 /* fmemopen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmemopen.h; sourceTree = "<group>"; };
+		55BA715B2066C92D004FBA45 /* fmemopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fmemopen.c; sourceTree = "<group>"; };
+		55BA715E2066CA20004FBA45 /* spu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = spu.c; sourceTree = "<group>"; };
+		55BA715F2066CA20004FBA45 /* adsr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adsr.c; sourceTree = "<group>"; };
+		55BA71602066CA20004FBA45 /* dma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dma.h; sourceTree = "<group>"; };
+		55BA71612066CA20004FBA45 /* dma.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dma.c; sourceTree = "<group>"; };
+		55BA71622066CA21004FBA45 /* externals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = externals.h; sourceTree = "<group>"; };
+		55BA71632066CA21004FBA45 /* reverb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reverb.h; sourceTree = "<group>"; };
+		55BA71642066CA21004FBA45 /* xa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xa.c; sourceTree = "<group>"; };
+		55BA71652066CA21004FBA45 /* xa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xa.h; sourceTree = "<group>"; };
+		55BA71662066CA21004FBA45 /* dsoundoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dsoundoss.h; sourceTree = "<group>"; };
+		55BA71672066CA21004FBA45 /* registers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = registers.c; sourceTree = "<group>"; };
+		55BA71682066CA21004FBA45 /* cfg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cfg.c; sourceTree = "<group>"; };
+		55BA71692066CA21004FBA45 /* freeze.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = freeze.c; sourceTree = "<group>"; };
+		55BA716A2066CA22004FBA45 /* spu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = spu.h; sourceTree = "<group>"; };
+		55BA716B2066CA22004FBA45 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		55BA716C2066CA22004FBA45 /* externals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = externals.c; sourceTree = "<group>"; };
+		55BA716D2066CA22004FBA45 /* psemuxa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psemuxa.h; sourceTree = "<group>"; };
+		55BA716E2066CA22004FBA45 /* reverb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = reverb.c; sourceTree = "<group>"; };
+		55BA716F2066CA22004FBA45 /* registers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registers.h; sourceTree = "<group>"; };
+		55BA71702066CA23004FBA45 /* adsr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = adsr.h; sourceTree = "<group>"; };
+		55BA71712066CA23004FBA45 /* cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfg.h; sourceTree = "<group>"; };
+		55BA71722066CA23004FBA45 /* gauss_i.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gauss_i.h; sourceTree = "<group>"; };
+		55BA71732066CA23004FBA45 /* regs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regs.h; sourceTree = "<group>"; };
+		55BA71812066CB0B004FBA45 /* libdfsound.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdfsound.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		55BA71912066CBB6004FBA45 /* libPeopsXgl.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPeopsXgl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +217,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55BA71A02066CBF2004FBA45 /* libPeopsXgl.a in Frameworks */,
+				55BA718C2066CB7C004FBA45 /* libdfsound.a in Frameworks */,
 				55BA70A0206648A5004FBA45 /* OpenEmuBase.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55BA717E2066CB0B004FBA45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55BA718E2066CBB6004FBA45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +243,7 @@
 		55BA708D2066481A004FBA45 = {
 			isa = PBXGroup;
 			children = (
+				55BA71592066C8E6004FBA45 /* fmemopen */,
 				55BA70A2206648F3004FBA45 /* From PCSXR */,
 				55BA70982066481A004FBA45 /* PCSX-R */,
 				55BA70972066481A004FBA45 /* Products */,
@@ -155,6 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				55BA70962066481A004FBA45 /* PCSX-R.oecoreplugin */,
+				55BA71812066CB0B004FBA45 /* libdfsound.a */,
+				55BA71912066CBB6004FBA45 /* libPeopsXgl.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				55BA712F2066C067004FBA45 /* Plugins */,
+				5527D1452066D02E0094179A /* OEPSXSystemResponderClient.h */,
 				55BA712620664A87004FBA45 /* PCSXRGameController.h */,
 				55BA712320664A86004FBA45 /* PCSXRGameController.m */,
 				55BA712720664A88004FBA45 /* PCSXRGameCore.h */,
@@ -191,7 +294,7 @@
 				55BA70A320664931004FBA45 /* libpcsxcore */,
 			);
 			name = "From PCSXR";
-			path = ../pcsxr;
+			path = pcsxr;
 			sourceTree = "<group>";
 		};
 		55BA70A320664931004FBA45 /* libpcsxcore */ = {
@@ -282,6 +385,7 @@
 		55BA712D2066C020004FBA45 /* Plug-ins */ = {
 			isa = PBXGroup;
 			children = (
+				55BA715D2066C9E8004FBA45 /* dfsound */,
 				55BA712E2066C04A004FBA45 /* PeopsXgl */,
 			);
 			name = "Plug-ins";
@@ -291,6 +395,29 @@
 		55BA712E2066C04A004FBA45 /* PeopsXgl */ = {
 			isa = PBXGroup;
 			children = (
+				55BA713F2066C88C004FBA45 /* cfg.c */,
+				55BA713E2066C88C004FBA45 /* cfg.h */,
+				55BA71392066C88B004FBA45 /* draw.c */,
+				55BA71442066C88D004FBA45 /* draw.h */,
+				55BA714D2066C88E004FBA45 /* externals.h */,
+				55BA714C2066C88E004FBA45 /* fps.c */,
+				55BA71432066C88D004FBA45 /* fps.h */,
+				55BA71482066C88D004FBA45 /* gl_ext.h */,
+				55BA71402066C88C004FBA45 /* gpu.c */,
+				55BA714E2066C88E004FBA45 /* gpu.h */,
+				55BA71412066C88C004FBA45 /* gte_accuracy.c */,
+				55BA71382066C88B004FBA45 /* gte_accuracy.h */,
+				55BA71452066C88D004FBA45 /* key.c */,
+				55BA71422066C88C004FBA45 /* key.h */,
+				55BA714B2066C88E004FBA45 /* menu.c */,
+				55BA71462066C88D004FBA45 /* menu.h */,
+				55BA71472066C88D004FBA45 /* prim.c */,
+				55BA713D2066C88C004FBA45 /* prim.h */,
+				55BA713C2066C88C004FBA45 /* soft.c */,
+				55BA71492066C88E004FBA45 /* soft.h */,
+				55BA713A2066C88C004FBA45 /* stdafx.h */,
+				55BA713B2066C88C004FBA45 /* texture.c */,
+				55BA714A2066C88E004FBA45 /* texture.h */,
 			);
 			name = PeopsXgl;
 			path = peopsxgl;
@@ -316,7 +443,63 @@
 			path = macosx/Source;
 			sourceTree = "<group>";
 		};
+		55BA71592066C8E6004FBA45 /* fmemopen */ = {
+			isa = PBXGroup;
+			children = (
+				55BA715B2066C92D004FBA45 /* fmemopen.c */,
+				55BA715A2066C92D004FBA45 /* fmemopen.h */,
+			);
+			name = fmemopen;
+			path = pcsxr/macosx/Vendor/memorymapping/src;
+			sourceTree = "<group>";
+		};
+		55BA715D2066C9E8004FBA45 /* dfsound */ = {
+			isa = PBXGroup;
+			children = (
+				55BA715F2066CA20004FBA45 /* adsr.c */,
+				55BA71702066CA23004FBA45 /* adsr.h */,
+				55BA71682066CA21004FBA45 /* cfg.c */,
+				55BA71712066CA23004FBA45 /* cfg.h */,
+				55BA71612066CA20004FBA45 /* dma.c */,
+				55BA71602066CA20004FBA45 /* dma.h */,
+				55BA71662066CA21004FBA45 /* dsoundoss.h */,
+				55BA716C2066CA22004FBA45 /* externals.c */,
+				55BA71622066CA21004FBA45 /* externals.h */,
+				55BA71692066CA21004FBA45 /* freeze.c */,
+				55BA71722066CA23004FBA45 /* gauss_i.h */,
+				55BA716D2066CA22004FBA45 /* psemuxa.h */,
+				55BA71672066CA21004FBA45 /* registers.c */,
+				55BA716F2066CA22004FBA45 /* registers.h */,
+				55BA71732066CA23004FBA45 /* regs.h */,
+				55BA716E2066CA22004FBA45 /* reverb.c */,
+				55BA71632066CA21004FBA45 /* reverb.h */,
+				55BA715E2066CA20004FBA45 /* spu.c */,
+				55BA716A2066CA22004FBA45 /* spu.h */,
+				55BA716B2066CA22004FBA45 /* stdafx.h */,
+				55BA71642066CA21004FBA45 /* xa.c */,
+				55BA71652066CA21004FBA45 /* xa.h */,
+			);
+			path = dfsound;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		55BA717F2066CB0B004FBA45 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55BA718F2066CBB6004FBA45 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		55BA70952066481A004FBA45 /* PCSX-R */ = {
@@ -330,11 +513,47 @@
 			buildRules = (
 			);
 			dependencies = (
+				55BA719F2066CBED004FBA45 /* PBXTargetDependency */,
+				55BA718B2066CB52004FBA45 /* PBXTargetDependency */,
 			);
 			name = "PCSX-R";
 			productName = "PCSX-R";
 			productReference = 55BA70962066481A004FBA45 /* PCSX-R.oecoreplugin */;
 			productType = "com.apple.product-type.bundle";
+		};
+		55BA71802066CB0B004FBA45 /* dfsound */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55BA71822066CB0B004FBA45 /* Build configuration list for PBXNativeTarget "dfsound" */;
+			buildPhases = (
+				55BA717D2066CB0B004FBA45 /* Sources */,
+				55BA717E2066CB0B004FBA45 /* Frameworks */,
+				55BA717F2066CB0B004FBA45 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = dfsound;
+			productName = dfsound;
+			productReference = 55BA71812066CB0B004FBA45 /* libdfsound.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		55BA71902066CBB6004FBA45 /* PeopsXgl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 55BA71922066CBB6004FBA45 /* Build configuration list for PBXNativeTarget "PeopsXgl" */;
+			buildPhases = (
+				55BA718D2066CBB6004FBA45 /* Sources */,
+				55BA718E2066CBB6004FBA45 /* Frameworks */,
+				55BA718F2066CBB6004FBA45 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PeopsXgl;
+			productName = PeopsXgl;
+			productReference = 55BA71912066CBB6004FBA45 /* libPeopsXgl.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -346,6 +565,14 @@
 				ORGANIZATIONNAME = "C.W. Betts";
 				TargetAttributes = {
 					55BA70952066481A004FBA45 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					55BA71802066CB0B004FBA45 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					55BA71902066CBB6004FBA45 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
@@ -364,6 +591,8 @@
 			projectRoot = "";
 			targets = (
 				55BA70952066481A004FBA45 /* PCSX-R */,
+				55BA71802066CB0B004FBA45 /* dfsound */,
+				55BA71902066CBB6004FBA45 /* PeopsXgl */,
 			);
 		};
 /* End PBXProject section */
@@ -373,7 +602,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55BA710820664931004FBA45 /* README in Resources */,
 				55BA711D20664A63004FBA45 /* Localizable.strings in Resources */,
 				55BA712020664A66004FBA45 /* InfoPlist.strings in Resources */,
 			);
@@ -386,6 +614,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55BA715C2066C92D004FBA45 /* fmemopen.c in Sources */,
 				55BA711520664931004FBA45 /* misc.c in Sources */,
 				55BA711320664931004FBA45 /* gte.c in Sources */,
 				55BA712920664A88004FBA45 /* PCSXRHelpers.m in Sources */,
@@ -393,7 +622,6 @@
 				55BA710A20664931004FBA45 /* ix86_cpudetect.c in Sources */,
 				55BA710C20664931004FBA45 /* debug.c in Sources */,
 				55BA710B20664931004FBA45 /* ix86-64.c in Sources */,
-				55BA71332066C09B004FBA45 /* drawgl.m in Sources */,
 				55BA70FF20664931004FBA45 /* r3000a.c in Sources */,
 				55BA70FE20664931004FBA45 /* plugins.c in Sources */,
 				55BA70F520664931004FBA45 /* spu.c in Sources */,
@@ -425,7 +653,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		55BA717D2066CB0B004FBA45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55BA71892066CB43004FBA45 /* spu.c in Sources */,
+				55BA71882066CB3D004FBA45 /* registers.c in Sources */,
+				55BA71862066CB36004FBA45 /* externals.c in Sources */,
+				55BA71852066CB32004FBA45 /* dma.c in Sources */,
+				55BA71872066CB3A004FBA45 /* freeze.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		55BA718D2066CBB6004FBA45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55BA719B2066CBD7004FBA45 /* prim.c in Sources */,
+				55BA71992066CBD0004FBA45 /* key.c in Sources */,
+				55BA71A12066CC0E004FBA45 /* drawgl.m in Sources */,
+				55BA71972066CBC8004FBA45 /* gpu.c in Sources */,
+				55BA719C2066CBDB004FBA45 /* soft.c in Sources */,
+				55BA719A2066CBD3004FBA45 /* menu.c in Sources */,
+				55BA71982066CBCD004FBA45 /* gte_accuracy.c in Sources */,
+				55BA71952066CBC1004FBA45 /* draw.c in Sources */,
+				55BA71962066CBC5004FBA45 /* fps.c in Sources */,
+				55BA719D2066CBDE004FBA45 /* texture.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		55BA718B2066CB52004FBA45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55BA71802066CB0B004FBA45 /* dfsound */;
+			targetProxy = 55BA718A2066CB52004FBA45 /* PBXContainerItemProxy */;
+		};
+		55BA719F2066CBED004FBA45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 55BA71902066CBB6004FBA45 /* PeopsXgl */;
+			targetProxy = 55BA719E2066CBED004FBA45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		55BA711F20664A63004FBA45 /* Localizable.strings */ = {
@@ -555,6 +825,15 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MACGL,
+					"$(inherited)",
+					CALLBACK,
+				);
+				HEADER_SEARCH_PATHS = (
+					pcsxr/plugins,
+					../OpenEmu/PlayStation,
+				);
 				INFOPLIST_FILE = "PCSX-R/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.maddthesane.PCSX-R";
@@ -569,12 +848,67 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MACGL,
+					"$(inherited)",
+					CALLBACK,
+				);
+				HEADER_SEARCH_PATHS = (
+					pcsxr/plugins,
+					../OpenEmu/PlayStation,
+				);
 				INFOPLIST_FILE = "PCSX-R/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.github.maddthesane.PCSX-R";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = oecoreplugin;
+			};
+			name = Release;
+		};
+		55BA71832066CB0B004FBA45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		55BA71842066CB0B004FBA45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		55BA71932066CBB6004FBA45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MACGL,
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = pcsxr/plugins;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		55BA71942066CBB6004FBA45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MACGL,
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = pcsxr/plugins;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -595,6 +929,24 @@
 			buildConfigurations = (
 				55BA709D2066481A004FBA45 /* Debug */,
 				55BA709E2066481A004FBA45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55BA71822066CB0B004FBA45 /* Build configuration list for PBXNativeTarget "dfsound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55BA71832066CB0B004FBA45 /* Debug */,
+				55BA71842066CB0B004FBA45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		55BA71922066CBB6004FBA45 /* Build configuration list for PBXNativeTarget "PeopsXgl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				55BA71932066CBB6004FBA45 /* Debug */,
+				55BA71942066CBB6004FBA45 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

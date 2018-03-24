@@ -21,10 +21,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#import "PluginWindowController.h"
-#import "PluginGLView.h"
+//#import "PluginWindowController.h"
+//#import "PluginGLView.h"
+#import <Cocoa/Cocoa.h>
 #include "ExtendedKeys.h"
-#include "externals.h"
+#include "peopsxgl/externals.h"
 #include "draw.h"
 #include "gpu.h"
 #include "menu.h"

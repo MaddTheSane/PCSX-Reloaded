@@ -29,18 +29,21 @@
 #include "plugins.h"
 #include "misc.h"
 #include "drawgl.h"
-#include "stdafx_spu.h"
+//#include "stdafx_spu.h"
 #define _IN_OSS
-#include "externals_spu.h"
+#include "dfsound/externals.h"
 #undef BOOL
 #import "PCSXRGameCore.h"
 #import "PCSXRGameController.h"
-#import <OERingBuffer.h>
+#import <OpenEmuBase/OERingBuffer.h>
 #include <sys/time.h>
 #import <OpenGL/gl.h>
-#import "OEPCSXRSystemResponderClient.h"
+#import "OEPSXSystemResponderClient.h"
 #import "EmuThread.h"
 
+@interface PCSXRGameCore() <OEPSXSystemResponderClient>
+
+@end
 #pragma mark SPU calls
 
 // SETUP SOUND
@@ -234,12 +237,22 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 
 }
 
-- (void)didPushPCSXRButton:(OEPCSXRButton)button forPlayer:(NSUInteger)player;
+- (OEGameCoreRendering)gameCoreRendering
+{
+	return OEGameCoreRenderingOpenGL2Video;
+}
+
+- (oneway void)didMovePSXJoystickDirection:(OEPSXButton)button withValue:(CGFloat)value forPlayer:(NSUInteger)player
+{
+	
+}
+
+- (oneway void)didPushPSXButton:(OEPSXButton)button forPlayer:(NSUInteger)player;
 {
     //controls->pad[player - 1].buttons |=  NESControlValues[button];
 }
 
-- (void)didReleasePCSXRButton:(OEPCSXRButton)button forPlayer:(NSUInteger)player;
+- (oneway void)didReleasePSXButton:(OEPSXButton)button forPlayer:(NSUInteger)player;
 {
     //controls->pad[player - 1].buttons &= ~NESControlValues[button];
 }

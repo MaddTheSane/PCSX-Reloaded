@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PCSXRGameController.h"
+#import "PCSXRGameCore.h"
 #import "EmuThread.h"
 #include "psxcommon.h"
 #include "sio.h"
@@ -15,7 +16,7 @@
 static BOOL sysInited = NO;
 
 char* Pcsxr_locale_text(char* toloc){
-	NSBundle *mainBundle = [NSBundle bundleForClass:[PCSXRGameController class]];
+	NSBundle *mainBundle = [NSBundle bundleForClass:[PCSXRGameCore class]];
 	NSString *origString = nil, *transString = nil;
 	origString = [NSString stringWithCString:toloc encoding:NSUTF8StringEncoding];
 	transString = [mainBundle localizedStringForKey:origString value:nil table:nil];
