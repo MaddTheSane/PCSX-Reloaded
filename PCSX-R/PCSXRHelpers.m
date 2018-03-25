@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PCSXRGameController.h"
 #import "PCSXRGameCore.h"
 #import "EmuThread.h"
 #include "psxcommon.h"
@@ -20,7 +19,7 @@ char* Pcsxr_locale_text(char* toloc){
 	NSString *origString = nil, *transString = nil;
 	origString = [NSString stringWithCString:toloc encoding:NSUTF8StringEncoding];
 	transString = [mainBundle localizedStringForKey:origString value:nil table:nil];
-	return [transString cStringUsingEncoding:NSUTF8StringEncoding];
+	return (char*)[transString cStringUsingEncoding:NSUTF8StringEncoding];
 }
 
 int SysInit() {
@@ -62,7 +61,7 @@ void SysPrintf(const char *fmt, ...) {
     vsprintf(msg, fmt, list);
     va_end(list);
 	
-    if (Config.PsxOut) printf ("%s", msg);
+    if (Config.PsxOut) printf ("PCSXR: %s", msg);
 #ifdef EMU_LOG
 #ifndef LOG_STDOUT
     fprintf(emuLog, "%s", msg);

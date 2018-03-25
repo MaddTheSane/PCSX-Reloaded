@@ -55,7 +55,6 @@
 		55BA711720664931004FBA45 /* psxcounters.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70EC20664931004FBA45 /* psxcounters.c */; };
 		55BA711D20664A63004FBA45 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55BA711F20664A63004FBA45 /* Localizable.strings */; };
 		55BA712020664A66004FBA45 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 55BA712220664A66004FBA45 /* InfoPlist.strings */; };
-		55BA712820664A88004FBA45 /* PCSXRGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712320664A86004FBA45 /* PCSXRGameController.m */; };
 		55BA712920664A88004FBA45 /* PCSXRHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712420664A87004FBA45 /* PCSXRHelpers.m */; };
 		55BA712A20664A88004FBA45 /* PCSXRGameCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712520664A87004FBA45 /* PCSXRGameCore.m */; };
 		55BA71372066C0FB004FBA45 /* EmuThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71352066C0FB004FBA45 /* EmuThread.m */; };
@@ -195,17 +194,15 @@
 		55BA70F020664931004FBA45 /* plugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plugins.h; sourceTree = "<group>"; };
 		55BA711E20664A63004FBA45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55BA712120664A66004FBA45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		55BA712320664A86004FBA45 /* PCSXRGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSXRGameController.m; sourceTree = "<group>"; };
-		55BA712420664A87004FBA45 /* PCSXRHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSXRHelpers.m; sourceTree = "<group>"; };
+		55BA712420664A87004FBA45 /* PCSXRHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSXRHelpers.m; sourceTree = "<group>"; usesTabs = 0; };
 		55BA712520664A87004FBA45 /* PCSXRGameCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSXRGameCore.m; sourceTree = "<group>"; };
-		55BA712620664A87004FBA45 /* PCSXRGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCSXRGameController.h; sourceTree = "<group>"; };
 		55BA712720664A88004FBA45 /* PCSXRGameCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCSXRGameCore.h; sourceTree = "<group>"; };
 		55BA712B20664B45004FBA45 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		55BA71302066C09A004FBA45 /* ExtendedKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedKeys.h; sourceTree = "<group>"; };
 		55BA71312066C09A004FBA45 /* drawgl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = drawgl.m; sourceTree = "<group>"; };
 		55BA71322066C09A004FBA45 /* drawgl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawgl.h; sourceTree = "<group>"; };
-		55BA71352066C0FB004FBA45 /* EmuThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmuThread.m; path = ../../../../../../pcsxr/pcsxr/macosx/Source/EmuThread.m; sourceTree = "<group>"; };
-		55BA71362066C0FB004FBA45 /* EmuThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmuThread.h; path = ../../../../../../pcsxr/pcsxr/macosx/Source/EmuThread.h; sourceTree = "<group>"; };
+		55BA71352066C0FB004FBA45 /* EmuThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmuThread.m; sourceTree = "<group>"; };
+		55BA71362066C0FB004FBA45 /* EmuThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmuThread.h; sourceTree = "<group>"; };
 		55BA71382066C88B004FBA45 /* gte_accuracy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gte_accuracy.h; sourceTree = "<group>"; };
 		55BA71392066C88B004FBA45 /* draw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = draw.c; sourceTree = "<group>"; };
 		55BA713A2066C88C004FBA45 /* stdafx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
@@ -350,8 +347,6 @@
 			children = (
 				55BA712F2066C067004FBA45 /* Plugins */,
 				5527D1452066D02E0094179A /* OEPSXSystemResponderClient.h */,
-				55BA712620664A87004FBA45 /* PCSXRGameController.h */,
-				55BA712320664A86004FBA45 /* PCSXRGameController.m */,
 				55BA712720664A88004FBA45 /* PCSXRGameCore.h */,
 				55BA712520664A87004FBA45 /* PCSXRGameCore.m */,
 				5527D1AA2066F2D00094179A /* PCSXRGameCore+Input.h */,
@@ -537,6 +532,7 @@
 			name = "Mac OS X";
 			path = macosx/Source;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		55BA71592066C8E6004FBA45 /* fmemopen */ = {
 			isa = PBXGroup;
@@ -720,7 +716,6 @@
 					};
 					55BA70952066481A004FBA45 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
 					};
 					55BA71802066CB0B004FBA45 = {
 						CreatedOnToolsVersion = 9.2;
@@ -827,7 +822,6 @@
 				55BA70F120664931004FBA45 /* gpu.c in Sources */,
 				55BA70F820664931004FBA45 /* disr3000a.c in Sources */,
 				55BA710F20664931004FBA45 /* psxbios.c in Sources */,
-				55BA712820664A88004FBA45 /* PCSXRGameController.m in Sources */,
 				55BA710020664931004FBA45 /* socket.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1012,7 +1006,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1023,6 +1016,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
+					"PAD_LOG=__Log",
+					"PSXHW_LOG=__Log",
+					LOG_STDOUT,
 					"$(inherited)",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1067,7 +1063,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1089,13 +1084,15 @@
 		55BA709D2066481A004FBA45 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_MACGL,
 					__MACOSX__,
 					"lUsedAddr=lUsedAddrINTERNAL",
 					"$(inherited)",
+					"PCSXR_VERSION=\\\"1.9\\\"",
+					"XA_HACK=1",
+					"PCSXRCORE=1",
 				);
 				HEADER_SEARCH_PATHS = (
 					pcsxr/plugins,
@@ -1113,13 +1110,15 @@
 		55BA709E2066481A004FBA45 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_MACGL,
 					__MACOSX__,
 					"lUsedAddr=lUsedAddrINTERNAL",
 					"$(inherited)",
+					"PCSXR_VERSION=\\\"1.9\\\"",
+					"XA_HACK=1",
+					"PCSXRCORE=1",
 				);
 				HEADER_SEARCH_PATHS = (
 					pcsxr/plugins,

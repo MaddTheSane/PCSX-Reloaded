@@ -43,11 +43,13 @@
 #import "EmuThread.h"
 #include "PlugInBridges.h"
 
-@interface PCSXRGameCore() <OEPSXSystemResponderClient>
+@interface PCSXRGameCore()
 
 @end
 
 #pragma mark SPU calls
+
+static PCSXRGameCore *pcsxCore;
 
 // SETUP SOUND
 void SetupSound(void)
@@ -103,7 +105,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
     return GL_RGBA;
 }
 
-- (BOOL)loadFileAtPath:(NSString*) path
+- (BOOL)loadFileAtPath:(NSString*) path error:(NSError *__autoreleasing *)error
 {
 	SetIsoFile([path fileSystemRepresentation]);
 	//FIXME: find out CD-ROM ID before executing [EmuThread run].
@@ -143,14 +145,14 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 		NSURL *supportURL = [manager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
 		NSURL *url = [supportURL URLByAppendingPathComponent:@"OpenEmu/BIOS"];
 		if (![url checkResourceIsReachableAndReturnError:NULL])
-			[manager createDirectoryAtPath:[url path] withIntermediateDirectories:YES attributes:nil error:NULL];
+			[manager createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:NULL];
 		NSMutableArray<NSString *> *biosList = [NSMutableArray arrayWithCapacity:1];
         url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PCSXR/MemCards"];
 		if (![url checkResourceIsReachableAndReturnError:NULL])
-            [manager createDirectoryAtPath:[url path] withIntermediateDirectories:YES attributes:nil error:NULL];
+            [manager createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:NULL];
 		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PCSXR/Patches"];
 		if (![url checkResourceIsReachableAndReturnError:NULL])
-            [manager createDirectoryAtPath:[url path] withIntermediateDirectories:YES attributes:nil error:NULL];
+            [manager createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:NULL];
 
 		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/BIOS"];
 		const char *str = [[url path] fileSystemRepresentation];
@@ -162,9 +164,19 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 		NSString *biosDir = [manager stringWithFileSystemRepresentation:Config.BiosDir length:strlen(Config.BiosDir)];
 		NSArray *bioses = [manager contentsOfDirectoryAtPath:biosDir error:NULL];
 		if (bioses) {
-			NSUInteger i;
-			for (i = 0; i < [bioses count]; i++) {
-				NSString *file = [bioses objectAtIndex:i];
+			NSArray<NSString*> *goodBIOS = @[@"scph5501.bin", @"scph5500.bin", @"scph5502.bin"];
+			
+			for (NSString *file in bioses) {
+				BOOL badVal = YES;
+				for (NSString *gbName in goodBIOS) {
+					if ([gbName compare:file options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+						badVal = NO;
+						break;
+					}
+				}
+				if (badVal) {
+					continue;
+				}
 				NSDictionary *attrib = [manager attributesOfItemAtPath:[[biosDir stringByAppendingPathComponent:file] stringByResolvingSymlinksInPath] error:NULL];
 				
 				if ([[attrib fileType] isEqualToString:NSFileTypeRegular]) {
@@ -204,13 +216,24 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	iUseInterpolation = 2;
 	iDisStereo = 0;
 	iFreqResponse = 0;
+	pcsxCore = self;
+}
 
+- (void)setPauseEmulation:(BOOL)pauseEmulation
+{
+	if (pauseEmulation) {
+		[EmuThread pauseSafe];
+	} else {
+		[EmuThread resume];
+	}
 	
+	[super setPauseEmulation:pauseEmulation];
 }
 
 - (void)stopEmulation
 {
 	[EmuThread stop];
+	pcsxCore = nil;
 }
 
 # pragma mark -
@@ -238,21 +261,6 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	return OEGameCoreRenderingOpenGL2Video;
 }
 
-- (oneway void)didMovePSXJoystickDirection:(OEPSXButton)button withValue:(CGFloat)value forPlayer:(NSUInteger)player
-{
-	
-}
-
-- (oneway void)didPushPSXButton:(OEPSXButton)button forPlayer:(NSUInteger)player;
-{
-    //controls->pad[player - 1].buttons |=  NESControlValues[button];
-}
-
-- (oneway void)didReleasePSXButton:(OEPSXButton)button forPlayer:(NSUInteger)player;
-{
-    //controls->pad[player - 1].buttons &= ~NESControlValues[button];
-}
-
 - (double)audioSampleRate
 {
     return SAMPLERATE;
@@ -272,16 +280,17 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	}
 }
 
-- (BOOL)saveStateToFileAtPath:(NSString *)fileName
+- (void)saveStateToFileAtPath:(NSString *)fileName completionHandler:(void (^)(BOOL, NSError *))block
 {
 	[EmuThread freezeAt:fileName which:1];
 	
-    return YES;
+	block(YES, nil);
 }
 
-- (BOOL)loadStateFromFileAtPath:(NSString *)fileName
+- (void)loadStateFromFileAtPath:(NSString *)fileName completionHandler:(void (^)(BOOL, NSError *))block
 {    
-	return [EmuThread defrostAt:fileName];
+	BOOL defrosted = [EmuThread defrostAt:fileName];
+	block(defrosted, nil);
 }
 
 - (OEIntSize)bufferSize
@@ -297,22 +306,9 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 
 void ReadConfig(void)
 {
-	iVolume=2;
-	iXAPitch=0;
-	iSPUIRQWait=1;
-	iUseTimer=2;
-	iUseReverb=2;
-	iUseInterpolation=2;
-	iDisStereo=0;
-	iFreqResponse=0;
-	
-	iResX=640;
-	iResY=480;
-	iColDepth=16;
 	bChangeRes=FALSE;
 	bWindowMode=TRUE;
 	iUseScanLines=0;
-	//bFullScreen=FALSE;
 	bFullVRam=FALSE;
 	iFilterType=0;
 	bAdvancedBlend=FALSE;
@@ -326,8 +322,8 @@ void ReadConfig(void)
 	bOpaquePass=TRUE;
 	bUseAntiAlias=FALSE;
 	iTexQuality=0;
-	iUseMask=0;
-	iZBufferDepth=0;
+	iUseMask=1;
+	iZBufferDepth=16;
 	bUseFastMdec=TRUE;
 	dwCfgFixes=0;
 	bUseFixes=FALSE;
@@ -339,11 +335,11 @@ void ReadConfig(void)
 	bKeepRatio=FALSE;
 	bForceRatio43=FALSE;
 	iScanBlend=0;
-	iVRamSize=0;
+	iVRamSize=64; //There should be at least 64 MiB of RAM on any modern Mac.
 	iTexGarbageCollection=1;
-	iBlurBuffer=0;
-	iHiResTextures=0;
-	iForceVSync=-1;
+	iBlurBuffer=1;
+	iHiResTextures=1;
+	iForceVSync=1;
 }
 
 int OpenPlugins(void)

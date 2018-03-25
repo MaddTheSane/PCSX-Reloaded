@@ -24,6 +24,7 @@
 
 #import "PCSXRGameCore.h"
 #include "psemu_plugin_defs.h"
+#import "OEPSXSystemResponderClient.h"
 
 long PADTest(void);
 void PADAbout(void);
@@ -43,6 +44,6 @@ long PADKeyPressed(void);
 unsigned char PADStartPoll(int pad);
 unsigned char PADPoll(unsigned char value);
 
-@interface PCSXRGameCore (Input)
+@interface PCSXRGameCore (Input) <OEPSXSystemResponderClient>
 
 @end

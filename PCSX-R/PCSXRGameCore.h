@@ -31,7 +31,7 @@
 @class OERingBuffer;
 
 OE_EXPORTED_CLASS
-@interface PCSXRGameCore : OEGameCore
+@interface PCSXRGameCore : OEGameCore <OESystemResponderClient>
 
 @end
 
