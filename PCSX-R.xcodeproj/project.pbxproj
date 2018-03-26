@@ -185,7 +185,7 @@
 		55BA70EF20664931004FBA45 /* psxdma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psxdma.h; sourceTree = "<group>"; };
 		55BA70F020664931004FBA45 /* plugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plugins.h; sourceTree = "<group>"; };
 		55BA711E20664A63004FBA45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		55BA712120664A66004FBA45 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		55BA712120664A66004FBA45 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		55BA712420664A87004FBA45 /* PCSXRHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSXRHelpers.m; sourceTree = "<group>"; usesTabs = 0; };
 		55BA712520664A87004FBA45 /* PCSXRGameCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSXRGameCore.m; sourceTree = "<group>"; };
 		55BA712720664A88004FBA45 /* PCSXRGameCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCSXRGameCore.h; sourceTree = "<group>"; };
