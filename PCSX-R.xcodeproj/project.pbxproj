@@ -12,7 +12,6 @@
 		5527D14C2066DF630094179A /* maccfg.h in Headers */ = {isa = PBXBuildFile; fileRef = 5527D14A2066DF630094179A /* maccfg.h */; };
 		5527D14D2066DF630094179A /* maccfg.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D14B2066DF630094179A /* maccfg.c */; };
 		5527D15C2066EDA90094179A /* sio1.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D14F2066ED710094179A /* sio1.c */; };
-		5527D15F2066EDB70094179A /* libnullsio1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527D1582066EDA40094179A /* libnullsio1.a */; };
 		5527D16B2066EEED0094179A /* libdfcdrom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527D1682066EEC80094179A /* libdfcdrom.a */; };
 		5527D1792066EF020094179A /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D16F2066EF020094179A /* util.c */; };
 		5527D17B2066EF020094179A /* cfg.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D1712066EF020094179A /* cfg.c */; };
@@ -79,13 +78,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5527D15D2066EDB30094179A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55BA708E2066481A004FBA45 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5527D1572066EDA40094179A;
-			remoteInfo = nullsio1;
-		};
 		5527D1692066EEE30094179A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55BA708E2066481A004FBA45 /* Project object */;
@@ -274,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5527D16B2066EEED0094179A /* libdfcdrom.a in Frameworks */,
-				5527D15F2066EDB70094179A /* libnullsio1.a in Frameworks */,
 				55BA71A02066CBF2004FBA45 /* libPeopsXgl.a in Frameworks */,
 				55BA718C2066CB7C004FBA45 /* libdfsound.a in Frameworks */,
 				55BA70A0206648A5004FBA45 /* OpenEmuBase.framework in Frameworks */,
@@ -655,7 +646,6 @@
 			);
 			dependencies = (
 				5527D16A2066EEE30094179A /* PBXTargetDependency */,
-				5527D15E2066EDB30094179A /* PBXTargetDependency */,
 				55BA719F2066CBED004FBA45 /* PBXTargetDependency */,
 				55BA718B2066CB52004FBA45 /* PBXTargetDependency */,
 			);
@@ -859,11 +849,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5527D15E2066EDB30094179A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5527D1572066EDA40094179A /* nullsio1 */;
-			targetProxy = 5527D15D2066EDB30094179A /* PBXContainerItemProxy */;
-		};
 		5527D16A2066EEE30094179A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5527D1602066EEC80094179A /* dfcdrom */;
