@@ -42,19 +42,25 @@
 #import "OEPSXSystemResponderClient.h"
 #import "EmuThread.h"
 #include "PlugInBridges.h"
+#include "cdrom.h"
 
 @interface PCSXRGameCore()
+@property BOOL wasPausedBeforeDiscEject;
 
 @end
 
 #pragma mark SPU calls
 
-static PCSXRGameCore *pcsxCore;
+static PCSXRGameCore *_current;
+#define SAMPLERATE 44100
 
 // SETUP SOUND
 void SetupSound(void)
 {
+	//GET_CURRENT_OR_RETURN();
 	
+	//OERingBuffer *ringBuf = [current ringBufferAtIndex:0];
+	//ringBuf.length = 1024 * 2;
 }
 
 // REMOVE SOUND
@@ -72,20 +78,22 @@ unsigned long SoundGetBytesBuffered(void)
 // FEED SOUND DATA
 void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 {
+	GET_CURRENT_OR_RETURN();
 	
+	[[current ringBufferAtIndex:0] write:pSound maxLength:lBytes];
 }
 
-
-#define SAMPLERATE 44100
-
-@implementation PCSXRGameCore
+@implementation PCSXRGameCore {
+	NSInteger _maxDiscs;
+	NSMutableArray<NSString*> *_allCueSheetFiles;
+}
 
 - (id)init
 {
     self = [super init];
     if(self)
     {
-		
+		_allCueSheetFiles = [[NSMutableArray alloc] initWithCapacity:1];
     }
     return self;
 }
@@ -107,7 +115,31 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 
 - (BOOL)loadFileAtPath:(NSString*) path error:(NSError *__autoreleasing *)error
 {
-	SetIsoFile([path fileSystemRepresentation]);
+	if([[[path pathExtension] lowercaseString] isEqualToString:@"m3u"])
+	{
+		NSString *parentPath = [path stringByDeletingLastPathComponent];
+		NSString *m3uString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+		NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@".*\\.cue|.*\\.ccd" options:NSRegularExpressionCaseInsensitive error:nil];
+		NSUInteger numberOfMatches = [regex numberOfMatchesInString:m3uString options:0 range:NSMakeRange(0, m3uString.length)];
+		
+		NSLog(@"Loaded m3u containing %lu cue sheets or ccd", numberOfMatches);
+		
+		_maxDiscs = numberOfMatches;
+		
+		// Keep track of cue sheets for use with SBI files
+		[regex enumerateMatchesInString:m3uString options:0 range:NSMakeRange(0, m3uString.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+			NSRange range = result.range;
+			NSString *match = [m3uString substringWithRange:range];
+			
+			if([match containsString:@".cue"]) {
+				[_allCueSheetFiles addObject:[[parentPath stringByAppendingPathComponent:[m3uString substringWithRange:range]] stringByStandardizingPath]];
+			}
+		}];
+	} else {
+		[_allCueSheetFiles addObject:path];
+	}
+
+	SetIsoFile([_allCueSheetFiles.firstObject fileSystemRepresentation]);
 	//FIXME: find out CD-ROM ID before executing [EmuThread run].
 	[EmuThread run];
 	{
@@ -118,7 +150,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 		int i;
 		for (i = 1; i > 2; i++) {
 			memCardURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%s-%3.3d.mcd", CdromId, i]];
-			const char* mcdFile = [[memCardURL path] fileSystemRepresentation];
+			const char* mcdFile = [memCardURL fileSystemRepresentation];
 			if (![manager fileExistsAtPath:[memCardURL path]]) {
 				CreateMcd(mcdFile);
 			}
@@ -139,6 +171,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	//PCSXR Core
 	memset(&Config, 0, sizeof(Config));
     Config.UseNet = NO;
+	strcpy(Config.Net, "Disabled");
 	Config.Cpu = CPU_DYNAREC; //We don't have to worry about misaligned stack error on x86_64
 	{
 		NSFileManager *manager = [NSFileManager defaultManager];
@@ -216,7 +249,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	iUseInterpolation = 2;
 	iDisStereo = 0;
 	iFreqResponse = 0;
-	pcsxCore = self;
+	_current = self;
 }
 
 - (void)setPauseEmulation:(BOOL)pauseEmulation
@@ -233,7 +266,9 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 - (void)stopEmulation
 {
 	[EmuThread stop];
-	pcsxCore = nil;
+	_current = nil;
+	
+	[super stopEmulation];
 }
 
 # pragma mark -
@@ -300,6 +335,44 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	size.width = 640;
 	size.height = 480;
 	return size;
+}
+
+- (OEIntSize)aspectSize
+{
+	OEIntSize size;
+	//TODO: Handle PAL/SECAM sizes?
+	size.width = 4;
+	size.height = 3;
+	return size;
+}
+
+- (void)setDisc:(NSUInteger)discNumber
+{
+	NSInteger index = discNumber - 1; // 0-based index
+	self.wasPausedBeforeDiscEject = [EmuThread pauseSafe];
+	/* close connection to current cd */
+	if ([EmuThread active]) {
+		CDR_close();
+	}
+	//if (UsingIso()) //ALWAYS!
+	
+	SetIsoFile([_allCueSheetFiles[index] fileSystemRepresentation]);
+	// Open/eject needs a bit of delay, so wait 1 second until inserting new disc
+	SetCdOpenCaseTime(time(NULL) + 2);
+	LidInterrupt();
+
+	
+	if ([EmuThread active])
+		CDR_open();
+	
+	if (!self.wasPausedBeforeDiscEject) {
+		[EmuThread resume];
+	}
+}
+
+- (NSUInteger)discCount
+{
+	return _maxDiscs ? _maxDiscs : 1;
 }
 
 @end
