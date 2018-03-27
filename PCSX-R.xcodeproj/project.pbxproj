@@ -899,6 +899,7 @@
 					"iDebugMode=iDebugMode$(PSXPLUGTYPE)",
 					"$(inherited)",
 				);
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PSXPLUGTYPE = SIO1;
 			};
@@ -917,6 +918,7 @@
 					"iDebugMode=iDebugMode$(PSXPLUGTYPE)",
 					"$(inherited)",
 				);
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PSXPLUGTYPE = SIO1;
 			};
@@ -937,6 +939,7 @@
 					"$(inherited)",
 					"calcCrc=calcCrcCDR",
 				);
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PSXPLUGTYPE = CDR;
 			};
@@ -957,6 +960,7 @@
 					"$(inherited)",
 					"calcCrc=calcCrcCDR",
 				);
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PSXPLUGTYPE = CDR;
 			};
@@ -1008,6 +1012,7 @@
 					"__private_extern=__attribute__((visibility(\\\"hidden\\\")))",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1061,6 +1066,7 @@
 					"__private_extern=__attribute__((visibility(\\\"hidden\\\")))",
 					"$(inherited)",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1087,6 +1093,7 @@
 					"XA_HACK=1",
 					"PCSXRCORE=1",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				HEADER_SEARCH_PATHS = (
 					pcsxr/plugins,
 					../OpenEmu/PlayStation,
@@ -1114,6 +1121,7 @@
 					"XA_HACK=1",
 					"PCSXRCORE=1",
 				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				HEADER_SEARCH_PATHS = (
 					pcsxr/plugins,
 					../OpenEmu/PlayStation,
@@ -1140,6 +1148,7 @@
 					"iDebugMode=iDebugMode$(PSXPLUGTYPE)",
 					"$(inherited)",
 				);
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PSXPLUGTYPE = SPU;
 			};
@@ -1158,6 +1167,7 @@
 					"iDebugMode=iDebugMode$(PSXPLUGTYPE)",
 					"$(inherited)",
 				);
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PSXPLUGTYPE = SPU;
 			};
@@ -1178,6 +1188,7 @@
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = pcsxr/plugins;
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PSXPLUGTYPE = GPU;
 			};
@@ -1198,6 +1209,7 @@
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = pcsxr/plugins;
+				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PSXPLUGTYPE = GPU;
 			};
