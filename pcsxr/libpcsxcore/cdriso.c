@@ -37,7 +37,7 @@
 #endif
 #include <zlib.h>
 
-#ifdef __APPLE__
+#if defined(__APPLE__) && (defined(HAVE_LIBARCHIVE) || defined(ENABLE_ECM_FULL) || defined(ENABLE_CCDDA))
 #include "fmemopen.h"
 #endif
 
