@@ -57,7 +57,6 @@
 		55BA712920664A88004FBA45 /* PCSXRHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712420664A87004FBA45 /* PCSXRHelpers.m */; };
 		55BA712A20664A88004FBA45 /* PCSXRGameCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA712520664A87004FBA45 /* PCSXRGameCore.m */; };
 		55BA71372066C0FB004FBA45 /* EmuThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71352066C0FB004FBA45 /* EmuThread.m */; };
-		55BA715C2066C92D004FBA45 /* fmemopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA715B2066C92D004FBA45 /* fmemopen.c */; };
 		55BA71852066CB32004FBA45 /* dma.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71612066CA20004FBA45 /* dma.c */; };
 		55BA71862066CB36004FBA45 /* externals.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA716C2066CA22004FBA45 /* externals.c */; };
 		55BA71872066CB3A004FBA45 /* freeze.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA71692066CA21004FBA45 /* freeze.c */; };
@@ -218,8 +217,6 @@
 		55BA714C2066C88E004FBA45 /* fps.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fps.c; sourceTree = "<group>"; };
 		55BA714D2066C88E004FBA45 /* externals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = externals.h; sourceTree = "<group>"; };
 		55BA714E2066C88E004FBA45 /* gpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gpu.h; sourceTree = "<group>"; };
-		55BA715A2066C92D004FBA45 /* fmemopen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmemopen.h; sourceTree = "<group>"; };
-		55BA715B2066C92D004FBA45 /* fmemopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fmemopen.c; sourceTree = "<group>"; };
 		55BA715E2066CA20004FBA45 /* spu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = spu.c; sourceTree = "<group>"; };
 		55BA715F2066CA20004FBA45 /* adsr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = adsr.c; sourceTree = "<group>"; };
 		55BA71602066CA20004FBA45 /* dma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dma.h; sourceTree = "<group>"; };
@@ -313,7 +310,6 @@
 		55BA708D2066481A004FBA45 = {
 			isa = PBXGroup;
 			children = (
-				55BA71592066C8E6004FBA45 /* fmemopen */,
 				55BA70A2206648F3004FBA45 /* From PCSXR */,
 				55BA70982066481A004FBA45 /* PCSX-R */,
 				55BA70972066481A004FBA45 /* Products */,
@@ -524,16 +520,6 @@
 			path = macosx/Source;
 			sourceTree = "<group>";
 			usesTabs = 1;
-		};
-		55BA71592066C8E6004FBA45 /* fmemopen */ = {
-			isa = PBXGroup;
-			children = (
-				55BA715B2066C92D004FBA45 /* fmemopen.c */,
-				55BA715A2066C92D004FBA45 /* fmemopen.h */,
-			);
-			name = fmemopen;
-			path = pcsxr/macosx/Vendor/memorymapping/src;
-			sourceTree = "<group>";
 		};
 		55BA715D2066C9E8004FBA45 /* dfsound */ = {
 			isa = PBXGroup;
@@ -776,7 +762,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5527D1492066DEDF0094179A /* stubs.c in Sources */,
-				55BA715C2066C92D004FBA45 /* fmemopen.c in Sources */,
 				5527D1AC2066F2D00094179A /* PCSXRGameCore+Input.m in Sources */,
 				55BA711520664931004FBA45 /* misc.c in Sources */,
 				55BA711320664931004FBA45 /* gte.c in Sources */,
@@ -1100,7 +1085,7 @@
 				);
 				INFOPLIST_FILE = "PCSX-R/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.maddthesane.PCSX-R";
+				PRODUCT_BUNDLE_IDENTIFIER = org.openemu.PCSXR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = oecoreplugin;
@@ -1128,7 +1113,7 @@
 				);
 				INFOPLIST_FILE = "PCSX-R/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.github.maddthesane.PCSX-R";
+				PRODUCT_BUNDLE_IDENTIFIER = org.openemu.PCSXR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = oecoreplugin;
