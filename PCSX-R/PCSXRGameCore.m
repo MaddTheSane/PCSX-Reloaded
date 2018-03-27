@@ -98,6 +98,18 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 		Config.UseNet = NO;
 		strcpy(Config.Net, "Disabled");
 		Config.Cpu = CPU_DYNAREC; //We don't have to worry about misaligned stack error on x86_64
+		NSFileManager *manager = [NSFileManager defaultManager];
+		NSURL *supportURL = [manager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
+		NSURL *url = [supportURL URLByAppendingPathComponent:@"OpenEmu/BIOS"];
+		if (![url checkResourceIsReachableAndReturnError:NULL])
+			[manager createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:NULL];
+		NSMutableArray<NSString *> *biosList = [NSMutableArray arrayWithCapacity:1];
+		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PCSXR/MemCards"];
+		if (![url checkResourceIsReachableAndReturnError:NULL])
+			[manager createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:NULL];
+		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PCSXR/Patches"];
+		if (![url checkResourceIsReachableAndReturnError:NULL])
+			[manager createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:NULL];
     }
     return self;
 }
@@ -144,10 +156,11 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	}
 
 	SetIsoFile([_allCueSheetFiles.firstObject fileSystemRepresentation]);
+	CheckCdrom();
 	{
 		NSFileManager *manager = [NSFileManager defaultManager];
 		NSURL *supportURL = [manager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
-		NSURL *url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PSX/MemCards"];
+		NSURL *url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PCSXR/MemCards"];
 		NSURL *memCardURL = nil;
 		int i;
 		for (i = 1; i <= 2; i++) {

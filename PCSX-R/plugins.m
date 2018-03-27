@@ -561,7 +561,7 @@ void CALLBACK NET__about(void) {}
 	if (NET_##dest == NULL) NET_##dest = (NET##dest) NET__##dest;
 
 static int LoadNETplugin(const char *NETdll) {
-	/*
+	
 	void *drv;
 
 	hNETDriver = SysLoadLibrary(NETdll);
@@ -586,7 +586,7 @@ static int LoadNETplugin(const char *NETdll) {
 	LoadNetSym0(configure, "NETconfigure");
 	LoadNetSym0(test, "NETtest");
 	LoadNetSym0(about, "NETabout");
-*/
+
 	return 0;
 }
 
@@ -763,13 +763,13 @@ void ReleasePlugins() {
 	}
 	NetOpened = FALSE;
 
-	CDR_shutdown();
-	GPU_shutdown();
-	SPU_shutdown();
-	PAD1_shutdown();
-	PAD2_shutdown();
+	if (CDR_shutdown) CDR_shutdown();
+	if (GPU_shutdown) GPU_shutdown();
+	if (SPU_shutdown) SPU_shutdown();
+	if (PAD1_shutdown) PAD1_shutdown();
+	if (PAD2_shutdown) PAD2_shutdown();
 
-	if (Config.UseNet) NET_shutdown();
+	if (Config.UseNet && NET_shutdown) NET_shutdown();
 
 #ifdef ENABLE_SIO1API
 	if (hSIO1Driver != NULL) {
