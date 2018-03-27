@@ -20,6 +20,7 @@
 		5527D17F2066EF020094179A /* cdr.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D1772066EF020094179A /* cdr.c */; };
 		5527D1AC2066F2D00094179A /* PCSXRGameCore+Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 5527D1AB2066F2D00094179A /* PCSXRGameCore+Input.m */; };
 		5527D1AF2066FA710094179A /* PlugInBridges.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D1AE2066FA710094179A /* PlugInBridges.c */; };
+		554B0C07206AF54A00D712DA /* plugins.m in Sources */ = {isa = PBXBuildFile; fileRef = 554B0C06206AF54A00D712DA /* plugins.m */; };
 		55BA70A0206648A5004FBA45 /* OpenEmuBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55BA70A1206648A5004FBA45 /* OpenEmuBase.framework */; };
 		55BA70F120664931004FBA45 /* gpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70A720664931004FBA45 /* gpu.c */; };
 		55BA70F420664931004FBA45 /* decode_xa.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70AD20664931004FBA45 /* decode_xa.c */; };
@@ -27,7 +28,6 @@
 		55BA70F720664931004FBA45 /* cdriso.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70B520664931004FBA45 /* cdriso.c */; };
 		55BA70F820664931004FBA45 /* disr3000a.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70B820664931004FBA45 /* disr3000a.c */; };
 		55BA70F920664931004FBA45 /* cdrom.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70B920664931004FBA45 /* cdrom.c */; };
-		55BA70FE20664931004FBA45 /* plugins.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70C420664931004FBA45 /* plugins.c */; };
 		55BA70FF20664931004FBA45 /* r3000a.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70C520664931004FBA45 /* r3000a.c */; };
 		55BA710020664931004FBA45 /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70C620664931004FBA45 /* socket.c */; };
 		55BA710120664931004FBA45 /* psxdma.c in Sources */ = {isa = PBXBuildFile; fileRef = 55BA70C720664931004FBA45 /* psxdma.c */; };
@@ -119,6 +119,7 @@
 		5527D1AB2066F2D00094179A /* PCSXRGameCore+Input.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PCSXRGameCore+Input.m"; sourceTree = "<group>"; };
 		5527D1AD2066FA710094179A /* PlugInBridges.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlugInBridges.h; sourceTree = "<group>"; };
 		5527D1AE2066FA710094179A /* PlugInBridges.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = PlugInBridges.c; sourceTree = "<group>"; };
+		554B0C06206AF54A00D712DA /* plugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = plugins.m; sourceTree = "<group>"; };
 		55BA70962066481A004FBA45 /* PCSX-R.oecoreplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PCSX-R.oecoreplugin"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55BA70992066481A004FBA45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55BA70A1206648A5004FBA45 /* OpenEmuBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenEmuBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,7 +140,6 @@
 		55BA70B820664931004FBA45 /* disr3000a.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = disr3000a.c; sourceTree = "<group>"; };
 		55BA70B920664931004FBA45 /* cdrom.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdrom.c; sourceTree = "<group>"; };
 		55BA70BA20664931004FBA45 /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
-		55BA70C420664931004FBA45 /* plugins.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = plugins.c; sourceTree = "<group>"; };
 		55BA70C520664931004FBA45 /* r3000a.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = r3000a.c; sourceTree = "<group>"; };
 		55BA70C620664931004FBA45 /* socket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
 		55BA70C720664931004FBA45 /* psxdma.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = psxdma.c; sourceTree = "<group>"; };
@@ -333,6 +333,7 @@
 			isa = PBXGroup;
 			children = (
 				55BA712F2066C067004FBA45 /* Plugins */,
+				554B0C06206AF54A00D712DA /* plugins.m */,
 				5527D1452066D02E0094179A /* OEPSXSystemResponderClient.h */,
 				55BA712720664A88004FBA45 /* PCSXRGameCore.h */,
 				55BA712520664A87004FBA45 /* PCSXRGameCore.m */,
@@ -391,7 +392,6 @@
 				55BA70EB20664931004FBA45 /* mdec.h */,
 				55BA70E720664931004FBA45 /* misc.c */,
 				55BA70BA20664931004FBA45 /* misc.h */,
-				55BA70C420664931004FBA45 /* plugins.c */,
 				55BA70F020664931004FBA45 /* plugins.h */,
 				55BA70EA20664931004FBA45 /* ppf.c */,
 				55BA70C820664931004FBA45 /* ppf.h */,
@@ -771,7 +771,6 @@
 				55BA710C20664931004FBA45 /* debug.c in Sources */,
 				55BA710B20664931004FBA45 /* ix86-64.c in Sources */,
 				55BA70FF20664931004FBA45 /* r3000a.c in Sources */,
-				55BA70FE20664931004FBA45 /* plugins.c in Sources */,
 				55BA70F520664931004FBA45 /* spu.c in Sources */,
 				55BA710E20664931004FBA45 /* psxcommon.c in Sources */,
 				55BA70F420664931004FBA45 /* decode_xa.c in Sources */,
@@ -793,6 +792,7 @@
 				55BA710620664931004FBA45 /* ix86_sse.c in Sources */,
 				55BA70F920664931004FBA45 /* cdrom.c in Sources */,
 				55BA711120664931004FBA45 /* psxmem.c in Sources */,
+				554B0C07206AF54A00D712DA /* plugins.m in Sources */,
 				55BA711420664931004FBA45 /* psxinterpreter.c in Sources */,
 				55BA70F120664931004FBA45 /* gpu.c in Sources */,
 				55BA70F820664931004FBA45 /* disr3000a.c in Sources */,

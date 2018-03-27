@@ -79,7 +79,7 @@ void SysMessage(const char *fmt, ...) {
 	va_end(list);
     
     NSDictionary *userInfo = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedFailureReasonErrorKey];
-    [NSApp presentError:[NSError errorWithDomain:@"Unknown Domain" code:-1 userInfo:userInfo]];
+    NSLog(@"%@", msg);
 }
 
 // Close mem and plugins
