@@ -9,8 +9,8 @@
 #define CONFIG_H
 
 #ifndef MAXPATHLEN
-//match PATH_MAX in <sys/param.h>
-#define MAXPATHLEN 1024
+// Somewhere along the line, Mac OS X added MAXPATHLEN.
+#include <sys/param.h>
 #endif
 
 #ifndef PACKAGE_VERSION
