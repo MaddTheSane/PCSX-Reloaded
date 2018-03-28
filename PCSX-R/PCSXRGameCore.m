@@ -28,6 +28,7 @@
 #include "psxcommon.h"
 #include "plugins.h"
 #include "misc.h"
+#include "cdriso.h"
 #include "drawgl.h"
 //#include "stdafx_spu.h"
 #define _IN_OSS
@@ -103,7 +104,6 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 		NSURL *url = [supportURL URLByAppendingPathComponent:@"OpenEmu/BIOS"];
 		if (![url checkResourceIsReachableAndReturnError:NULL])
 			[manager createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:NULL];
-		NSMutableArray<NSString *> *biosList = [NSMutableArray arrayWithCapacity:1];
 		url = [supportURL URLByAppendingPathComponent:@"OpenEmu/PCSXR/MemCards"];
 		if (![url checkResourceIsReachableAndReturnError:NULL])
 			[manager createDirectoryAtURL:url withIntermediateDirectories:YES attributes:nil error:NULL];
@@ -156,7 +156,10 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	}
 
 	SetIsoFile([_allCueSheetFiles.firstObject fileSystemRepresentation]);
+	cdrIsoInit();
+	CDR_open();
 	CheckCdrom();
+	CDR_close();
 	{
 		NSFileManager *manager = [NSFileManager defaultManager];
 		NSURL *supportURL = [manager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
@@ -334,7 +337,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 
 - (void)saveStateToFileAtPath:(NSString *)fileName completionHandler:(void (^)(BOOL, NSError *))block
 {
-	[EmuThread freezeAt:fileName which:1];
+	[EmuThread freezeAt:fileName which:1 reternQueue:dispatch_get_current_queue()];
 	
 	block(YES, nil);
 }

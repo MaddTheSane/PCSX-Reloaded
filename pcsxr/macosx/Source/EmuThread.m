@@ -306,9 +306,14 @@ done:
 
 + (void)pauseSafeWithBlock:(void (^)(BOOL))theBlock
 {
+	[self pauseSafeWithBlock:theBlock returnQueue:dispatch_get_main_queue()];
+}
+
++ (void)pauseSafeWithBlock:(void (^)(BOOL))theBlock returnQueue:(dispatch_queue_t)queue
+{
 	dispatch_async(dispatch_get_global_queue(0, 0), ^{
 		BOOL wasPaused = [self pauseSafe];
-		dispatch_async(dispatch_get_main_queue(), ^{theBlock(wasPaused);});
+		dispatch_async(queue, ^{theBlock(wasPaused);});
 	});
 }
 
@@ -371,7 +376,7 @@ done:
 	return emuThread ? YES : NO;
 }
 
-+ (void)freezeAt:(NSString *)path which:(int)num
++ (void)freezeAt:(NSString *)path which:(int)num reternQueue:(dispatch_queue_t)queue
 {
 	[self pauseSafeWithBlock:^(BOOL emuWasPaused) {
 		int tmpNum = num;
@@ -389,7 +394,12 @@ done:
 		else
 			snprintf(Text, sizeof(Text), _("*PCSXR*: Error Saving State %d"), num);
 		GPU_displayText(Text);
-	}];
+	} returnQueue:queue];
+}
+
++ (void)freezeAt:(NSString *)path which:(int)num
+{
+	[self freezeAt:path which:num reternQueue:dispatch_get_main_queue()];
 }
 
 + (BOOL)defrostAt:(NSString *)path

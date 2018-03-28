@@ -484,6 +484,8 @@ long PADInit(long flags)
 	g.cfg.PadDef[1].Type = PSE_PAD_TYPE_ANALOGPAD;
 	PADSetMode(0, 0);
 	PADSetMode(1, 0);
+	g.PadState[0].JoyKeyStatus = 0xFFFF;
+	g.PadState[1].JoyKeyStatus = 0xFFFF;
 	return PSE_PAD_ERR_SUCCESS;
 }
 
