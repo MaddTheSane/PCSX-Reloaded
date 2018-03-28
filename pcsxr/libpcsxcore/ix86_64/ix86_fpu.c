@@ -77,7 +77,7 @@ void FDECSTP() { write16(0xf6d9); }
 void FRNDINT() { write16(0xfcd9); }
 void FXCH(int st) { write16(0xc8d9+(st<<8)); }
 void F2XM1() { write16(0xf0d9); }
-void FSCALE() { write16(0xfdd9); }
+void FSCALE_() { write16(0xfdd9); }
 
 /* fadd ST(src) to fpu reg stack ST(0) */
 void FADD32Rto0( x86IntRegType src )
