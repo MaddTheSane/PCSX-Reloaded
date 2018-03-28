@@ -1072,7 +1072,7 @@ void FDECSTP(void);
 void FRNDINT(void);
 void FXCH(int st);
 void F2XM1(void);
-void FSCALE(void);
+void FSCALE_(void);
 
 // fadd ST(src) to fpu reg stack ST(0) 
 void FADD32Rto0( x86IntRegType src );
