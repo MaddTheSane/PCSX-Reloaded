@@ -25,9 +25,8 @@ private func imagesFromMcd(_ theBlock: UnsafePointer<McdBlock>) -> [NSImage] {
 	}
 
 	var toRet = [NSImage]()
-	let unwrapped = theBlock.pointee
-	let iconArray: [Int16] = try! arrayFromObject(reflecting: unwrapped.Icon)
-	for i in 0..<unwrapped.IconCount {
+	let iconArray: [Int16] = try! arrayFromObject(reflecting: theBlock.pointee.Icon)
+	for i in 0..<theBlock.pointee.IconCount {
 		if let imageRep = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: 16, pixelsHigh: 16, bitsPerSample: 8, samplesPerPixel: 3, hasAlpha: false, isPlanar: false, colorSpaceName: NSColorSpaceName.calibratedRGB, bytesPerRow: 16 * 3, bitsPerPixel: 24) {
 			imageRep.bitmapData?.withMemoryRebound(to: PSXRGBColor.self, capacity: 256, { (cocoaImageData) -> Void in
 				for v in 0..<256 {
@@ -82,18 +81,18 @@ private var attribMemLabelLink		= NSAttributedString()
 private var attribMemLabelEndLink	= NSAttributedString()
 private var attribMemLabelMultiSave	= NSAttributedString()
 
-private var imageBlank: NSImage? = nil
+private let imageBlank: NSImage = {
+	let imageRect = NSRect(x: 0, y: 0, width: 16, height: 16)
+	let anImg = NSImage(size: imageRect.size)
+	anImg.lockFocus()
+	NSColor.black.set()
+	NSBezierPath.fill(imageRect)
+	anImg.unlockFocus()
+	return anImg
+}()
+
 private func blankImage() -> NSImage {
-	if imageBlank == nil {
-		let imageRect = NSRect(x: 0, y: 0, width: 16, height: 16)
-		let anImg = NSImage(size: imageRect.size)
-		anImg.lockFocus()
-		NSColor.black.set()
-		NSBezierPath.fill(imageRect)
-		anImg.unlockFocus()
-		imageBlank = anImg
-	}
-	return imageBlank!.copy() as! NSImage
+	return imageBlank.copy() as! NSImage
 }
 
 func MemFlagsFromBlockFlags(_ blockFlags: UInt8) -> PCSXRMemFlag {
