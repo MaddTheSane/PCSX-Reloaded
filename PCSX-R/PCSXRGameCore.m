@@ -53,6 +53,7 @@
 #pragma mark SPU calls
 
 static PCSXRGameCore *_current;
+unsigned long gpuDisp;
 #define SAMPLERATE 44100
 
 // SETUP SOUND
@@ -159,7 +160,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	cdrIsoInit();
 	CDR_open();
 	CheckCdrom();
-	CDR_close();
+	CDR_shutdown();
 	{
 		NSFileManager *manager = [NSFileManager defaultManager];
 		NSURL *supportURL = [manager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
@@ -170,7 +171,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 			memCardURL = [url URLByAppendingPathComponent:[NSString stringWithFormat:@"%s-%3.3d.mcd", CdromId, i]];
 			const char* mcdFile = [memCardURL fileSystemRepresentation];
 			if (![manager fileExistsAtPath:[memCardURL path]]) {
-				CreateMcd(mcdFile);
+				CreateMcd((char*)mcdFile);
 			}
 			if (i == 1) {
 				strlcpy(Config.Mcd1, mcdFile, MAXPATHLEN);
@@ -264,9 +265,6 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	iDisStereo = 0;
 	iFreqResponse = 0;
 	
-	OpenPlugins();
-
-	//FIXME: find out CD-ROM ID before executing [EmuThread run].
 	[EmuThread run];
 	
 	_current = self;
@@ -437,11 +435,37 @@ void ReadConfig(void)
 
 int OpenPlugins(void)
 {
-	
+	long ret;
+	ret = CDR_open();
+	if (ret < 0) { SysMessage("%s", _("Error Opening CDR Plugin")); return -1; }
+	ret = SPU_open();
+	if (ret < 0) { SysMessage("%s", _("Error Opening SPU Plugin")); return -1; }
+	SPU_registerCallback(SPUirq);
+	ret = GPU_open(&gpuDisp, "PCSXR", NULL);
+	if (ret < 0) { SysMessage("%s", _("Error Opening GPU Plugin")); return -1; }
+	ret = PAD1_open(&gpuDisp);
+	if (ret < 0) { SysMessage("%s", _("Error Opening PAD1 Plugin")); return -1; }
+	PAD1_registerVibration(GPU_visualVibration);
+	PAD1_registerCursor(GPU_cursor);
+	ret = PAD2_open(&gpuDisp);
+	if (ret < 0) { SysMessage("%s", _("Error Opening PAD2 Plugin")); return -1; }
+	PAD2_registerVibration(GPU_visualVibration);
+	PAD2_registerCursor(GPU_cursor);
+
 	return 0;
 }
 
 void ClosePlugins(void)
 {
-	
+	long ret;
+	ret = CDR_close();
+	if (ret < 0) { SysMessage("%s", _("Error Closing CDR Plugin")); return; }
+	ret = SPU_close();
+	if (ret < 0) { SysMessage("%s", _("Error Closing SPU Plugin")); return; }
+	ret = PAD1_close();
+	if (ret < 0) { SysMessage("%s", _("Error Closing PAD1 Plugin")); return; }
+	ret = PAD2_close();
+	if (ret < 0) { SysMessage("%s", _("Error Closing PAD2 Plugin")); return; }
+	ret = GPU_close();
+	if (ret < 0) { SysMessage("%s", _("Error Closing GPU Plugin")); return; }
 }

@@ -53,6 +53,27 @@ void SysReset() {
     //EmuReset();
 }
 
+static void AddStringToLogList(NSString *themsg)
+{
+    static NSMutableString *theStr;
+    static dispatch_once_t onceToken;
+    NSRange newlineRange, fullLineRange;
+    dispatch_once(&onceToken, ^{
+        theStr = [[NSMutableString alloc] init];
+    });
+    [theStr appendString:themsg];
+    while ((newlineRange = [theStr rangeOfString:@"\n"]).location != NSNotFound) {
+        newlineRange = [theStr rangeOfComposedCharacterSequencesForRange:newlineRange];
+        NSString *tmpStr = [theStr substringToIndex:newlineRange.location];
+        if (tmpStr && ![tmpStr isEqualToString:@""]) {
+            printf("PCSXR: %s\n", tmpStr.UTF8String);
+        }
+        fullLineRange = NSMakeRange(0, NSMaxRange(newlineRange));
+        fullLineRange = [theStr rangeOfComposedCharacterSequencesForRange:fullLineRange];
+        [theStr deleteCharactersInRange:fullLineRange];
+    }
+}
+
 void SysPrintf(const char *fmt, ...) {
     va_list list;
     char msg[512];
@@ -61,7 +82,9 @@ void SysPrintf(const char *fmt, ...) {
     vsprintf(msg, fmt, list);
     va_end(list);
 	
-    if (Config.PsxOut) printf ("PCSXR: %s", msg);
+    if (Config.PsxOut) {
+        AddStringToLogList(@(msg));
+    }
 #ifdef EMU_LOG
 #ifndef LOG_STDOUT
     fprintf(emuLog, "%s", msg);
@@ -78,7 +101,6 @@ void SysMessage(const char *fmt, ...) {
     NSString *msg = [[NSString alloc] initWithFormat:locFmtString arguments:list];
 	va_end(list);
     
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:msg forKey:NSLocalizedFailureReasonErrorKey];
     NSLog(@"%@", msg);
 }
 
