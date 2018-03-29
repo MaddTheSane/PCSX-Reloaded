@@ -52,7 +52,7 @@
 
 #pragma mark SPU calls
 
-static PCSXRGameCore *_current;
+PCSXRGameCore *_current;
 unsigned long gpuDisp;
 #define SAMPLERATE 44100
 
@@ -391,6 +391,17 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 - (NSUInteger)discCount
 {
 	return _maxDiscs ? _maxDiscs : 1;
+}
+
+- (BOOL)hasAlternateRenderingThread
+{
+	return YES;
+}
+
+- (BOOL)tryToResizeVideoTo:(OEIntSize)size
+{
+	//TODO: resize
+	return YES;
 }
 
 @end

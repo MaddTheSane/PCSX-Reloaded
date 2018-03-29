@@ -25,6 +25,7 @@
 //#import "PluginGLView.h"
 #import "PCSXRGameCore.h"
 #import <Cocoa/Cocoa.h>
+#include <OpenGL/gl.h>
 #include "ExtendedKeys.h"
 #include "peopsxgl/externals.h"
 #include "draw.h"
@@ -88,7 +89,7 @@ char *         pCaptionText;
 // static is BAD NEWS if user uses other plug ins
 @class PluginGLView;
 PluginGLView *glView;
-PCSXRGameCore *gameCore;
+extern PCSXRGameCore *_current;
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -184,20 +185,17 @@ void CloseDisplay(void)
 
 void BringContextForward(void)
 {
-	//gameCore.renderDelegate.presentationFramebuffer;
-    //[[glView openGLContext] makeCurrentContext];
-	//[gameCore.renderDelegate willRenderFrameOnAlternateThread];
+	[_current.renderDelegate willRenderFrameOnAlternateThread];
 }
 
 void SendContextBack(void)
 {
-    [NSOpenGLContext clearCurrentContext];
-	//[gameCore.renderDelegate didRenderFrameOnAlternateThread]
+	[_current.renderDelegate didRenderFrameOnAlternateThread];
 }
 
 void SetVSync(GLint myValue)
 {
-	gameCore.renderDelegate.enableVSync = myValue == 1;
+	_current.renderDelegate.enableVSync = myValue == 1;
 }
 ////////////////////////////////////////////////////////////////////////
 
