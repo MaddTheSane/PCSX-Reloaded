@@ -265,9 +265,9 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	iDisStereo = 0;
 	iFreqResponse = 0;
 	
-	[EmuThread run];
-	
 	_current = self;
+
+	[EmuThread run];
 }
 
 - (void)setPauseEmulation:(BOOL)pauseEmulation

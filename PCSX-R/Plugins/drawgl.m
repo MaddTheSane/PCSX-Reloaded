@@ -21,8 +21,6 @@
  *                                                                         *
  ***************************************************************************/
 
-//#import "PluginWindowController.h"
-//#import "PluginGLView.h"
 #import "PCSXRGameCore.h"
 #import <Cocoa/Cocoa.h>
 #include <OpenGL/gl.h>
@@ -145,8 +143,11 @@ unsigned long ulInitDisplay(void)	// OPEN GAME WINDOW
 		ulKeybits |= KEY_SHOWFPS;
 		szDispBuf[0] = 0;
 		BuildDispMenu(0);
+		iUseExts = 1;
 	}
 	
+	GET_CURRENT_OR_RETURN(0);
+
 	/*
 	__block PluginWindowController *windowController;
 	
@@ -160,7 +161,7 @@ unsigned long ulInitDisplay(void)	// OPEN GAME WINDOW
 	
 	return (unsigned long)[windowController window];
 	 */
-	return 0;
+	return (unsigned long)current;
 }
 
 
@@ -179,17 +180,23 @@ void CloseDisplay(void)
 
 void BringContextForward(void)
 {
-	[_current.renderDelegate willRenderFrameOnAlternateThread];
+	GET_CURRENT_OR_RETURN();
+
+	[current.renderDelegate willRenderFrameOnAlternateThread];
 }
 
 void SendContextBack(void)
 {
-	[_current.renderDelegate didRenderFrameOnAlternateThread];
+	GET_CURRENT_OR_RETURN();
+
+	[current.renderDelegate didRenderFrameOnAlternateThread];
 }
 
 void SetVSync(GLint myValue)
 {
-	_current.renderDelegate.enableVSync = myValue == 1;
+	GET_CURRENT_OR_RETURN();
+
+	current.renderDelegate.enableVSync = myValue == 1;
 }
 ////////////////////////////////////////////////////////////////////////
 
