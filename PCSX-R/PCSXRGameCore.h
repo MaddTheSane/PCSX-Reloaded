@@ -30,8 +30,12 @@
 
 @class OERingBuffer;
 
+@class PCSXRGameCore;
+extern __weak PCSXRGameCore *_current;
+
+
 OE_EXPORTED_CLASS
-@interface PCSXRGameCore : OEGameCore <OESystemResponderClient>
+@interface PCSXRGameCore : OEGameCore
 
 @end
 

@@ -85,12 +85,6 @@ extern PSXPoint_t     ptCursorPoint[8];
 char *			Xpixels;
 char *         pCaptionText;
 
-//static PluginWindowController *windowController;
-// static is BAD NEWS if user uses other plug ins
-@class PluginGLView;
-PluginGLView *glView;
-extern PCSXRGameCore *_current;
-
 ////////////////////////////////////////////////////////////////////////
 
 void DoBufferSwap(void)                                // SWAP BUFFERS

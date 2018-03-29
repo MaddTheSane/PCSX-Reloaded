@@ -52,7 +52,7 @@
 
 #pragma mark SPU calls
 
-PCSXRGameCore *_current;
+__weak PCSXRGameCore *_current;
 unsigned long gpuDisp;
 #define SAMPLERATE 44100
 

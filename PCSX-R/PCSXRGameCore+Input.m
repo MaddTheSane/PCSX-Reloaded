@@ -807,6 +807,8 @@ unsigned char PADPoll(unsigned char value)
 
 int JoyHapticRumble(int pad, uint32_t low, uint32_t high)
 {
+	GET_CURRENT_OR_RETURN(0);
+
 	return 0;
 }
 // end dfinput code.
