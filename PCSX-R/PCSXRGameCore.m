@@ -47,6 +47,7 @@
 
 @interface PCSXRGameCore()
 @property BOOL wasPausedBeforeDiscEject;
+@property BOOL psxIsRunning;
 
 @end
 
@@ -99,7 +100,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 		memset(&Config, 0, sizeof(Config));
 		Config.UseNet = NO;
 		strcpy(Config.Net, "Disabled");
-		Config.Cpu = CPU_DYNAREC; //We don't have to worry about misaligned stack error on x86_64
+		Config.Cpu = CPU_DYNAREC;
 		NSFileManager *manager = [NSFileManager defaultManager];
 		NSURL *supportURL = [manager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
 		NSURL *url = [supportURL URLByAppendingPathComponent:@"OpenEmu/BIOS"];
@@ -266,8 +267,6 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	iFreqResponse = 0;
 	
 	_current = self;
-
-	[EmuThread run];
 }
 
 - (void)setPauseEmulation:(BOOL)pauseEmulation
@@ -285,6 +284,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 {
 	[EmuThread stop];
 	_current = nil;
+	self.psxIsRunning = NO;
 	
 	[super stopEmulation];
 }
@@ -293,6 +293,11 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 
 - (void)executeFrame
 {
+	if (!_psxIsRunning) {
+		[EmuThread run];
+		self.psxIsRunning = YES;
+		return;
+	}
 	//TODO: find out the proper function(s) to call here!
 	GPUTick();
 }
