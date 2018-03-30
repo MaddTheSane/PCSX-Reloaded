@@ -293,37 +293,6 @@ long CALLBACK CDR__setfilename(char*filename) { return 0; }
 #define LoadCdrSymN(dest, name) \
 	LoadSym(CDR_##dest, CDR##dest, name, FALSE);
 
-static int LoadCDRplugin(const char *CDRdll) {
-	void *drv;
-
-	if (CDRdll == NULL) {
-		cdrIsoInit();
-		return 0;
-	}
-
-	CDR_init = CDRInit_bridge;
-	CDR_shutdown = CDRShutdown_bridge;
-	CDR_open = CDROpen_bridge;
-	CDR_close = CDRClose_bridge;
-	CDR_test = CDRTest_bridge;
-	CDR_getTN = CDRGetTN_bridge;
-	CDR_getTD = CDRGetTD_bridge;
-	CDR_readTrack = CDRReadTrack_bridge;
-	CDR_getBuffer = CDRGetBuffer_bridge;
-	CDR_play = CDRPlay_bridge;
-	CDR_stop = CDRStop_bridge;
-	CDR_getStatus = CDRGetStatus_bridge;
-	CDR_getDriveLetter = CDR__getDriveLetter;
-	CDR_getBufferSub = CDRGetBufferSub_bridge;
-	CDR_configure = CDRConfigure_bridge;
-	CDR_about = CDRAbout_bridge;
-	CDR_setfilename = CDR__setfilename;
-	CDR_readCDDA = CDRReadCDDA_bridge;
-	CDR_getTE = CDRGetTE_bridge;
-
-	return 0;
-}
-
 void *hSPUDriver = NULL;
 
 long CALLBACK SPU__configure(void) { return 0; }
@@ -698,13 +667,7 @@ int LoadPlugins() {
 	char Plugin[MAXPATHLEN];
 
 	ReleasePlugins();
-
-	if (UsingIso()) {
-		LoadCDRplugin(NULL);
-	} else {
-		sprintf(Plugin, "%s/%s", Config.PluginsDir, Config.Cdr);
-		if (LoadCDRplugin(Plugin) == -1) return -1;
-	}
+	cdrIsoInit();
 
 	sprintf(Plugin, "%s/%s", Config.PluginsDir, Config.Gpu);
 	if (LoadGPUplugin(Plugin) == -1) return -1;

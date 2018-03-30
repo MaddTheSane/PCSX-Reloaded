@@ -12,12 +12,6 @@
 		5527D14C2066DF630094179A /* maccfg.h in Headers */ = {isa = PBXBuildFile; fileRef = 5527D14A2066DF630094179A /* maccfg.h */; };
 		5527D14D2066DF630094179A /* maccfg.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D14B2066DF630094179A /* maccfg.c */; };
 		5527D15C2066EDA90094179A /* sio1.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D14F2066ED710094179A /* sio1.c */; };
-		5527D16B2066EEED0094179A /* libdfcdrom.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5527D1682066EEC80094179A /* libdfcdrom.a */; };
-		5527D1792066EF020094179A /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D16F2066EF020094179A /* util.c */; };
-		5527D17B2066EF020094179A /* cfg.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D1712066EF020094179A /* cfg.c */; };
-		5527D17D2066EF020094179A /* cdr.h in Headers */ = {isa = PBXBuildFile; fileRef = 5527D1752066EF020094179A /* cdr.h */; };
-		5527D17E2066EF020094179A /* cdr-null.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D1762066EF020094179A /* cdr-null.c */; };
-		5527D17F2066EF020094179A /* cdr.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D1772066EF020094179A /* cdr.c */; };
 		5527D1AC2066F2D00094179A /* PCSXRGameCore+Input.m in Sources */ = {isa = PBXBuildFile; fileRef = 5527D1AB2066F2D00094179A /* PCSXRGameCore+Input.m */; };
 		5527D1AF2066FA710094179A /* PlugInBridges.c in Sources */ = {isa = PBXBuildFile; fileRef = 5527D1AE2066FA710094179A /* PlugInBridges.c */; };
 		554B0C07206AF54A00D712DA /* plugins.m in Sources */ = {isa = PBXBuildFile; fileRef = 554B0C06206AF54A00D712DA /* plugins.m */; };
@@ -77,13 +71,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5527D1692066EEE30094179A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55BA708E2066481A004FBA45 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5527D1602066EEC80094179A;
-			remoteInfo = dfcdrom;
-		};
 		55BA718A2066CB52004FBA45 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55BA708E2066481A004FBA45 /* Project object */;
@@ -109,12 +96,6 @@
 		5527D14F2066ED710094179A /* sio1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sio1.c; sourceTree = "<group>"; };
 		5527D1512066ED710094179A /* typedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typedefs.h; sourceTree = "<group>"; };
 		5527D1582066EDA40094179A /* libnullsio1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libnullsio1.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5527D1682066EEC80094179A /* libdfcdrom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdfcdrom.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5527D16F2066EF020094179A /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
-		5527D1712066EF020094179A /* cfg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cfg.c; sourceTree = "<group>"; };
-		5527D1752066EF020094179A /* cdr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cdr.h; sourceTree = "<group>"; };
-		5527D1762066EF020094179A /* cdr-null.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "cdr-null.c"; sourceTree = "<group>"; };
-		5527D1772066EF020094179A /* cdr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdr.c; sourceTree = "<group>"; };
 		5527D1AA2066F2D00094179A /* PCSXRGameCore+Input.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PCSXRGameCore+Input.h"; sourceTree = "<group>"; };
 		5527D1AB2066F2D00094179A /* PCSXRGameCore+Input.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PCSXRGameCore+Input.m"; sourceTree = "<group>"; };
 		5527D1AD2066FA710094179A /* PlugInBridges.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlugInBridges.h; sourceTree = "<group>"; };
@@ -251,18 +232,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5527D1632066EEC80094179A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		55BA70932066481A004FBA45 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5527D16B2066EEED0094179A /* libdfcdrom.a in Frameworks */,
 				55BA71A02066CBF2004FBA45 /* libPeopsXgl.a in Frameworks */,
 				55BA718C2066CB7C004FBA45 /* libdfsound.a in Frameworks */,
 				55BA70A0206648A5004FBA45 /* OpenEmuBase.framework in Frameworks */,
@@ -295,18 +268,6 @@
 			path = nullsio1;
 			sourceTree = "<group>";
 		};
-		5527D16C2066EF020094179A /* dfcdrom */ = {
-			isa = PBXGroup;
-			children = (
-				5527D1762066EF020094179A /* cdr-null.c */,
-				5527D1772066EF020094179A /* cdr.c */,
-				5527D1752066EF020094179A /* cdr.h */,
-				5527D1712066EF020094179A /* cfg.c */,
-				5527D16F2066EF020094179A /* util.c */,
-			);
-			path = dfcdrom;
-			sourceTree = "<group>";
-		};
 		55BA708D2066481A004FBA45 = {
 			isa = PBXGroup;
 			children = (
@@ -324,7 +285,6 @@
 				55BA71812066CB0B004FBA45 /* libdfsound.a */,
 				55BA71912066CBB6004FBA45 /* libPeopsXgl.a */,
 				5527D1582066EDA40094179A /* libnullsio1.a */,
-				5527D1682066EEC80094179A /* libdfcdrom.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -455,7 +415,6 @@
 		55BA712D2066C020004FBA45 /* Plug-ins */ = {
 			isa = PBXGroup;
 			children = (
-				5527D16C2066EF020094179A /* dfcdrom */,
 				55BA715D2066C9E8004FBA45 /* dfsound */,
 				5527D14E2066ED710094179A /* nullsio1 */,
 				55BA712E2066C04A004FBA45 /* PeopsXgl */,
@@ -560,14 +519,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5527D1642066EEC80094179A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5527D17D2066EF020094179A /* cdr.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		55BA717F2066CB0B004FBA45 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -603,23 +554,6 @@
 			productReference = 5527D1582066EDA40094179A /* libnullsio1.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		5527D1602066EEC80094179A /* dfcdrom */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5527D1652066EEC80094179A /* Build configuration list for PBXNativeTarget "dfcdrom" */;
-			buildPhases = (
-				5527D1612066EEC80094179A /* Sources */,
-				5527D1632066EEC80094179A /* Frameworks */,
-				5527D1642066EEC80094179A /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = dfcdrom;
-			productName = nullsio1;
-			productReference = 5527D1682066EEC80094179A /* libdfcdrom.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		55BA70952066481A004FBA45 /* PCSX-R */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55BA709C2066481A004FBA45 /* Build configuration list for PBXNativeTarget "PCSX-R" */;
@@ -631,7 +565,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5527D16A2066EEE30094179A /* PBXTargetDependency */,
 				55BA719F2066CBED004FBA45 /* PBXTargetDependency */,
 				55BA718B2066CB52004FBA45 /* PBXTargetDependency */,
 			);
@@ -687,9 +620,6 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
-					5527D1602066EEC80094179A = {
-						ProvisioningStyle = Automatic;
-					};
 					55BA70952066481A004FBA45 = {
 						CreatedOnToolsVersion = 9.2;
 					};
@@ -719,7 +649,6 @@
 				55BA71802066CB0B004FBA45 /* dfsound */,
 				55BA71902066CBB6004FBA45 /* PeopsXgl */,
 				5527D1572066EDA40094179A /* nullsio1 */,
-				5527D1602066EEC80094179A /* dfcdrom */,
 			);
 		};
 /* End PBXProject section */
@@ -743,17 +672,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5527D15C2066EDA90094179A /* sio1.c in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5527D1612066EEC80094179A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5527D17F2066EF020094179A /* cdr.c in Sources */,
-				5527D17E2066EF020094179A /* cdr-null.c in Sources */,
-				5527D17B2066EF020094179A /* cfg.c in Sources */,
-				5527D1792066EF020094179A /* util.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,11 +752,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5527D16A2066EEE30094179A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5527D1602066EEC80094179A /* dfcdrom */;
-			targetProxy = 5527D1692066EEE30094179A /* PBXContainerItemProxy */;
-		};
 		55BA718B2066CB52004FBA45 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 55BA71802066CB0B004FBA45 /* dfsound */;
@@ -906,48 +819,6 @@
 				KEEP_PRIVATE_EXTERNS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PSXPLUGTYPE = SIO1;
-			};
-			name = Release;
-		};
-		5527D1662066EEC80094179A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				EXECUTABLE_PREFIX = lib;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					_MACOSX,
-					"PSEgetLibVersion=PSEgetLibVersion$(PSXPLUGTYPE)",
-					"PSEgetLibType=PSEgetLibType$(PSXPLUGTYPE)",
-					"PSEgetLibName=PSEgetLibName$(PSXPLUGTYPE)",
-					"iDebugMode=iDebugMode$(PSXPLUGTYPE)",
-					USE_NULL,
-					"$(inherited)",
-					"calcCrc=calcCrcCDR",
-				);
-				KEEP_PRIVATE_EXTERNS = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PSXPLUGTYPE = CDR;
-			};
-			name = Debug;
-		};
-		5527D1672066EEC80094179A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				EXECUTABLE_PREFIX = lib;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					_MACOSX,
-					"PSEgetLibVersion=PSEgetLibVersion$(PSXPLUGTYPE)",
-					"PSEgetLibType=PSEgetLibType$(PSXPLUGTYPE)",
-					"PSEgetLibName=PSEgetLibName$(PSXPLUGTYPE)",
-					"iDebugMode=iDebugMode$(PSXPLUGTYPE)",
-					USE_NULL,
-					"$(inherited)",
-					"calcCrc=calcCrcCDR",
-				);
-				KEEP_PRIVATE_EXTERNS = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PSXPLUGTYPE = CDR;
 			};
 			name = Release;
 		};
@@ -1208,15 +1079,6 @@
 			buildConfigurations = (
 				5527D15A2066EDA40094179A /* Debug */,
 				5527D15B2066EDA40094179A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5527D1652066EEC80094179A /* Build configuration list for PBXNativeTarget "dfcdrom" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5527D1662066EEC80094179A /* Debug */,
-				5527D1672066EEC80094179A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

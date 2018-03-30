@@ -63,28 +63,6 @@ extern unsigned long PSEgetLibVersionGPU(void);
 extern char *PSEgetLibNameGPU(void);
 
 
-extern long CDRInit_bridge(void);
-extern long CDRShutdown_bridge(void);
-extern long CDROpen_bridge(void);
-extern long CDRClose_bridge(void);
-extern long CDRGetTN_bridge(unsigned char *);
-extern long CDRGetTD_bridge(unsigned char, unsigned char *);
-extern long CDRReadTrack_bridge(unsigned char *);
-extern unsigned char* CDRGetBuffer_bridge(void);
-extern unsigned char* CDRGetBufferSub_bridge(void);
-extern long CDRConfigure_bridge(void);
-extern long CDRTest_bridge(void);
-extern void CDRAbout_bridge(void);
-extern long CDRPlay_bridge(unsigned char *);
-extern long CDRStop_bridge(void);
-extern long CDRGetStatus_bridge(struct CdrStat *);
-extern long CDRReadCDDA_bridge(unsigned char, unsigned char, unsigned char, unsigned char *);
-extern long CDRGetTE_bridge(unsigned char, unsigned char *, unsigned char *, unsigned char *);
-extern unsigned long PSEgetLibTypeCDR(void);
-extern unsigned long PSEgetLibVersionCDR(void);
-extern char *PSEgetLibNameCDR(void);
-
-
 extern long SPUOpen_bridge(void);
 extern long SPUInit_bridge(void);
 extern long SPUShutdown_bridge(void);
