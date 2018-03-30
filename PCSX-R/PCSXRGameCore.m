@@ -47,7 +47,6 @@
 
 @interface PCSXRGameCore()
 @property BOOL wasPausedBeforeDiscEject;
-@property BOOL psxIsRunning;
 
 @end
 
@@ -284,20 +283,19 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 {
 	[EmuThread stop];
 	_current = nil;
-	self.psxIsRunning = NO;
 	
 	[super stopEmulation];
 }
 
 # pragma mark -
 
+- (void)startEmulation
+{
+	[EmuThread run];
+}
+
 - (void)executeFrame
 {
-	if (!_psxIsRunning) {
-		[EmuThread run];
-		self.psxIsRunning = YES;
-		return;
-	}
 	//TODO: find out the proper function(s) to call here!
 	GPUTick();
 }
