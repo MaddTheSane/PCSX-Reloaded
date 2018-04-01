@@ -180,7 +180,6 @@ typedef struct tagPadState {
 	uint8_t				PadID;
 	uint8_t				PadModeKey;
 	volatile uint8_t	PadModeSwitch;
-	volatile uint16_t	KeyStatus;
 	volatile uint16_t	JoyKeyStatus;
 	volatile uint8_t	AnalogStatus[ANALOG_TOTAL][2]; // 0-255 where 127 is center position
 	volatile uint8_t	AnalogKeyStatus[ANALOG_TOTAL][4];
@@ -234,20 +233,6 @@ static void bup(int pad, int bit)
 	} else if(bit == DKEY_ANALOG) {
 		g.PadState[pad].PadModeKey = 0;
 	}
-}
-
-static void keydown(int pad, int bit)
-{
-	if(bit < 16)
-		g.PadState[pad].KeyStatus &= ~(1 << bit);
-	else if(bit == DKEY_ANALOG)
-		g.PadState[pad].PadModeSwitch = 1;
-}
-
-static void keyup(int pad, int bit)
-{
-	if(bit < 16)
-		g.PadState[pad].KeyStatus |= (1 << bit);
 }
 
 // end dfinput code.
@@ -461,10 +446,6 @@ long PADOpen(unsigned long *Disp)
 		memset((void *)g.PadState[0].AnalogKeyStatus, 0, sizeof(g.PadState[0].AnalogKeyStatus));
 		memset((void *)g.PadState[1].AnalogKeyStatus, 0, sizeof(g.PadState[1].AnalogKeyStatus));
 
-		/* InitKeyboard() */
-		g.PadState[0].KeyStatus = 0xFFFF;
-		g.PadState[1].KeyStatus = 0xFFFF;
-
 		g.KeyLeftOver = 0;
 	}
 	
@@ -537,7 +518,7 @@ static long PADreadPort(int num, PadDataS *pad)
 {
 	UpdateInput();
 	
-	pad->buttonStatus = (g.PadState[num].KeyStatus & g.PadState[num].JoyKeyStatus);
+	pad->buttonStatus = g.PadState[num].JoyKeyStatus;
 	
 	// ePSXe different from pcsxr, swap bytes
 	pad->buttonStatus = (pad->buttonStatus >> 8) | (pad->buttonStatus << 8);
@@ -651,8 +632,7 @@ unsigned char PADPoll(unsigned char value)
 				
 			case CMD_READ_DATA_AND_VIBRATE:
 			default:
-				n = g.PadState[CurPad].KeyStatus;
-				n &= g.PadState[CurPad].JoyKeyStatus;
+				n = g.PadState[CurPad].JoyKeyStatus;
 				
 				stdpar[CurPad][2] = n & 0xFF;
 				stdpar[CurPad][3] = n >> 8;

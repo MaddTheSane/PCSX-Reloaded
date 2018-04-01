@@ -55,24 +55,6 @@ extern void GPUcursor(int, int, int);
 extern void GPUaddVertex(short,short,s64,s64,s64);
 extern void GPUsetSpeed(float); // 1.0 = natural speed
 
-extern long CDRinit(void);
-extern long CDRshutdown(void);
-extern long CDRopen(void);
-extern long CDRclose(void);
-extern long CDRgetTN(unsigned char *);
-extern long CDRgetTD(unsigned char, unsigned char *);
-extern long CDRreadTrack(unsigned char *);
-extern unsigned char* CDRgetBuffer(void);
-extern unsigned char* CDRgetBufferSub(void);
-extern long CDRconfigure(void);
-extern long CDRtest(void);
-extern void CDRabout(void);
-extern long CDRplay(unsigned char *);
-extern long CDRstop(void);
-extern long CDRgetStatus(CdrStat_p);
-extern long CDRreadCDDA(unsigned char, unsigned char, unsigned char, unsigned char *);
-extern long CDRgetTE(unsigned char, unsigned char *, unsigned char *, unsigned char *);
-
 extern long SPUinit(void);
 extern long SPUshutdown(void);
 extern long SPUclose(void);
