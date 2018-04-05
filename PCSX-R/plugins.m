@@ -203,34 +203,11 @@ static const char *psxerr;
 
 void *hGPUDriver = NULL;
 
-void CALLBACK GPU__displayText(char *pText) {
+static void CALLBACK GPU__displayText(char *pText) {
 	SysPrintf("%s\n", pText);
 }
 
-long CALLBACK GPU__configure(void) { return 0; }
-long CALLBACK GPU__test(void) { return 0; }
-void CALLBACK GPU__about(void) {}
-void CALLBACK GPU__makeSnapshot(void) {}
-void CALLBACK GPU__keypressed(int key) {}
-long CALLBACK GPU__getScreenPic(unsigned char *pMem) { return -1; }
-long CALLBACK GPU__showScreenPic(unsigned char *pMem) { return -1; }
-void CALLBACK GPU__clearDynarec(void (CALLBACK *callback)(void)) {}
-void CALLBACK GPU__hSync(int val) {}
-void CALLBACK GPU__vBlank(int val) {}
-void CALLBACK GPU__visualVibration(unsigned long iSmall, unsigned long iBig) {}
-void CALLBACK GPU__cursor(int player, int x, int y) {}
-void CALLBACK GPU__addVertex(short sx,short sy,s64 fx,s64 fy,s64 fz) {}
-void CALLBACK GPU__setSpeed(float newSpeed) {}
-
-#define LoadGpuSym1(dest, name) \
-	LoadSym(GPU_##dest, GPU##dest, name, TRUE);
-
-#define LoadGpuSym0(dest, name) \
-	LoadSym(GPU_##dest, GPU##dest, name, FALSE); \
-	if (GPU_##dest == NULL) GPU_##dest = (GPU##dest) GPU__##dest;
-
-#define LoadGpuSymN(dest, name) \
-	LoadSym(GPU_##dest, GPU##dest, name, FALSE);
+static void CALLBACK GPU__clearDynarec(void (CALLBACK *callback)(void)) {}
 
 static int LoadGPUplugin(const char *GPUdll) {
 	GPU_updateLace = GPUUpdateLace_bridge;
@@ -264,9 +241,6 @@ static int LoadGPUplugin(const char *GPUdll) {
 
 	return 0;
 }
-
-long CALLBACK CDR__play(unsigned char *sector) { return 0; }
-long CALLBACK CDR__stop(void) { return 0; }
 
 long CALLBACK CDR__getStatus(struct CdrStat *stat) {
 	if (cdOpenCaseTime < 0 || cdOpenCaseTime > (s64)time(NULL))
@@ -336,100 +310,10 @@ static int LoadSPUplugin(const char *SPUdll) {
 void *hPAD1Driver = NULL;
 void *hPAD2Driver = NULL;
 
-static unsigned char buf[256];
-unsigned char stdpar[10] = { 0x00, 0x41, 0x5a, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-unsigned char mousepar[8] = { 0x00, 0x12, 0x5a, 0xff, 0xff, 0xff, 0xff };
-unsigned char analogpar[9] = { 0x00, 0xff, 0x5a, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-
-static int bufcount, bufc;
-
 PadDataS padd1, padd2;
 
-unsigned char _PADstartPoll(PadDataS *pad) {
-    bufc = 0;
-
-    switch (pad->controllerType) {
-        case PSE_PAD_TYPE_MOUSE:
-            mousepar[3] = pad->buttonStatus & 0xff;
-            mousepar[4] = pad->buttonStatus >> 8;
-            mousepar[5] = pad->moveX;
-            mousepar[6] = pad->moveY;
-
-            memcpy(buf, mousepar, 7);
-            bufcount = 6;
-            break;
-        case PSE_PAD_TYPE_NEGCON: // npc101/npc104(slph00001/slph00069)
-            analogpar[1] = 0x23;
-            analogpar[3] = pad->buttonStatus & 0xff;
-            analogpar[4] = pad->buttonStatus >> 8;
-            analogpar[5] = pad->rightJoyX;
-            analogpar[6] = pad->rightJoyY;
-            analogpar[7] = pad->leftJoyX;
-            analogpar[8] = pad->leftJoyY;
-
-            memcpy(buf, analogpar, 9);
-            bufcount = 8;
-            break;
-        case PSE_PAD_TYPE_ANALOGPAD: // scph1150
-            analogpar[1] = 0x73;
-            analogpar[3] = pad->buttonStatus & 0xff;
-            analogpar[4] = pad->buttonStatus >> 8;
-            analogpar[5] = pad->rightJoyX;
-            analogpar[6] = pad->rightJoyY;
-            analogpar[7] = pad->leftJoyX;
-            analogpar[8] = pad->leftJoyY;
-
-            memcpy(buf, analogpar, 9);
-            bufcount = 8;
-            break;
-        case PSE_PAD_TYPE_ANALOGJOY: // scph1110
-            analogpar[1] = 0x53;
-            analogpar[3] = pad->buttonStatus & 0xff;
-            analogpar[4] = pad->buttonStatus >> 8;
-            analogpar[5] = pad->rightJoyX;
-            analogpar[6] = pad->rightJoyY;
-            analogpar[7] = pad->leftJoyX;
-            analogpar[8] = pad->leftJoyY;
-
-            memcpy(buf, analogpar, 9);
-            bufcount = 8;
-            break;
-        case PSE_PAD_TYPE_STANDARD:
-        default:
-            stdpar[3] = pad->buttonStatus & 0xff;
-            stdpar[4] = pad->buttonStatus >> 8;
-
-            memcpy(buf, stdpar, 5);
-            bufcount = 4;
-    }
-
-    return buf[bufc++];
-}
-
-unsigned char _PADpoll(unsigned char value) {
-    if (bufc > bufcount) return 0;
-    return buf[bufc++];
-}
-
-unsigned char CALLBACK PAD1__startPoll(int pad) {
-    PadDataS padd;
-
-    PAD1_readPort1(&padd);
-
-    return _PADstartPoll(&padd);
-}
-
-unsigned char CALLBACK PAD1__poll(unsigned char value) {
-    return _PADpoll(value);
-}
-
-long CALLBACK PAD1__configure(void) { return 0; }
-void CALLBACK PAD1__about(void) {}
-long CALLBACK PAD1__test(void) { return 0; }
-long CALLBACK PAD1__query(void) { return 3; }
-long CALLBACK PAD1__keypressed() { return 0; }
-void CALLBACK PAD1__registerVibration(void (CALLBACK *callback)(uint32_t, uint32_t)) {}
-void CALLBACK PAD1__registerCursor(void (CALLBACK *callback)(int, int, int)) {}
+static void CALLBACK PAD1__registerVibration(void (CALLBACK *callback)(uint32_t, uint32_t)) {}
+static void CALLBACK PAD1__registerCursor(void (CALLBACK *callback)(int, int, int)) {}
 
 #define LoadPad1Sym1(dest, name) \
 	LoadSym(PAD1_##dest, PAD##dest, name, TRUE);
@@ -461,25 +345,8 @@ static int LoadPAD1plugin(const char *PAD1dll) {
 	return 0;
 }
 
-unsigned char CALLBACK PAD2__startPoll(int pad) {
-	PadDataS padd;
-
-	PAD2_readPort2(&padd);
-
-	return _PADstartPoll(&padd);
-}
-
-unsigned char CALLBACK PAD2__poll(unsigned char value) {
-	return _PADpoll(value);
-}
-
-long CALLBACK PAD2__configure(void) { return 0; }
-void CALLBACK PAD2__about(void) {}
-long CALLBACK PAD2__test(void) { return 0; }
-long CALLBACK PAD2__query(void) { return PSE_PAD_USE_PORT1 | PSE_PAD_USE_PORT2; }
-long CALLBACK PAD2__keypressed() { return 0; }
-void CALLBACK PAD2__registerVibration(void (CALLBACK *callback)(uint32_t, uint32_t)) {}
-void CALLBACK PAD2__registerCursor(void (CALLBACK *callback)(int, int, int)) {}
+static void CALLBACK PAD2__registerVibration(void (CALLBACK *callback)(uint32_t, uint32_t)) {}
+static void CALLBACK PAD2__registerCursor(void (CALLBACK *callback)(int, int, int)) {}
 
 #define LoadPad2Sym1(dest, name) \
 	LoadSym(PAD2_##dest, PAD##dest, name, TRUE);
@@ -513,11 +380,11 @@ static int LoadPAD2plugin(const char *PAD2dll) {
 
 void *hNETDriver = NULL;
 
-void CALLBACK NET__setInfo(netInfo *info) {}
-void CALLBACK NET__keypressed(int key) {}
-long CALLBACK NET__configure(void) { return 0; }
-long CALLBACK NET__test(void) { return 0; }
-void CALLBACK NET__about(void) {}
+static void CALLBACK NET__setInfo(netInfo *info) {}
+static void CALLBACK NET__keypressed(int key) {}
+static long CALLBACK NET__configure(void) { return 0; }
+static long CALLBACK NET__test(void) { return 0; }
+static void CALLBACK NET__about(void) {}
 
 #define LoadNetSym1(dest, name) \
 	LoadSym(NET_##dest, NET##dest, name, TRUE);

@@ -39,7 +39,6 @@
 #import "PCSXRGameCore+Input.h"
 #import <OpenEmuBase/OERingBuffer.h>
 #include <sys/time.h>
-#import <OpenGL/gl.h>
 #import "OEPSXSystemResponderClient.h"
 #import "EmuThread.h"
 #include "PlugInBridges.h"
@@ -297,7 +296,6 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 - (void)executeFrame
 {
 	//TODO: find out the proper function(s) to call here!
-	GPUTick();
 }
 
 # pragma mark -
@@ -338,9 +336,25 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 
 - (void)saveStateToFileAtPath:(NSString *)fileName completionHandler:(void (^)(BOOL, NSError *))block
 {
-	[EmuThread freezeAt:fileName which:1 reternQueue:dispatch_get_current_queue()];
+	GPUFreeze_t tmpNum;
+	char Text[256];
+	BOOL wasPaused = [EmuThread pauseSafe];
 	
-	block(YES, nil);
+	tmpNum.ulFreezeVersion=1;
+	GPU_freeze(2, &tmpNum);
+	int ret = SaveState([fileName fileSystemRepresentation]);
+	
+	if (!wasPaused) {
+		[EmuThread resume];
+	}
+	
+	if (ret == 0)
+		snprintf(Text, sizeof(Text), _("*PCSXR*: Saved State %d"), 1);
+	else
+		snprintf(Text, sizeof(Text), _("*PCSXR*: Error Saving State %d"), 1);
+	GPU_displayText(Text);
+	
+	block(ret == 0, nil);
 }
 
 - (void)loadStateFromFileAtPath:(NSString *)fileName completionHandler:(void (^)(BOOL, NSError *))block
@@ -401,9 +415,14 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 	return YES;
 }
 
+- (BOOL)needsDoubleBufferedFBO
+{
+	return YES;
+}
+
 - (BOOL)tryToResizeVideoTo:(OEIntSize)size
 {
-	//TODO: resize
+	return GPUResize(size);
 	return YES;
 }
 

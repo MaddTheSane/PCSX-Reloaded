@@ -87,26 +87,9 @@ char *         pCaptionText;
 
 void DoBufferSwap(void)                                // SWAP BUFFERS
 {
-#if 1
-	//[glView swapBuffer];
-#else
-	static long long lastTickCount = -1;
-	static int skipCount = 0;
-	long long microTickCount;
-	long deltaTime;
-	
-	Microseconds((struct UnsignedWide *)&microTickCount);
-	deltaTime = (long)(microTickCount - lastTickCount);
-	if (deltaTime <= (PSXDisplay.PAL ? 1000000/50 : 100000000 / 5994) ||
-		 skipCount >= 3) {
-		skipCount = 0;
-		[glView swapBuffer];
-	} else {
-		skipCount++;
-	}
-	NSLog(@"count: %i", deltaTime); 
-	lastTickCount = microTickCount;
-#endif
+	GET_CURRENT_OR_RETURN();
+
+	[current.renderDelegate presentDoubleBufferedFBO];
 }
 
 
@@ -289,90 +272,59 @@ void setGPUDefaults()
 	iShowFPS = 0;
 }
 
-void GPUTick()
+/** try to reset the GPU without discarding textures, etc.
+ when a resize takes place, all hell breaks loose, so
+ this is necessarily ugly.
+ */
+static void cureAllIlls(void)
 {
-	static int image_width2 = 0;
-	//if (image_width2 == 0)
-	//	image_width2 = mylog2(image_width);
-	//int image_height2 = mylog2(image_height);
+	rRatioRect.left   = rRatioRect.top=0;
+	rRatioRect.right  = iResX;
+	rRatioRect.bottom = iResY;
+
+	glFlush();
+	glFinish();
+	
+	glViewport(rRatioRect.left,                           // init viewport by ratio rect
+			   iResY-(rRatioRect.top+rRatioRect.bottom),
+			   rRatioRect.right,
+			   rRatioRect.bottom);
 	
 	
-	unsigned char * surf;
-	long x = PSXDisplay.DisplayPosition.x;
-	long y = PSXDisplay.DisplayPosition.y;
-	GLuint lu;
-	unsigned short row,column;
-	unsigned short dx=(unsigned short)PSXDisplay.DisplayEnd.x;//PreviousPSXDisplay.Range.x1;
-	unsigned short dy=(unsigned short)PSXDisplay.DisplayEnd.y;//PreviousPSXDisplay.DisplayMode.y;
-	long lPitch;
+	glScissor(0, 0, iResX, iResY);                        // init clipping (fullscreen)
+	glEnable(GL_SCISSOR_TEST);
+	glMatrixMode(GL_PROJECTION);                          // init projection with psx resolution
+	glLoadIdentity();
+	glOrtho(0,PSXDisplay.DisplayMode.x,
+			PSXDisplay.DisplayMode.y, 0, -1, 1);
 	
-	//printf("y=%i",PSXDisplay.DisplayPosition.y);
+	CreateScanLines();
+	// if(bKeepRatio) SetAspectRatio();                      // set ratio
+	glFlush();
+	glFinish();
+
+}
+
+bool GPUResize(OEIntSize size)
+{
+	GET_CURRENT_OR_RETURN(false);
+
+	[current.renderDelegate willRenderFrameOnAlternateThread];
+
+	iResX = size.width;
+	iResY = size.height;
 	
-	if (/*[glLock tryLock]*/ 1) {
-		
-		/*
-		if ((image_width != PreviousPSXDisplay.Range.x1) ||
-			(image_height != PreviousPSXDisplay.DisplayMode.y) ||
-			((PSXDisplay.RGB24 ? 32 : 16) != image_depth)) {
-		}
-		
-		surf = image;
-		lPitch=image_width2<<(image_depth >> 4);
-		*/
-		if(PreviousPSXDisplay.Range.y0)                       // centering needed?
-		{
-			surf+=PreviousPSXDisplay.Range.y0*lPitch;
-			dy-=PreviousPSXDisplay.Range.y0;
-		}
-		
-		if(/*PSXDisplay.RGB24*/ 1) //We'll always be in 32-bit mode
-		{
-			unsigned char * pD;unsigned int startxy;
-			
-			surf+=PreviousPSXDisplay.Range.x0<<2;
-			
-			for(column=0;column<dy;column++)
-			{
-				startxy = (1024 * (column + y)) + x;
-				pD = (unsigned char *)&psxVuw[startxy];
-				
-				row = 0;
-				// make sure the reads are aligned
-				while ((intptr_t)pD & 0x3) {
-					*((unsigned long *)((surf)+(column*lPitch)+(row<<2))) =
-					(*(pD+0)<<16)|(*(pD+1)<<8)|*(pD+2);
-					
-					pD+=3;
-					row++;
-				}
-				
-				for(;row<dx;row+=4)
-				{
-					GLuint lu1 = *((GLuint *)pD);
-					GLuint lu2 = *((GLuint *)pD+1);
-					GLuint lu3 = *((GLuint *)pD+2);
-					GLuint *dst = ((GLuint *)((surf)+(column*lPitch)+(row<<2)));
-					*(dst)=
-					(((lu1>>0)&0xff)<<16)|(((lu1>>8)&0xff)<<8)|(((lu1>>16)&0xff));
-					*(dst+1)=
-					(((lu1>>24)&0xff)<<16)|(((lu2>>0)&0xff)<<8)|(((lu2>>8)&0xff));
-					*(dst+2)=
-					(((lu2>>16)&0xff)<<16)|(((lu2>>24)&0xff)<<8)|(((lu3>>0)&0xff));
-					*(dst+3)=
-					(((lu3>>8)&0xff)<<16)|(((lu3>>16)&0xff)<<8)|(((lu3>>24)&0xff));
-					pD+=12;
-				}
-				
-				//for(;row<dx;row+=4)
-				/*while (pD&0x3) {
-				 *((unsigned long *)((surf)+(column*lPitch)+(row<<2)))=
-				 (*(pD+0)<<16)|(*(pD+1)<<8)|(*(pD+2)&0xff));
-				 pD+=3;
-				 row++;
-				 }*/
-			}
-		}
-	}
+	cureAllIlls();
+	
+	glViewport(0.0, 0.0, size.width, size.height);
+	
+	glClearColor (1.0, 0.5, 0.0, 0.0);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	[current.renderDelegate didRenderFrameOnAlternateThread];
+
+	
+	return true;
 }
 
 void ChangeWindowMode(void)
