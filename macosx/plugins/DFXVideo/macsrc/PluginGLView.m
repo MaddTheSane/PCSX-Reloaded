@@ -121,6 +121,7 @@ static int mylog2(int val)
 		}
 	}
 	
+	self.wantsBestResolutionOpenGLSurface = YES;
 	[self setPixelFormat:pixFmt];
 	
 	/*
@@ -282,6 +283,7 @@ static int mylog2(int val)
 	[oglContext update];
 	
 	rect = [[oglContext view] bounds];
+	rect = [self convertRectToBacking:rect];
 	
 	glViewport(0, 0, (int) rect.size.width, (int) rect.size.height);
 	
