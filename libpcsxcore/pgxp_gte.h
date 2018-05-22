@@ -36,7 +36,7 @@ typedef struct PGXP_value_Tag PGXP_value;
 extern PGXP_value* GTE_data_reg;
 extern PGXP_value* GTE_ctrl_reg;
 
-void PGXP_InitGTE();
+void PGXP_InitGTE(void);
 
 // -- GTE functions
 // Transforms
@@ -46,7 +46,7 @@ void	PGXP_pushSXYZ2s(s64 _x, s64 _y, s64 _z, u32 v);
 void	PGXP_RTPS(u32 _n, u32 _v);
 
 int		PGXP_NLCIP_valid(u32 sxy0, u32 sxy1, u32 sxy2);
-float	PGXP_NCLIP();
+float	PGXP_NCLIP(void);
 
 // Data transfer tracking
 void	PGXP_GTE_MFC2(u32 instr, u32 rtVal, u32 rdVal);		// copy GTE data reg to GPR reg (MFC2)

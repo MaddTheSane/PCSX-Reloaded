@@ -46,19 +46,19 @@ typedef struct
 	unsigned char numArgs;
 	const char* szOpString;
 	const char* szOpName;
-	void(*funcPtr)();
+	void(*funcPtr)(void);
 } PGXP_CPU_OpData;
 
 void PGXP_CPU_EMPTY() {}
 void PGXP_CPU_NULL() { int* pi = NULL; *pi = 5; }
 void PGXP_CPU_ERROR() { int* pi = NULL; *pi = 5; }
 
-#define PGXP_Data_ERROR		{ DBG_E_ERROR,		0, 0, 0, 0, "", "ERROR",	(void(*)())PGXP_CPU_ERROR }
-#define PGXP_Data_NULL		{ DBG_E_NULL,		0, 0, 0, 0, "", "NULL",		(void(*)())PGXP_CPU_NULL }
-#define PGXP_Data_SPECIAL	{ DBG_E_SPECIAL,	0, 0, 0, 0, "", "SPECIAL",	(void(*)())PGXP_CPU_EMPTY }
-#define PGXP_Data_COP0		{ DBG_E_COP0,		0, 0, 0, 0, "", "COP0",		(void(*)())PGXP_CPU_EMPTY }
-#define PGXP_Data_COP2		{ DBG_E_COP2,		0, 0, 0, 0, "", "COP2",		(void(*)())PGXP_CPU_EMPTY }
-#define PGXP_Data_HLE		{ DBG_E_HLE,		0, 0, 0, 0, "", "HLE",		(void(*)())PGXP_CPU_EMPTY }
+#define PGXP_Data_ERROR		{ DBG_E_ERROR,		0, 0, 0, 0, "", "ERROR",	(void(*)(void))PGXP_CPU_ERROR }
+#define PGXP_Data_NULL		{ DBG_E_NULL,		0, 0, 0, 0, "", "NULL",		(void(*)(void))PGXP_CPU_NULL }
+#define PGXP_Data_SPECIAL	{ DBG_E_SPECIAL,	0, 0, 0, 0, "", "SPECIAL",	(void(*)(void))PGXP_CPU_EMPTY }
+#define PGXP_Data_COP0		{ DBG_E_COP0,		0, 0, 0, 0, "", "COP0",		(void(*)(void))PGXP_CPU_EMPTY }
+#define PGXP_Data_COP2		{ DBG_E_COP2,		0, 0, 0, 0, "", "COP2",		(void(*)(void))PGXP_CPU_EMPTY }
+#define PGXP_Data_HLE		{ DBG_E_HLE,		0, 0, 0, 0, "", "HLE",		(void(*)(void))PGXP_CPU_EMPTY }
 
 // Arithmetic with immediate value
 #define PGXP_Data_ADDI	{ DBG_E_ADDI,	fOp_CPU_Rt, fOp_CPU_Rs | fOp_Im, 2, 2, "+", "ADDI",		(void(*)())PGXP_CPU_ADDI }

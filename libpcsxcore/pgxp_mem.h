@@ -30,8 +30,8 @@
 
 #include "psxcommon.h"
 
-void	PGXP_Init();	// initialise memory
-char*	PGXP_GetMem();	// return pointer to precision memory
+void	PGXP_Init(void);	// initialise memory
+char*	PGXP_GetMem(void);	// return pointer to precision memory
 u32		PGXP_ConvertAddress(u32 addr);
 
 struct PGXP_value_Tag;
