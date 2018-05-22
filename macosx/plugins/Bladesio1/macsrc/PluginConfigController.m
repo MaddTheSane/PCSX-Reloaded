@@ -123,6 +123,9 @@ void ReadConfig()
 	NSMutableDictionary *writeDic = [NSMutableDictionary dictionaryWithDictionary:self.keyValues];
 
 	NSString *theAddress = [self.ipAddressField stringValue];
+	if (theAddress.length == 0) {
+		theAddress = @"127.0.0.1";
+	}
 	NSInteger asciiLen = [theAddress lengthOfBytesUsingEncoding:NSASCIIStringEncoding];
 	if (asciiLen > (sizeof(settings.ip) - 1)) {
 		NSAlert *alert = [NSAlert new];
@@ -157,6 +160,7 @@ void ReadConfig()
 			case 1:
 				player = PLAYER_MASTER;
 				break;
+				
 			case 2:
 				player = PLAYER_SLAVE;
 				break;
