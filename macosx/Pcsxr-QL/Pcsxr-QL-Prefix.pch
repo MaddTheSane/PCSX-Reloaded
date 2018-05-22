@@ -4,11 +4,13 @@
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
 
-#include <CoreFoundation/CoreFoundation.h>
-#include <CoreFoundation/CFPlugInCOM.h>
-#include <CoreServices/CoreServices.h>
-#include <QuickLook/QuickLook.h>
+#include "MyQuickLook.h"
 
 #ifdef __OBJC__
 	#import <Cocoa/Cocoa.h>
+	#import "PcsxrMemoryObject.h"
+#endif
+
+#ifndef NS_DESIGNATED_INITIALIZER
+#define NS_DESIGNATED_INITIALIZER
 #endif

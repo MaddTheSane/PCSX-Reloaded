@@ -129,8 +129,6 @@ void ResetMenuSlots() {
 		gtk_widget_set_sensitive(widget, TRUE);
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "cdrom1"));
 		gtk_widget_set_sensitive(widget, TRUE);
-		widget = GTK_WIDGET(gtk_builder_get_object(builder, "pad1"));
-		gtk_widget_set_sensitive(widget, TRUE);
 #ifdef ENABLE_SIO1API
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "sio1"));
 		gtk_widget_set_sensitive(widget, TRUE);
@@ -148,8 +146,6 @@ void ResetMenuSlots() {
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "toolbutton_sound"));
 		gtk_widget_set_sensitive(widget, TRUE);
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "toolbutton_cdrom"));
-		gtk_widget_set_sensitive(widget, TRUE);
-		widget = GTK_WIDGET(gtk_builder_get_object(builder, "toolbutton_controllers"));
 		gtk_widget_set_sensitive(widget, TRUE);
 		
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "statusbar"));
@@ -179,8 +175,6 @@ void ResetMenuSlots() {
 		gtk_widget_set_sensitive(widget, FALSE);
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "cdrom1"));
 		gtk_widget_set_sensitive(widget, FALSE);
-		widget = GTK_WIDGET(gtk_builder_get_object(builder, "pad1"));
-		gtk_widget_set_sensitive(widget, FALSE);
 #ifdef ENABLE_SIO1API
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "sio1"));
 		gtk_widget_set_sensitive(widget, FALSE);
@@ -196,8 +190,6 @@ void ResetMenuSlots() {
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "toolbutton_sound"));
 		gtk_widget_set_sensitive(widget, FALSE);
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "toolbutton_cdrom"));
-		gtk_widget_set_sensitive(widget, FALSE);
-		widget = GTK_WIDGET(gtk_builder_get_object(builder, "toolbutton_controllers"));
 		gtk_widget_set_sensitive(widget, FALSE);
 
 		widget = GTK_WIDGET(gtk_builder_get_object(builder, "statusbar"));
@@ -1190,7 +1182,7 @@ void SysErrorMessage(gchar *primary, gchar *secondary) {
 				primary,
 				NULL);
 		gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(message_dialog),
-				"s", secondary);
+				"%s", secondary);
 
 		gtk_dialog_run(GTK_DIALOG(message_dialog));
 		gtk_widget_destroy(message_dialog);
@@ -1209,7 +1201,7 @@ void SysInfoMessage(gchar *primary, gchar *secondary) {
 				primary,
 				NULL);
 		gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(message_dialog),
-				"s", secondary);
+				"%s", secondary);
 
 		gtk_dialog_run(GTK_DIALOG(message_dialog));
 		gtk_widget_destroy(message_dialog);

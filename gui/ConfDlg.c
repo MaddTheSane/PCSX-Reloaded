@@ -326,6 +326,7 @@ void OnConf_Pad() {
 	PADconfigure conf;
 	char Plugin[MAXPATHLEN];
 
+	// PAD 1
 	sprintf(Plugin, "%s/%s", Config.PluginsDir, Config.Pad1);
 	drv = SysLoadLibrary(Plugin);
 	if (drv == NULL) { printf("Error with file %s\n", Plugin); return; }
@@ -341,6 +342,7 @@ void OnConf_Pad() {
 
 	SysCloseLibrary(drv);
 
+	// PAD 2
 	if (strcmp(Config.Pad1, Config.Pad2) != 0) {
 		sprintf(Plugin, "%s/%s", Config.PluginsDir, Config.Pad2);
 		drv = SysLoadLibrary(Plugin);
@@ -936,6 +938,7 @@ void OnCpu_Clicked(GtkDialog *dialog, gint arg1, gpointer user_data) {
 	Config.VSyncWA = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_VSyncWA")));
 	Config.NoMemcard = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_NoMemcard")));
 	Config.Widescreen = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_Widescreen")));
+	Config.HackFix = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_HackFix")));
 
 	SaveConfig();
 
@@ -1009,6 +1012,7 @@ void OnConf_Cpu() {
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_VSyncWA")), Config.VSyncWA);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_NoMemcard")), Config.NoMemcard);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_Widescreen")), Config.Widescreen);
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_HackFix")), Config.HackFix);
 
 	// Setup a handler for when Close or Cancel is clicked
 	g_signal_connect_data(G_OBJECT(CpuDlg), "response",

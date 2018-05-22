@@ -2,15 +2,18 @@
 #include <CoreServices/CoreServices.h>
 #include <QuickLook/QuickLook.h>
 #include "MyQuickLook.h"
-#include <zlib.h>
+//#include <zlib.h>
 #import <Cocoa/Cocoa.h>
-#include "nopic.h"
+//#include "nopic.h"
+#import "PSXMemEnumerator.h"
 
 /* -----------------------------------------------------------------------------
     Generate a thumbnail for file
 
    This function's job is to create thumbnail for designated file as fast as possible
    ----------------------------------------------------------------------------- */
+
+#define ImageDivider 32
 
 static OSStatus GenerateThumbnailForFreeze(void *thisInterface, QLThumbnailRequestRef preview, NSURL *url, NSDictionary *options, CGSize maxSize);
 static OSStatus GenerateThumbnailForMemCard(void *thisInterface, QLThumbnailRequestRef preview, NSURL *url, NSDictionary *options, CGSize maxSize);
@@ -40,9 +43,11 @@ void CancelThumbnailGeneration(void *thisInterface, QLThumbnailRequestRef thumbn
 
 OSStatus GenerateThumbnailForFreeze(void *thisInterface, QLThumbnailRequestRef thumbnail, NSURL *url, NSDictionary *options, CGSize maxSize)
 {
-	NSData *data;
+#if 0
 	gzFile f;
-	const char* state_filename;
+	const char* state_filename = NULL;
+	NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:NULL pixelsWide:96 pixelsHigh:128 bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:0 bitsPerPixel:0];
+
 	if ([url respondsToSelector:@selector(fileSystemRepresentation)]) {
 		state_filename = [url fileSystemRepresentation];
 	} else {
@@ -52,10 +57,7 @@ OSStatus GenerateThumbnailForFreeze(void *thisInterface, QLThumbnailRequestRef t
 		return fnfErr;
 	}
 	
-	unsigned char *pMem = (unsigned char *) malloc(128*96*3);
-	if (pMem == NULL)
-		return mFulErr;
-	
+	unsigned char pMem[128*96*3] = {0};
 	f = gzopen(state_filename, "rb");
 	if (f != NULL) {
 		gzseek(f, 32, SEEK_SET); // skip header
@@ -67,16 +69,94 @@ OSStatus GenerateThumbnailForFreeze(void *thisInterface, QLThumbnailRequestRef t
 		memcpy(pMem, NoPic_Image.pixel_data, 128*96*3);
 	}
 	
-	NSBitmapImageRep *imRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&pMem pixelsWide:NoPic_Image.width pixelsHigh:NoPic_Image.height bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bitmapFormat:0 bytesPerRow:NoPic_Image.width * NoPic_Image.bytes_per_pixel bitsPerPixel:24];
-	if (imRep) {
-		data = [imRep TIFFRepresentation];
+	@autoreleasepool {
+		unsigned char *ppMem = pMem;
+		int x, y;
+		for (y = 0; y < 96; y++) {
+			for (x = 0; x < 128; x++) {
+				[imageRep setColor:[NSColor colorWithCalibratedRed:*(ppMem+2)/255.0 green:*(ppMem+1)/255.0 blue:*(ppMem+0)/255.0 alpha:1.0] atX:x y:y];
+				ppMem+=3;
+			}
+		}
+	}
+	
+	NSImage *theImage = [[NSImage alloc] init];
+	[theImage addRepresentation:imageRep];
+	[theImage setSize:NSMakeSize(NoPic_Image.width, NoPic_Image.height)];
+	
+	if (theImage) {
+		NSData *data = [theImage TIFFRepresentation];
 		QLThumbnailRequestSetImageWithData(thumbnail, (__bridge CFDataRef)(data), NULL);
 	}
-	free(pMem);
 	return noErr;
+#else
+	return noErr;
+#endif
+}
+
+static NSImage *MemoryImageAtIndex(NSArray *memArray, NSInteger my)
+{
+	NSInteger i = 0;
+	for (PcsxrMemoryObject *obj in memArray) {
+		NSIndexSet *idxSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(i, obj.blockSize)];
+		if ([idxSet containsIndex:my]) {
+			return obj.firstImage;
+		}
+		i += obj.blockSize;
+	}
+	
+	return nil;
 }
 
 OSStatus GenerateThumbnailForMemCard(void *thisInterface, QLThumbnailRequestRef thumbnail, NSURL *url, NSDictionary *options, CGSize maxSize)
 {
-	return unimpErr;
+	NSArray *memCards = CreateArrayByEnumeratingMemoryCardAtURL(url);
+	if (!memCards) {
+		return noErr;
+	}
+	
+	NSBundle *Bundle;
+	{
+		CFBundleRef cfbundle = QLThumbnailRequestGetGeneratorBundle(thumbnail);
+		NSURL *bundURL = CFBridgingRelease(CFBundleCopyBundleURL(cfbundle));
+		Bundle = [[NSBundle alloc] initWithURL:bundURL];
+	}
+
+	NSRect imageRect = NSMakeRect(0, 0, ImageDivider, ImageDivider);
+	NSImage *blankImage = [[NSImage alloc] initWithSize:imageRect.size];
+	[blankImage lockFocus];
+	[[NSColor blackColor] set];
+	[NSBezierPath fillRect:imageRect];
+	[blankImage unlockFocus];
+
+	NSImage *memImages = [[NSImage alloc] initWithSize:NSMakeSize((4 * ImageDivider), (4 * ImageDivider))];
+
+	NSInteger allMems = 0;
+	for (PcsxrMemoryObject *obj in memCards) {
+		allMems += obj.blockSize;
+	}
+	[memImages lockFocus];
+	[[NSColor clearColor] set];
+	[NSBezierPath fillRect:NSMakeRect(0, 0, (4 * ImageDivider), (4 * ImageDivider))];
+	for (int i = 1; i < 16; i++) {
+		NSInteger x = (i % 4) * ImageDivider, y = (3 * ImageDivider) - ((i / 4) * ImageDivider);
+		NSImage *curImage;
+		if (i < allMems) {
+			curImage = MemoryImageAtIndex(memCards, i - 1);
+		} else {
+			curImage = blankImage;
+		}
+		[curImage drawInRect:NSMakeRect(x, y, ImageDivider, ImageDivider) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+	}
+	NSURL *psxMemURL = [Bundle URLForResource:@"pcsxrmemcard" withExtension:@"icns"];
+	NSImage *psxMemIcon = [[NSImage alloc] initByReferencingURL:psxMemURL];
+	psxMemIcon.size = NSMakeSize(ImageDivider, ImageDivider);
+	[psxMemIcon drawInRect:NSMakeRect(0, 3 * ImageDivider, ImageDivider, ImageDivider) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+	
+	[memImages unlockFocus];
+	
+	NSData *data = [memImages TIFFRepresentation];
+	QLThumbnailRequestSetImageWithData(thumbnail, (__bridge CFDataRef)(data), NULL);
+	
+	return noErr;
 }

@@ -103,7 +103,10 @@ int LoadConfig(PcsxConfig *Conf) {
 	if (f == NULL) return -1;
 
 	data = (char *)malloc(size + 1);
-	if (data == NULL) return -1;
+	if (data == NULL) {
+		fclose(f);
+		return -1;
+	}
 
 	fread(data, 1, buf.st_size, f);
 	fclose(f);
@@ -144,6 +147,8 @@ int LoadConfig(PcsxConfig *Conf) {
 	Config.PsxType = GetValuel(data, "PsxType");
 	Config.RewindCount = GetValuel(data, "RewindCount");
 	Config.RewindInterval = GetValuel(data, "RewindInterval");
+
+	Config.HackFix = GetValuel(data, "HackFix");
 
 	free(data);
 
@@ -193,6 +198,8 @@ void SaveConfig() {
 	SetValuel("PsxType", Config.PsxType);
 	SetValuel("RewindCount", Config.RewindCount);
 	SetValuel("RewindInterval", Config.RewindInterval);
+
+	SetValuel("HackFix", Config.HackFix);
 
 	fclose(f);
 }

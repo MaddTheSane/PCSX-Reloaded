@@ -22,8 +22,7 @@ void SysMessage(const char *fmt, ...)
 	NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"Stop" alternateButton:nil otherButton:nil informativeTextWithFormat:@"%@", errString];
 	[alert setAlertStyle:NSCriticalAlertStyle];
 	NSInteger result = [alert runModal];
-	if (result == NSAlertDefaultReturn)
-	{
+	if (result == NSAlertDefaultReturn) {
 		Class theEmuClass = NSClassFromString(@"EmuThread");
 		if (theEmuClass) {
 			[theEmuClass stop];
@@ -81,14 +80,20 @@ void sockDestroyWaitDlg()
 }
 
 @implementation SockDialog
+@synthesize spinningBar;
 
 - (IBAction)cancel:(id)sender {
 	WaitCancel = 1;
 }
 
-- (id)init
+- (instancetype)init
 {
 	return self = [self initWithWindowNibName:@"SockDialog"];
+}
+
+- (void)awakeFromNib
+{
+	[spinningBar startAnimation:nil];
 }
 
 @end

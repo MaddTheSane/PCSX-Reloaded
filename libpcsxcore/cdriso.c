@@ -613,9 +613,9 @@ static int parsecue(const char *isofile) {
 			pregapOffset = -1; // mark to fill track start_offset
 		}
 		else if (!strcmp(token, "FILE")) {
-			t = sscanf(linebuf, " FILE \"%256[^\"]\"", tmpb);
+			t = sscanf(linebuf, " FILE \"%255[^\"]\"", tmpb);
 			if (t != 1)
-				sscanf(linebuf, " FILE %256s", tmpb);
+				sscanf(linebuf, " FILE %255s", tmpb);
 
 			// absolute path?
 			ti[numtracks + 1].handle = fopen(tmpb, "rb");
@@ -715,7 +715,7 @@ static int parseccd(const char *isofile) {
 	// Fill out the last track's end based on size
 	if (numtracks >= 1) {
 		fseek(cdHandle, 0, SEEK_END);
-		t = ftell(cdHandle) / 2352 - msf2sec(ti[numtracks].start) + 2 * 75;
+		t = ftell(cdHandle) / CD_FRAMESIZE_RAW - msf2sec(ti[numtracks].start) + 2 * 75;
 		sec2msf(t, ti[numtracks].length);
 	}
 
@@ -857,6 +857,8 @@ static int handlepbp(const char *isofile) {
 		ext = isofile + strlen(isofile) - 4;
 	if (ext == NULL || (strcmp(ext, ".pbp") != 0 && strcmp(ext, ".PBP") != 0))
 		return -1;
+	
+	fseek(cdHandle, 0, SEEK_SET);
 
 	numtracks = 0;
 
@@ -1020,6 +1022,8 @@ static int handlecbin(const char *isofile) {
 		ext = isofile + strlen(isofile) - 5;
 	if (ext == NULL || (strcasecmp(ext + 1, ".cbn") != 0 && strcasecmp(ext, ".cbin") != 0))
 		return -1;
+	
+	fseek(cdHandle, 0, SEEK_SET);
 
 	ret = fread(&ciso_hdr, 1, sizeof(ciso_hdr), cdHandle);
 	if (ret != sizeof(ciso_hdr)) {
@@ -1260,9 +1264,9 @@ static int cdread_2048(FILE *f, unsigned int base, void *dest, int sector)
 /* Adapted from ecm.c:unecmify() (C) Neill Corlett */
 //TODO: move this func to ecm.h
 static int cdread_ecm_decode(FILE *f, unsigned int base, void *dest, int sector) {
-	u32 output_edc=0, b, writebytecount=0, num;
+	u32 output_edc=0, b=0, writebytecount=0, num;
 	s32 sectorcount=0;
-	s8 type; // mode type 0 (META) or 1, 2 or 3 for CDROM type
+	s8 type = 0; // mode type 0 (META) or 1, 2 or 3 for CDROM type
 	u8 sector_buffer[CD_FRAMESIZE_RAW];
 	boolean processsectors = (boolean)decoded_ecm_sectors; // this flag tells if to decode all sectors or just skip to wanted sector
 	ECMFILELUT* pos = &(ecm_savetable[0]); // points always to beginning of ECM DATA
@@ -1287,7 +1291,9 @@ static int cdread_ecm_decode(FILE *f, unsigned int base, void *dest, int sector)
 
 	if (sector <= len_ecm_savetable) {
 		// get sector from LUT which points to wanted sector or close to
-		for (sectorcount = sector; ((sectorcount > 0) && ((sector-sectorcount) <= 2*75)); sectorcount--) {
+		// TODO: What would be optimal maximum to search near sector?
+		//       Might cause slowdown if too small but too big also..
+		for (sectorcount = sector; ((sectorcount > 0) && ((sector-sectorcount) <= 50000)); sectorcount--) {
 			if (ecm_savetable[sectorcount].filepos >= ECM_HEADER_SIZE) {
 				pos = &(ecm_savetable[sectorcount]);
 				//printf("LUTSector %i %i %i %i\n", sector, pos->sector, prevsector, base);
@@ -1333,6 +1339,9 @@ static int cdread_ecm_decode(FILE *f, unsigned int base, void *dest, int sector)
 			if (!processsectors && sectorcount >= (sector-1)) { // ensure that we read the sector we are supposed to
 				processsectors = TRUE;
 				//printf("Saving at %i\n", sectorcount);
+			} else if (processsectors && sectorcount > sector) {
+				//printf("Terminating at %i\n", sectorcount);
+				break;
 			}
 			/*printf("Type %i Num %i SeekSector %i ProcessedSectors %i(%i) Bytecount %i Pos %li Write %u\n",
 					type, num, sector, sectorcount, pos->sector, writebytecount, ftell(f), processsectors);*/

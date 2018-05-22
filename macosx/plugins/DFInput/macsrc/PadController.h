@@ -24,17 +24,16 @@
 #import <Cocoa/Cocoa.h>
 #import "PadView.h"
 
-@interface PadController : NSWindowController
-{
-    IBOutlet PadView *controllerView;
-    IBOutlet id controllerView1;
-    IBOutlet id controllerView2;
-}
+@interface PadController : NSWindowController <NSWindowDelegate>
+@property (weak) IBOutlet PadView *controllerView;
+@property (weak) IBOutlet id controllerView1;
+@property (weak) IBOutlet id controllerView2;
+
 
 - (IBAction)cancel:(id)sender;
 - (IBAction)ok:(id)sender;
 @end
 
-__private_extern__ NSDictionary *DefaultPadArray(int padnum);
-__private_extern__ void LoadPadArray(int padnum, NSDictionary *nsPrefs);
-__private_extern__ NSDictionary *SavePadArray(int padnum);
+__private_extern NSDictionary *DefaultPadArray(int padnum);
+__private_extern void LoadPadArray(int padnum, NSDictionary *nsPrefs);
+__private_extern NSDictionary *SavePadArray(int padnum);

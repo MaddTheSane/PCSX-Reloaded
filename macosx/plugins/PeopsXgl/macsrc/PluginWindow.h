@@ -20,12 +20,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface NetSfPeopsOpenGLGPUPluginWindow : NSWindow
-{
-    NSWindow* myParent; 
-    NSPoint initialLocation;
-}
 
-- (BOOL) canBecomeKeyWindow; // to stop the beeping
+@property (readonly) BOOL canBecomeKeyWindow; // to stop the beeping
 
 - (void) sendEvent:(NSEvent *)theEvent;
 - (void) windowDidResize:(NSNotification*)notice;
