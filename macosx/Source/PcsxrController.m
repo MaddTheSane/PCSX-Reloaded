@@ -1,14 +1,11 @@
 #import <Cocoa/Cocoa.h>
 #import "PcsxrController.h"
 #import "ConfigurationController.h"
-#import "CheatController.h"
 #import "EmuThread.h"
 #import "PcsxrMemCardHandler.h"
 #import "PcsxrPluginHandler.h"
 #import "PcsxrDiscHandler.h"
-#import "PcsxrFreezeStateHandler.h"
 #import "PcsxrCheatHandler.h"
-#import "LaunchArg.h"
 #include <DiskArbitration/DiskArbitration.h>
 #include <IOKit/storage/IOCDMedia.h>
 #include "psxcommon.h"
@@ -16,6 +13,7 @@
 #include "misc.h"
 #include "cdrom.h"
 #include "ExtendedKeys.h"
+#import "PCSXR-Swift.h"
 
 NSDictionary *prefStringKeys = nil;
 NSDictionary *prefByteKeys = nil;
@@ -32,7 +30,7 @@ BOOL wasFinderLaunch = NO;
 "\t-bios         launch into the BIOS\n" \
 "\n" \
 "Additional options:\n" \
-"\t-nogui       closes PCSX-R at when the emulation has ended\n" \
+"\t-nogui       closes PCSX-R when the emulation has ended\n" \
 "\t-mcd1 path   sets the fist memory card to path\n" \
 "\t-mcd2 path   sets the second memory card to path\n" \
 "\t-freeze path loads freeze state from path\n" \
@@ -173,7 +171,7 @@ static void PSXDiscAppearedCallback(DADiskRef disk, void *context)
 		
 		if ([openDlg runModal] == NSFileHandlingPanelOKButton) {
 			NSArray* files = [openDlg URLs];
-			SetIsoFile([[files[0] path] fileSystemRepresentation]);
+			SetIsoFile([files[0] fileSystemRepresentation]);
 			SetCdOpenCaseTime(time(NULL) + 2);
 			LidInterrupt();
 		}
@@ -204,10 +202,9 @@ static void PSXDiscAppearedCallback(DADiskRef disk, void *context)
 			[ejectTask waitUntilExit];
 		}
 		DASessionRef tmpSession = DASessionCreate(kCFAllocatorDefault);
-		CFDictionaryRef match = CFBridgingRetain(@{(NSString*)kDADiskDescriptionMediaKindKey : @(kIOCDMediaClass),
-												 (NSString*)kDADiskDescriptionMediaWholeKey : @YES});
-		DARegisterDiskAppearedCallback(tmpSession, match, PSXDiscAppearedCallback, (__bridge void*)self);
-		CFRelease(match);
+		NSDictionary *match = @{(NSString*)kDADiskDescriptionMediaKindKey : @(kIOCDMediaClass),
+								(NSString*)kDADiskDescriptionMediaWholeKey : @YES};
+		DARegisterDiskAppearedCallback(tmpSession, (__bridge CFDictionaryRef)(match), PSXDiscAppearedCallback, (__bridge void*)self);
 		
 		DASessionScheduleWithRunLoop(tmpSession, CFRunLoopGetMain(), kCFRunLoopCommonModes);
 		
@@ -303,7 +300,7 @@ static void PSXDiscAppearedCallback(DADiskRef disk, void *context)
 {
 	if ([EmuThread active] == YES) {
 		if (UsingIso()) {
-			SetIsoFile([[url path] fileSystemRepresentation]);
+			SetIsoFile([url fileSystemRepresentation]);
 			SetCdOpenCaseTime(time(NULL) + 2);
 			LidInterrupt();
 		} else {
@@ -315,7 +312,7 @@ static void PSXDiscAppearedCallback(DADiskRef disk, void *context)
 		} else {
 			[pluginList disableNetPlug];
 		}
-		SetIsoFile([[url path] fileSystemRepresentation]);
+		SetIsoFile([url fileSystemRepresentation]);
 		[EmuThread run];
 	}
 }
@@ -433,7 +430,11 @@ static void PSXDiscAppearedCallback(DADiskRef disk, void *context)
 static void ParseErrorStr(NSString *errStr)
 {
 	NSLog(@"Parse error: %@", errStr);
-	NSRunCriticalAlertPanel(@"Parsing error", @"%@\n\nPlease check the command line options and try again.\n\nPCSXR will now quit.", nil, nil, nil, errStr);
+	NSAlert *alert = [NSAlert new];
+	alert.alertStyle = NSAlertStyleCritical;
+	alert.messageText = @"Parsing error";
+	alert.informativeText = [NSString stringWithFormat:@"%@\n\nPlease check the command line options and try again.\n\nPCSXR will now quit.", errStr];
+	[alert runModal];
 	ShowHelpAndExit(stderr, EXIT_FAILURE);
 }
 
@@ -470,6 +471,10 @@ otherblock();\
 
 - (void)dealloc
 {
+	if (_diskSession) {
+		CFRelease(_diskSession);
+		_diskSession = NULL;
+	}
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -477,28 +482,36 @@ otherblock();\
 {
 	[[NSNotificationCenter defaultCenter]
 	 addObserver:self selector:@selector(emuWindowDidClose:)
-	 name:@"emuWindowDidClose" object:nil];
+	 name:kEmuWindowDidClose object:nil];
 	
 	pluginList = [[PluginList alloc] init];
 	if (![pluginList configured] /*!Config.Gpu[0] || !Config.Spu[0] || !Config.Pad1[0] || !Config.Cdr[0]*/) {
 		// configure plugins
 		[self preferences:nil];
 		
-		NSRunCriticalAlertPanel(NSLocalizedString(@"Missing plugins!", nil),
-								NSLocalizedString(@"Pcsxr is missing one or more critical plugins. You will need to install these in order to play games.", nil),
-								nil, nil, nil);
+		NSAlert *alert = [[NSAlert alloc] init];
+		alert.alertStyle = NSAlertStyleCritical;
+		alert.messageText = NSLocalizedString(@"Missing plugins!", nil);
+		alert.informativeText = NSLocalizedString(@"Pcsxr is missing one or more critical plugins. You will need to install these in order to play games.", nil);
+		[alert runModal];
 	}
 	
 	if (![PcsxrController biosAvailable]) {
-		NSFileManager *manager = [NSFileManager defaultManager];
-		NSURL *supportURL = [manager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
-		NSURL *biosURL = [[supportURL URLByAppendingPathComponent:@"Pcsxr"] URLByAppendingPathComponent:@"Bios"];
-		NSInteger retVal = NSRunInformationalAlertPanel(NSLocalizedString(@"Missing BIOS!", nil),
-														NSLocalizedString(@"Pcsxr wasn't able to locate any Playstation BIOS ROM files. This means that it will run in BIOS simulation mode which is less stable and compatible than using a real Playstation BIOS.\nIf you have a BIOS available, please copy it to\n%@", nil),
-														NSLocalizedString(@"Okay", @"OK"), NSLocalizedString(@"Show Folder", @"Show Folder"), nil, [[biosURL path] stringByAbbreviatingWithTildeInPath]);
-		if (retVal == NSAlertAlternateReturn) {
-			[[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[biosURL]];
-		}
+		dispatch_async(dispatch_get_main_queue(), ^{
+			NSFileManager *manager = [NSFileManager defaultManager];
+			NSURL *supportURL = [manager URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
+			NSURL *biosURL = [[supportURL URLByAppendingPathComponent:@"Pcsxr"] URLByAppendingPathComponent:@"Bios"];
+			NSAlert *alert = [[NSAlert alloc] init];
+			alert.alertStyle = NSAlertStyleInformational;
+			alert.messageText = NSLocalizedString(@"Missing BIOS!", nil);
+			alert.informativeText = [NSString stringWithFormat:NSLocalizedString(@"Pcsxr wasn't able to locate any Playstation BIOS ROM files. This means that it will run in BIOS simulation mode which is less stable and compatible than using a real Playstation BIOS.\nIf you have a BIOS available, please copy it to\n%@", nil), [[biosURL path] stringByAbbreviatingWithTildeInPath]];
+			[alert addButtonWithTitle:NSLocalizedString(@"Okay", @"OK")];
+			[alert addButtonWithTitle:NSLocalizedString(@"Show Folder", @"Show Folder")];
+			NSInteger retVal = [alert runModal];
+			if (retVal == NSAlertSecondButtonReturn) {
+				[[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[biosURL]];
+			}
+		});
 	}
 	
 	self.sleepInBackground = [[NSUserDefaults standardUserDefaults] boolForKey:@"PauseInBackground"];
@@ -512,7 +525,7 @@ otherblock();\
 		
 		__block short memcardHandled = 0;
 		__block BOOL hasParsedAnArgument = NO;
-		__block NSString *(^FileTestBlock)() = NULL;
+		__block NSString *(^FileTestBlock)(void) = NULL;
 		__block NSMutableDictionary *argDict = [[NSMutableDictionary alloc] initWithCapacity:[progArgs count]];
 		
 		
@@ -520,7 +533,7 @@ otherblock();\
 		
 		dispatch_block_t cdromBlock = ^{
 			hasParsedAnArgument = YES;
-			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgRun argument:kPCSXRArgumentCDROM block:^{
+			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgOrderRun argument:kPCSXRArgumentCDROM block:^{
 				[self runCD:nil];
 			}];
 			[larg addToDictionary:argDict];
@@ -528,7 +541,7 @@ otherblock();\
 		
 		dispatch_block_t biosBlock = ^{
 			hasParsedAnArgument = YES;
-			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgRun argument:kPCSXRArgumentBIOS block:^{
+			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgOrderRun argument:kPCSXRArgumentBIOS block:^{
 				[self runBios:nil];
 			}];
 			[larg addToDictionary:argDict];
@@ -537,7 +550,7 @@ otherblock();\
 		// This block/argument does not need to be sorted
 		dispatch_block_t emuCloseAtEnd = ^{
 			hasParsedAnArgument = YES;
-			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgPreRun argument:kPCSXRArgumentExitAtClose block:^{
+			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgOrderPreRun argument:kPCSXRArgumentExitAtClose block:^{
 				self.endAtEmuClose = YES;
 			}];
 			[larg addToDictionary:argDict];
@@ -545,7 +558,7 @@ otherblock();\
 		
 		dispatch_block_t psxOut = ^{
 			hasParsedAnArgument = YES;
-			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgPreRun argument:kPCSXRArgumentLogOutput block:^{
+			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgOrderPreRun argument:kPCSXRArgumentLogOutput block:^{
 				Config.PsxOut = true;
 			}];
 			[larg addToDictionary:argDict];
@@ -553,7 +566,7 @@ otherblock();\
 		
 		dispatch_block_t slowBoot = ^{
 			hasParsedAnArgument = YES;
-			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgPreRun argument:kPCSXRArgumentSlowBoot block:^{
+			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgOrderPreRun argument:kPCSXRArgumentSlowBoot block:^{
 				Config.SlowBoot = true;
 			}];
 			[larg addToDictionary:argDict];
@@ -562,7 +575,7 @@ otherblock();\
 		dispatch_block_t isoBlock = ^{
 			hasParsedAnArgument = YES;
 			NSString *path = FileTestBlock();
-			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgRun argument:kPCSXRArgumentISO block:^{
+			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgOrderRun argument:kPCSXRArgumentISO block:^{
 				[self runURL:[NSURL fileURLWithPath:path isDirectory:NO]];
 			}];
 			[larg addToDictionary:argDict];
@@ -578,7 +591,7 @@ otherblock();\
 			
 			NSString *path = FileTestBlock();
 			NSString *mcdArg = [kPCSXRArgumentMcd stringByAppendingFormat:@"%i", mcdnumber];
-			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgPreRun argument:mcdArg block:^{
+			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgOrderPreRun argument:mcdArg block:^{
 				LoadMcd(mcdnumber, (char*)[path fileSystemRepresentation]);
 			}];
 			[larg addToDictionary:argDict];
@@ -587,7 +600,7 @@ otherblock();\
 		dispatch_block_t freezeBlock = ^{
 			hasParsedAnArgument = YES;
 			NSString *path = FileTestBlock();
-			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgPostRun argument:kPCSXRArgumentFreeze block:^{
+			LaunchArg *larg = [[LaunchArg alloc] initWithLaunchOrder:LaunchArgOrderPostRun argument:kPCSXRArgumentFreeze block:^{
 				if (![EmuThread isRunBios]) {
 					dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_global_queue(0, 0), ^{
 						[EmuThread defrostAt:path];
@@ -733,23 +746,23 @@ otherblock();\
 			[defaults setBool:YES forKey:@"DidMoveMemoryObjects"];
 		}
 		
-		str = [[[defaults URLForKey:@"Mcd1"] path] fileSystemRepresentation];
+		str = [[defaults URLForKey:@"Mcd1"] fileSystemRepresentation];
 		if (str) {
 			strlcpy(Config.Mcd1, str, MAXPATHLEN);
 		} else {
 			NSURL *url = [memoryURL URLByAppendingPathComponent:@"Mcd001.mcr"];
 			[defaults setURL:url forKey:@"Mcd1"];
-			str = [[url path] fileSystemRepresentation];
+			str = [url fileSystemRepresentation];
 			if (str != nil) strlcpy(Config.Mcd1, str, MAXPATHLEN);
 		}
 		
-		str = [[[defaults URLForKey:@"Mcd2"] path] fileSystemRepresentation];
+		str = [[defaults URLForKey:@"Mcd2"] fileSystemRepresentation];
 		if (str) {
 			strlcpy(Config.Mcd2, str, MAXPATHLEN);
 		} else {
 			NSURL *url = [memoryURL URLByAppendingPathComponent:@"Mcd002.mcr"];
 			[defaults setURL:url forKey:@"Mcd2"];
-			str = [[url path] fileSystemRepresentation];
+			str = [url  fileSystemRepresentation];
 			if (str != nil) strlcpy(Config.Mcd2, str, MAXPATHLEN);
 		}
 	}
@@ -882,22 +895,22 @@ otherblock();\
 			[manager createDirectoryAtPath:saveStatePath withIntermediateDirectories:YES attributes:nil error:NULL];
 
         url = [MemCardPath URLByAppendingPathComponent:@"Mcd001.mcr"];
-		str = [[url path] fileSystemRepresentation];
+		str = [url fileSystemRepresentation];
 		if (str != nil)
 			strlcpy(Config.Mcd1, str, MAXPATHLEN);
 
 		url = [MemCardPath URLByAppendingPathComponent:@"Mcd002.mcr"];
-		str = [[url path] fileSystemRepresentation];
+		str = [url fileSystemRepresentation];
 		if (str != nil)
 			strlcpy(Config.Mcd2, str, MAXPATHLEN);
 
 		url = [PcsxrAppSupport URLByAppendingPathComponent:@"Bios"];
-		str = [[url path] fileSystemRepresentation];
+		str = [url fileSystemRepresentation];
 		if (str != nil)
 			strlcpy(Config.BiosDir, str, MAXPATHLEN);
 
 		url = [PcsxrAppSupport URLByAppendingPathComponent:@"Patches"];
-		str = [[url path] fileSystemRepresentation];
+		str = [url fileSystemRepresentation];
 		if (str != nil) {
 			strlcpy(Config.PatchesDir, str, MAXPATHLEN);
 		}
@@ -965,17 +978,24 @@ otherblock();\
 	if ([[filename pathExtension] compare:@"bin" options:(NSCaseInsensitiveSearch | NSWidthInsensitiveSearch)]) {
 		NSDictionary *attrib = [fm attributesOfItemAtPath:filename error:NULL];
 		if ([[attrib fileType] isEqualToString:NSFileTypeRegular] && ([attrib fileSize] % (256 * 1024)) == 0 && [attrib fileSize] > 0 ) {
-			NSAlert *biosInfo = [NSAlert alertWithMessageText:NSLocalizedString(@"PlayStation BIOS File", @"PSX BIOS File") defaultButton:NSLocalizedString(@"BIOS_Copy", @"copy the BIOS over") alternateButton:NSLocalizedString(@"Cancel", @"Cancel") otherButton:NSLocalizedString(@"BIOS_Move", @"Move the bios over") informativeTextWithFormat:NSLocalizedString(@"The file \"%@\" seems to be a BIOS file. Do you want PCSX-R to copy it to the proper location?", @"Can we copy the BIOS?")];
+			
+			NSAlert *biosInfo = [NSAlert new];
+			biosInfo.messageText = NSLocalizedString(@"PlayStation BIOS File", @"PSX BIOS File");
+			biosInfo.informativeText = [NSString stringWithFormat:NSLocalizedString(@"The file \"%@\" seems to be a BIOS file. Do you want PCSX-R to copy it to the proper location?", @"Can we copy the BIOS?"), filename];
+			[biosInfo addButtonWithTitle:NSLocalizedString(@"BIOS_Copy", @"copy the BIOS over")];
+			[biosInfo addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+			[biosInfo addButtonWithTitle:NSLocalizedString(@"BIOS_Move", @"Move the bios over")];
 			biosInfo.alertStyle = NSInformationalAlertStyle;
 			switch ([biosInfo runModal]) {
 				case NSAlertFirstButtonReturn:
-				case NSAlertDefaultReturn:
 				{
 					NSError *theErr = nil;
 					NSURL *biosDirPath = [NSURL fileURLWithPath:[fm stringWithFileSystemRepresentation:Config.BiosDir length:strlen(Config.BiosDir)] isDirectory:YES];
 					NSURL *biosPath = [biosDirPath URLByAppendingPathComponent:[filename lastPathComponent]];
 					if ([biosPath checkResourceIsReachableAndReturnError:NULL]) {
-						NSAlert *alreadyThere = [NSAlert alertWithMessageText:NSLocalizedString(@"BIOS Already Exists", @"BIOS file already there.") defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:NSLocalizedString(@"There already exists a BIOS file at \"%1$@\": not copying the file at \"%2$@\".\n\nIf you do want to use the BIOS file at \"%2$@\", delete the BIOS at \"%1$@\".", @"What to do"), [biosPath path], filename];
+						NSAlert *alreadyThere = [NSAlert new];
+						alreadyThere.messageText = NSLocalizedString(@"BIOS Already Exists", @"BIOS file already there.");
+						alreadyThere.informativeText = [NSString stringWithFormat:NSLocalizedString(@"There already exists a BIOS file at \"%1$@\": not copying the file at \"%2$@\".\n\nIf you do want to use the BIOS file at \"%2$@\", delete the BIOS at \"%1$@\".", @"What to do"), [biosPath path], filename];
 						alreadyThere.alertStyle = NSCriticalAlertStyle;
 						[alreadyThere runModal];
 						return NO;
@@ -988,13 +1008,14 @@ otherblock();\
 					break;
 					
 				case NSAlertThirdButtonReturn:
-				case NSAlertOtherReturn:
 				{
 					NSError *theErr = nil;
 					NSURL *biosDirPath = [NSURL fileURLWithPath:[fm stringWithFileSystemRepresentation:Config.BiosDir length:strlen(Config.BiosDir)] isDirectory:YES];
 					NSURL *biosPath = [biosDirPath URLByAppendingPathComponent:[filename lastPathComponent]];
 					if ([biosPath checkResourceIsReachableAndReturnError:NULL]) {
-						NSAlert *alreadyThere = [NSAlert alertWithMessageText:NSLocalizedString(@"BIOS Already Exists", @"BIOS file already there.") defaultButton:nil alternateButton:nil otherButton:nil informativeTextWithFormat:NSLocalizedString(@"There already exists a BIOS file at \"%1$@\": not moving the file at \"%2$@\".\n\nIf you do want to use the BIOS file at \"%2$@\", delete the BIOS at \"%1$@\".", @"What to do"), [biosPath path], filename];
+						NSAlert *alreadyThere = [NSAlert new];
+						alreadyThere.messageText = NSLocalizedString(@"BIOS Already Exists", @"BIOS file already there.");
+						alreadyThere.informativeText = [NSString stringWithFormat:NSLocalizedString(@"There already exists a BIOS file at \"%1$@\": not copying the file at \"%2$@\".\n\nIf you do want to use the BIOS file at \"%2$@\", delete the BIOS at \"%1$@\".", @"What to do"), [biosPath path], filename];
 						alreadyThere.alertStyle = NSCriticalAlertStyle;
 						[alreadyThere runModal];
 						return NO;
@@ -1016,7 +1037,10 @@ otherblock();\
 	NSError *err = nil;
 	NSString *utiFile = [workspace typeOfFile:filename error:&err];
 	if (err) {
-		NSRunAlertPanel(NSLocalizedString(@"Error opening file", nil), NSLocalizedString(@"Unable to open %@: %@", nil), nil, nil, nil, [filename lastPathComponent], err);
+		NSAlert *alert = [NSAlert new];
+		alert.messageText = NSLocalizedString(@"Error opening file", nil);
+		alert.informativeText = [NSString stringWithFormat:NSLocalizedString(@"Unable to open %@: %@", nil),  [filename lastPathComponent], err];
+		[alert runModal];
 		return NO;
 	}
 	static NSArray *handlers = nil;

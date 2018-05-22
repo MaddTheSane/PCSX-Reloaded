@@ -25,6 +25,9 @@
 #include "cdriso.h"
 
 static char IsoFile[MAXPATHLEN] = "";
+static char ExeFile[MAXPATHLEN] = "";
+static char AppPath[MAXPATHLEN] = "";		//Application path(== pcsxr.exe directory)
+static char LdrFile[MAXPATHLEN] = "";		//bin-load file
 static s64 cdOpenCaseTime = 0;
 
 GPUupdateLace         GPU_updateLace;
@@ -54,6 +57,7 @@ GPUvBlank             GPU_vBlank;
 GPUvisualVibration    GPU_visualVibration;
 GPUcursor             GPU_cursor;
 GPUaddVertex          GPU_addVertex;
+GPUsetSpeed           GPU_setSpeed;
 
 CDRinit               CDR_init;
 CDRshutdown           CDR_shutdown;
@@ -183,11 +187,11 @@ SIO1registerCallback  SIO1_registerCallback;
 
 #endif
 
-static const char *err;
+static const char *psxerr;
 
 #define CheckErr(func) { \
-	err = SysLibError(); \
-	if (err != NULL) { SysMessage(_("Error loading %s: %s"), func, err); return -1; } \
+	psxerr = SysLibError(); \
+	if (psxerr != NULL) { SysMessage(_("Error loading %s: %s"), func, psxerr); return -1; } \
 }
 
 #define LoadSym(dest, src, name, checkerr) { \
@@ -214,6 +218,7 @@ void CALLBACK GPU__vBlank(int val) {}
 void CALLBACK GPU__visualVibration(unsigned long iSmall, unsigned long iBig) {}
 void CALLBACK GPU__cursor(int player, int x, int y) {}
 void CALLBACK GPU__addVertex(short sx,short sy,s64 fx,s64 fy,s64 fz) {}
+void CALLBACK GPU__setSpeed(float newSpeed) {}
 
 #define LoadGpuSym1(dest, name) \
 	LoadSym(GPU_##dest, GPU##dest, name, TRUE);
@@ -259,6 +264,7 @@ static int LoadGPUplugin(const char *GPUdll) {
     LoadGpuSym0(visualVibration, "GPUvisualVibration");
     LoadGpuSym0(cursor, "GPUcursor");
 	LoadGpuSym0(addVertex, "GPUaddVertex");
+	LoadGpuSym0(setSpeed, "GPUsetSpeed");
 	LoadGpuSym0(configure, "GPUconfigure");
 	LoadGpuSym0(test, "GPUtest");
 	LoadGpuSym0(about, "GPUabout");
@@ -833,8 +839,45 @@ void SetIsoFile(const char *filename) {
 	strncpy(IsoFile, filename, MAXPATHLEN);
 }
 
+void SetExeFile(const char *filename) {
+	if (filename == NULL) {
+		ExeFile[0] = '\0';
+		return;
+	}
+	strncpy(ExeFile, filename, MAXPATHLEN);
+}
+
+// Set pcsxr.exe directory. This is not contain filename(and ext)).
+void SetAppPath(const char *apppath ) {
+	if (apppath == NULL) {
+		AppPath[0] = '\0';
+		return;
+	}
+	strncpy(AppPath, apppath, MAXPATHLEN);
+}
+
+void SetLdrFile(const char *ldrfile ) {
+	if (ldrfile == NULL) {
+		LdrFile[0] = '\0';
+		return;
+	}
+	strncpy(LdrFile, ldrfile, MAXPATHLEN);
+}
+
 const char *GetIsoFile(void) {
 	return IsoFile;
+}
+
+const char *GetExeFile(void) {
+	return ExeFile;
+}
+
+const char *GetAppPath(void) {
+	return AppPath;
+}
+
+const char *GetLdrFile(void) {
+	return LdrFile;
 }
 
 boolean UsingIso(void) {

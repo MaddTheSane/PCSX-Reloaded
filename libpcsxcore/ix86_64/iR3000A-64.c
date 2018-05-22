@@ -74,12 +74,12 @@ static psxRegisters psxRegsS;
 #define IsConst(reg)  (iRegs[reg].state == ST_CONST)
 #define IsMapped(reg) (iRegs[reg].state == ST_MAPPED)
 
-static void (*recBSC[64])();
-static void (*recSPC[64])();
-static void (*recREG[32])();
-static void (*recCP0[32])();
-static void (*recCP2[64])();
-static void (*recCP2BSC[32])();
+static void (*recBSC[64])(void);
+static void (*recSPC[64])(void);
+static void (*recREG[32])(void);
+static void (*recCP0[32])(void);
+static void (*recCP2[64])(void);
+static void (*recCP2BSC[32])(void);
 
 #define STACKSIZE		0x18
 static void StackRes()
@@ -453,7 +453,7 @@ static void rec##f() { \
 	iRet(); \
 }
 
-static void recRecompile();
+static void recRecompile(void);
 
 static int recInit() {
 	int i;
@@ -482,6 +482,9 @@ static int recInit() {
 
 	for (i=0; i<0x08; i++) psxRecLUT[i + 0xbfc0] = (uptr)&recROM[PTRMULT*(i << 16)];
 
+    //x86Init();
+    cpudetectInit();
+
 	return 0;
 }
 
@@ -489,8 +492,6 @@ static void recReset() {
 	memset(recRAM, 0, 0x200000 * PTRMULT);
 	memset(recROM, 0, 0x080000 * PTRMULT);
 
-	//x86Init();
-	cpudetectInit();
 	x86SetPtr(recMem);
 
 	branch = 0;
@@ -515,7 +516,7 @@ static void recError() {
 }
 
 /*__inline*/ static void execute() {
-	void (*recFunc)();
+	void (*recFunc)(void);
 	uptr *p;
 
 	p = (uptr *)PC_REC(psxRegs.pc);
@@ -537,7 +538,7 @@ static void recError() {
 		recError();
 		return;
 	}
-	recFunc = (void (*)())*p;
+	recFunc = (void (*)(void))*p;
 	(*recFunc)();
 }
 
@@ -2860,7 +2861,7 @@ static void recCFC0() {
 }
 
 //*
-void psxMTC0();
+void psxMTC0(void);
 static void recMTC0() {
 // Cop0->Rd = Rt
 
@@ -2936,7 +2937,7 @@ static void recHLE() {
 
 //
 
-static void (*recBSC[64])() = {
+static void (*recBSC[64])(void) = {
 	recSPECIAL, recREGIMM, recJ   , recJAL  , recBEQ , recBNE , recBLEZ, recBGTZ,
 	recADDI   , recADDIU , recSLTI, recSLTIU, recANDI, recORI , recXORI, recLUI ,
 	recCOP0   , recNULL  , recCOP2, recNULL , recNULL, recNULL, recNULL, recNULL,
@@ -2947,7 +2948,7 @@ static void (*recBSC[64])() = {
 	recNULL   , recNULL  , recSWC2, recHLE  , recNULL, recNULL, recNULL, recNULL
 };
 
-static void (*recSPC[64])() = {
+static void (*recSPC[64])(void) = {
 	recSLL , recNULL, recSRL , recSRA , recSLLV   , recNULL , recSRLV, recSRAV,
 	recJR  , recJALR, recNULL, recNULL, recSYSCALL, recBREAK, recNULL, recNULL,
 	recMFHI, recMTHI, recMFLO, recMTLO, recNULL   , recNULL , recNULL, recNULL,
@@ -2958,21 +2959,21 @@ static void (*recSPC[64])() = {
 	recNULL, recNULL, recNULL, recNULL, recNULL   , recNULL , recNULL, recNULL
 };
 
-static void (*recREG[32])() = {
+static void (*recREG[32])(void) = {
 	recBLTZ  , recBGEZ  , recNULL, recNULL, recNULL, recNULL, recNULL, recNULL,
 	recNULL  , recNULL  , recNULL, recNULL, recNULL, recNULL, recNULL, recNULL,
 	recBLTZAL, recBGEZAL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL,
 	recNULL  , recNULL  , recNULL, recNULL, recNULL, recNULL, recNULL, recNULL
 };
 
-static void (*recCP0[32])() = {
+static void (*recCP0[32])(void) = {
 	recMFC0, recNULL, recCFC0, recNULL, recMTC0, recNULL, recCTC0, recNULL,
 	recNULL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL,
 	recRFE , recNULL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL,
 	recNULL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL
 };
 
-static void (*recCP2[64])() = {
+static void (*recCP2[64])(void) = {
 	recBASIC, recRTPS , recNULL , recNULL, recNULL, recNULL , recNCLIP, recNULL, // 00
 	recNULL , recNULL , recNULL , recNULL, recOP  , recNULL , recNULL , recNULL, // 08
 	recDPCS , recINTPL, recMVMVA, recNCDS, recCDP , recNULL , recNCDT , recNULL, // 10
@@ -2983,7 +2984,7 @@ static void (*recCP2[64])() = {
 	recNULL , recNULL , recNULL , recNULL, recNULL, recGPF  , recGPL  , recNCCT  // 38
 };
 
-static void (*recCP2BSC[32])() = {
+static void (*recCP2BSC[32])(void) = {
 	recMFC2, recNULL, recCFC2, recNULL, recMTC2, recNULL, recCTC2, recNULL,
 	recNULL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL,
 	recNULL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL, recNULL,

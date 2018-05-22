@@ -10,6 +10,32 @@
 #import "PSXMemEnumerator.h"
 
 #define MAX_MEMCARD_BLOCKS 15
+#define ISLINKMIDBLOCK(Info) (((Info)->Flags & 0xF) == 0x2)
+#define ISLINKENDBLOCK(Info) (((Info)->Flags & 0xF) == 0x3)
+#define ISLINKBLOCK(Info) (ISLINKENDBLOCK((Info)) || ISLINKMIDBLOCK((Info)))
+#define ISDELETED(Info) (((Info)->Flags & 0xF) >= 1 && ((Info)->Flags & 0xF) <= 3)
+#define ISBLOCKDELETED(Info) (((Info)->Flags & 0xF0) == 0xA0)
+#define ISSTATUSDELETED(Info) (ISBLOCKDELETED(Info) && ISDELETED(Info))
+#define ISLINKED(Data) ( ((Data) != 0xFFFFU) && ((Data) <= MAX_MEMCARD_BLOCKS) )
+#define GETLINKFORBLOCK(Data, block) (*((Data)+(((block)*128)+0x08)))
+
+static int GetMcdBlockCount(unsigned char *data, u8 startblock, u8* blocks) {
+	int i=0;
+	u8 *dataT, curblock=startblock;
+	u16 linkblock;
+	
+	blocks[i++] = startblock;
+	do {
+		dataT = data+((curblock*128)+0x08);
+		linkblock = ((u16*)dataT)[0];
+		
+		// TODO check if target block has link flag (2 or 3)
+		linkblock = ( ISLINKED(linkblock) ? linkblock : 0xFFFFU );
+		blocks[i++] = curblock = linkblock + 1;
+		//printf("LINKS %x %x %x %x %x\n", blocks[0], blocks[i-2], blocks[i-1], blocks[i], blocks[i+1]);
+	} while (ISLINKED(linkblock));
+	return i-1;
+}
 
 static void GetSoloBlockInfo(unsigned char *data, int block, McdBlock *Info)
 {
@@ -98,31 +124,31 @@ static void GetSoloBlockInfo(unsigned char *data, int block, McdBlock *Info)
 	Info->Flags = *ptr;
 	
 	ptr += 0xa;
-	strlcpy(Info->ID, ptr, 12);
+	strlcpy(Info->ID, ptr, 13);
 	ptr += 12;
-	strlcpy(Info->Name, ptr, 16);
+	strlcpy(Info->Name, ptr, 17);
 }
 
 static inline PCSXRMemFlag MemBlockFlag(unsigned char blockFlags)
 {
 	if ((blockFlags & 0xF0) == 0xA0) {
 		if ((blockFlags & 0xF) >= 1 && (blockFlags & 0xF) <= 3)
-			return memFlagDeleted;
+			return PCSXRMemFlagDeleted;
 		else
-			return memFlagFree;
+			return PCSXRMemFlagFree;
 	} else if ((blockFlags & 0xF0) == 0x50) {
 		if ((blockFlags & 0xF) == 0x1)
-			return memFlagUsed;
+			return PCSXRMemFlagUsed;
 		else if ((blockFlags & 0xF) == 0x2)
-			return memFlagLink;
+			return PCSXRMemFlagLink;
 		else if ((blockFlags & 0xF) == 0x3)
-			return memFlagEndLink;
+			return PCSXRMemFlagEndLink;
 	} else
-		return memFlagFree;
+		return PCSXRMemFlagFree;
 	
 	//Xcode complains unless we do this...
 	//NSLog(@"Unknown flag %x", blockFlags);
-	return memFlagFree;
+	return PCSXRMemFlagFree;
 }
 
 
@@ -144,36 +170,35 @@ NSArray *CreateArrayByEnumeratingMemoryCardAtURL(NSURL *location)
 		memPtr += 3904;
 	else if ([fileData length] != MCD_SIZE)
 		return nil;
-	
+	unsigned char cardNums[MAX_MEMCARD_BLOCKS+1];
+	BOOL populated[MAX_MEMCARD_BLOCKS] = {0};
+
 	int i = 0, x;
 	while (i < MAX_MEMCARD_BLOCKS) {
 		x = 1;
 		McdBlock memBlock;
 		GetSoloBlockInfo((unsigned char *)memPtr, i + 1, &memBlock);
 		
-		if (MemBlockFlag(memBlock.Flags) == memFlagFree) {
+		if (MemBlockFlag(memBlock.Flags) == PCSXRMemFlagFree) {
 			//Free space: ignore
 			i++;
 			continue;
 		}
-		while (i + x < MAX_MEMCARD_BLOCKS)  {
-			McdBlock tmpBlock;
-			GetSoloBlockInfo((unsigned char *)memPtr, i + x + 1, &tmpBlock);
-			if ((tmpBlock.Flags & 0x3) == 0x3) {
-				x++;
-				break;
-			} else if ((tmpBlock.Flags & 0x2) == 0x2) {
-				x++;
-			} else {
-				break;
+		
+		@autoreleasepool {
+			int idxCount = GetMcdBlockCount((unsigned char *)memPtr, i+1, cardNums);
+			NSMutableIndexSet *cardIdx = [[NSMutableIndexSet alloc] init];
+			for (int idxidx = 0; idxidx < idxCount; idxidx++) {
+				[cardIdx addIndex:cardNums[idxidx] - 1];
+				populated[cardNums[idxidx] - 1] = YES;
 			}
-		};
-		PcsxrMemoryObject *obj = [[PcsxrMemoryObject alloc] initWithMcdBlock:&memBlock startingIndex:i size:x];
-		i += x;
-		if (MemBlockFlag(memBlock.Flags) == memFlagDeleted) {
-			continue;
+			i += x;
+			if (MemBlockFlag(memBlock.Flags) == PCSXRMemFlagDeleted) {
+				continue;
+			}
+			PcsxrMemoryObject *obj = [[PcsxrMemoryObject alloc] initWithMcdBlock:&memBlock blockIndexes:cardIdx];
+			[memArray addObject:obj];
 		}
-		[memArray addObject:obj];
 	}
 	
 	return [[NSArray alloc] initWithArray:memArray];

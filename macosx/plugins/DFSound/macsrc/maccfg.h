@@ -6,8 +6,11 @@
 #ifndef PeopsSPU_maccfg_h
 #define PeopsSPU_maccfg_h
 
-void DoAbout();
-long DoConfiguration();
-void LoadConfiguration();
+#ifndef __private_extern
+#define __private_extern __attribute__((visibility("hidden")))
+#endif
+
+__private_extern void DoAbout(void);
+__private_extern long DoConfiguration(void);
 
 #endif

@@ -31,7 +31,8 @@ extern "C" {
 #include "plugins.h"
 #include "psemu_plugin_defs.h"
 
-#define MCD_SIZE	(1024 * 8 * 16)
+#define MCD_SECT_SIZE   (8 * 16)
+#define MCD_SIZE        (1024 * MCD_SECT_SIZE)
 
 extern char Mcd1Data[MCD_SIZE], Mcd2Data[MCD_SIZE];
 
@@ -41,15 +42,15 @@ void sioWriteMode16(unsigned short value);
 void sioWriteCtrl16(unsigned short value);
 void sioWriteBaud16(unsigned short value);
 
-unsigned char sioRead8();
-unsigned short sioReadStat16();
-unsigned short sioReadMode16();
-unsigned short sioReadCtrl16();
-unsigned short sioReadBaud16();
+unsigned char sioRead8(void);
+unsigned short sioReadStat16(void);
+unsigned short sioReadMode16(void);
+unsigned short sioReadCtrl16(void);
+unsigned short sioReadBaud16(void);
 
-void netError();
+void netError(void);
 
-void sioInterrupt();
+void sioInterrupt(void);
 int sioFreeze(gzFile f, int Mode);
 
 void LoadMcd(int mcd, char *str);

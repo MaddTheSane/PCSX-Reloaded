@@ -101,7 +101,7 @@ void ConfigurePlugins() {
 	UpdatePluginsBIOS();
 
 	builder = gtk_builder_new();
-	if (!gtk_builder_add_from_file(builder, PACKAGE_DATA_DIR "pcsxr.ui", NULL)) {
+	if (!gtk_builder_add_from_resource(builder, "/org/pcsxr/gui/pcsxr.ui", NULL)) {
 		g_warning("Error: interface could not be loaded!");
 		return;
 	}
@@ -213,7 +213,7 @@ void OnConf_Net() {
 	}
 
 	builder = gtk_builder_new();
-	if (!gtk_builder_add_from_file(builder, PACKAGE_DATA_DIR "pcsxr.ui", NULL)) {
+	if (!gtk_builder_add_from_resource(builder, "/org/pcsxr/gui/pcsxr.ui", NULL)) {
 		g_warning("Error: interface could not be loaded!");
 		return;
 	}
@@ -899,6 +899,12 @@ void OnCpu_Clicked(GtkDialog *dialog, gint arg1, gpointer user_data) {
 	sscanf(gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "GtkEntry_RewindInterval"))), "%lu", &tmp);
 	Config.RewindInterval = tmp;
 
+	sscanf(gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "GtkEntry_AltSpeed1"))), "%lu", &tmp);
+	Config.AltSpeed1 = tmp;
+
+	sscanf(gtk_entry_get_text(GTK_ENTRY(gtk_builder_get_object(builder, "GtkEntry_AltSpeed2"))), "%lu", &tmp);
+	Config.AltSpeed2 = tmp;
+
 	Config.Xa = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_Xa")));
 	Config.SioIrq = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_SioIrq")));
 	Config.Mdec = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_Mdec")));
@@ -952,7 +958,7 @@ void OnConf_Cpu() {
 
 	builder = gtk_builder_new();
 	
-	if (!gtk_builder_add_from_file(builder, PACKAGE_DATA_DIR "pcsxr.ui", NULL)) {
+	if (!gtk_builder_add_from_resource(builder, "/org/pcsxr/gui/pcsxr.ui", NULL)) {
 		g_warning("Error: interface could not be loaded!");
 		return;
 	}
@@ -980,6 +986,14 @@ void OnConf_Cpu() {
 
 	// Enabled only if interpreter
 	gtk_widget_set_sensitive(GTK_WIDGET(gtk_builder_get_object(builder, "frame_rew")), Config.Cpu);
+
+	snprintf(buf, sizeof(buf), "%u", Config.AltSpeed1);
+	widget = GTK_WIDGET(gtk_builder_get_object(builder, "GtkEntry_AltSpeed1"));
+	gtk_entry_set_text(GTK_ENTRY(widget), buf);
+
+	snprintf(buf, sizeof(buf), "%u", Config.AltSpeed2);
+	widget = GTK_WIDGET(gtk_builder_get_object(builder, "GtkEntry_AltSpeed2"));
+	gtk_entry_set_text(GTK_ENTRY(widget), buf);
 
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_Xa")), Config.Xa);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(gtk_builder_get_object(builder, "GtkCheckButton_SioIrq")), Config.SioIrq);

@@ -56,10 +56,11 @@ typedef struct {
 extern char CdromId[10];
 extern char CdromLabel[33];
 
-int LoadCdrom();
+int LoadCdrom(void);
 int LoadCdromFile(const char *filename, EXE_HEADER *head);
-int CheckCdrom();
+int CheckCdrom(void);
 int Load(const char *ExePath);
+int LoadLdrFile(const char *LdrPath);
 
 int SaveState(const char *file);
 int SaveStateMem(const u32 id);
@@ -69,12 +70,12 @@ int LoadStateMem(const u32 id);
 int LoadStateGz(gzFile f);
 int CheckState(const char *file);
 
-int SendPcsxInfo();
-int RecvPcsxInfo();
+int SendPcsxInfo(void);
+int RecvPcsxInfo(void);
 
-void CreateRewindState(); // Creates save state and stores it to volatile memory
-void RewindState(); // Restores state previously created with CreateRewindState();
-void CleanupMemSaveStates(); // Removes all save states stored by memory funcs like CreateRewindState()
+void CreateRewindState(void); // Creates save state and stores it to volatile memory
+void RewindState(void); // Restores state previously created with CreateRewindState();
+void CleanupMemSaveStates(void); // Removes all save states stored by memory funcs like CreateRewindState()
 
 void trim(char *str);
 u16 calcCrc(u8 *d, int len);

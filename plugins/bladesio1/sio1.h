@@ -77,8 +77,8 @@ typedef struct Settings {
 
 /******************************************************************************/
 
-extern void settingsRead();
-extern void settingsWrite();
+extern void settingsRead(void);
+extern void settingsWrite(void);
 
 extern Settings settings;
 

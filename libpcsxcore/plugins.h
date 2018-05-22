@@ -54,10 +54,10 @@ typedef long (CALLBACK* SIO1open)(HWND);
 #include "psemu_plugin_defs.h"
 #include "decode_xa.h"
 
-int LoadPlugins();
-void ReleasePlugins();
-int OpenPlugins();
-void ClosePlugins();
+int LoadPlugins(void);
+void ReleasePlugins(void);
+int OpenPlugins(void);
+void ClosePlugins(void);
 
 typedef unsigned long (CALLBACK* PSEgetLibType)(void);
 typedef unsigned long (CALLBACK* PSEgetLibVersion)(void);
@@ -96,6 +96,7 @@ typedef void (CALLBACK* GPUvBlank)(int);
 typedef void (CALLBACK* GPUvisualVibration)(uint32_t, uint32_t);
 typedef void (CALLBACK* GPUcursor)(int, int, int);
 typedef void (CALLBACK* GPUaddVertex)(short,short,s64,s64,s64);
+typedef void (CALLBACK* GPUsetSpeed)(float); // 1.0 = natural speed
 
 // GPU function pointers
 extern GPUupdateLace    GPU_updateLace;
@@ -125,6 +126,7 @@ extern GPUvBlank        GPU_vBlank;
 extern GPUvisualVibration GPU_visualVibration;
 extern GPUcursor        GPU_cursor;
 extern GPUaddVertex     GPU_addVertex;
+extern GPUsetSpeed     GPU_setSpeed;
 
 // CD-ROM Functions
 typedef long (CALLBACK* CDRinit)(void);
@@ -414,7 +416,13 @@ extern SIO1registerCallback   SIO1_registerCallback;
 void CALLBACK clearDynarec(void);
 
 void SetIsoFile(const char *filename);
+void SetExeFile(const char *filename);
+void SetAppPath(const char *filename);
+void SetLdrFile(const char *ldrfile );
 const char *GetIsoFile(void);
+const char *GetExeFile(void);
+const char *GetAppPath(void);
+const char *GetLdrFile(void);
 boolean UsingIso(void);
 void SetCdOpenCaseTime(s64 time);
 

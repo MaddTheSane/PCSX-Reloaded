@@ -22,6 +22,7 @@ typedef NS_OPTIONS(unsigned int, EmulationEvents) {
 	EMUEVENT_STOP	= (1<<2)
 };
 
+NSString *__nonnull const kEmuWindowDidCloseNotification = @"emuWindowDidClose";
 EmuThread *emuThread = nil;
 static NSString *defrostPath = nil;
 static EmulationEvents safeEvent;
@@ -45,7 +46,7 @@ static pthread_mutex_t eventMutex;
 	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 	[center addObserver:self
 			   selector:@selector(emuWindowDidClose:)
-				   name:@"emuWindowDidClose" object:nil];
+				   name:kEmuWindowDidClose object:nil];
 	
 	[center addObserver:self
 			   selector:@selector(emuWindowWantPause:)

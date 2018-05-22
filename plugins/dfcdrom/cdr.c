@@ -20,6 +20,10 @@
  */
 
 #include "cdr.h"
+#if defined(__linux__)
+#include <sys/types.h>
+#include <sys/wait.h>
+#endif 
 
 #ifndef USE_NULL
 static char *LibName = N_("CD-ROM Drive Reader");
@@ -44,18 +48,18 @@ pthread_t thread;
 int subqread;
 volatile int stopth, found, locked, playing;
 
-long (*ReadTrackT[])() = {
+long (*ReadTrackT[])(void) = {
 	ReadNormal,
 	ReadThreaded,
 };
 
-unsigned char* (*GetBufferT[])() = {
+unsigned char* (*GetBufferT[])(void) = {
 	GetBNormal,
 	GetBThreaded,
 };
 
-long (*fReadTrack)();
-unsigned char* (*fGetBuffer)();
+long (*fReadTrack)(void);
+unsigned char* (*fGetBuffer)(void);
 
 void *CdrThread(void *arg);
 

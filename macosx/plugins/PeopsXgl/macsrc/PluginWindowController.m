@@ -42,7 +42,7 @@ NSRect FitRectInRect(NSRect source, NSRect destination)
     
     if (source.size.width > destination.size.width || source.size.height > destination.size.height){
         // have to rescale
-        float ratio = source.size.width/source.size.height;
+        CGFloat ratio = source.size.width/source.size.height;
         if (ratio > destination.size.width/destination.size.height){
             source.size.width = destination.size.width;
             source.size.height = source.size.width / ratio ;

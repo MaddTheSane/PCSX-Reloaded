@@ -117,6 +117,14 @@
 	return returnArray;
 }
 
+- (nullable instancetype)initWithURL:(NSURL *)aPath
+{
+	if (!aPath.fileURL) {
+		return nil;
+	}
+	return [self initWithPath:[aPath path]];
+}
+
 - (instancetype)initWithPath:(NSString *)aPath
 {
 	if (!(self = [super init])) {
@@ -242,35 +250,33 @@
 #define PluginSymbolNameConfigure(type) PluginSymbolName(type, @"configure")
 #define PluginSymbolNameAbout(type) PluginSymbolName(type, @"about")
 
-- (void)runCommand:(id)arg
+- (void)runCommandNamed:(NSString*)arg
 {
-	@autoreleasepool {
-		NSString *funcName = arg[0];
-		long (*func)(void);
-		
-		func = SysLoadSym(pluginRef, [funcName cStringUsingEncoding:NSASCIIStringEncoding]);
-		if (SysLibError() == NULL) {
-			func();
-		} else {
-			NSBeep();
-		}
-		
-		return;
+	long (*func)(void);
+	
+	func = SysLoadSym(pluginRef, [arg cStringUsingEncoding:NSASCIIStringEncoding]);
+	if (SysLibError() == NULL) {
+		func();
+	} else {
+		NSBeep();
 	}
 }
 
 - (long)runAs:(int)aType
 {
-	long (*init)();
+	long (*init)(void);
 	long (*initArg)(long arg);
 	long res = PSE_ERR_FATAL;
+	void *initRaw;
 	
 	if ((active & aType) == aType) {
 		return 0;
 	}
 	
-	init = initArg = SysLoadSym(pluginRef, [PluginSymbolName(aType, @"init")
+	initRaw = SysLoadSym(pluginRef, [PluginSymbolName(aType, @"init")
 											cStringUsingEncoding:NSASCIIStringEncoding]);
+	init = initRaw;
+	initArg = initRaw;
 	if (SysLibError() == NULL) {
 		if (aType != PSE_LT_PAD) {
 			res = init();
@@ -282,9 +288,11 @@
 	if (0 == res) {
 		active |= aType;
 	} else {
-		NSRunCriticalAlertPanel(NSLocalizedString(@"Plugin Initialization Failed!", nil),
-								NSLocalizedString(@"Pcsxr failed to initialize the selected %@ plugin (error=%i).\nThe plugin might not work with your system.", nil),
-								nil, nil, nil, [PcsxrPlugin prefixForType:aType], res);
+		NSAlert *alert = [NSAlert new];
+		alert.informativeText = NSLocalizedString(@"Plugin Initialization Failed!", nil);
+		alert.messageText = [NSString stringWithFormat:NSLocalizedString(@"Pcsxr failed to initialize the selected %@ plugin (error=%li).\nThe plugin might not work with your system.", nil), [PcsxrPlugin prefixForType:aType], res];
+		alert.alertStyle = NSAlertStyleCritical;
+		[alert runModal];
 		return res;
 	}
 	
@@ -336,26 +344,24 @@
 
 - (void)aboutAs:(int)aType
 {
-	NSArray *arg;
-	
 	NSString *aboutSym = PluginSymbolNameAbout(aType);
-	arg = @[aboutSym, @0];
+	//NSArray *arg = @[aboutSym, @0];
 	
 	// detach a new thread
-	[NSThread detachNewThreadSelector:@selector(runCommand:) toTarget:self
-						   withObject:arg];
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		[self runCommandNamed:aboutSym];
+	});
 }
 
 - (void)configureAs:(int)aType
 {
-	NSArray *arg;
-	
 	NSString *configSym = PluginSymbolNameConfigure(aType);
-	arg = @[configSym, @1];
+	//NSArray *arg = @[configSym, @1];
 	
 	// detach a new thread
-	[NSThread detachNewThreadSelector:@selector(runCommand:) toTarget:self
-						   withObject:arg];
+	dispatch_async(dispatch_get_global_queue(0, 0), ^{
+		[self runCommandNamed:configSym];
+	});
 }
 
 - (NSString *)displayVersion
@@ -376,7 +382,7 @@
 	if (_name == nil)
 		return [path lastPathComponent];
 	
-	return [NSString stringWithFormat:@"%@ %@ [%@]", self.name, [self displayVersion], [path lastPathComponent]];
+	return [NSString stringWithFormat:@"%@ %@ [%@]", self.name, self.displayVersion, path.lastPathComponent];
 }
 
 - (NSString*)debugDescription
@@ -384,7 +390,7 @@
 	if (_name == nil) {
 		return fullPlugPath;
 	}
-	return [NSString stringWithFormat:@"%@, %@ [%@]", self.name, [self displayVersion], fullPlugPath];
+	return [NSString stringWithFormat:@"%@, %@ [%@]", self.name, self.displayVersion, fullPlugPath];
 }
 
 // the plugin will check if it's still valid and return the status

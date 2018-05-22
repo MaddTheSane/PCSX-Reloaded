@@ -1,0 +1,6 @@
+[submodule "macosx/Vendor/memorymapping"]
+	path = macosx/Vendor/memorymapping
+	url = https://github.com/MaddTheSane/memorymapping.git
+[submodule "macosx/Vendor/SwiftAdditions"]
+	path = macosx/Vendor/SwiftAdditions
+	url = https://github.com/MaddTheSane/SwiftMacTypes.git
