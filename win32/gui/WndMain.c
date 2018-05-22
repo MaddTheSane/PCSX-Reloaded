@@ -134,13 +134,7 @@ void strcatz(char *dst, char *src) {
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 	char *arg = NULL;
 	char cdfile[MAXPATHLEN] = "", buf[4096];
-	char exfile[MAXPATHLEN] = { '\0' };
-	char appath[MAXPATHLEN] = { '\0' };		//Application base path access for load Memorycard/Bios.
-	char ldfile[MAXPATHLEN] = { '\0' };
 	int loadstatenum = -1;
-	unsigned char is_exfile = 0;
-	unsigned char is_appath = 0;
-	unsigned char is_ldfile = 0;
 
 	strcpy(cfgfile, "Software\\Pcsxr");
 
@@ -201,9 +195,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			UseGui = FALSE;
 		} else if (strcmp(arg, "-runcd") == 0) {
 			cdfile[0] = '\0';
-			exfile[0] = '\0';
-			appath[0] = '\0';
-			ldfile[0] = '\0';
 		} else if (strcmp(arg, "-cdfile") == 0) {
 			arg = strtok(NULL, " ");
 			if (arg != NULL) {
@@ -215,45 +206,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 					strcpy(cdfile, arg);
 				}
 				UseGui = FALSE;
-			}
-		} else if (strcmp(arg, "-exfile") == 0) {
-			arg = strtok(NULL, " ");
-			if (arg != NULL) {
-				if (arg[0] == '"') {
-					strncpy(buf, lpCmdLine + (arg - buf), 4096);
-					arg = strtok(buf, "\"");
-					if (arg != NULL) strcpy(exfile, arg);
-				} else {
-					strcpy(exfile, arg);
-				}
-				UseGui = FALSE;
-				is_exfile = 1;
-			}
-		} else if (strcmp(arg, "-appath") == 0) {
-			arg = strtok(NULL, " ");
-			if (arg != NULL) {
-				if (arg[0] == '"') {
-					strncpy(buf, lpCmdLine + (arg - buf), 4096);
-					arg = strtok(buf, "\"");
-					if (arg != NULL) strcpy(appath, arg);
-				} else {
-					strcpy(appath, arg);
-				}
-				UseGui = FALSE;
-				is_appath = 1;
-			}
-		} else if (strcmp(arg, "-ldfile") == 0) {
-			arg = strtok(NULL, " ");
-			if (arg != NULL) {
-				if (arg[0] == '"') {
-					strncpy(buf, lpCmdLine + (arg - buf), 4096);
-					arg = strtok(buf, "\"");
-					if (arg != NULL) strcpy(ldfile, arg);
-				} else {
-					strcpy(ldfile, arg);
-				}
-				UseGui = FALSE;
-				is_ldfile = 1;
 			}
 		} else if (strcmp(arg, "-psxout") == 0) {
 			Config.PsxOut = TRUE;
@@ -267,41 +219,11 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				"\t-psxout\t\tEnable PSX output\n"
 				"\t-slowboot\t\tEnable BIOS logo\n"
 				"\t-runcd\t\tRuns CD-ROM (requires -nogui)\n"
-				"\t-appath PATH\tLoad memorycard/bios files this path (requires -nogui)\n"
 				"\t-cdfile FILE\tRuns a CD image file (requires -nogui)\n"
-				"\t-exfile FILE\tRuns a PS-EXE file (requires -nogui)\n"
-				"\t-ldfile FILE\tLoads binary file to psx-memory (requires -nogui)\n"
 				"\t-help\t\tDisplay this message"),
 				"PCSXR", 0);
 
 			return 0;
-		}
-	}
-
-	// Use Full Application Path for load memory card and load bios.
-	// It have to execute before SysInit().
-	if (!UseGui) {
-		if( is_appath ) {
-
-			//char fullpath[MAXPATHLEN] = { '\0' };
-			//int len = GetModuleFileName(NULL, fullpath, MAXPATHLEN);
-			//if( len > 0 && len < MAXPATHLEN ) {
-			//	char tmp_drive[ MAXPATHLEN ];
-			//	char tmp_dir[ MAXPATHLEN ];
-			//	char tmp_file[ MAXPATHLEN ];
-			//	char tmp_ext[ MAXPATHLEN ];
-			//	char* pp = NULL;
-			//	_splitpath(fullpath, tmp_drive, tmp_dir, tmp_file, tmp_ext );
-			//	Setappath( strcat( tmp_drive, tmp_dir ) );
-			//}
-
-			int apppath_len = strlen(appath);
-			if( apppath_len > 0 ) {
-				char app_last = appath[ apppath_len - 1 ];
-				if( app_last != '\\' )
-					strcat(appath, "\\");
-			}
-			SetAppPath( appath );
 		}
 	}
 
@@ -310,17 +232,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	CreateMainWindow(nCmdShow);
 
 	if (!UseGui) {
-
-		if( is_ldfile )
-			SetLdrFile(ldfile);
-
-		if( is_exfile ) {
-			SetExeFile(exfile);
-			PostMessage(gApp.hWnd, WM_COMMAND, ID_FILE_RUN_EXE_NOGUI, 0);
-		} else {
-			SetIsoFile(cdfile);
-			PostMessage(gApp.hWnd, WM_COMMAND, ID_FILE_RUN_NOGUI, 0);
-		}
+		SetIsoFile(cdfile);
+		PostMessage(gApp.hWnd, WM_COMMAND, ID_FILE_RUN_NOGUI, 0);
 	}
 
 	RunGui();
@@ -704,31 +617,6 @@ LRESULT WINAPI MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 					psxCpu->Execute();
 					return TRUE;
 
-				case ID_FILE_RUN_EXE_NOGUI:
-
-					SetIsoFile(NULL);
-					SetMenu(hWnd, NULL);
-					LoadPlugins();
-					if (OpenPlugins(hWnd) == -1) {
-						ClosePlugins();
-						RestoreWindow();
-						return TRUE;
-					}
-					CheckCdrom();
-
-					// Auto-detect: region first, then rcnt reset
-					SysReset();
-
-					if(Config.HideCursor)
-						ShowCursor(FALSE);
-
-					LoadLdrFile( GetLdrFile() );
-
-					Load( GetExeFile() );
-					Running = 1;
-					psxCpu->Execute();
-					return TRUE;
-
 				case ID_EMULATOR_RUN:
 					SetMenu(hWnd, NULL);
 					OpenPlugins(hWnd);
@@ -813,6 +701,10 @@ LRESULT WINAPI MainWndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 				case ID_CONFIGURATION_CPU:
 					DialogBox(gApp.hInstance, MAKEINTRESOURCE(IDD_CPUCONF), hWnd, (DLGPROC)ConfigureCpuDlgProc);
+					return TRUE;
+
+				case ID_CONFIGURATION_PGXP:
+					DialogBox(gApp.hInstance, MAKEINTRESOURCE(IDD_PGXPCONF), hWnd, (DLGPROC)ConfigurePGXPDlgProc);
 					return TRUE;
 
 				case ID_CONFIGURATION:
@@ -1259,6 +1151,7 @@ BOOL CALLBACK ConfigureMcdsDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPa
             ListView_SetImageList(GetDlgItem(mcdDlg, IDC_LIST2), Iiml[1], LVSIL_SMALL);
 
 			Button_Enable(GetDlgItem(hW, IDC_PASTE), FALSE);
+			Button_SetCheck(GetDlgItem(hW, IDC_PERGAMEMCD), Config.PerGameMcd);
 
 			LoadMcdDlg();
 
@@ -1268,6 +1161,12 @@ BOOL CALLBACK ConfigureMcdsDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPa
 
 		case WM_COMMAND:
 			switch (LOWORD(wParam)) {
+				case IDC_PERGAMEMCD:
+					if (IDC_PERGAMEMCD)
+						if (HIWORD(wParam) == BN_CLICKED)
+						{
+							Config.PerGameMcd = Button_GetCheck(GetDlgItem(hW, IDC_PERGAMEMCD));
+						}
 				case IDC_COPYTO1:
 					copy = ListView_GetSelectionMark(GetDlgItem(mcdDlg, IDC_LIST2));
 					copymcd = 1;
@@ -1289,18 +1188,18 @@ BOOL CALLBACK ConfigureMcdsDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPa
 
 						// save dir data + save data
 						memcpy(Mcd1Data + (i+1) * 128, Mcd2Data + (copy+1) * 128, 128);
-						SaveMcd(str, Mcd1Data, (i+1) * 128, 128);
+						SaveMcd(0, str, Mcd1Data, (i+1) * 128, 128);
 						memcpy(Mcd1Data + (i+1) * 1024 * 8, Mcd2Data + (copy+1) * 1024 * 8, 1024 * 8);
-						SaveMcd(str, Mcd1Data, (i+1) * 1024 * 8, 1024 * 8);
+						SaveMcd(0, str, Mcd1Data, (i+1) * 1024 * 8, 1024 * 8);
 					} else { // 2
 						Edit_GetText(GetDlgItem(hW,IDC_MCD2), str, 256);
 						i = ListView_GetSelectionMark(GetDlgItem(mcdDlg, IDC_LIST2));
 
 						// save dir data + save data
 						memcpy(Mcd2Data + (i+1) * 128, Mcd1Data + (copy+1) * 128, 128);
-						SaveMcd(str, Mcd2Data, (i+1) * 128, 128);
+						SaveMcd(0, str, Mcd2Data, (i+1) * 128, 128);
 						memcpy(Mcd2Data + (i+1) * 1024 * 8, Mcd1Data + (copy+1) * 1024 * 8, 1024 * 8);
-						SaveMcd(str, Mcd2Data, (i+1) * 1024 * 8, 1024 * 8);
+						SaveMcd(0, str, Mcd2Data, (i+1) * 1024 * 8, 1024 * 8);
 					}
 
 					UpdateMcdDlg();
@@ -1335,7 +1234,7 @@ BOOL CALLBACK ConfigureMcdsDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPa
 					for (j=0; j<127; j++) xor^=*ptr++;
 					*ptr = xor;
 
-					SaveMcd(str, data, i * 128, 128);
+					SaveMcd(0, str, data, i * 128, 128);
 					UpdateMcdDlg();
 				}
 
@@ -1369,7 +1268,7 @@ BOOL CALLBACK ConfigureMcdsDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPa
 					for (j=0; j<127; j++) xor^=*ptr++;
 					*ptr = xor;
 
-					SaveMcd(str, data, i * 128, 128);
+					SaveMcd(0, str, data, i * 128, 128);
 					UpdateMcdDlg();
 				}
 
@@ -1440,9 +1339,98 @@ BOOL CALLBACK ConfigureMcdsDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPa
 	return FALSE;
 }
 
+
+BOOL CALLBACK ConfigurePGXPDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lParam) 
+{
+	long tmp;
+	RECT rect;
+
+	switch (uMsg) 
+	{
+	case WM_INITDIALOG:
+		SetWindowText(hW, _("PGXP Config"));
+
+		Button_SetCheck(GetDlgItem(hW, IDC_PGXP_GTE), Config.PGXP_GTE);
+		Button_SetCheck(GetDlgItem(hW, IDC_PGXP_CACHE), Config.PGXP_Cache);
+		Button_SetCheck(GetDlgItem(hW, IDC_PGXP_PERSP), Config.PGXP_Texture);
+
+		ComboBox_InsertString(GetDlgItem(hW, IDC_PGXP_MODE), 0, "Disabled");
+		ComboBox_InsertString(GetDlgItem(hW, IDC_PGXP_MODE), 1, "Memory only");
+		ComboBox_InsertString(GetDlgItem(hW, IDC_PGXP_MODE), 2, "Mem + CPU Logic");
+		ComboBox_SetCurSel(GetDlgItem(hW, IDC_PGXP_MODE), Config.PGXP_Mode);
+
+		switch (ComboBox_GetCurSel(GetDlgItem(hW, IDC_PGXP_MODE)))
+		{
+		case 0:
+			Static_SetText(GetDlgItem(hW, IDC_PGXP_MODETEXT), _("Disabled\n\nPGXP is no longer mirroring any functions."));
+			break;
+		case 1:
+			Static_SetText(GetDlgItem(hW, IDC_PGXP_MODETEXT), _("Memory operations only\n\nPGXP is mirroring load, store and processor transfer operations of the CPU and GTE."));
+			break;
+		case 2:
+			Static_SetText(GetDlgItem(hW, IDC_PGXP_MODETEXT), _("Memory and CPU arithmetic operations\n\nPGXP is mirroring load, store and transfer operations of the CPU and GTE and arithmetic/logic functions of the PSX CPU.\n\n(WARNING: This mode is currently unfinished and may cause incorrect behaviour in some games)"));
+			break;
+		default:
+			Static_SetText(GetDlgItem(hW, IDC_PGXP_MODETEXT), _("Error: Uknown mode"));
+		}
+
+	case WM_COMMAND: 
+		switch (LOWORD(wParam))
+		{
+		case IDCANCEL:
+			EndDialog(hW, FALSE);
+			return TRUE;
+		case IDOK:
+			Config.PGXP_GTE		= Button_GetCheck(GetDlgItem(hW, IDC_PGXP_GTE));
+			Config.PGXP_Cache	= Button_GetCheck(GetDlgItem(hW, IDC_PGXP_CACHE));
+			Config.PGXP_Texture = Button_GetCheck(GetDlgItem(hW, IDC_PGXP_PERSP));
+			Config.PGXP_Mode	= ComboBox_GetCurSel(GetDlgItem(hW, IDC_PGXP_MODE));
+
+			EmuSetPGXPMode(Config.PGXP_Mode);
+
+
+			if (Config.SaveWindowPos)
+			{
+				GetWindowRect(gApp.hWnd, &rect);
+				Config.WindowPos[0] = rect.left;
+				Config.WindowPos[1] = rect.top;
+			}
+
+			SaveConfig();
+
+			EndDialog(hW, TRUE);
+
+			if (Config.PsxOut) OpenConsole();
+			else CloseConsole();
+
+			return TRUE;
+		case IDC_PGXP_MODE:
+			switch (ComboBox_GetCurSel(GetDlgItem(hW, IDC_PGXP_MODE)))
+			{
+			case 0:
+				Static_SetText(GetDlgItem(hW, IDC_PGXP_MODETEXT), _("Disabled\n\nPGXP is no longer mirroring any functions."));
+				break;
+			case 1:
+				Static_SetText(GetDlgItem(hW, IDC_PGXP_MODETEXT), _("Memory operations only\n\nPGXP is mirroring load, store and processor transfer operations of the CPU and GTE."));
+				break;
+			case 2:
+				Static_SetText(GetDlgItem(hW, IDC_PGXP_MODETEXT), _("Memory and CPU arithmetic operations\n\nPGXP is mirroring load, store and transfer operations of the CPU and GTE and arithmetic/logic functions of the PSX CPU.\n\n(WARNING: This mode is currently unfinished and may cause incorrect behaviour in some games)"));
+				break;
+			default:
+				Static_SetText(GetDlgItem(hW, IDC_PGXP_MODETEXT), _("Error: Uknown mode"));
+			}
+
+			return TRUE;
+		}
+	}
+	
+	return FALSE;
+}
+
 BOOL CALLBACK ConfigureCpuDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	long tmp;
 	RECT rect;
+	char cs[256];
 
 	switch(uMsg) {
 		case WM_INITDIALOG:
@@ -1467,9 +1455,12 @@ BOOL CALLBACK ConfigureCpuDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPar
 			Button_SetText(GetDlgItem(hW,IDC_HIDECURSOR), _("Hide cursor"));
 			Button_SetText(GetDlgItem(hW,IDC_SAVEWINDOWPOS), _("Save window position"));
 			Button_SetText(GetDlgItem(hW,IDC_HACKFIX), _("Compatibility hacks (Raystorm/VH-D/MML/Cart World/...)"));
+			Button_SetText(GetDlgItem(hW,IDC_MEMHACK), _("Wipeout MemHack"));
+			Button_SetText(GetDlgItem(hW,IDC_OVRCLOCK), _("CPU Overclocking"));
 
 			Static_SetText(GetDlgItem(hW,IDC_MISCOPT), _("Options"));
 			Static_SetText(GetDlgItem(hW,IDC_SELPSX),  _("Psx System Type"));
+			Static_SetText(GetDlgItem(hW,IDC_SELPSXCLOCK), _("CPU Overclocking"));
 
 			Button_SetCheck(GetDlgItem(hW,IDC_XA),      Config.Xa);
 			Button_SetCheck(GetDlgItem(hW,IDC_SIO),     Config.SioIrq);
@@ -1487,10 +1478,23 @@ BOOL CALLBACK ConfigureCpuDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPar
 			Button_SetCheck(GetDlgItem(hW,IDC_HIDECURSOR), Config.HideCursor);
 			Button_SetCheck(GetDlgItem(hW,IDC_SAVEWINDOWPOS), Config.SaveWindowPos);
 			Button_SetCheck(GetDlgItem(hW,IDC_HACKFIX), Config.HackFix);
+			Button_SetCheck(GetDlgItem(hW,IDC_MEMHACK), Config.MemHack);
+			Button_SetCheck(GetDlgItem(hW,IDC_OVRCLOCK), Config.OverClock);
 
 			ComboBox_AddString(GetDlgItem(hW,IDC_PSXTYPES), "NTSC");
 			ComboBox_AddString(GetDlgItem(hW,IDC_PSXTYPES), "PAL");
 			ComboBox_SetCurSel(GetDlgItem(hW,IDC_PSXTYPES),Config.PsxType);
+
+			ComboBox_AddString(GetDlgItem(hW,IDC_PSXCLOCK), "0.5");
+			ComboBox_AddString(GetDlgItem(hW,IDC_PSXCLOCK), "0.75");
+			ComboBox_AddString(GetDlgItem(hW,IDC_PSXCLOCK), "1.5");
+			ComboBox_AddString(GetDlgItem(hW,IDC_PSXCLOCK), "2.0");
+			ComboBox_AddString(GetDlgItem(hW,IDC_PSXCLOCK), "3.0");
+			ComboBox_AddString(GetDlgItem(hW,IDC_PSXCLOCK), "4.0");
+			ComboBox_AddString(GetDlgItem(hW,IDC_PSXCLOCK), "5.0");
+			//ComboBox_SetCurSel(GetDlgItem(hW,IDC_PSXCLOCK), Config.PsxClock);
+			sprintf(cs, "%.2f", Config.PsxClock);
+			SetDlgItemText(hW, IDC_PSXCLOCK, cs);
 
 			if (Config.Cpu == CPU_DYNAREC) {
 				Config.Debug = 0;
@@ -1499,6 +1503,11 @@ BOOL CALLBACK ConfigureCpuDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPar
 			}
 
 			EnableWindow(GetDlgItem(hW,IDC_PSXTYPES), !Config.PsxAuto);
+
+			if (Config.OverClock)
+				EnableWindow(GetDlgItem(hW, IDC_PSXCLOCK), TRUE);
+			else 
+				EnableWindow(GetDlgItem(hW, IDC_PSXCLOCK), FALSE);
 			break;
 
 		case WM_COMMAND: {
@@ -1508,6 +1517,14 @@ BOOL CALLBACK ConfigureCpuDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPar
 					tmp = ComboBox_GetCurSel(GetDlgItem(hW,IDC_PSXTYPES));
 					if (tmp == 0) Config.PsxType = 0;
 					else Config.PsxType = 1;
+
+					//Config.PsxClock= ComboBox_GetCurSel(GetDlgItem(hW, IDC_PSXCLOCK));
+
+					GetDlgItemText(hW, IDC_PSXCLOCK, cs, 255);
+					Config.PsxClock = (float)atof(cs);
+					//if (Config.PsxClock<0.0f)   Config.PsxClock = 0.0f;
+					//if (Config.PsxClock>100.0f) Config.PsxClock = 100.0f;
+
 
 					Config.Xa      = Button_GetCheck(GetDlgItem(hW,IDC_XA));
 					Config.SioIrq  = Button_GetCheck(GetDlgItem(hW,IDC_SIO));
@@ -1525,6 +1542,7 @@ BOOL CALLBACK ConfigureCpuDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPar
 							SysClose();
 							exit(1);
 						}
+						psxCpu->SetPGXPMode(Config.PGXP_Mode);
 						psxCpu->Reset();
 					}
 					Config.PsxOut  = Button_GetCheck(GetDlgItem(hW,IDC_PSXOUT));
@@ -1535,6 +1553,9 @@ BOOL CALLBACK ConfigureCpuDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPar
 					Config.HideCursor = Button_GetCheck(GetDlgItem(hW,IDC_HIDECURSOR));
 					Config.SaveWindowPos = Button_GetCheck(GetDlgItem(hW,IDC_SAVEWINDOWPOS));
 					Config.HackFix = Button_GetCheck(GetDlgItem(hW, IDC_HACKFIX));
+					Config.MemHack = Button_GetCheck(GetDlgItem(hW, IDC_MEMHACK));
+					Config.OverClock = Button_GetCheck(GetDlgItem(hW, IDC_OVRCLOCK));
+
 
 					if(Config.SaveWindowPos) {
 						GetWindowRect(gApp.hWnd, &rect);
@@ -1556,6 +1577,13 @@ BOOL CALLBACK ConfigureCpuDlgProc(HWND hW, UINT uMsg, WPARAM wParam, LPARAM lPar
 					else CloseConsole();
 
 					return TRUE;
+
+				case IDC_OVRCLOCK:
+					if (Button_GetCheck(GetDlgItem(hW, IDC_OVRCLOCK)))
+						EnableWindow(GetDlgItem(hW, IDC_PSXCLOCK), TRUE);
+					else
+						EnableWindow(GetDlgItem(hW, IDC_PSXCLOCK), FALSE);
+					break;
 
 				case IDC_CPU:
 					if (Button_GetCheck(GetDlgItem(hW,IDC_CPU))) {
@@ -1844,6 +1872,8 @@ void CreateMainMenu() {
 	ADDMENUITEM(0, _("&Memory cards..."), ID_CONFIGURATION_MEMORYCARDMANAGER);
 	ADDMENUITEM(0, _("C&PU..."), ID_CONFIGURATION_CPU);
 	ADDSEPARATOR(0);
+	ADDMENUITEM(0, _("&PGXP..."), ID_CONFIGURATION_PGXP);
+	ADDSEPARATOR(0);
 	ADDMENUITEM(0, _("&NetPlay..."), ID_CONFIGURATION_NETPLAY);
 	ADDSEPARATOR(0);
 	ADDMENUITEM(0, _("&Link cable..."), ID_CONFIGURATION_LINKCABLE);
@@ -1951,7 +1981,7 @@ int SysInit() {
 
 #ifdef EMU_LOG
 	emuLog = fopen("emuLog.txt","w");
-	setvbuf(emuLog, NULL,  _IONBF, 0);
+	setvbuf(emuLog, NULL, _IONBF, 0);
 #endif
 
 	while (LoadPlugins(0) == -1) {

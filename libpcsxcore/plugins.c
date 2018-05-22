@@ -48,6 +48,7 @@ GPUdmaChain           GPU_dmaChain;
 GPUkeypressed         GPU_keypressed;
 GPUdisplayText        GPU_displayText;
 GPUmakeSnapshot       GPU_makeSnapshot;
+GPUtoggleDebug		  GPU_toggleDebug;
 GPUfreeze             GPU_freeze;
 GPUgetScreenPic       GPU_getScreenPic;
 GPUshowScreenPic      GPU_showScreenPic;
@@ -58,6 +59,8 @@ GPUvisualVibration    GPU_visualVibration;
 GPUcursor             GPU_cursor;
 GPUaddVertex          GPU_addVertex;
 GPUsetSpeed           GPU_setSpeed;
+GPUpgxpMemory		  GPU_pgxpMemory;
+GPUpgxpCacheVertex	  GPU_pgxpCacheVertex;
 
 CDRinit               CDR_init;
 CDRshutdown           CDR_shutdown;
@@ -209,6 +212,7 @@ long CALLBACK GPU__configure(void) { return 0; }
 long CALLBACK GPU__test(void) { return 0; }
 void CALLBACK GPU__about(void) {}
 void CALLBACK GPU__makeSnapshot(void) {}
+void CALLBACK GPU__toggleDebug(void) {}
 void CALLBACK GPU__keypressed(int key) {}
 long CALLBACK GPU__getScreenPic(unsigned char *pMem) { return -1; }
 long CALLBACK GPU__showScreenPic(unsigned char *pMem) { return -1; }
@@ -219,6 +223,8 @@ void CALLBACK GPU__visualVibration(unsigned long iSmall, unsigned long iBig) {}
 void CALLBACK GPU__cursor(int player, int x, int y) {}
 void CALLBACK GPU__addVertex(short sx,short sy,s64 fx,s64 fy,s64 fz) {}
 void CALLBACK GPU__setSpeed(float newSpeed) {}
+void CALLBACK GPU__pgxpMemory(unsigned int addr, unsigned char* pVRAM) {}
+void CALLBACK GPU__pgxpCacheVertex(short sx, short sy, const unsigned char* _pVertex) {}
 
 #define LoadGpuSym1(dest, name) \
 	LoadSym(GPU_##dest, GPU##dest, name, TRUE);
@@ -255,6 +261,7 @@ static int LoadGPUplugin(const char *GPUdll) {
 	LoadGpuSym0(keypressed, "GPUkeypressed");
 	LoadGpuSym0(displayText, "GPUdisplayText");
 	LoadGpuSym0(makeSnapshot, "GPUmakeSnapshot");
+	LoadGpuSym0(toggleDebug, "GPUtoggleDebug");
 	LoadGpuSym1(freeze, "GPUfreeze");
 	LoadGpuSym0(getScreenPic, "GPUgetScreenPic");
 	LoadGpuSym0(showScreenPic, "GPUshowScreenPic");
@@ -265,6 +272,8 @@ static int LoadGPUplugin(const char *GPUdll) {
     LoadGpuSym0(cursor, "GPUcursor");
 	LoadGpuSym0(addVertex, "GPUaddVertex");
 	LoadGpuSym0(setSpeed, "GPUsetSpeed");
+	LoadGpuSym0(pgxpMemory, "GPUpgxpMemory");
+	LoadGpuSym0(pgxpCacheVertex, "GPUpgxpCacheVertex");
 	LoadGpuSym0(configure, "GPUconfigure");
 	LoadGpuSym0(test, "GPUtest");
 	LoadGpuSym0(about, "GPUabout");

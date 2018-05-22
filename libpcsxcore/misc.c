@@ -362,12 +362,37 @@ int CheckCdrom() {
 		else Config.PsxType = PSX_TYPE_NTSC; // ntsc
 	}
 
+	if (Config.OverClock == 0) {
+		PsxClockSpeed = 33868800; // 33.8688 MHz (stock)
+	} else {
+		PsxClockSpeed = 33868800 * Config.PsxClock;
+	}
+
 	if (CdromLabel[0] == ' ') {
 		strncpy(CdromLabel, CdromId, 9);
 	}
 	SysPrintf(_("CD-ROM Label: %.32s\n"), CdromLabel);
 	SysPrintf(_("CD-ROM ID: %.9s\n"), CdromId);
 	SysPrintf(_("CD-ROM EXE Name: %.255s\n"), exename);
+
+	memset(Config.PsxExeName, 0, sizeof(Config.PsxExeName));
+	strncpy(Config.PsxExeName, exename, 11);
+
+	if(Config.PerGameMcd) {
+        char mcd1path[MAXPATHLEN] = { '\0' };
+        char mcd2path[MAXPATHLEN] = { '\0' };
+#ifdef _WINDOWS
+        sprintf(mcd1path, "memcards\\games\\%s-%02d.mcd", Config.PsxExeName, 1);
+        sprintf(mcd2path, "memcards\\games\\%s-%02d.mcd", Config.PsxExeName, 2);
+#else
+        //lk: dot paths should not be hardcoded here, this is for testing only
+        sprintf(mcd1path, "%s/.pcsxr/memcards/games/%s-%02d.mcd", getenv("HOME"), Config.PsxExeName, 1);
+        sprintf(mcd2path, "%s/.pcsxr/memcards/games/%s-%02d.mcd", getenv("HOME"), Config.PsxExeName, 2);
+#endif
+        strcpy(Config.Mcd1, mcd1path);
+        strcpy(Config.Mcd2, mcd2path);
+ 		LoadMcds(Config.Mcd1, Config.Mcd2);
+    }
 
 	BuildPPFCache();
 	LoadSBI(NULL);

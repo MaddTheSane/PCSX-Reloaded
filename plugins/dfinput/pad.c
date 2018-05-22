@@ -126,10 +126,10 @@ long PADopen(unsigned long *Disp) {
  
 #if SDL_VERSION_ATLEAST(2,0,0)
 		SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
-		
-    has_haptic = 0;
-    if (SDL_InitSubSystem(SDL_INIT_HAPTIC) == 0)
-      has_haptic = 1;
+	
+        has_haptic = 0;
+        if (SDL_InitSubSystem(SDL_INIT_HAPTIC) == 0)
+            has_haptic = 1;
 #endif
 
 		InitSDLJoy();
@@ -495,7 +495,7 @@ unsigned char PADpoll(unsigned char value) {
 	if (buf == NULL) {
 		return 0;
 	}
-	
+
 	switch (CurCmd) {
 		case CMD_READ_DATA_AND_VIBRATE:
 			if (g.cfg.PadDef[CurPad].Type == PSE_PAD_TYPE_ANALOGPAD) {
@@ -514,7 +514,7 @@ unsigned char PADpoll(unsigned char value) {
 							if (!JoyHapticRumble(CurPad, g.PadState[CurPad].VibF[0], g.PadState[CurPad].VibF[1])) {
 								//gpuVisualVibration(g.PadState[CurPad].VibF[0], g.PadState[CurPad].VibF[1]);
 							}
-							
+
 						if(gpuVisualVibration != NULL &&
 						   g.cfg.PadDef[CurPad].VisualVibration) {
 							gpuVisualVibration(g.PadState[CurPad].VibF[0], g.PadState[CurPad].VibF[1]);

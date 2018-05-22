@@ -27,7 +27,8 @@ add_definitions(-DENABLE_NLS -DGETTEXT_PACKAGE="pcsxr")
 
 #WARNING! this is required for dynarec to work!
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fno-pie")
-if(CMAKE_CXX_COMPILER_ID STREQUAL GNU)
+list(APPEND COMPILER_IDS "GNU" "Clang")
+if(CMAKE_C_COMPILER_ID IN_LIST COMPILER_IDS)
     CHECK_C_COMPILER_FLAG("-no-pie" NO_PIE_UPSTREAM)
     if(NO_PIE_UPSTREAM)
         set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -no-pie")
@@ -38,8 +39,8 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL GNU)
     endif()
 endif()
 
-option(BUILD_SIO1 "Build SIO1 plugin." On)
-option(BUILD_OPENGL "Build OpenGL plugin." On)
+option(BUILD_SIO1 "Build SIO1 plugin." ON)
+option(BUILD_OPENGL "Build OpenGL plugin." ON)
 
 if (BUILD_SIO1)
   add_definitions(-DENABLE_SIO1API)

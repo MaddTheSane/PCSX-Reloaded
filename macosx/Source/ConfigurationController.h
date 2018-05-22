@@ -40,10 +40,14 @@ extern NSString *const memCardChangeNumberKey;
 @property (weak, null_unspecified) IBOutlet NSButtonCell *noFastBootCell;
 @property (weak, null_unspecified) IBOutlet NSButtonCell *enableNetPlayCell;
 @property (weak, null_unspecified) IBOutlet NSButtonCell *widescreen;
+@property (weak) IBOutlet NSButtonCell *cpuOverclocking;
+@property (weak) IBOutlet NSButtonCell *wipeoutMemHack;
+@property (weak) IBOutlet NSComboBox *cpuOverclockingValue;
 
 - (IBAction)setCheckbox:(nullable id)sender;
 - (IBAction)setCheckboxInverse:(nullable id)sender;
 - (IBAction)setVideoType:(nullable id)sender;
+- (IBAction)setOverclockValue:(NSComboBox *)sender;
 
 + (void)setMemoryCard:(NSInteger)theCard toPath:(NSString *)theFile;
 + (void)setMemoryCard:(NSInteger)theCard toURL:(NSURL *)theURL;

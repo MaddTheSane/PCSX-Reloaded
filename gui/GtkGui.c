@@ -471,7 +471,10 @@ void StartGui() {
 #endif
 	widget = GTK_WIDGET(gtk_builder_get_object(builder, "cpu1"));
 	g_signal_connect_data(G_OBJECT(widget), "activate",
-			G_CALLBACK(OnConf_Cpu), NULL, NULL, G_CONNECT_AFTER);
+            G_CALLBACK(OnConf_Cpu), NULL, NULL, G_CONNECT_AFTER);
+    widget = GTK_WIDGET(gtk_builder_get_object(builder, "pgxp1"));
+    g_signal_connect_data(G_OBJECT(widget), "activate",
+            G_CALLBACK(OnConf_Pgxp), NULL, NULL, G_CONNECT_AFTER);
 	widget = GTK_WIDGET(gtk_builder_get_object(builder, "memory_cards1"));
 	g_signal_connect_data(G_OBJECT(widget), "activate",
 			G_CALLBACK(OnConf_Mcds), NULL, NULL, G_CONNECT_AFTER);

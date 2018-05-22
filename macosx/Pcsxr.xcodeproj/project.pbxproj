@@ -220,6 +220,13 @@
 		55FBE8F91A10850000BEC452 /* NamedSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBE8F71A10850000BEC452 /* NamedSlider.swift */; };
 		55FBE8FB1A10891A00BEC452 /* SPUPluginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBE8FA1A10891A00BEC452 /* SPUPluginController.swift */; };
 		55FBE8FC1A10891A00BEC452 /* SPUPluginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBE8FA1A10891A00BEC452 /* SPUPluginController.swift */; };
+		662A3D691F05E8D500232572 /* PgxpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 662A3D681F05E8D500232572 /* PgxpController.m */; };
+		6F5FF71A1CE4D3B2005D8636 /* pgxp_gpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 6F5FF7171CE4D1D5005D8636 /* pgxp_gpu.c */; };
+		6F5FF7211CE4DE68005D8636 /* pgxp_gte.c in Sources */ = {isa = PBXBuildFile; fileRef = 6F5FF71F1CE4DE68005D8636 /* pgxp_gte.c */; };
+		6FAC15EB1D4CCA6C0028E89C /* pgxp_value.c in Sources */ = {isa = PBXBuildFile; fileRef = 6FAC15E91D4CCA6C0028E89C /* pgxp_value.c */; };
+		6FDBDA711D0DB58300313918 /* pgxp_cpu.c in Sources */ = {isa = PBXBuildFile; fileRef = 6FDBDA6A1D0DB58300313918 /* pgxp_cpu.c */; };
+		6FDBDA721D0DB58300313918 /* pgxp_debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 6FDBDA6C1D0DB58300313918 /* pgxp_debug.c */; };
+		6FDBDA731D0DB58300313918 /* pgxp_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = 6FDBDA6E1D0DB58300313918 /* pgxp_mem.c */; };
 		712FD1E81093096F00575A92 /* debug.c in Sources */ = {isa = PBXBuildFile; fileRef = 712FD1E51093096F00575A92 /* debug.c */; };
 		712FD1E91093096F00575A92 /* socket.c in Sources */ = {isa = PBXBuildFile; fileRef = 712FD1E61093096F00575A92 /* socket.c */; };
 		713B530E110B75650002F164 /* ppf.c in Sources */ = {isa = PBXBuildFile; fileRef = 713B530C110B75650002F164 /* ppf.c */; };
@@ -877,6 +884,24 @@
 		55FBE8F61A1084FF00BEC452 /* PeopsSpuAL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PeopsSpuAL-Bridging-Header.h"; sourceTree = "<group>"; };
 		55FBE8F71A10850000BEC452 /* NamedSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedSlider.swift; sourceTree = "<group>"; };
 		55FBE8FA1A10891A00BEC452 /* SPUPluginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPUPluginController.swift; sourceTree = "<group>"; };
+		662A3D671F05E8D500232572 /* PgxpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PgxpController.h; sourceTree = "<group>"; };
+		662A3D681F05E8D500232572 /* PgxpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PgxpController.m; sourceTree = "<group>"; };
+		6F4B24AB1D54D67E000B7071 /* iPGXP-64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iPGXP-64.h"; sourceTree = "<group>"; };
+		6F5FF7171CE4D1D5005D8636 /* pgxp_gpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pgxp_gpu.c; sourceTree = "<group>"; };
+		6F5FF7181CE4D1D5005D8636 /* pgxp_gpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgxp_gpu.h; sourceTree = "<group>"; };
+		6F5FF71C1CE4D791005D8636 /* cfg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cfg.c; sourceTree = "<group>"; };
+		6F5FF71D1CE4D791005D8636 /* cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cfg.h; sourceTree = "<group>"; };
+		6F5FF71F1CE4DE68005D8636 /* pgxp_gte.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pgxp_gte.c; sourceTree = "<group>"; };
+		6F5FF7201CE4DE68005D8636 /* pgxp_gte.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgxp_gte.h; sourceTree = "<group>"; };
+		6FAC15E91D4CCA6C0028E89C /* pgxp_value.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pgxp_value.c; sourceTree = "<group>"; };
+		6FAC15EA1D4CCA6C0028E89C /* psxinterpreter_pgxp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psxinterpreter_pgxp.h; sourceTree = "<group>"; };
+		6FDBDA6A1D0DB58300313918 /* pgxp_cpu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pgxp_cpu.c; sourceTree = "<group>"; };
+		6FDBDA6B1D0DB58300313918 /* pgxp_cpu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgxp_cpu.h; sourceTree = "<group>"; };
+		6FDBDA6C1D0DB58300313918 /* pgxp_debug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pgxp_debug.c; sourceTree = "<group>"; };
+		6FDBDA6D1D0DB58300313918 /* pgxp_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgxp_debug.h; sourceTree = "<group>"; };
+		6FDBDA6E1D0DB58300313918 /* pgxp_mem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pgxp_mem.c; sourceTree = "<group>"; };
+		6FDBDA6F1D0DB58300313918 /* pgxp_mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgxp_mem.h; sourceTree = "<group>"; };
+		6FDBDA701D0DB58300313918 /* pgxp_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pgxp_value.h; sourceTree = "<group>"; };
 		712FD1E51093096F00575A92 /* debug.c */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.c; path = debug.c; sourceTree = "<group>"; };
 		712FD1E61093096F00575A92 /* socket.c */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.c; path = socket.c; sourceTree = "<group>"; };
 		712FD1E71093096F00575A92 /* socket.h */ = {isa = PBXFileReference; fileEncoding = 0; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
@@ -1140,6 +1165,17 @@
 		2BCE23B204C6B52C007C2DA3 /* libpcsxcore */ = {
 			isa = PBXGroup;
 			children = (
+				6FAC15EA1D4CCA6C0028E89C /* psxinterpreter_pgxp.h */,
+				6FDBDA6A1D0DB58300313918 /* pgxp_cpu.c */,
+				6FDBDA6B1D0DB58300313918 /* pgxp_cpu.h */,
+				6FDBDA6C1D0DB58300313918 /* pgxp_debug.c */,
+				6FDBDA6D1D0DB58300313918 /* pgxp_debug.h */,
+				6FDBDA6E1D0DB58300313918 /* pgxp_mem.c */,
+				6FDBDA6F1D0DB58300313918 /* pgxp_mem.h */,
+				6FAC15E91D4CCA6C0028E89C /* pgxp_value.c */,
+				6FDBDA701D0DB58300313918 /* pgxp_value.h */,
+				6F5FF71F1CE4DE68005D8636 /* pgxp_gte.c */,
+				6F5FF7201CE4DE68005D8636 /* pgxp_gte.h */,
 				559366BF12B694DF004ACC1E /* ix86_64 */,
 				71F4C5600FDED12800529849 /* cdriso.c */,
 				71F4C5610FDED12800529849 /* cdriso.h */,
@@ -1621,6 +1657,10 @@
 		551A764817868F570052D185 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				6F5FF71C1CE4D791005D8636 /* cfg.c */,
+				6F5FF71D1CE4D791005D8636 /* cfg.h */,
+				6F5FF7171CE4D1D5005D8636 /* pgxp_gpu.c */,
+				6F5FF7181CE4D1D5005D8636 /* pgxp_gpu.h */,
 				551A764B17868F570052D185 /* draw.c */,
 				551A764C17868F570052D185 /* draw.h */,
 				551A764D17868F570052D185 /* externals.h */,
@@ -1781,6 +1821,8 @@
 				552B4D841A1312B800C2F820 /* CheatController.swift */,
 				0280B7AB16764CC3007B8001 /* HotkeyController.h */,
 				0280B7AC16764CC3007B8001 /* HotkeyController.m */,
+				662A3D671F05E8D500232572 /* PgxpController.h */,
+				662A3D681F05E8D500232572 /* PgxpController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -1788,6 +1830,7 @@
 		559366BF12B694DF004ACC1E /* ix86_64 */ = {
 			isa = PBXGroup;
 			children = (
+				6F4B24AB1D54D67E000B7071 /* iPGXP-64.h */,
 				559366C012B694DF004ACC1E /* iGte.h */,
 				559366C112B694DF004ACC1E /* iR3000A-64.c */,
 				559366C212B694DF004ACC1E /* ix86-64.c */,
@@ -2405,9 +2448,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FAC15EB1D4CCA6C0028E89C /* pgxp_value.c in Sources */,
+				6FDBDA711D0DB58300313918 /* pgxp_cpu.c in Sources */,
+				6FDBDA721D0DB58300313918 /* pgxp_debug.c in Sources */,
+				6FDBDA731D0DB58300313918 /* pgxp_mem.c in Sources */,
 				55D086E51A6C7EC000E0A00A /* RecentItemsMenu.swift in Sources */,
 				2BB3D6BE05427FE200831ACB /* main.m in Sources */,
 				552B4D851A1312B800C2F820 /* CheatController.swift in Sources */,
+				6F5FF7211CE4DE68005D8636 /* pgxp_gte.c in Sources */,
 				2BB3D6BF05427FE200831ACB /* PcsxrController.m in Sources */,
 				2BB3D6C005427FE200831ACB /* ConfigurationController.m in Sources */,
 				2BB3D6C205427FE200831ACB /* EmuThread.m in Sources */,
@@ -2457,6 +2505,7 @@
 				55E5ADA41AF53A0F000471C5 /* fmemopen.c in Sources */,
 				02717968167884C9004AED62 /* hotkeys.m in Sources */,
 				55E5ADB81AF5B24A000471C5 /* PluginController.swift in Sources */,
+				662A3D691F05E8D500232572 /* PgxpController.m in Sources */,
 				55EC05FB1788B1230053AC23 /* PcsxrMemCardArray.m in Sources */,
 				55EC05FE178916E80053AC23 /* MemBadgeView.m in Sources */,
 				5581463917AABCD100862DBF /* PcsxrCheatHandler.m in Sources */,
@@ -2578,6 +2627,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F5FF71A1CE4D3B2005D8636 /* pgxp_gpu.c in Sources */,
 				551A775217869C8B0052D185 /* draw.c in Sources */,
 				551A775317869C8D0052D185 /* fps.c in Sources */,
 				551A775417869C900052D185 /* gpu.c in Sources */,
@@ -3413,6 +3463,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				EXPORTED_SYMBOLS_FILE = plugins/PeopsXgl/PeopsXgl.exp;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3437,6 +3488,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				EXPORTED_SYMBOLS_FILE = plugins/PeopsXgl/PeopsXgl.exp;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_MACGL,
@@ -3641,7 +3693,7 @@
 				DEBUG_PREPROCESSOR_DEFINITIONS = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu89;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3684,9 +3736,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PCSXR;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MACGL,
 					"PCSXRCORE=1",
 					"PCSXR_VERSION=\\\"1.9\\\"",
 					"XA_HACK=1",
@@ -3777,6 +3831,7 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				EXPORTED_SYMBOLS_FILE = plugins/PeopsXgl/PeopsXgl.exp;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					_MACGL,
@@ -3869,8 +3924,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = PCSXR;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEBUG_PREPROCESSOR_DEFINITIONS = "$(inherited) EMU_LOG=__Log";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MACGL,
 					"PCSXRCORE=1",
 					"PCSXR_VERSION=\\\"1.9\\\"",
 					"XA_HACK=1",
@@ -3902,9 +3959,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PCSXR;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
+					_MACGL,
 					"PCSXRCORE=1",
 					"PCSXR_VERSION=\\\"1.9\\\"",
 					"XA_HACK=1",
@@ -3971,7 +4030,7 @@
 				DEBUG_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu89;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -4049,7 +4108,7 @@
 				DEBUG_PREPROCESSOR_DEFINITIONS = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu89;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
