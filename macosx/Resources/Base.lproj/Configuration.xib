@@ -734,7 +734,7 @@
                                                 <action selector="moveBlock:" target="955" id="1009"/>
                                             </connections>
                                         </button>
-                                        <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="924">
+                                        <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="924">
                                             <rect key="frame" x="265" y="46" width="182" height="279"/>
                                             <clipView key="contentView" id="Yf6-rO-8CR">
                                                 <rect key="frame" x="1" y="1" width="180" height="277"/>
@@ -760,7 +760,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
-                                        <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="925">
+                                        <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="925">
                                             <rect key="frame" x="20" y="46" width="182" height="279"/>
                                             <clipView key="contentView" id="b4B-9c-LZA">
                                                 <rect key="frame" x="1" y="1" width="180" height="277"/>
