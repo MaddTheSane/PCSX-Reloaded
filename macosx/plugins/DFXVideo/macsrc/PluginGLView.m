@@ -564,18 +564,18 @@ static int mylog2(int val)
 		unsigned short dy=PreviousPSXDisplay.DisplayMode.y;
 		long lPitch;
 		
-		if ([glLock tryLock]) {
+		if ([self->glLock tryLock]) {
 			// make sure the texture area is ready to be written to
-			glFinishObjectAPPLE(GL_TEXTURE, 2-whichImage);
+			glFinishObjectAPPLE(GL_TEXTURE, 2-self->whichImage);
 			
-			if ((image_width != PreviousPSXDisplay.Range.x1) ||
-				(image_height != PreviousPSXDisplay.DisplayMode.y) ||
-				((PSXDisplay.RGB24 ? 32 : 16) != image_depth)) {
+			if ((self->image_width != PreviousPSXDisplay.Range.x1) ||
+				(self->image_height != PreviousPSXDisplay.DisplayMode.y) ||
+				((PSXDisplay.RGB24 ? 32 : 16) != self->image_depth)) {
 				[self loadTextures:GL_FALSE];
 			}
 			
-			surf = image[1-whichImage];
-			lPitch=image_width2<<(image_depth >> 4);
+			surf = self->image[1-self->whichImage];
+			lPitch=self->image_width2<<(self->image_depth >> 4);
 			
 			if(PreviousPSXDisplay.Range.y0)                       // centering needed?
 			{
@@ -674,10 +674,10 @@ static int mylog2(int val)
 			}
 			
 			// Swap image buffer
-			whichImage = 1 - whichImage;
+			self->whichImage = 1 - self->whichImage;
 			
 			[self renderScreen];
-			[glLock unlock];
+			[self->glLock unlock];
 		}
 
 	});
