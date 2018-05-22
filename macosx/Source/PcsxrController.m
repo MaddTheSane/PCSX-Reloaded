@@ -626,7 +626,7 @@ otherblock();\
 						ParseErrorStr([NSString stringWithFormat:@"The file \"%@\" does not exist.", path]);
 						return nil;
 					}
-					[skipFiles addObject:path];
+					[self->skipFiles addObject:path];
 					return path;
 				};
 				hasFileTestBlock = YES;

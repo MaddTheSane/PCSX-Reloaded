@@ -39,7 +39,7 @@ extern PGXP_value* CP0_reg;
 #define CPU_Lo CPU_reg[34]
 
 
-void PGXP_InitCPU();
+void PGXP_InitCPU(void);
 
 // -- CPU functions
 

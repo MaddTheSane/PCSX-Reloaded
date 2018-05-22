@@ -87,22 +87,22 @@ static void (*recCP2BSC[32])(void);
 
 
 /// PGXP function tables
-static void(*pgxpRecBSC[64])();
-static void(*pgxpRecSPC[64])();
-static void(*pgxpRecCP0[32])();
-static void(*pgxpRecCP2BSC[32])();
+static void(*pgxpRecBSC[64])(void);
+static void(*pgxpRecSPC[64])(void);
+static void(*pgxpRecCP0[32])(void);
+static void(*pgxpRecCP2BSC[32])(void);
 
-static void(*pgxpRecBSCMem[64])();
+static void(*pgxpRecBSCMem[64])(void);
 ///
 
-static void(**pRecBSC)() = recBSC;
-static void(**pRecSPC)() = recSPC;
-static void(**pRecREG)() = recREG;
-static void(**pRecCP0)() = recCP0;
-static void(**pRecCP2)() = recCP2;
-static void(**pRecCP2BSC)() = recCP2BSC;
+static void(**pRecBSC)(void) = recBSC;
+static void(**pRecSPC)(void) = recSPC;
+static void(**pRecREG)(void) = recREG;
+static void(**pRecCP0)(void) = recCP0;
+static void(**pRecCP2)(void) = recCP2;
+static void(**pRecCP2BSC)(void) = recCP2BSC;
 
-static void recReset();
+static void recReset(void);
 static void recSetPGXPMode(u32 pgxpMode)
 {
 	switch (pgxpMode)
@@ -3052,7 +3052,7 @@ static void (*recCP2BSC[32])(void) = {
 };
 
 // Trace all functions using PGXP
-static void(*pgxpRecBSC[64])() = {
+static void(*pgxpRecBSC[64])(void) = {
 	recSPECIAL, recREGIMM, recJ   , recJAL  , recBEQ , recBNE , recBLEZ, recBGTZ,
 	pgxpRecADDI   , pgxpRecADDIU , pgxpRecSLTI, pgxpRecSLTIU, pgxpRecANDI, pgxpRecORI , pgxpRecXORI, pgxpRecLUI ,
 	recCOP0   , recNULL  , recCOP2, recNULL , recNULL, recNULL, recNULL, recNULL,
@@ -3063,7 +3063,7 @@ static void(*pgxpRecBSC[64])() = {
 	recNULL   , recNULL  , pgxpRecSWC2, recHLE  , recNULL, recNULL, recNULL, recNULL
 };
 
-static void(*pgxpRecSPC[64])() = {
+static void(*pgxpRecSPC[64])(void) = {
 	pgxpRecSLL , pgxpRecNULL, pgxpRecSRL , pgxpRecSRA , pgxpRecSLLV   , pgxpRecNULL , pgxpRecSRLV, pgxpRecSRAV,
 	recJR  , recJALR, recNULL, recNULL, recSYSCALL, recBREAK, recNULL, recNULL,
 	pgxpRecMFHI, pgxpRecMTHI, pgxpRecMFLO, pgxpRecMTLO, pgxpRecNULL   , pgxpRecNULL , pgxpRecNULL, pgxpRecNULL,
@@ -3074,14 +3074,14 @@ static void(*pgxpRecSPC[64])() = {
 	pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL   , pgxpRecNULL , pgxpRecNULL, pgxpRecNULL
 };
 
-static void(*pgxpRecCP0[32])() = {
+static void(*pgxpRecCP0[32])(void) = {
 	pgxpRecMFC0, pgxpRecNULL, pgxpRecCFC0, pgxpRecNULL, pgxpRecMTC0, pgxpRecNULL, pgxpRecCTC0, pgxpRecNULL,
 	pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL,
 	pgxpRecRFE , pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL,
 	pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL
 };
 
-static void(*pgxpRecCP2BSC[32])() = {
+static void(*pgxpRecCP2BSC[32])(void) = {
 	pgxpRecMFC2, pgxpRecNULL, pgxpRecCFC2, pgxpRecNULL, pgxpRecMTC2, pgxpRecNULL, pgxpRecCTC2, pgxpRecNULL,
 	pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL,
 	pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL, pgxpRecNULL,
@@ -3089,7 +3089,7 @@ static void(*pgxpRecCP2BSC[32])() = {
 };
 
 // Trace memory functions only
-static void(*pgxpRecBSCMem[64])() = {
+static void(*pgxpRecBSCMem[64])(void) = {
 	recSPECIAL, recREGIMM, recJ   , recJAL  , recBEQ , recBNE , recBLEZ, recBGTZ,
 	recADDI   , recADDIU , recSLTI, recSLTIU, recANDI, recORI , recXORI, recLUI ,
 	recCOP0   , recNULL  , recCOP2, recNULL , recNULL, recNULL, recNULL, recNULL,

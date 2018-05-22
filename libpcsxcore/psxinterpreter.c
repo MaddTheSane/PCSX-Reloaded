@@ -52,23 +52,23 @@ void (*psxCP2[64])(void);
 void (*psxCP2BSC[32])(void);
 
 /// PGXP function tables
-static void(*pgxpPsxBSC[64])();
-static void(*pgxpPsxSPC[64])();
-static void(*pgxpPsxCP0[32])();
-static void(*pgxpPsxCP2BSC[32])();
+static void(*pgxpPsxBSC[64])(void);
+static void(*pgxpPsxSPC[64])(void);
+static void(*pgxpPsxCP0[32])(void);
+static void(*pgxpPsxCP2BSC[32])(void);
 
-static void(*pgxpPsxBSCMem[64])();
+static void(*pgxpPsxBSCMem[64])(void);
 ///
 
-static void(**pPsxBSC)() = psxBSC;
-static void(**pPsxSPC)() = psxSPC;
-static void(**pPsxREG)() = psxREG;
-static void(**pPsxCP0)() = psxCP0;
-static void(**pPsxCP2)() = psxCP2;
-static void(**pPsxCP2BSC)() = psxCP2BSC;
+static void(**pPsxBSC)(void) = psxBSC;
+static void(**pPsxSPC)(void) = psxSPC;
+static void(**pPsxREG)(void) = psxREG;
+static void(**pPsxCP0)(void) = psxCP0;
+static void(**pPsxCP2)(void) = psxCP2;
+static void(**pPsxCP2BSC)(void) = psxCP2BSC;
 
 
-static void intReset();
+static void intReset(void);
 static void intSetPGXPMode(u32 pgxpMode)
 {
 	switch (pgxpMode)
@@ -1122,7 +1122,7 @@ void (*psxCP2BSC[32])(void) = {
 
 #include "psxinterpreter_pgxp.h"
 // Trace all functions using PGXP
-static void(*pgxpPsxBSC[64])() = {
+static void(*pgxpPsxBSC[64])(void) = {
 	psxSPECIAL, psxREGIMM, psxJ   , psxJAL  , psxBEQ , psxBNE , psxBLEZ, psxBGTZ,
 	pgxpPsxADDI   , pgxpPsxADDIU , pgxpPsxSLTI, pgxpPsxSLTIU, pgxpPsxANDI, pgxpPsxORI , pgxpPsxXORI, pgxpPsxLUI ,
 	psxCOP0   , psxNULL  , psxCOP2, psxNULL , psxNULL, psxNULL, psxNULL, psxNULL,
@@ -1133,7 +1133,7 @@ static void(*pgxpPsxBSC[64])() = {
 	psxNULL   , psxNULL  , pgxpPsxSWC2, psxHLE  , psxNULL, psxNULL, psxNULL, psxNULL
 };
 
-static void(*pgxpPsxSPC[64])() = {
+static void(*pgxpPsxSPC[64])(void) = {
 	pgxpPsxSLL , pgxpPsxNULL, pgxpPsxSRL , pgxpPsxSRA , pgxpPsxSLLV   , pgxpPsxNULL , pgxpPsxSRLV, pgxpPsxSRAV,
 	psxJR  , psxJALR, psxNULL, psxNULL, psxSYSCALL, psxBREAK, psxNULL, psxNULL,
 	pgxpPsxMFHI, pgxpPsxMTHI, pgxpPsxMFLO, pgxpPsxMTLO, pgxpPsxNULL   , pgxpPsxNULL , pgxpPsxNULL, pgxpPsxNULL,
@@ -1144,14 +1144,14 @@ static void(*pgxpPsxSPC[64])() = {
 	pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL   , pgxpPsxNULL , pgxpPsxNULL, pgxpPsxNULL
 };
 
-static void(*pgxpPsxCP0[32])() = {
+static void(*pgxpPsxCP0[32])(void) = {
 	pgxpPsxMFC0, pgxpPsxNULL, pgxpPsxCFC0, pgxpPsxNULL, pgxpPsxMTC0, pgxpPsxNULL, pgxpPsxCTC0, pgxpPsxNULL,
 	pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL,
 	pgxpPsxRFE , pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL,
 	pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL
 };
 
-static void(*pgxpPsxCP2BSC[32])() = {
+static void(*pgxpPsxCP2BSC[32])(void) = {
 	pgxpPsxMFC2, pgxpPsxNULL, pgxpPsxCFC2, pgxpPsxNULL, pgxpPsxMTC2, pgxpPsxNULL, pgxpPsxCTC2, pgxpPsxNULL,
 	pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL,
 	pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL, pgxpPsxNULL,
@@ -1159,7 +1159,7 @@ static void(*pgxpPsxCP2BSC[32])() = {
 };
 
 // Trace memory functions only
-static void(*pgxpPsxBSCMem[64])() = {
+static void(*pgxpPsxBSCMem[64])(void) = {
 	psxSPECIAL, psxREGIMM, psxJ   , psxJAL  , psxBEQ , psxBNE , psxBLEZ, psxBGTZ,
 	psxADDI   , psxADDIU , psxSLTI, psxSLTIU, psxANDI, psxORI , psxXORI, psxLUI ,
 	psxCOP0   , psxNULL  , psxCOP2, psxNULL , psxNULL, psxNULL, psxNULL, psxNULL,
