@@ -81,7 +81,7 @@ void SoundFeedStreamData(unsigned char* pSound,long lBytes)
 {
 	GET_CURRENT_OR_RETURN();
 	
-	[[current ringBufferAtIndex:0] write:pSound maxLength:lBytes];
+	[[current audioBufferAtIndex:0] write:pSound maxLength:lBytes];
 }
 
 @implementation PCSXRGameCore {
