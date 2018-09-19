@@ -33,7 +33,6 @@ extern NSString *const kEmuWindowDidCloseNotification;
 + (BOOL)pause;
 + (BOOL)pauseSafe;
 + (void)pauseSafeWithBlock:(void (^)(BOOL))theBlock;
-+ (void)pauseSafeWithBlock:(void (^)(BOOL))theBlock returnQueue:(dispatch_queue_t)queue;
 + (void)resume;
 + (void)resetNow;
 + (void)reset;
@@ -51,7 +50,6 @@ extern NSString *const kEmuWindowDidCloseNotification;
 #endif
 
 + (void)freezeAt:(NSString *)path which:(int)num;
-+ (void)freezeAt:(NSString *)path which:(int)num reternQueue:(dispatch_queue_t)queue;
 + (BOOL)defrostAt:(NSString *)path;
 
 @end
