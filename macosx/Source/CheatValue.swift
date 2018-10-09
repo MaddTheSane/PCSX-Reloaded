@@ -31,12 +31,11 @@ class CheatValue: NSObject, NSCopying {
 		self.init(address: cc.Addr, value: cc.Val)
 	}
 	
-	override var hashValue: Int {
-		return Int(cheatAddress ^ UInt32(cheatValue))
-	}
-	
 	override var hash: Int {
-		return self.hashValue
+		var hasher = Hasher()
+		cheatAddress.hash(into: &hasher)
+		cheatValue.hash(into: &hasher)
+		return hasher.finalize()
 	}
 
 	override var description: String {

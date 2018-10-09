@@ -2240,17 +2240,17 @@
 				LastUpgradeCheck = 1000;
 				TargetAttributes = {
 					2BB3D68205427FE200831ACB = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 					};
 					395AD6CE1ECBEF5F003B4AA3 = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
 					};
 					551A76DA178696BD0052D185 = {
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 					};
 					551A7706178698C60052D185 = {
-						LastSwiftMigration = 0910;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -3600,6 +3600,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUSDLPlugin;
 				SWIFT_OBJC_BRIDGING_HEADER = "plugins/DFSound/macsrc/PeopsSpuSDL-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = psxplugin;
 			};
 			name = Debug;
@@ -3624,6 +3625,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUSDLPlugin;
 				SWIFT_OBJC_BRIDGING_HEADER = "plugins/DFSound/macsrc/PeopsSpuSDL-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = psxplugin;
 			};
 			name = Release;
@@ -3644,6 +3646,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUALPlugin;
 				SWIFT_OBJC_BRIDGING_HEADER = "plugins/DFSound/macsrc/PeopsSpuAL-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = psxplugin;
 			};
 			name = Debug;
@@ -3663,6 +3666,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUALPlugin;
 				SWIFT_OBJC_BRIDGING_HEADER = "plugins/DFSound/macsrc/PeopsSpuAL-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = psxplugin;
 			};
 			name = Release;
@@ -3985,7 +3989,7 @@
 				PRODUCT_NAME = PCSXR;
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/PCSXR-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Instrument;
@@ -4093,6 +4097,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUSDLPlugin;
 				SWIFT_OBJC_BRIDGING_HEADER = "plugins/DFSound/macsrc/PeopsSpuSDL-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = psxplugin;
 			};
 			name = Instrument;
@@ -4112,6 +4117,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUALPlugin;
 				SWIFT_OBJC_BRIDGING_HEADER = "plugins/DFSound/macsrc/PeopsSpuAL-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = psxplugin;
 			};
 			name = Instrument;
@@ -4180,7 +4186,7 @@
 				PRODUCT_NAME = PCSXR;
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/PCSXR-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -4224,7 +4230,7 @@
 				PRODUCT_NAME = PCSXR;
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/PCSXR-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

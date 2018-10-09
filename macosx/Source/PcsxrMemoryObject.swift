@@ -123,7 +123,7 @@ final class PcsxrMemoryObject: NSObject {
 	private static var __once: () = {
 			func SetupAttrStr(_ mutStr: NSMutableAttributedString, txtclr: NSColor) {
 				let wholeStrRange = NSMakeRange(0, mutStr.length)
-				let ourAttrs: [NSAttributedStringKey: Any] = [.font : NSFont.systemFont(ofSize: NSFont.systemFontSize(for: .small)),
+				let ourAttrs: [NSAttributedString.Key: Any] = [.font : NSFont.systemFont(ofSize: NSFont.systemFontSize(for: .small)),
 					.foregroundColor: txtclr]
 				mutStr.addAttributes(ourAttrs, range: wholeStrRange)
 				mutStr.setAlignment(.center, range: wholeStrRange)
