@@ -2237,7 +2237,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1000;
 				TargetAttributes = {
 					2BB3D68205427FE200831ACB = {
 						LastSwiftMigration = 0800;
@@ -3684,6 +3684,10 @@
 					"$(inherited)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=PeopsXGL";
+				HEADER_SEARCH_PATHS = (
+					../plugins/peopsxgl,
+					"$(inherited)",
+				);
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
 				OTHER_CFLAGS = "$(OPTIMIZATION_CFLAGS)";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.GpuOpenGLPlugin;
@@ -3708,6 +3712,10 @@
 					"$(inherited)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=PeopsXGL";
+				HEADER_SEARCH_PATHS = (
+					../plugins/peopsxgl,
+					"$(inherited)",
+				);
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
 				OTHER_CFLAGS = "$(OPTIMIZATION_CFLAGS)";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.GpuOpenGLPlugin;
@@ -3820,7 +3828,6 @@
 				GCC_UNROLL_LOOPS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GENERATE_PKGINFO_FILE = NO;
-				LLVM_VECTORIZE_LOOPS = YES;
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3842,7 +3849,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GENERATE_PKGINFO_FILE = NO;
-				LLVM_VECTORIZE_LOOPS = YES;
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3863,7 +3869,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GENERATE_PKGINFO_FILE = NO;
-				LLVM_VECTORIZE_LOOPS = YES;
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4056,6 +4061,10 @@
 					"$(inherited)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=PeopsXGL";
+				HEADER_SEARCH_PATHS = (
+					../plugins/peopsxgl,
+					"$(inherited)",
+				);
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
 				OTHER_CFLAGS = "$(OPTIMIZATION_CFLAGS)";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.GpuOpenGLPlugin;
