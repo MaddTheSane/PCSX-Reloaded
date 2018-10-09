@@ -446,12 +446,12 @@ void SetSemiTrans(void)
  ubGloAlpha=ubGloColAlpha=TransSets[GlobalTextABR].alpha;
 
  if(!bBlendEnable)
-  {glEnable(GL_BLEND);bBlendEnable=TRUE;}              // wanna blend
+  {bBlendEnable=TRUE;}              // wanna blend
 
  if(TransSets[GlobalTextABR].srcFac!=obm1 || 
     TransSets[GlobalTextABR].dstFac!=obm2)
   {
-   if(glBlendEquationEXTEx==NULL)
+   if(FALSE) // on windows it's null
     {
      obm1=TransSets[GlobalTextABR].srcFac;
      obm2=TransSets[GlobalTextABR].dstFac;
@@ -468,10 +468,10 @@ void SetSemiTrans(void)
     }
    else
     {
-     glBlendEquationEXTEx(FUNC_REVERSESUBTRACT_EXT);
+     glBlendEquationEXTEx(FUNC_ADD_EXT);
      obm1=TransSets[GlobalTextABR].srcFac;
      obm2=TransSets[GlobalTextABR].dstFac;
-     glBlendFunc(GL_ONE,GL_ONE);                       // set blend func
+     glBlendFunc(GL_ONE,GL_ZERO);                       // set blend func
     }
   }
 }
@@ -4732,3 +4732,21 @@ void (*primTableSkip[256])(unsigned char *) =
     // f8
     primNI,primNI,primNI,primNI,primNI,primNI,primNI,primNI
 };
+
+void dumpTexWin(){
+ unsigned char pixels[256*256*4]; // guess at size
+ 
+ glGetTexImage(GL_TEXTURE_2D, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
+ FILE * file = fopen("/Users/bblack/Desktop/window.tga", "w");
+ 
+ fwrite("\0\0\2", sizeof(char), 3, file); // id field size, color map type, image type
+ fwrite("\0\0\0\0\0", sizeof(char), 5, file); // color map spec, ignored since no color map
+ fwrite("\0\0\0\0", sizeof(char), 4, file); // origin
+ fwrite("\x00\x01\x00\x01", sizeof(char), 4, file); // width, height
+ fwrite("\x20", sizeof(char), 1, file); // bpp
+ fputc((char)0b00101000, file); // image spec - are these in order?
+ 
+ fwrite(pixels, sizeof(unsigned char), 256*256*4, file);
+ 
+ fclose(file);
+}

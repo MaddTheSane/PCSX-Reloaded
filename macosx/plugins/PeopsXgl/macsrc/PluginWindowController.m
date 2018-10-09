@@ -74,30 +74,28 @@ NSRect FitRectInRect(NSRect source, NSRect destination)
 			gameController = [[PluginWindowController alloc] initWithWindowNibName:@"NetSfPeopsOpenGLGPUInterface"];
 		}
 		gameWindow = [gameController window];
-	}
-    else {
-        NSLog(@"Well, we have a game window open already, which is kinda bad.");
-        abort(); 
-        return nil;
-    }
+	} else {
+    NSLog(@"Well, we have a game window open already, which is kinda bad.");
+    abort();
+    return nil;
+  }
     
-    [gameWindow setBackgroundColor: [NSColor blackColor]];
+  [gameWindow setBackgroundColor: [NSColor blackColor]];
 
-    windowFrame.size.width=iResX;
-    windowFrame.size.height=iResY;
-    
+  windowFrame.size.width=iResX;
+  windowFrame.size.height=iResY;
     
 	if (windowFrame.size.width != 0)
 		[gameWindow setFrame:windowFrame display:NO];
         
 	[gameWindow center];
-    windowDefaultRect = [gameWindow frame];
+  windowDefaultRect = [gameWindow frame];
 
 	[gameWindow makeKeyAndOrderFront:nil];
 	[gameController showWindow:nil];
-    NSOpenGLView*  glInstance = [gameController openGLView];
-    [glInstance setFrameSize: windowDefaultRect.size];
-    [glInstance reshape];
+  NSOpenGLView*  glInstance = [gameController openGLView];
+  [glInstance setFrameSize: windowDefaultRect.size];
+  [glInstance reshape];
 //    [glView update];
    
 	CGDirectDisplayID display = (CGDirectDisplayID)[[[gameWindow screen] deviceDescription][@"NSScreenNumber"] unsignedIntValue];

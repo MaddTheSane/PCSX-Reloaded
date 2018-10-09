@@ -2348,3 +2348,20 @@ void CALLBACK GPUvisualVibration(uint32_t iSmall, uint32_t iBig)
 
  iRumbleTime=15;                                       // let the rumble last 16 buffer swaps
 }
+
+void dumpVram(void) {
+    int w = 1024;
+    int h = 512;
+    FILE *file;
+    char filename[] = "/Users/bblack/Desktop/psx.vram.ppm";
+    file = fopen(filename, "w");
+    fprintf(file, "P6\n");
+    fprintf(file, "%d %d\n", w, h);
+    fprintf(file, "255\n"); // pixel depth
+    for (int i = 0; i < w * h; i++) {
+        fputc((psxVuw[i] << 3) & 0b11111000, file); // r
+        fputc((psxVuw[i] >> 2) & 0b11111000, file); // g
+        fputc((psxVuw[i] >> 7) & 0b11111000, file); // b
+    };
+    fclose(file);
+}
