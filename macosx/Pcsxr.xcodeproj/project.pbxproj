@@ -411,6 +411,20 @@
 			remoteGlobalIDString = 55E11DEB1AE7114000815555;
 			remoteInfo = SwiftAudioAdditionsTests;
 		};
+		55B13CBD22D6934400CCAC41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 558DC050217D04830022E081;
+			remoteInfo = QuartzAdditions;
+		};
+		55B13CBF22D6934400CCAC41 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 558DC058217D04840022E081;
+			remoteInfo = QuartzAdditionsTests;
+		};
 		55D086E91A6C7EC100E0A00A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
@@ -1971,6 +1985,8 @@
 				5554C82C1AF1462F00CEA242 /* SwiftAudioAdditionsTests.xctest */,
 				555192111FB3975E00E99E4E /* CoreTextAdditions.framework */,
 				555192131FB3975E00E99E4E /* CoreTextAdditionsTests.xctest */,
+				55B13CBE22D6934400CCAC41 /* QuartzAdditions.framework */,
+				55B13CC022D6934400CCAC41 /* QuartzAdditionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2256,13 +2272,9 @@
 			};
 			buildConfigurationList = 71F353F80FD98DFE00CBEC28 /* Build configuration list for PBXProject "Pcsxr" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
 				en,
 				es,
 				fr,
@@ -2275,6 +2287,8 @@
 				"zh-Hant",
 				Base,
 				"ko-KR",
+				ja,
+				de,
 			);
 			mainGroup = 08FB7794FE84155DC02AAC07 /* Pcsxr */;
 			projectDirPath = "";
@@ -2344,6 +2358,20 @@
 			fileType = wrapper.cfbundle;
 			path = SwiftAudioAdditionsTests.xctest;
 			remoteRef = 5554C82B1AF1462F00CEA242 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55B13CBE22D6934400CCAC41 /* QuartzAdditions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = QuartzAdditions.framework;
+			remoteRef = 55B13CBD22D6934400CCAC41 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		55B13CC022D6934400CCAC41 /* QuartzAdditionsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = QuartzAdditionsTests.xctest;
+			remoteRef = 55B13CBF22D6934400CCAC41 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		55D086EA1A6C7EC100E0A00A /* SwiftIOKitAdditions.framework */ = {
