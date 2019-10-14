@@ -8,6 +8,8 @@ Note: This project is affiliated with neither PCSX nor PCSX-df project and shoul
 separate derived work, so please don't confuse this project with the original PCSX or bother the original
 PCSX developers with problems concerning this project.
 
+https://pcsxr.codeplex.com
+
 See also:
 http://sourceforge.net/projects/pcsx-df
 http://www.pcsx.net
