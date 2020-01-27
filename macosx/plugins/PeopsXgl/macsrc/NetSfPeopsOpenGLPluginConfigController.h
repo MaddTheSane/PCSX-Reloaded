@@ -15,8 +15,8 @@
 @property (weak) IBOutlet NSCell *vSync;
 @property (weak) IBOutlet NSControl *proportionalResize;
 @property (weak) IBOutlet NSPopUpButton *fullscreenSize;
-@property (weak) IBOutlet NSFormCell *windowWidth;
-@property (weak) IBOutlet NSFormCell *windowHeighth;
+@property (weak) IBOutlet NSTextField *windowWidth;
+@property (weak) IBOutlet NSTextField *windowHeighth;
 @property (weak) IBOutlet NSPopUpButton *offscreenDrawing;
 @property (weak) IBOutlet NSPopUpButton *texColorDepth;
 @property (weak) IBOutlet NSSlider *texFiltering;

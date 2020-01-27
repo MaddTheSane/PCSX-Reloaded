@@ -9,8 +9,8 @@
 @property (strong) NSURL *fragmentPath;
 @property (strong) NSMutableDictionary *keyValues;
 
-@property (weak) IBOutlet NSFormCell *displayWidth;
-@property (weak) IBOutlet NSFormCell *displayHeight;
+@property (weak) IBOutlet NSTextField *displayWidth;
+@property (weak) IBOutlet NSTextField *displayHeight;
 @property (weak) IBOutlet NSControl *autoFullScreen;
 @property (weak) IBOutlet NSPopUpButton *ditherMode;
 @property (weak) IBOutlet NSControl *fpsCounter;

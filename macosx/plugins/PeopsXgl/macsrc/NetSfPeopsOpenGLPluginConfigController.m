@@ -450,9 +450,6 @@ void ReadConfig(void)
 - (void)awakeFromNib
 {
     [[NSColorPanel sharedColorPanel] setShowsAlpha:YES]; // eliminate dumb behavior!
-
-	// Kludge fix for windowWidth field layout problem on OS X 10.10+
-	windowWidth.titleWidth = windowWidth.titleWidth + FLT_MIN;
 }
 
 - (void)hacksSheetDidEnd:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
