@@ -67,12 +67,11 @@ class CheatObject: NSObject, Sequence {
 		self.init(name: "")
 	}
 	
-	override var hashValue: Int {
-		return cheatName.hashValue ^ values.count
-	}
-	
 	override var hash: Int {
-		return self.hashValue
+		var aHash = Hasher()
+		cheatName.hash(into: &aHash)
+		values.hash(into: &aHash)
+		return aHash.finalize()
 	}
 	
 	override func isEqual(_ object: Any?) -> Bool {

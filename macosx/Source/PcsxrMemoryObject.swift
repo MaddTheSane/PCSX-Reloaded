@@ -9,14 +9,6 @@
 import Cocoa
 import SwiftAdditions
 
-@objc enum PCSXRMemFlag: Int8 {
-	case deleted
-	case free
-	case used
-	case link
-	case endLink
-};
-
 private func imagesFromMcd(_ theBlock: UnsafePointer<McdBlock>) -> [NSImage] {
 	struct PSXRGBColor {
 		var r: UInt8
@@ -48,7 +40,7 @@ private func imagesFromMcd(_ theBlock: UnsafePointer<McdBlock>) -> [NSImage] {
 	return toRet
 }
 
-private func memoryLabelFromFlag(_ flagNameIndex: PCSXRMemFlag) -> String {
+private func memoryLabelFromFlag(_ flagNameIndex: PcsxrMemoryObject.MemoryFlag) -> String {
 	switch (flagNameIndex) {
 	case .endLink:
 		return MemLabelEndLink;
@@ -95,7 +87,7 @@ private func blankImage() -> NSImage {
 	return imageBlank.copy() as! NSImage
 }
 
-func MemFlagsFromBlockFlags(_ blockFlags: UInt8) -> PCSXRMemFlag {
+func MemFlagsFromBlockFlags(_ blockFlags: UInt8) -> PcsxrMemoryObject.MemoryFlag {
 	if ((blockFlags & 0xF0) == 0xA0) {
 		if ((blockFlags & 0xF) >= 1 && (blockFlags & 0xF) <= 3) {
 			return .deleted;
@@ -120,26 +112,34 @@ func MemFlagsFromBlockFlags(_ blockFlags: UInt8) -> PCSXRMemFlag {
 }
 
 final class PcsxrMemoryObject: NSObject {
+	@objc(PCSXRMemFlag) enum MemoryFlag: Int8 {
+		case deleted
+		case free
+		case used
+		case link
+		case endLink
+	};
+
 	private static var __once: () = {
 			func SetupAttrStr(_ mutStr: NSMutableAttributedString, txtclr: NSColor) {
 				let wholeStrRange = NSMakeRange(0, mutStr.length)
-				let ourAttrs: [NSAttributedStringKey: Any] = [.font : NSFont.systemFont(ofSize: NSFont.systemFontSize(for: .small)),
+				let ourAttrs: [NSAttributedString.Key: Any] = [.font : NSFont.systemFont(ofSize: NSFont.systemFontSize(for: .small)),
 					.foregroundColor: txtclr]
 				mutStr.addAttributes(ourAttrs, range: wholeStrRange)
 				mutStr.setAlignment(.center, range: wholeStrRange)
 			}
 			
 			var tmpStr = NSMutableAttributedString(string: MemLabelFree)
-			SetupAttrStr(tmpStr, txtclr: NSColor.green)
+			SetupAttrStr(tmpStr, txtclr: NSColor.systemGreen)
 			attribMemLabelFree = NSAttributedString(attributedString: tmpStr)
 			
 			#if DEBUG
 				tmpStr = NSMutableAttributedString(string: MemLabelEndLink)
-				SetupAttrStr(tmpStr, txtclr: NSColor.blue)
+				SetupAttrStr(tmpStr, txtclr: NSColor.systemBlue)
 				attribMemLabelEndLink = NSAttributedString(attributedString: tmpStr)
 				
 				tmpStr = NSMutableAttributedString(string: MemLabelLink)
-				SetupAttrStr(tmpStr, txtclr: NSColor.blue)
+				SetupAttrStr(tmpStr, txtclr: NSColor.systemBlue)
 				attribMemLabelLink = NSAttributedString(attributedString: tmpStr)
 				
 				tmpStr = NSMutableAttributedString(string: MemLabelUsed)
@@ -147,7 +147,7 @@ final class PcsxrMemoryObject: NSObject {
 				attribMemLabelUsed = NSAttributedString(attributedString: tmpStr)
 			#else
 				tmpStr = NSMutableAttributedString(string: MemLabelMultiSave)
-				SetupAttrStr(tmpStr, txtclr: NSColor.blue)
+				SetupAttrStr(tmpStr, txtclr: NSColor.systemBlue)
 				attribMemLabelEndLink = NSAttributedString(attributedString: tmpStr)
 				attribMemLabelLink = attribMemLabelEndLink
 
@@ -156,14 +156,14 @@ final class PcsxrMemoryObject: NSObject {
 			#endif
 			
 			tmpStr = NSMutableAttributedString(string: MemLabelDeleted)
-			SetupAttrStr(tmpStr, txtclr: NSColor.red)
+			SetupAttrStr(tmpStr, txtclr: NSColor.systemRed)
 			attribMemLabelDeleted = NSAttributedString(attributedString: tmpStr)
 		}()
 	@objc let title: String
 	@objc let name: String
 	@objc let identifier: String
 	let imageArray: [NSImage]
-	@objc let flag: PCSXRMemFlag
+	@objc let flag: MemoryFlag
 	@objc let indexes: IndexSet
 	@objc let hasImages: Bool
 	
@@ -212,7 +212,7 @@ final class PcsxrMemoryObject: NSObject {
 		return imageArray.count
 	}
 
-	@objc class func memFlagsFromBlockFlags(_ blockFlags: UInt8) -> PCSXRMemFlag {
+	@objc class func memFlagsFromBlockFlags(_ blockFlags: UInt8) -> MemoryFlag {
 		return MemFlagsFromBlockFlags(blockFlags)
 	}
 	
@@ -266,7 +266,7 @@ final class PcsxrMemoryObject: NSObject {
 		return imageArray[0]
 	}
 	
-	@objc(memoryLabelFromFlag:) class func memoryLabel(from flagNameIdx: PCSXRMemFlag) -> String {
+	@objc(memoryLabelFromFlag:) class func memoryLabel(from flagNameIdx: MemoryFlag) -> String {
 		return memoryLabelFromFlag(flagNameIdx)
 	}
 	

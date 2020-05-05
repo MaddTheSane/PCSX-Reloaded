@@ -36,6 +36,6 @@ final class LaunchArg: NSObject {
 	}
 	
 	override var description: String {
-		return "Arg: \(argument), order: \(launchOrder), block addr: \(theBlock)"
+		return "Arg: \(argument), order: \(launchOrder), block addr: \(String(describing: theBlock))"
 	}
 }

@@ -485,7 +485,7 @@ void ReadConfig(void)
 - (IBAction)showHacks:(id)sender
 {
 	[self.window beginSheet:hacksWindow completionHandler:^(NSModalResponse returnCode) {
-		[self hacksSheetDidEnd:hacksWindow returnCode:returnCode contextInfo:NULL];
+		[self hacksSheetDidEnd:self->hacksWindow returnCode:returnCode contextInfo:NULL];
 	}];
 }
 
