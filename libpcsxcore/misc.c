@@ -73,7 +73,7 @@ void mmssdd( char *b, char *p )
 
 	m = ((m / 10) << 4) | m % 10;
 	s = ((s / 10) << 4) | s % 10;
-	d = ((d / 10) << 4) | d % 10;	
+	d = ((d / 10) << 4) | d % 10;
 
 	p[0] = m;
 	p[1] = s;
@@ -161,7 +161,7 @@ int LoadCdrom() {
 	READTRACK();
 
 	// skip head and sub, and go to the root directory record
-	dir = (struct iso_directory_record*) &buf[12+156]; 
+	dir = (struct iso_directory_record*) &buf[12+156];
 
 	mmssdd(dir->extent, (char*)time);
 
@@ -206,7 +206,7 @@ int LoadCdrom() {
 
 	psxRegs.pc = SWAP32(tmpHead.pc0);
 	psxRegs.GPR.n.gp = SWAP32(tmpHead.gp0);
-	psxRegs.GPR.n.sp = SWAP32(tmpHead.s_addr); 
+	psxRegs.GPR.n.sp = SWAP32(tmpHead.s_addr);
 	if (psxRegs.GPR.n.sp == 0) psxRegs.GPR.n.sp = 0x801fff00;
 
 	tmpHead.t_size = SWAP32(tmpHead.t_size);
@@ -250,7 +250,7 @@ int LoadCdromFile(const char *filename, EXE_HEADER *head) {
 	READTRACK();
 
 	// skip head and sub, and go to the root directory record
-	dir = (struct iso_directory_record *)&buf[12 + 156]; 
+	dir = (struct iso_directory_record *)&buf[12 + 156];
 
 	mmssdd(dir->extent, (char*)time);
 
@@ -307,7 +307,7 @@ int CheckCdrom() {
 	strncpy(CdromLabel, buf + 52, 32);
 
 	// skip head and sub, and go to the root directory record
-	dir = (struct iso_directory_record *)&buf[12 + 156]; 
+	dir = (struct iso_directory_record *)&buf[12 + 156];
 
 	mmssdd(dir->extent, (char *)time);
 
@@ -347,7 +347,7 @@ int CheckCdrom() {
 		for (i = 0; i < len; ++i) {
 			if (exename[i] == ';' || c >= sizeof(CdromId) - 1)
 				break;
-			if (isalnum(exename[i])) 
+			if (isalnum(exename[i]))
 				CdromId[c++] = exename[i];
 		}
 	}
@@ -468,12 +468,12 @@ int Load(const char *ExePath) {
 		switch (type) {
 			case PSX_EXE:
 				fread(&tmpHead, sizeof(EXE_HEADER), 1, tmpFile);
-				fseek(tmpFile, 0x800, SEEK_SET);		
+				fseek(tmpFile, 0x800, SEEK_SET);
 				fread(PSXM(SWAP32(tmpHead.t_addr)), SWAP32(tmpHead.t_size), 1, tmpFile);
 				fclose(tmpFile);
 				psxRegs.pc = SWAP32(tmpHead.pc0);
 				psxRegs.GPR.n.gp = SWAP32(tmpHead.gp0);
-				psxRegs.GPR.n.sp = SWAP32(tmpHead.s_addr); 
+				psxRegs.GPR.n.sp = SWAP32(tmpHead.s_addr);
 				if (psxRegs.GPR.n.sp == 0)
 					psxRegs.GPR.n.sp = 0x801fff00;
 				retval = 0;
@@ -553,7 +553,7 @@ static int LoadBin( unsigned long addr, char* filename ) {
 	long len;
 	unsigned long mem = addr & 0x001fffff;
 
-	// Load binery files 
+	// Load binery files
 	f = fopen(filename, "rb");
 	if (f != NULL) {
 		fseek(f,0,SEEK_END);
@@ -677,7 +677,7 @@ void CreateRewindState() {
 
 void RewindState() {
 	mem_cur_save_count--;
-	if (mem_cur_save_count > Config.RewindCount && mem_wrapped) { 
+	if (mem_cur_save_count > Config.RewindCount && mem_wrapped) {
 		mem_cur_save_count = Config.RewindCount;
 		mem_wrapped = FALSE;
 	} else if (mem_cur_save_count > Config.RewindCount && !mem_wrapped) {
@@ -693,7 +693,7 @@ void RewindState() {
 GPUFreeze_t *gpufP = NULL;
 SPUFreeze_t *spufP = NULL;
 
-/* 
+/*
 Pros of using SHM
 + No need to change SaveState interface (gzip OK)
 + Possibiliy to preserve saves after pcsxr crash
@@ -807,7 +807,7 @@ int SaveStateGz(gzFile f, long* gzsize) {
 
 	// SPU Plugin cannot change during run, so we query size info just once per session
 	if (!spufP) {
-		spufP = (SPUFreeze_t *)malloc(offsetof(SPUFreeze_t, SPUPorts)); // only first 3 elements (up to Size)        
+		spufP = (SPUFreeze_t *)malloc(offsetof(SPUFreeze_t, SPUPorts)); // only first 3 elements (up to Size)
 		SPU_freeze(2, spufP);
 		Size = spufP->Size;
 		SysPrintf("SPUFreezeSize %i/(%i)\n", Size, offsetof(SPUFreeze_t, SPUPorts));

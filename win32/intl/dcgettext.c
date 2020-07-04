@@ -262,7 +262,7 @@ DCGETTEXT (domainname, msgid, category)
 
   if (binding == NULL)
     dirname = (char *) _nl_default_dirname;
-  else if (binding->dirname[0] == '/' || binding->dirname[1] == ':' ) /*FRANCO f�r win32*/
+  else if (binding->dirname[0] == '/' || binding->dirname[1] == ':' ) /*FRANCO für win32*/
     dirname = binding->dirname;
   else
     {

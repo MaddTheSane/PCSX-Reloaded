@@ -264,7 +264,7 @@ static int mylog2(int val)
 	glLoadIdentity();
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity(); 
+	glLoadIdentity();
 
 	//[self setNeedsDisplay:true];
 }

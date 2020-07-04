@@ -988,11 +988,11 @@ void CALLBACK GPUupdateLace(void)                      // VSYNC
 
 uint32_t CALLBACK GPUreadStatus(void)             // READ STATUS
 {
- if (vBlank || oddLines == FALSE) 
+ if (vBlank || oddLines == FALSE)
   { // vblank or even lines
    lGPUstatusRet &= ~(0x80000000);
-  } 
- else 
+  }
+ else
   { // Oddlines and not vblank
    lGPUstatusRet |= 0x80000000;
   }

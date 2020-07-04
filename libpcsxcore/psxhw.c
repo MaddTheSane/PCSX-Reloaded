@@ -50,7 +50,7 @@ u8 psxHwRead8(u32 add) {
 	unsigned char hard;
 
 	switch (add) {
-		case 0x1f801040: hard = sioRead8(); break; 
+		case 0x1f801040: hard = sioRead8(); break;
 #ifdef ENABLE_SIO1API
 		case 0x1f801050: hard = SIO1_readData8(); break;
 #endif
@@ -59,7 +59,7 @@ u8 psxHwRead8(u32 add) {
 		case 0x1f801802: hard = cdrRead2(); break;
 		case 0x1f801803: hard = cdrRead3(); break;
 		default:
-			hard = psxHu8(add); 
+			hard = psxHu8(add);
 #ifdef PSXHW_LOG
 			PSXHW_LOG("*Unkwnown 8bit read at address %x\n", add);
 #endif
@@ -77,12 +77,12 @@ u16 psxHwRead16(u32 add) {
 
 	switch (add) {
 #ifdef PSXHW_LOG
-		case 0x1f801070: 
+		case 0x1f801070:
 			PSXHW_LOG("IREG 16bit read %x\n", psxHu16(0x1070));
 			return psxHu16(0x1070);
 #endif
 #ifdef PSXHW_LOG
-		case 0x1f801074: 
+		case 0x1f801074:
 			PSXHW_LOG("IMASK 16bit read %x\n", psxHu16(0x1074));
 			return psxHu16(0x1074);
 #endif
@@ -212,7 +212,7 @@ u16 psxHwRead16(u32 add) {
 			if (add >= 0x1f801c00 && add < 0x1f801e00) {
 				hard = SPU_readRegister(add);
 			} else {
-				hard = psxHu16(add); 
+				hard = psxHu16(add);
 #ifdef PSXHW_LOG
 				PSXHW_LOG("*Unkwnown 16bit read at address %x\n", add);
 #endif
@@ -253,12 +253,12 @@ u32 psxHwRead32(u32 add) {
 			return psxHu32(0x1060);
 #endif
 #ifdef PSXHW_LOG
-		case 0x1f801070: 
+		case 0x1f801070:
 			PSXHW_LOG("IREG 32bit read %x\n", psxHu32(0x1070));
 			return psxHu32(0x1070);
 #endif
 #ifdef PSXHW_LOG
-		case 0x1f801074: 
+		case 0x1f801074:
 			PSXHW_LOG("IMASK 32bit read %x\n", psxHu32(0x1074));
 			return psxHu32(0x1074);
 #endif
@@ -375,7 +375,7 @@ u32 psxHwRead32(u32 add) {
 			return hard;
 
 		default:
-			hard = psxHu32(add); 
+			hard = psxHu32(add);
 #ifdef PSXHW_LOG
 			PSXHW_LOG("*Unknown 32bit read at address %x (0x%8.8lx)\n", add, hard);
 #endif
@@ -476,7 +476,7 @@ void psxHwWrite16(u32 add, u16 value) {
 #endif
 			return;
 #endif
-		case 0x1f801070: 
+		case 0x1f801070:
 #ifdef PSXHW_LOG
 			PSXHW_LOG("IREG 16bit write %x\n", value);
 #endif
@@ -592,7 +592,7 @@ void psxHwWrite32(u32 add, u32 value) {
 			return; // Ram size
 #endif
 
-		case 0x1f801070: 
+		case 0x1f801070:
 #ifdef PSXHW_LOG
 			PSXHW_LOG("IREG 32bit write %x\n", value);
 #endif

@@ -212,7 +212,7 @@ typedef struct {
 	u32 func;
 } TCB;
 
-typedef struct {                   
+typedef struct {
 	u32 _pc0;
 	u32 gp0;
 	u32 t_addr;
@@ -1129,7 +1129,7 @@ void psxBios_GPU_dw() { // 0x46
 	} while(--size);
 
 	pc0 = ra;
-}  
+}
 
 void psxBios_mem2vram() { // 0x47
 	int size;
@@ -1169,7 +1169,7 @@ void psxBios_GPU_cwb() { // 0x4a
 	pc0 = ra;
 }
    
-void psxBios_GPU_SendPackets() { //4b:	
+void psxBios_GPU_SendPackets() { //4b:
 	GPU_writeStatus(0x04000002);
 	psxHwWrite32(0x1f8010f4,0);
 	psxHwWrite32(0x1f8010f0,psxHwRead32(0x1f8010f0)|0x800);
@@ -1204,7 +1204,7 @@ void psxBios_LoadExec() { // 51
 #endif
 	s_addr = a1; s_size = a2;
 
-	a1 = 0xf000;	
+	a1 = 0xf000;
 	psxBios_Load();
 
 	header->S_addr = s_addr;
@@ -2257,7 +2257,7 @@ void psxBios__card_chan() { // 0x58
 void psxBios_ChangeClearPad() { // 5b
 #ifdef PSXBIOS_LOG
 	PSXBIOS_LOG("psxBios_%s: %x\n", biosB0n[0x5b], a0);
-#endif	
+#endif
 
 	pc0 = ra;
 }
@@ -2316,11 +2316,11 @@ void psxBios_ChangeClearRCnt() { // 0a
 	pc0 = ra;
 }
 
-void psxBios_dummy() { 
+void psxBios_dummy() {
 #ifdef PSXBIOS_LOG
 	PSXBIOS_LOG("unk %x call: %x\n", pc0 & 0x1fffff, t1);
 #endif
-	pc0 = ra; 
+	pc0 = ra;
 }
 
 void (*biosA0[256])(void);
@@ -2331,7 +2331,7 @@ void (*biosC0[256])(void);
 
 void psxBiosInit() {
 	u32 base, size;
-	u32 *ptr; 
+	u32 *ptr;
 	int i;
 	uLongf len;
 
@@ -2414,7 +2414,7 @@ void psxBiosInit() {
 	biosA0[0x39] = psxBios_InitHeap;
 	//biosA0[0x3a] = psxBios__exit;
 	biosA0[0x3b] = psxBios_getchar;
-	biosA0[0x3c] = psxBios_putchar;	
+	biosA0[0x3c] = psxBios_putchar;
 	//biosA0[0x3d] = psxBios_gets;
 	//biosA0[0x40] = psxBios_sys_a0_40;
 	//biosA0[0x41] = psxBios_LoadTest;
@@ -2430,7 +2430,7 @@ void psxBiosInit() {
 	biosA0[0x4b] = psxBios_GPU_SendPackets;
 	biosA0[0x4c] = psxBios_sys_a0_4c;
 	biosA0[0x4d] = psxBios_GPU_GetGPUStatus;
-	//biosA0[0x4e] = psxBios_GPU_sync;	
+	//biosA0[0x4e] = psxBios_GPU_sync;
 	//biosA0[0x4f] = psxBios_sys_a0_4f;
 	//biosA0[0x50] = psxBios_sys_a0_50;
 	biosA0[0x51] = psxBios_LoadExec;
@@ -2482,10 +2482,10 @@ void psxBiosInit() {
 	//biosA0[0x7f] = psxBios_sys_a0_7f;
 	//biosA0[0x80] = psxBios_sys_a0_80;
 	//biosA0[0x81] = psxBios_sys_a0_81;
-	//biosA0[0x82] = psxBios_sys_a0_82;		
+	//biosA0[0x82] = psxBios_sys_a0_82;
 	//biosA0[0x83] = psxBios_sys_a0_83;
 	//biosA0[0x84] = psxBios_sys_a0_84;
-	//biosA0[0x85] = psxBios__96_CdStop;	
+	//biosA0[0x85] = psxBios__96_CdStop;
 	//biosA0[0x86] = psxBios_sys_a0_86;
 	//biosA0[0x87] = psxBios_sys_a0_87;
 	//biosA0[0x88] = psxBios_sys_a0_88;
@@ -2637,7 +2637,7 @@ void psxBiosInit() {
 	//biosC0[0x07] = psxBios_InstallExeptionHandler;
 	//biosC0[0x08] = psxBios_SysInitMemory;
 	//biosC0[0x09] = psxBios_SysInitKMem;
-	biosC0[0x0a] = psxBios_ChangeClearRCnt;	
+	biosC0[0x0a] = psxBios_ChangeClearRCnt;
 	//biosC0[0x0b] = psxBios_SystemError;
 	//biosC0[0x0c] = psxBios_InitDefInt;
 	//biosC0[0x0d] = psxBios_sys_c0_0d;
@@ -2892,12 +2892,12 @@ void psxBiosException() {
 #endif
 			switch (a0) {
 				case 1: // EnterCritical - disable irq's
-					psxRegs.CP0.n.Status &= ~0x404; 
+					psxRegs.CP0.n.Status &= ~0x404;
 v0=1;	// HDHOSHY experimental patch: Spongebob, Coldblood, fearEffect, Medievil2, Martian Gothic
 					break;
 
 				case 2: // ExitCritical - enable irq's
-					psxRegs.CP0.n.Status |= 0x404; 
+					psxRegs.CP0.n.Status |= 0x404;
 					break;
 			}
 			pc0 = psxRegs.CP0.n.EPC + 4;

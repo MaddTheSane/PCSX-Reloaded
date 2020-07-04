@@ -1481,7 +1481,7 @@ unsigned long CALLBACK PSEgetLibType(void)
 
 unsigned long CALLBACK PSEgetLibVersion(void)
 {
- return (1 << 16) | (1 << 8);
+ return (1 << 16) | (6 << 8);
 }
 
 char * SPUgetLibInfos(void)

@@ -612,7 +612,7 @@ void sioWrite8(unsigned char value) {
 					buf[10] = reverse_8( 0xde );
 					buf[11] = reverse_8( 0x21 );
 					buf[12] = reverse_8( 0x97 );
-				}						
+				}
 
 				// flush bytes -> done
 				gsdonglest = 255;
@@ -819,7 +819,7 @@ unsigned char sioRead8() {
 	}
 
 #ifdef PAD_LOG
-	PAD_LOG("sio read8 ;ret = %x (I:%x ST:%x BUF:(%x %x %x))\n", 
+	PAD_LOG("sio read8 ;ret = %x (I:%x ST:%x BUF:(%x %x %x))\n",
 			ret, parp, StatReg, buf[parp>0?parp-1:0], buf[parp], buf[parp<BUFFER_SIZE-1?parp+1:BUFFER_SIZE-1]);
 #endif
 	return ret;
