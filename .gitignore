@@ -11,3 +11,4 @@ frontend/revision.h
 tools
 .pcsx/
 obj/
+.DS_Store
