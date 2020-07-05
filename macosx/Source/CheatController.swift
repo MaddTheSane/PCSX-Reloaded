@@ -34,13 +34,13 @@ final class CheatController: NSWindowController, NSWindowDelegate {
 	}
 	
 	class func newController() -> CheatController {
-		let toRet = CheatController(windowNibName: NSNib.Name(rawValue: "CheatWindow"))
+		let toRet = CheatController(windowNibName: NSNib.Name("CheatWindow"))
 		
 		return toRet
 	}
 	
 	override var windowNibName: NSNib.Name? {
-		return NSNib.Name(rawValue: "CheatWindow")
+		return NSNib.Name("CheatWindow")
 	}
 	
 	@objc func refresh() {
