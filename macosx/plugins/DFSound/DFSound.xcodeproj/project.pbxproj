@@ -1,0 +1,834 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		550128AF1A1182D700468D09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 550128AD1A1182D700468D09 /* InfoPlist.strings */; };
+		550128B21A1182E500468D09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 550128B01A1182E500468D09 /* InfoPlist.strings */; };
+		551A76DD178696BD0052D185 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A749E17868B110052D185 /* Cocoa.framework */; };
+		551A76F7178697E70052D185 /* PluginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A755217868BEC0052D185 /* PluginController.m */; };
+		551A76F8178698130052D185 /* sdl.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A762117868EF00052D185 /* sdl.c */; };
+		551A76F9178698130052D185 /* spu.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A762217868EF00052D185 /* spu.c */; };
+		551A76FA178698130052D185 /* xa.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A762817868EF00052D185 /* xa.c */; };
+		551A76FB178698160052D185 /* reverb.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A761F17868EF00052D185 /* reverb.c */; };
+		551A76FC1786981A0052D185 /* registers.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A761C17868EF00052D185 /* registers.c */; };
+		551A76FD178698230052D185 /* freeze.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A761417868EF00052D185 /* freeze.c */; };
+		551A76FF178698390052D185 /* dma.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A760F17868EF00052D185 /* dma.c */; };
+		551A77001786983C0052D185 /* adsr.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A760A17868EF00052D185 /* adsr.c */; };
+		551A7701178698600052D185 /* externals.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A761217868EF00052D185 /* externals.c */; };
+		551A7703178698980052D185 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 551A756017868BEC0052D185 /* Credits.rtf */; };
+		551A7704178698980052D185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 551A756217868BEC0052D185 /* Localizable.strings */; };
+		551A7705178698980052D185 /* NetSfPeopsSpuPluginMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551A756417868BEC0052D185 /* NetSfPeopsSpuPluginMain.xib */; };
+		551A770A178698C60052D185 /* PluginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A755217868BEC0052D185 /* PluginController.m */; };
+		551A770C178698C60052D185 /* spu.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A762217868EF00052D185 /* spu.c */; };
+		551A770D178698C60052D185 /* xa.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A762817868EF00052D185 /* xa.c */; };
+		551A770E178698C60052D185 /* reverb.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A761F17868EF00052D185 /* reverb.c */; };
+		551A770F178698C60052D185 /* registers.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A761C17868EF00052D185 /* registers.c */; };
+		551A7710178698C60052D185 /* freeze.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A761417868EF00052D185 /* freeze.c */; };
+		551A7711178698C60052D185 /* dma.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A760F17868EF00052D185 /* dma.c */; };
+		551A7712178698C60052D185 /* adsr.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A760A17868EF00052D185 /* adsr.c */; };
+		551A7713178698C60052D185 /* externals.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A761217868EF00052D185 /* externals.c */; };
+		551A7716178698C60052D185 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A749E17868B110052D185 /* Cocoa.framework */; };
+		551A7719178698C60052D185 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 551A756017868BEC0052D185 /* Credits.rtf */; };
+		551A771A178698C60052D185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 551A756217868BEC0052D185 /* Localizable.strings */; };
+		551A771B178698C60052D185 /* NetSfPeopsSpuPluginMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551A756417868BEC0052D185 /* NetSfPeopsSpuPluginMain.xib */; };
+		551A77221786990E0052D185 /* openal.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A761817868EF00052D185 /* openal.c */; };
+		551A7724178699250052D185 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A7723178699250052D185 /* OpenAL.framework */; };
+		554FD70917C6A13E0056CF66 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 554FD70817C6A13E0056CF66 /* SDL2.framework */; };
+		55FBE8F81A10850000BEC452 /* NamedSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBE8F71A10850000BEC452 /* NamedSlider.swift */; };
+		55FBE8F91A10850000BEC452 /* NamedSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBE8F71A10850000BEC452 /* NamedSlider.swift */; };
+		55FBE8FB1A10891A00BEC452 /* SPUPluginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBE8FA1A10891A00BEC452 /* SPUPluginController.swift */; };
+		55FBE8FC1A10891A00BEC452 /* SPUPluginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FBE8FA1A10891A00BEC452 /* SPUPluginController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		550128AB1A11829B00468D09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		550128AC1A1182A600468D09 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		550128AE1A1182D700468D09 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		550128B11A1182E500468D09 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		550FFAEE17CEB8780003A2F3 /* DFSound.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = DFSound.exp; sourceTree = "<group>"; };
+		551A749E17868B110052D185 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		551A74A117868B110052D185 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		551A74A217868B110052D185 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		551A74A317868B110052D185 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		551A754A17868BEC0052D185 /* Info-AL.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-AL.plist"; sourceTree = "<group>"; };
+		551A754B17868BEC0052D185 /* Info-SDL.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-SDL.plist"; sourceTree = "<group>"; };
+		551A754E17868BEC0052D185 /* maccfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = maccfg.h; sourceTree = "<group>"; };
+		551A755117868BEC0052D185 /* PluginController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluginController.h; sourceTree = "<group>"; };
+		551A755217868BEC0052D185 /* PluginController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PluginController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		551A760A17868EF00052D185 /* adsr.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = adsr.c; sourceTree = "<group>"; };
+		551A760B17868EF00052D185 /* adsr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = adsr.h; sourceTree = "<group>"; };
+		551A760F17868EF00052D185 /* dma.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = dma.c; sourceTree = "<group>"; };
+		551A761017868EF00052D185 /* dma.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dma.h; sourceTree = "<group>"; };
+		551A761117868EF00052D185 /* dsoundoss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = dsoundoss.h; sourceTree = "<group>"; };
+		551A761217868EF00052D185 /* externals.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = externals.c; sourceTree = "<group>"; };
+		551A761317868EF00052D185 /* externals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = externals.h; sourceTree = "<group>"; };
+		551A761417868EF00052D185 /* freeze.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = freeze.c; sourceTree = "<group>"; };
+		551A761517868EF00052D185 /* gauss_i.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gauss_i.h; sourceTree = "<group>"; };
+		551A761817868EF00052D185 /* openal.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = openal.c; sourceTree = "<group>"; };
+		551A761A17868EF00052D185 /* psemuxa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = psemuxa.h; sourceTree = "<group>"; };
+		551A761C17868EF00052D185 /* registers.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = registers.c; sourceTree = "<group>"; };
+		551A761D17868EF00052D185 /* registers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = registers.h; sourceTree = "<group>"; };
+		551A761E17868EF00052D185 /* regs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = regs.h; sourceTree = "<group>"; };
+		551A761F17868EF00052D185 /* reverb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = reverb.c; sourceTree = "<group>"; };
+		551A762017868EF00052D185 /* reverb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = reverb.h; sourceTree = "<group>"; };
+		551A762117868EF00052D185 /* sdl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = sdl.c; sourceTree = "<group>"; };
+		551A762217868EF00052D185 /* spu.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; lineEnding = 0; path = spu.c; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.c; };
+		551A762317868EF00052D185 /* spu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = spu.h; sourceTree = "<group>"; };
+		551A762717868EF00052D185 /* stdafx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stdafx.h; sourceTree = "<group>"; };
+		551A762817868EF00052D185 /* xa.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = xa.c; sourceTree = "<group>"; };
+		551A762917868EF00052D185 /* xa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = xa.h; sourceTree = "<group>"; };
+		551A7684178691170052D185 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		551A76AC178693C60052D185 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		551A76AE178693D60052D185 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		551A76AF178693D60052D185 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		551A76B2178693EA0052D185 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		551A76E2178696BD0052D185 /* PeopsSpuSDL.psxplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeopsSpuSDL.psxplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		551A771F178698C60052D185 /* PeopsSpuAL.psxplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeopsSpuAL.psxplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		551A7723178699250052D185 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		554FD70817C6A13E0056CF66 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
+		5569B0A4182F0B4900991C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NetSfPeopsSpuPluginMain.xib; sourceTree = "<group>"; };
+		5569B0BB182F0BC000991C9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NetSfPeopsSpuPluginMain.strings; sourceTree = "<group>"; };
+		55707E9518123580007CC5D0 /* hu */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		558328E1184F268300DFACE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/NetSfPeopsSpuPluginMain.strings"; sourceTree = "<group>"; };
+		558328E2184F268C00DFACE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.rtf"; sourceTree = "<group>"; };
+		5589A68524B26BBA001A74BA /* plugins.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = plugins.xcconfig; path = ../../plugins.xcconfig; sourceTree = "<group>"; };
+		5589A68624B26BBA001A74BA /* Pcsxr.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pcsxr.xcconfig; path = ../../Pcsxr.xcconfig; sourceTree = "<group>"; };
+		5598AAF517D2D54A0024F71D /* fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55B13FBF18C4FAC600ACD9AC /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		55E159B71845BACC007983CB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/NetSfPeopsSpuPluginMain.strings; sourceTree = "<group>"; };
+		55E159B91845BACF007983CB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/NetSfPeopsSpuPluginMain.strings; sourceTree = "<group>"; };
+		55FBE8F51A1084FE00BEC452 /* PeopsSpuSDL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PeopsSpuSDL-Bridging-Header.h"; sourceTree = "<group>"; };
+		55FBE8F61A1084FF00BEC452 /* PeopsSpuAL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PeopsSpuAL-Bridging-Header.h"; sourceTree = "<group>"; };
+		55FBE8F71A10850000BEC452 /* NamedSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedSlider.swift; sourceTree = "<group>"; };
+		55FBE8FA1A10891A00BEC452 /* SPUPluginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPUPluginController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		551A76DC178696BD0052D185 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551A76DD178696BD0052D185 /* Cocoa.framework in Frameworks */,
+				554FD70917C6A13E0056CF66 /* SDL2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		551A7714178698C60052D185 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551A7724178699250052D185 /* OpenAL.framework in Frameworks */,
+				551A7716178698C60052D185 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* Pcsxr */ = {
+			isa = PBXGroup;
+			children = (
+				5589A68624B26BBA001A74BA /* Pcsxr.xcconfig */,
+				5589A68524B26BBA001A74BA /* plugins.xcconfig */,
+				551A754917868BEC0052D185 /* DFSound */,
+				551A749D17868B110052D185 /* Frameworks */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = Pcsxr;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				551A76E2178696BD0052D185 /* PeopsSpuSDL.psxplugin */,
+				551A771F178698C60052D185 /* PeopsSpuAL.psxplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		551A749D17868B110052D185 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				554FD70817C6A13E0056CF66 /* SDL2.framework */,
+				551A7723178699250052D185 /* OpenAL.framework */,
+				551A76AC178693C60052D185 /* Carbon.framework */,
+				551A749E17868B110052D185 /* Cocoa.framework */,
+				551A7684178691170052D185 /* IOKit.framework */,
+				551A76B2178693EA0052D185 /* CoreFoundation.framework */,
+				551A76AE178693D60052D185 /* ApplicationServices.framework */,
+				551A76AF178693D60052D185 /* CoreServices.framework */,
+				551A74A117868B110052D185 /* AppKit.framework */,
+				551A74A217868B110052D185 /* CoreData.framework */,
+				551A74A317868B110052D185 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		551A754917868BEC0052D185 /* DFSound */ = {
+			isa = PBXGroup;
+			children = (
+				551A760917868EF00052D185 /* src */,
+				551A754C17868BEC0052D185 /* macsrc */,
+				551A755817868BEC0052D185 /* Resorces */,
+			);
+			name = DFSound;
+			sourceTree = "<group>";
+		};
+		551A754C17868BEC0052D185 /* macsrc */ = {
+			isa = PBXGroup;
+			children = (
+				551A754E17868BEC0052D185 /* maccfg.h */,
+				55FBE8F71A10850000BEC452 /* NamedSlider.swift */,
+				551A755117868BEC0052D185 /* PluginController.h */,
+				551A755217868BEC0052D185 /* PluginController.m */,
+				55FBE8FA1A10891A00BEC452 /* SPUPluginController.swift */,
+				55FBE8F51A1084FE00BEC452 /* PeopsSpuSDL-Bridging-Header.h */,
+				55FBE8F61A1084FF00BEC452 /* PeopsSpuAL-Bridging-Header.h */,
+			);
+			path = macsrc;
+			sourceTree = "<group>";
+		};
+		551A755817868BEC0052D185 /* Resorces */ = {
+			isa = PBXGroup;
+			children = (
+				551A755917868BEC0052D185 /* OpenAL */,
+				551A755C17868BEC0052D185 /* SDL */,
+				551A755F17868BEC0052D185 /* Shared */,
+			);
+			path = Resorces;
+			sourceTree = "<group>";
+		};
+		551A755917868BEC0052D185 /* OpenAL */ = {
+			isa = PBXGroup;
+			children = (
+				551A754A17868BEC0052D185 /* Info-AL.plist */,
+				550128AD1A1182D700468D09 /* InfoPlist.strings */,
+			);
+			path = OpenAL;
+			sourceTree = "<group>";
+		};
+		551A755C17868BEC0052D185 /* SDL */ = {
+			isa = PBXGroup;
+			children = (
+				551A754B17868BEC0052D185 /* Info-SDL.plist */,
+				550128B01A1182E500468D09 /* InfoPlist.strings */,
+			);
+			path = SDL;
+			sourceTree = "<group>";
+		};
+		551A755F17868BEC0052D185 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				550FFAEE17CEB8780003A2F3 /* DFSound.exp */,
+				551A756017868BEC0052D185 /* Credits.rtf */,
+				551A756217868BEC0052D185 /* Localizable.strings */,
+				551A756417868BEC0052D185 /* NetSfPeopsSpuPluginMain.xib */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		551A760917868EF00052D185 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				551A760A17868EF00052D185 /* adsr.c */,
+				551A760B17868EF00052D185 /* adsr.h */,
+				551A760F17868EF00052D185 /* dma.c */,
+				551A761017868EF00052D185 /* dma.h */,
+				551A761117868EF00052D185 /* dsoundoss.h */,
+				551A761217868EF00052D185 /* externals.c */,
+				551A761317868EF00052D185 /* externals.h */,
+				551A761417868EF00052D185 /* freeze.c */,
+				551A761517868EF00052D185 /* gauss_i.h */,
+				551A761817868EF00052D185 /* openal.c */,
+				551A761A17868EF00052D185 /* psemuxa.h */,
+				551A761C17868EF00052D185 /* registers.c */,
+				551A761D17868EF00052D185 /* registers.h */,
+				551A761E17868EF00052D185 /* regs.h */,
+				551A761F17868EF00052D185 /* reverb.c */,
+				551A762017868EF00052D185 /* reverb.h */,
+				551A762117868EF00052D185 /* sdl.c */,
+				551A762217868EF00052D185 /* spu.c */,
+				551A762317868EF00052D185 /* spu.h */,
+				551A762717868EF00052D185 /* stdafx.h */,
+				551A762817868EF00052D185 /* xa.c */,
+				551A762917868EF00052D185 /* xa.h */,
+			);
+			name = src;
+			path = ../../../plugins/dfsound;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		551A76DA178696BD0052D185 /* PeopsSpuSDL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 551A76DF178696BD0052D185 /* Build configuration list for PBXNativeTarget "PeopsSpuSDL" */;
+			buildPhases = (
+				551A76DB178696BD0052D185 /* Sources */,
+				551A76DC178696BD0052D185 /* Frameworks */,
+				551A76DE178696BD0052D185 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PeopsSpuSDL;
+			productName = BasePlugin;
+			productReference = 551A76E2178696BD0052D185 /* PeopsSpuSDL.psxplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+		551A7706178698C60052D185 /* PeopsSpuAL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 551A771C178698C60052D185 /* Build configuration list for PBXNativeTarget "PeopsSpuAL" */;
+			buildPhases = (
+				551A7709178698C60052D185 /* Sources */,
+				551A7714178698C60052D185 /* Frameworks */,
+				551A7717178698C60052D185 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PeopsSpuAL;
+			productName = BasePlugin;
+			productReference = 551A771F178698C60052D185 /* PeopsSpuAL.psxplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		551B7793FE84155DC02AAC0B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					551A76DA178696BD0052D185 = {
+						LastSwiftMigration = 0800;
+					};
+					551A7706178698C60052D185 = {
+						LastSwiftMigration = 0910;
+					};
+				};
+			};
+			buildConfigurationList = 71F353F80FD98DFE00CBEC28 /* Build configuration list for PBXProject "DFSound" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				Base,
+				en,
+				ja,
+				es,
+				fr,
+				de,
+				"pt-BR",
+				"zh-Hant-TW",
+				ru,
+				it,
+				hu,
+				"zh-Hans",
+				"zh-Hant",
+				"ko-KR",
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* Pcsxr */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				551A76DA178696BD0052D185 /* PeopsSpuSDL */,
+				551A7706178698C60052D185 /* PeopsSpuAL */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		551A76DE178696BD0052D185 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551A7703178698980052D185 /* Credits.rtf in Resources */,
+				550128B21A1182E500468D09 /* InfoPlist.strings in Resources */,
+				551A7704178698980052D185 /* Localizable.strings in Resources */,
+				551A7705178698980052D185 /* NetSfPeopsSpuPluginMain.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		551A7717178698C60052D185 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551A7719178698C60052D185 /* Credits.rtf in Resources */,
+				550128AF1A1182D700468D09 /* InfoPlist.strings in Resources */,
+				551A771A178698C60052D185 /* Localizable.strings in Resources */,
+				551A771B178698C60052D185 /* NetSfPeopsSpuPluginMain.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		551A76DB178696BD0052D185 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551A76F7178697E70052D185 /* PluginController.m in Sources */,
+				551A76F8178698130052D185 /* sdl.c in Sources */,
+				551A76F9178698130052D185 /* spu.c in Sources */,
+				551A76FA178698130052D185 /* xa.c in Sources */,
+				55FBE8F81A10850000BEC452 /* NamedSlider.swift in Sources */,
+				551A76FB178698160052D185 /* reverb.c in Sources */,
+				551A76FC1786981A0052D185 /* registers.c in Sources */,
+				55FBE8FB1A10891A00BEC452 /* SPUPluginController.swift in Sources */,
+				551A76FD178698230052D185 /* freeze.c in Sources */,
+				551A76FF178698390052D185 /* dma.c in Sources */,
+				551A77001786983C0052D185 /* adsr.c in Sources */,
+				551A7701178698600052D185 /* externals.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		551A7709178698C60052D185 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551A770A178698C60052D185 /* PluginController.m in Sources */,
+				551A770C178698C60052D185 /* spu.c in Sources */,
+				551A770D178698C60052D185 /* xa.c in Sources */,
+				551A770E178698C60052D185 /* reverb.c in Sources */,
+				55FBE8F91A10850000BEC452 /* NamedSlider.swift in Sources */,
+				551A770F178698C60052D185 /* registers.c in Sources */,
+				551A7710178698C60052D185 /* freeze.c in Sources */,
+				55FBE8FC1A10891A00BEC452 /* SPUPluginController.swift in Sources */,
+				551A7711178698C60052D185 /* dma.c in Sources */,
+				551A7712178698C60052D185 /* adsr.c in Sources */,
+				551A7713178698C60052D185 /* externals.c in Sources */,
+				551A77221786990E0052D185 /* openal.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		550128AD1A1182D700468D09 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				550128AE1A1182D700468D09 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		550128B01A1182E500468D09 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				550128B11A1182E500468D09 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		551A756017868BEC0052D185 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				558328E2184F268C00DFACE4 /* zh-Hans */,
+				550128AB1A11829B00468D09 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		551A756217868BEC0052D185 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5598AAF517D2D54A0024F71D /* fr */,
+				55707E9518123580007CC5D0 /* hu */,
+				55B13FBF18C4FAC600ACD9AC /* zh-Hans */,
+				550128AC1A1182A600468D09 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		551A756417868BEC0052D185 /* NetSfPeopsSpuPluginMain.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5569B0A4182F0B4900991C9C /* Base */,
+				5569B0BB182F0BC000991C9C /* en */,
+				55E159B71845BACC007983CB /* fr */,
+				55E159B91845BACF007983CB /* hu */,
+				558328E1184F268300DFACE4 /* zh-Hans */,
+			);
+			name = NetSfPeopsSpuPluginMain.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		551A76E0178696BD0052D185 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "";
+				EXPORTED_SYMBOLS_FILE = Resorces/Shared/DFSound.exp;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PCSXRPLUG=SDLSound",
+					USESDL,
+				);
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL2.framework/Headers,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Resorces/SDL/Info-SDL.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUSDLPlugin;
+				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/PeopsSpuSDL-Bridging-Header.h";
+				WRAPPER_EXTENSION = psxplugin;
+			};
+			name = Debug;
+		};
+		551A76E1178696BD0052D185 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "";
+				EXPORTED_SYMBOLS_FILE = Resorces/Shared/DFSound.exp;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PCSXRPLUG=SDLSound",
+					USESDL,
+				);
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL2.framework/Headers,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Resorces/SDL/Info-SDL.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUSDLPlugin;
+				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/PeopsSpuSDL-Bridging-Header.h";
+				WRAPPER_EXTENSION = psxplugin;
+			};
+			name = Release;
+		};
+		551A771D178698C60052D185 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "";
+				EXPORTED_SYMBOLS_FILE = Resorces/Shared/DFSound.exp;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PCSXRPLUG=ALSound",
+					USEOPENAL,
+				);
+				INFOPLIST_FILE = "Resorces/OpenAL/Info-AL.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUALPlugin;
+				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/PeopsSpuAL-Bridging-Header.h";
+				WRAPPER_EXTENSION = psxplugin;
+			};
+			name = Debug;
+		};
+		551A771E178698C60052D185 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "";
+				EXPORTED_SYMBOLS_FILE = Resorces/Shared/DFSound.exp;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PCSXRPLUG=ALSound",
+					USEOPENAL,
+				);
+				INFOPLIST_FILE = "Resorces/OpenAL/Info-AL.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUALPlugin;
+				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/PeopsSpuAL-Bridging-Header.h";
+				WRAPPER_EXTENSION = psxplugin;
+			};
+			name = Release;
+		};
+		557649B91786B09E007C4457 /* Instrument */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5589A68524B26BBA001A74BA /* plugins.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_PREPROCESSOR_DEFINITIONS = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_MACOSX=1",
+					"$(DEBUG_PREPROCESSOR_DEFINITIONS)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = binary;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wobjc-interface-ivars",
+				);
+			};
+			name = Instrument;
+		};
+		557649C11786B09E007C4457 /* Instrument */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "";
+				EXPORTED_SYMBOLS_FILE = Resorces/Shared/DFSound.exp;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PCSXRPLUG=SDLSound",
+					USESDL,
+				);
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/SDL2.framework/Headers,
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Resorces/SDL/Info-SDL.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUSDLPlugin;
+				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/PeopsSpuSDL-Bridging-Header.h";
+				WRAPPER_EXTENSION = psxplugin;
+			};
+			name = Instrument;
+		};
+		557649C21786B09E007C4457 /* Instrument */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "";
+				EXPORTED_SYMBOLS_FILE = Resorces/Shared/DFSound.exp;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = (
+					"PCSXRPLUG=ALSound",
+					USEOPENAL,
+				);
+				INFOPLIST_FILE = "Resorces/OpenAL/Info-AL.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.sf.peops.SPUALPlugin;
+				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/PeopsSpuAL-Bridging-Header.h";
+				WRAPPER_EXTENSION = psxplugin;
+			};
+			name = Instrument;
+		};
+		71F353F90FD98DFE00CBEC28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5589A68524B26BBA001A74BA /* plugins.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_MACOSX=1",
+					"$(DEBUG_PREPROCESSOR_DEFINITIONS)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = binary;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wobjc-interface-ivars",
+				);
+			};
+			name = Debug;
+		};
+		71F353FA0FD98DFE00CBEC28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5589A68524B26BBA001A74BA /* plugins.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_PREPROCESSOR_DEFINITIONS = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_MACOSX=1",
+					"$(DEBUG_PREPROCESSOR_DEFINITIONS)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				LLVM_LTO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = binary;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wobjc-interface-ivars",
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		551A76DF178696BD0052D185 /* Build configuration list for PBXNativeTarget "PeopsSpuSDL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				551A76E0178696BD0052D185 /* Debug */,
+				551A76E1178696BD0052D185 /* Release */,
+				557649C11786B09E007C4457 /* Instrument */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		551A771C178698C60052D185 /* Build configuration list for PBXNativeTarget "PeopsSpuAL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				551A771D178698C60052D185 /* Debug */,
+				551A771E178698C60052D185 /* Release */,
+				557649C21786B09E007C4457 /* Instrument */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71F353F80FD98DFE00CBEC28 /* Build configuration list for PBXProject "DFSound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71F353F90FD98DFE00CBEC28 /* Debug */,
+				71F353FA0FD98DFE00CBEC28 /* Release */,
+				557649B91786B09E007C4457 /* Instrument */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 551B7793FE84155DC02AAC0B /* Project object */;
+}

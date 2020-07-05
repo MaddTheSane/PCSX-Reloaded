@@ -1,0 +1,7 @@
+#include "Pcsxr.xcconfig"
+
+
+HEADER_SEARCH_PATHS = ../../../include ../../../libpcsxcore ../../Source
+GCC_PRECOMPILE_PREFIX_HEADER = YES
+GCC_PREFIX_HEADER = ../../pcsxr.pch
+DEBUG_INFORMATION_FORMAT = dwarf-with-dsym

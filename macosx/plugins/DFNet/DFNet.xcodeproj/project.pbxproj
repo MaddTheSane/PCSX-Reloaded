@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		551A776817869E430052D185 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A749E17868B110052D185 /* Cocoa.framework */; };
+		551A776E17869E640052D185 /* cfg.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A754317868BEC0052D185 /* cfg.c */; };
+		551A776F17869E640052D185 /* PluginConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A754517868BEC0052D185 /* PluginConfigController.m */; };
+		551A777017869E640052D185 /* SockDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A754717868BEC0052D185 /* SockDialog.m */; };
+		551A777A17869E830052D185 /* dfnet.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A777317869E830052D185 /* dfnet.c */; };
+		551A777E17869E830052D185 /* unix.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A777817869E830052D185 /* unix.c */; };
+		551A777F17869EAE0052D185 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 551A753617868BEB0052D185 /* Credits.rtf */; };
+		551A778017869EAE0052D185 /* DFNet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551A753817868BEB0052D185 /* DFNet.xib */; };
+		551A778117869EAE0052D185 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 551A753A17868BEB0052D185 /* InfoPlist.strings */; };
+		551A778217869EAE0052D185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 551A753C17868BEB0052D185 /* Localizable.strings */; };
+		551A778317869EAE0052D185 /* SockDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551A753E17868BEB0052D185 /* SockDialog.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B976C00074C14B4007C050A /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = /System/Library/Frameworks/Kernel.framework; sourceTree = "<absolute>"; };
+		5501289E1A1181E500468D09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		5501289F1A1181F000468D09 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		550128A01A1181FC00468D09 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		550E343818E6293D00A1AD21 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		551A749E17868B110052D185 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		551A74A117868B110052D185 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		551A74A217868B110052D185 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		551A74A317868B110052D185 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		551A754017868BEC0052D185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		551A754317868BEC0052D185 /* cfg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cfg.c; sourceTree = "<group>"; };
+		551A754417868BEC0052D185 /* PluginConfigController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PluginConfigController.h; sourceTree = "<group>"; };
+		551A754517868BEC0052D185 /* PluginConfigController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PluginConfigController.m; sourceTree = "<group>"; };
+		551A754617868BEC0052D185 /* SockDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SockDialog.h; sourceTree = "<group>"; };
+		551A754717868BEC0052D185 /* SockDialog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SockDialog.m; sourceTree = "<group>"; };
+		551A754817868BEC0052D185 /* version.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = version.plist; sourceTree = "<group>"; };
+		551A7684178691170052D185 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		551A76AC178693C60052D185 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		551A76AE178693D60052D185 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		551A76AF178693D60052D185 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		551A76B2178693EA0052D185 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		551A76D1178695BD0052D185 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		551A76D2178695C70052D185 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		551A76D8178696810052D185 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		551A7723178699250052D185 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
+		551A776D17869E430052D185 /* DFNet.psxplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DFNet.psxplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		551A777317869E830052D185 /* dfnet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dfnet.c; sourceTree = "<group>"; };
+		551A777417869E830052D185 /* dfnet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = dfnet.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		551A777817869E830052D185 /* unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unix.c; sourceTree = "<group>"; };
+		554FD70817C6A13E0056CF66 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = /Library/Frameworks/SDL2.framework; sourceTree = "<absolute>"; };
+		5569B0A2182F0B4200991C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DFNet.xib; sourceTree = "<group>"; };
+		5569B0A3182F0B4800991C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SockDialog.xib; sourceTree = "<group>"; };
+		5569B0BD182F0BCE00991C9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DFNet.strings; sourceTree = "<group>"; };
+		5569B0BF182F0BD500991C9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/SockDialog.strings; sourceTree = "<group>"; };
+		55707E921812357D007CC5D0 /* hu */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
+		558328D6184F253300DFACE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DFNet.strings"; sourceTree = "<group>"; };
+		558328D8184F253D00DFACE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SockDialog.strings"; sourceTree = "<group>"; };
+		558328D9184F254500DFACE4 /* zh-Hans */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		558328E4184F272C00DFACE4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.rtf"; sourceTree = "<group>"; };
+		5589A68724B26BF2001A74BA /* Pcsxr.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Pcsxr.xcconfig; path = ../../Pcsxr.xcconfig; sourceTree = "<group>"; };
+		5589A68824B26BF3001A74BA /* plugins.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = plugins.xcconfig; path = ../../plugins.xcconfig; sourceTree = "<group>"; };
+		5590BB8F1A87DA0B0027F61B /* DFNet.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = DFNet.exp; sourceTree = "<group>"; };
+		5598AAF217D2D5470024F71D /* fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		55CA586A17E799E6007424D5 /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = System/Library/Frameworks/DiskArbitration.framework; sourceTree = SDKROOT; };
+		55E15993184564D4007983CB /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		55E159AF1845BA88007983CB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SockDialog.strings; sourceTree = "<group>"; };
+		55E159B11845BA8A007983CB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/SockDialog.strings; sourceTree = "<group>"; };
+		55E159B31845BABA007983CB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DFNet.strings; sourceTree = "<group>"; };
+		55E159B51845BABC007983CB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/DFNet.strings; sourceTree = "<group>"; };
+		55E5AD9E1AF53865000471C5 /* libarchive.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libarchive.dylib; path = usr/lib/libarchive.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		551A776717869E430052D185 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551A776817869E430052D185 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* Pcsxr */ = {
+			isa = PBXGroup;
+			children = (
+				5589A68724B26BF2001A74BA /* Pcsxr.xcconfig */,
+				5589A68824B26BF3001A74BA /* plugins.xcconfig */,
+				551A753217868BEB0052D185 /* DFNet */,
+				551A749D17868B110052D185 /* Frameworks */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = Pcsxr;
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				551A776D17869E430052D185 /* DFNet.psxplugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		551A749D17868B110052D185 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55E5AD9E1AF53865000471C5 /* libarchive.dylib */,
+				55E15993184564D4007983CB /* GLKit.framework */,
+				554FD70817C6A13E0056CF66 /* SDL2.framework */,
+				55CA586A17E799E6007424D5 /* DiskArbitration.framework */,
+				551A7723178699250052D185 /* OpenAL.framework */,
+				551A76D1178695BD0052D185 /* GLUT.framework */,
+				551A76D2178695C70052D185 /* OpenGL.framework */,
+				2B976C00074C14B4007C050A /* Kernel.framework */,
+				551A76AC178693C60052D185 /* Carbon.framework */,
+				551A749E17868B110052D185 /* Cocoa.framework */,
+				551A7684178691170052D185 /* IOKit.framework */,
+				551A76B2178693EA0052D185 /* CoreFoundation.framework */,
+				551A76AE178693D60052D185 /* ApplicationServices.framework */,
+				551A76AF178693D60052D185 /* CoreServices.framework */,
+				551A74A117868B110052D185 /* AppKit.framework */,
+				551A74A217868B110052D185 /* CoreData.framework */,
+				551A74A317868B110052D185 /* Foundation.framework */,
+				551A76D8178696810052D185 /* libz.dylib */,
+				550E343818E6293D00A1AD21 /* QuickLook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		551A753217868BEB0052D185 /* DFNet */ = {
+			isa = PBXGroup;
+			children = (
+				551A777117869E830052D185 /* src */,
+				551A754117868BEC0052D185 /* macsrc */,
+				551A760817868EC10052D185 /* Resoruces */,
+			);
+			name = DFNet;
+			sourceTree = "<group>";
+		};
+		551A754117868BEC0052D185 /* macsrc */ = {
+			isa = PBXGroup;
+			children = (
+				551A754317868BEC0052D185 /* cfg.c */,
+				551A754417868BEC0052D185 /* PluginConfigController.h */,
+				551A754517868BEC0052D185 /* PluginConfigController.m */,
+				551A754617868BEC0052D185 /* SockDialog.h */,
+				551A754717868BEC0052D185 /* SockDialog.m */,
+			);
+			path = macsrc;
+			sourceTree = "<group>";
+		};
+		551A760817868EC10052D185 /* Resoruces */ = {
+			isa = PBXGroup;
+			children = (
+				5590BB8F1A87DA0B0027F61B /* DFNet.exp */,
+				551A753617868BEB0052D185 /* Credits.rtf */,
+				551A753817868BEB0052D185 /* DFNet.xib */,
+				551A753E17868BEB0052D185 /* SockDialog.xib */,
+				551A753A17868BEB0052D185 /* InfoPlist.strings */,
+				551A753C17868BEB0052D185 /* Localizable.strings */,
+				551A754017868BEC0052D185 /* Info.plist */,
+				551A754817868BEC0052D185 /* version.plist */,
+			);
+			name = Resoruces;
+			sourceTree = "<group>";
+		};
+		551A777117869E830052D185 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				551A777317869E830052D185 /* dfnet.c */,
+				551A777417869E830052D185 /* dfnet.h */,
+				551A777817869E830052D185 /* unix.c */,
+			);
+			name = src;
+			path = ../../../plugins/dfnet;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		551A776517869E430052D185 /* DFNet */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 551A776A17869E430052D185 /* Build configuration list for PBXNativeTarget "DFNet" */;
+			buildPhases = (
+				551A776617869E430052D185 /* Sources */,
+				551A776717869E430052D185 /* Frameworks */,
+				551A776917869E430052D185 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DFNet;
+			productName = BasePlugin;
+			productReference = 551A776D17869E430052D185 /* DFNet.psxplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		551B7793FE84155DC02AAC0A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 71F353F80FD98DFE00CBEC28 /* Build configuration list for PBXProject "DFNet" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				Base,
+				en,
+				ja,
+				es,
+				fr,
+				de,
+				"pt-BR",
+				"zh-Hant-TW",
+				ru,
+				it,
+				hu,
+				"zh-Hans",
+				"zh-Hant",
+				"ko-KR",
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* Pcsxr */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				551A776517869E430052D185 /* DFNet */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		551A776917869E430052D185 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551A777F17869EAE0052D185 /* Credits.rtf in Resources */,
+				551A778017869EAE0052D185 /* DFNet.xib in Resources */,
+				551A778117869EAE0052D185 /* InfoPlist.strings in Resources */,
+				551A778217869EAE0052D185 /* Localizable.strings in Resources */,
+				551A778317869EAE0052D185 /* SockDialog.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		551A776617869E430052D185 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				551A776E17869E640052D185 /* cfg.c in Sources */,
+				551A776F17869E640052D185 /* PluginConfigController.m in Sources */,
+				551A777017869E640052D185 /* SockDialog.m in Sources */,
+				551A777A17869E830052D185 /* dfnet.c in Sources */,
+				551A777E17869E830052D185 /* unix.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		551A753617868BEB0052D185 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				558328E4184F272C00DFACE4 /* zh-Hans */,
+				5501289E1A1181E500468D09 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		551A753817868BEB0052D185 /* DFNet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5569B0A2182F0B4200991C9C /* Base */,
+				5569B0BD182F0BCE00991C9C /* en */,
+				55E159B31845BABA007983CB /* fr */,
+				55E159B51845BABC007983CB /* hu */,
+				558328D6184F253300DFACE4 /* zh-Hans */,
+			);
+			name = DFNet.xib;
+			sourceTree = "<group>";
+		};
+		551A753A17868BEB0052D185 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				558328D9184F254500DFACE4 /* zh-Hans */,
+				5501289F1A1181F000468D09 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		551A753C17868BEB0052D185 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5598AAF217D2D5470024F71D /* fr */,
+				55707E921812357D007CC5D0 /* hu */,
+				550128A01A1181FC00468D09 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		551A753E17868BEB0052D185 /* SockDialog.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5569B0A3182F0B4800991C9C /* Base */,
+				5569B0BF182F0BD500991C9C /* en */,
+				55E159AF1845BA88007983CB /* fr */,
+				55E159B11845BA8A007983CB /* hu */,
+				558328D8184F253D00DFACE4 /* zh-Hans */,
+			);
+			name = SockDialog.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		551A776B17869E430052D185 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "";
+				EXPORTED_SYMBOLS_FILE = DFNet.exp;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=DFNet";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
+				PRODUCT_BUNDLE_IDENTIFIER = net.codeplex.pcsxr.DFNet;
+				WRAPPER_EXTENSION = psxplugin;
+			};
+			name = Debug;
+		};
+		551A776C17869E430052D185 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "";
+				EXPORTED_SYMBOLS_FILE = DFNet.exp;
+				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=DFNet";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
+				PRODUCT_BUNDLE_IDENTIFIER = net.codeplex.pcsxr.DFNet;
+				WRAPPER_EXTENSION = psxplugin;
+			};
+			name = Release;
+		};
+		557649B91786B09E007C4457 /* Instrument */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5589A68824B26BF3001A74BA /* plugins.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_PREPROCESSOR_DEFINITIONS = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_MACOSX=1",
+					"$(DEBUG_PREPROCESSOR_DEFINITIONS)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = binary;
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wobjc-interface-ivars",
+				);
+			};
+			name = Instrument;
+		};
+		557649C31786B09E007C4457 /* Instrument */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_EMPTY_BODY = YES;
+				CODE_SIGN_IDENTITY = "";
+				EXPORTED_SYMBOLS_FILE = DFNet.exp;
+				GCC_NO_COMMON_BLOCKS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=DFNet";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
+				PRODUCT_BUNDLE_IDENTIFIER = net.codeplex.pcsxr.DFNet;
+				WRAPPER_EXTENSION = psxplugin;
+			};
+			name = Instrument;
+		};
+		71F353F90FD98DFE00CBEC28 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5589A68824B26BF3001A74BA /* plugins.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_MACOSX=1",
+					"$(DEBUG_PREPROCESSOR_DEFINITIONS)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = binary;
+				STRIP_INSTALLED_PRODUCT = NO;
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wobjc-interface-ivars",
+				);
+			};
+			name = Debug;
+		};
+		71F353FA0FD98DFE00CBEC28 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5589A68824B26BF3001A74BA /* plugins.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_PREPROCESSOR_DEFINITIONS = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"_MACOSX=1",
+					"$(DEBUG_PREPROCESSOR_DEFINITIONS)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_PKGINFO_FILE = YES;
+				LLVM_LTO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = binary;
+				WARNING_CFLAGS = (
+					"-Wno-comment",
+					"-Wobjc-interface-ivars",
+				);
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		551A776A17869E430052D185 /* Build configuration list for PBXNativeTarget "DFNet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				551A776B17869E430052D185 /* Debug */,
+				551A776C17869E430052D185 /* Release */,
+				557649C31786B09E007C4457 /* Instrument */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71F353F80FD98DFE00CBEC28 /* Build configuration list for PBXProject "DFNet" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71F353F90FD98DFE00CBEC28 /* Debug */,
+				71F353FA0FD98DFE00CBEC28 /* Release */,
+				557649B91786B09E007C4457 /* Instrument */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 551B7793FE84155DC02AAC0A /* Project object */;
+}
