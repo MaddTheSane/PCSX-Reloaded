@@ -1154,3 +1154,70 @@ void DebugCheckBP(u32 address, enum breakpoint_types type) {
     breakpoint_t *bp;
     char reply[512];
 
+    if (!debugger_active || reset)
+        return;
+    
+    for (bp = first; bp; bp = next_breakpoint(bp)) {
+        if ((bp->type == type) && (bp->address == address)) {
+            sprintf(reply, "030 %X@%08X\r\n", bp->number, psxRegs.pc);
+            WriteSocket(reply, strlen(reply));
+            paused = 1;
+            return;
+        }
+    }
+    if (breakmp_e && type == BE) {
+        if (!IsMapMarked(address, MAP_EXEC)) {
+            sprintf(reply, "010 %08X@%08X\r\n", address, psxRegs.pc);
+            WriteSocket(reply, strlen(reply));
+            paused = 1;
+        }
+    }
+    if (breakmp_r8 && type == BR1) {
+        if (!IsMapMarked(address, MAP_R8)) {
+            sprintf(reply, "011 %08X@%08X\r\n", address, psxRegs.pc);
+            WriteSocket(reply, strlen(reply));
+            paused = 1;
+        }
+    }
+    if (breakmp_r16 && type == BR2) {
+        if (!IsMapMarked(address, MAP_R16)) {
+            sprintf(reply, "012 %08X@%08X\r\n", address, psxRegs.pc);
+            WriteSocket(reply, strlen(reply));
+            paused = 1;
+        }
+    }
+    if (breakmp_r32 && type == BR4) {
+        if (!IsMapMarked(address, MAP_R32)) {
+            sprintf(reply, "013 %08X@%08X\r\n", address, psxRegs.pc);
+            WriteSocket(reply, strlen(reply));
+            paused = 1;
+        }
+    }
+    if (breakmp_w8 && type == BW1) {
+        if (!IsMapMarked(address, MAP_W8)) {
+            sprintf(reply, "014 %08X@%08X\r\n", address, psxRegs.pc);
+            WriteSocket(reply, strlen(reply));
+            paused = 1;
+        }
+    }
+    if (breakmp_w16 && type == BW2) {
+        if (!IsMapMarked(address, MAP_W16)) {
+            sprintf(reply, "015 %08X@%08X\r\n", address, psxRegs.pc);
+            WriteSocket(reply, strlen(reply));
+            paused = 1;
+        }
+    }
+    if (breakmp_w32 && type == BW4) {
+        if (!IsMapMarked(address, MAP_W32)) {
+            sprintf(reply, "016 %08X@%08X\r\n", address, psxRegs.pc);
+            WriteSocket(reply, strlen(reply));
+            paused = 1;
+        }
+    }
+    if (mapping_r8 && type == BR1) MarkMap(address, MAP_R8);
+    if (mapping_r16 && type == BR2) MarkMap(address, MAP_R16);
+    if (mapping_r32 && type == BR4) MarkMap(address, MAP_R32);
+    if (mapping_w8 && type == BW1) MarkMap(address, MAP_W8);
+    if (mapping_w16 && type == BW2) MarkMap(address, MAP_W16);
+    if (mapping_w32 && type == BW4) MarkMap(address, MAP_W32);
+ }
