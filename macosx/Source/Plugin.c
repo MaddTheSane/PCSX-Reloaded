@@ -71,7 +71,7 @@ void SignalExit(int sig) {
 		strcpy(dst, ptr+1); \
 	}
 
-int _OpenPlugins() {
+static int _OpenPlugins() {
 	long ret;
 
 	GPU_clearDynarec(clearDynarec);

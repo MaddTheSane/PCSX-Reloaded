@@ -203,7 +203,7 @@ static void PSXDiscAppearedCallback(DADiskRef disk, void *context)
 			[ejectTask waitUntilExit];
 		}
 		DASessionRef tmpSession = DASessionCreate(kCFAllocatorDefault);
-		NSDictionary *match = @{(NSString*)kDADiskDescriptionMediaKindKey : @(kIOCDMediaClass),
+		NSDictionary *match = @{(NSString*)kDADiskDescriptionMediaKindKey : @kIOCDMediaClass,
 								(NSString*)kDADiskDescriptionMediaWholeKey : @YES};
 		DARegisterDiskAppearedCallback(tmpSession, (__bridge CFDictionaryRef)(match), PSXDiscAppearedCallback, (__bridge void*)self);
 		
