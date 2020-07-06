@@ -11,10 +11,10 @@
 #define kEmuWindowDidClose kEmuWindowDidCloseNotification
 
 typedef NS_ENUM(char, EmuThreadPauseStatus) {
-	PauseStateIsNotPaused = 0,
-	PauseStatePauseRequested,
-	PauseStateIsPaused
-};
+	PauseStateIsNotPaused NS_SWIFT_NAME(notPaused) = 0,
+	PauseStatePauseRequested NS_SWIFT_NAME(pauseRequested),
+	PauseStateIsPaused NS_SWIFT_NAME(paused)
+} NS_SWIFT_NAME(EmuThread.PauseStatus);
 
 NS_ASSUME_NONNULL_BEGIN
 

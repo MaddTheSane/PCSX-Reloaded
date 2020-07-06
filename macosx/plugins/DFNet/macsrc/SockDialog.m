@@ -32,6 +32,11 @@ void SysMessage(const char *fmt, ...)
 		} else {
 			NSLog(@"Unable to stop emulation because the Objective-C class \"EmuThreaed\" was not found.");
 			NSLog(@"Are you using a different emulator than PCSXR?");
+			dispatch_async(dispatch_get_main_queue(), ^{
+				NSAlert *alert = [[NSAlert alloc] init];
+				alert.messageText = [[NSBundle bundleForClass:[SockDialog class]] localizedStringForKey:@"Unable to find EmuThread?" value:nil table:nil];
+				alert.informativeText = [[NSBundle bundleForClass:[SockDialog class]] localizedStringForKey:@"Unable to stop emulation because the Objective-C class \"EmuThreaed\" was not found.\nAre you using a different emulator than PCSXR?" value:nil table:nil];
+			});
 		}
 	}
 }

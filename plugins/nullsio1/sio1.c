@@ -37,7 +37,7 @@ static const unsigned char version	= 1;
 static const unsigned char revision = 1;
 static const unsigned char build	= 1;
 
-static void (CALLBACK *irqCallback)() = 0;
+static void (CALLBACK *irqCallback)(void) = 0;
 
 /* sio status flags.
  */
@@ -258,7 +258,7 @@ u32 CALLBACK SIO1readBaud32() {
 void CALLBACK SIO1update(uint32_t t) {
 }
 
-void CALLBACK SIO1registerCallback(void (CALLBACK *callback)()) {
+void CALLBACK SIO1registerCallback(void (CALLBACK *callback)(void)) {
 	irqCallback = callback;
 }
 
