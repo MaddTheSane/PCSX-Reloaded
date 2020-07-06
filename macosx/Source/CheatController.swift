@@ -101,7 +101,9 @@ final class CheatController: NSWindowController, NSWindowDelegate {
 		openDlg.beginSheetModal(for: window!, completionHandler: { (retVal) -> Void in
 			if retVal.rawValue == NSFileHandlingPanelOKButton {
 				let file = openDlg.url!
-				LoadCheats((file as NSURL).fileSystemRepresentation)
+				file.withUnsafeFileSystemRepresentation { (fsr) -> Void in
+					LoadCheats(fsr)
+				}
 				self.refresh()
 			}
 		})

@@ -2121,7 +2121,6 @@
 				PRODUCT_NAME = PCSXR;
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/PCSXR-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Instrument;
@@ -2158,7 +2157,6 @@
 				PRODUCT_NAME = PCSXR;
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/PCSXR-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2197,7 +2195,6 @@
 				PRODUCT_NAME = PCSXR;
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Source/PCSXR-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

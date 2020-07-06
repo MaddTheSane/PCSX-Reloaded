@@ -19,7 +19,7 @@ typedef NS_ENUM(char, EmuThreadPauseStatus) {
 NS_ASSUME_NONNULL_BEGIN
 
 /// "emuWindowDidClose"
-extern NSString *const kEmuWindowDidCloseNotification;
+extern NSNotificationName const kEmuWindowDidCloseNotification;
 
 @interface EmuThread : NSObject
 

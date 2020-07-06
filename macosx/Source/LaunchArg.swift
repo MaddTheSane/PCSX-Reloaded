@@ -14,7 +14,7 @@ import Cocoa
 	case postRun = 400
 }
 
-final class LaunchArg: NSObject {
+@objcMembers final class LaunchArg: NSObject {
 	@objc let launchOrder: UInt32
 	@objc let theBlock: ()->()
 	@objc let argument: String

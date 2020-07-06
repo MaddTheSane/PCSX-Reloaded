@@ -8,13 +8,9 @@
 
 import Cocoa
 
-func ==(rhs: CheatValue, lhs: CheatValue) -> Bool {
-	return rhs.cheatValue == lhs.cheatValue && rhs.cheatAddress == lhs.cheatAddress
-}
-
-class CheatValue: NSObject, NSCopying {
-	@objc var cheatAddress: UInt32
-	@objc var cheatValue: UInt16
+@objcMembers class CheatValue: NSObject, NSCopying {
+	var cheatAddress: UInt32
+	var cheatValue: UInt16
 	
 	init(address add: UInt32, value val: UInt16) {
 		cheatAddress = add
@@ -56,5 +52,9 @@ class CheatValue: NSObject, NSCopying {
 	
 	func copy(with zone: NSZone?) -> Any {
 		return CheatValue(address: cheatAddress, value: cheatValue)
+	}
+	
+	static func ==(rhs: CheatValue, lhs: CheatValue) -> Bool {
+		return rhs.cheatValue == lhs.cheatValue && rhs.cheatAddress == lhs.cheatAddress
 	}
 }

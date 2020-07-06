@@ -11,7 +11,7 @@ import Foundation
 private weak var sPluginList: PluginList? = nil
 private let typeList = [PSE_LT_GPU, PSE_LT_SPU, PSE_LT_CDR, PSE_LT_PAD, PSE_LT_NET, PSE_LT_SIO1]
 
-final class PluginList: NSObject {
+@objcMembers final class PluginList: NSObject {
 	private var pluginList: [PcsxrPlugin]
 	private var missingPlugins = false
 	private var activeGpuPlugin: PcsxrPlugin?
@@ -37,7 +37,7 @@ final class PluginList: NSObject {
 					continue
 				}
 				
-				if !hasPluginAtPath(path) {
+				if !hasPlugin(atPath: path) {
 					autoreleasepool() {
 						if let plugin = PcsxrPlugin(path: path) {
 							pluginList.append(plugin)
@@ -61,7 +61,7 @@ final class PluginList: NSObject {
 		sPluginList = self
 	}
 
-	@objc func refreshPlugins() {
+	func refreshPlugins() {
 		let fm = FileManager.default
 		
 		// verify that the ones that are in list still works
@@ -75,14 +75,14 @@ final class PluginList: NSObject {
 				while let pName = dirEnum.nextObject() as? String {
 					if (pName as NSString).pathExtension == "psxplugin" ||
 						(pName as NSString).pathExtension == "so" {
-							dirEnum.skipDescendants() /* don't enumerate this directory */
-							if !(hasPluginAtPath((plugDir as NSString).appendingPathComponent(pName)) || hasPluginAtPath(pName)) {
-								if let plugin = PcsxrPlugin(path: pName) {
-									pluginList.append(plugin)
-								} else if let plugIn = PcsxrPlugin(path: (plugDir as NSString).appendingPathComponent(pName)) {
-									pluginList.append(plugIn)
-								}
+						dirEnum.skipDescendants() /* don't enumerate this directory */
+						if !(hasPlugin(atPath: (plugDir as NSString).appendingPathComponent(pName)) || hasPlugin(atPath: pName)) {
+							if let plugin = PcsxrPlugin(path: pName) {
+								pluginList.append(plugin)
+							} else if let plugIn = PcsxrPlugin(path: (plugDir as NSString).appendingPathComponent(pName)) {
+								pluginList.append(plugIn)
 							}
+						}
 					}
 				}
 			}
@@ -108,13 +108,13 @@ final class PluginList: NSObject {
 		}
 	}
 
-	@objc func pluginsForType(_ typeMask: Int32) -> [PcsxrPlugin] {
+	func pluginsForType(_ typeMask: Int32) -> [PcsxrPlugin] {
 		return pluginList.filter({ (plug) -> Bool in
 			return (plug.type & typeMask) == typeMask
 		})
 	}
 	
-	@objc func hasPluginAtPath(_ path: String) -> Bool {
+	@objc(hasPluginAtPath:) func hasPlugin(atPath path: String) -> Bool {
 		for plugin in pluginList {
 			if plugin.path == path {
 				return true
@@ -125,7 +125,7 @@ final class PluginList: NSObject {
 	}
 	
 	/// returns true if all the required plugins are available
-	@objc var configured: Bool {
+	var configured: Bool {
 		return !missingPlugins
 	}
 	
@@ -241,7 +241,7 @@ final class PluginList: NSObject {
 		return plugin != nil;
 	}
 	
-	@objc func disableNetPlug() {
+	func disableNetPlug() {
 		var dst = PcsxrPlugin.configEntries(forType: PSE_LT_NET)
 		while dst.pointee != nil {
 			strcpy(dst.pointee, "Disabled");
@@ -249,7 +249,7 @@ final class PluginList: NSObject {
 		}
 	}
 	
-	@objc func enableNetPlug() {
+	func enableNetPlug() {
 		if let netPlug = activePlugin(for: PSE_LT_NET) {
 			let str = (netPlug.path as NSString).fileSystemRepresentation
 			var dst = PcsxrPlugin.configEntries(forType: PSE_LT_NET)

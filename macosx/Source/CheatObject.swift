@@ -9,14 +9,10 @@
 import Cocoa
 import SwiftAdditions
 
-func ==(rhs: CheatObject, lhs: CheatObject) -> Bool {
-	return rhs.cheatName == lhs.cheatName && rhs.values == lhs.values
-}
-
-class CheatObject: NSObject, Sequence {
-	@objc var cheatName: String
-	@objc var values: [CheatValue]
-	@objc var enabled: Bool
+@objcMembers class CheatObject: NSObject, Sequence {
+	var cheatName: String
+	var values: [CheatValue]
+	var enabled: Bool
 	
 	init(cheat: Cheat) {
 		cheatName = String(validatingUTF8: cheat.Descr)!
@@ -30,15 +26,15 @@ class CheatObject: NSObject, Sequence {
 		super.init()
 	}
 	
-	@objc func addValuesObject(_ aVal: CheatValue) {
+	func addValuesObject(_ aVal: CheatValue) {
 		values.append(aVal)
 	}
 	
-	@objc func addValueObject(_ aVal: CheatValue) {
+	func addValueObject(_ aVal: CheatValue) {
 		addValuesObject(aVal)
 	}
 	
-	@objc var countOfValues: Int {
+	var countOfValues: Int {
 		return values.count
 	}
 	
@@ -55,7 +51,7 @@ class CheatObject: NSObject, Sequence {
 		return values.makeIterator()
 	}
 	
-	@objc init(name: String, enabled: Bool = false) {
+	init(name: String, enabled: Bool = false) {
 		cheatName = name
 		self.enabled = enabled
 		values = [CheatValue()]
@@ -91,6 +87,10 @@ class CheatObject: NSObject, Sequence {
 		for aCheat in values {
 			valueString += aCheat.description + "\n"
 		}
-		return "[" + (enabled ? "*" : "") + cheatName + "]\n" + valueString
+		return "[\(enabled ? "*" : "")\(cheatName)]\n" + valueString
+	}
+	
+	static func ==(rhs: CheatObject, lhs: CheatObject) -> Bool {
+		return rhs.cheatName == lhs.cheatName && rhs.values == lhs.values
 	}
 }
