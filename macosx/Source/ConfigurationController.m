@@ -3,6 +3,7 @@
 #import "PcsxrPlugin.h"
 #import "PcsxrMemCardController.h"
 #import "PcsxrMemCardHandler.h"
+#import "HotkeyController.h"
 #include "psxcommon.h"
 #include "plugins.h"
 #import "PCSXR-Swift.h"
@@ -95,7 +96,7 @@ NSString *const memCardChangeNumberKey = @"PcsxrMemoryCardThatChangedKey";
 	NSInteger tag = [sender tag];
 	char *mcd;
 	NSOpenPanel *openDlg = [NSOpenPanel openPanel];
-	NSString *path;
+	NSURL *path;
 	
 	if (tag == 1) {
 		mcd = Config.Mcd1;
@@ -103,11 +104,17 @@ NSString *const memCardChangeNumberKey = @"PcsxrMemoryCardThatChangedKey";
 		mcd = Config.Mcd2;
 	}
 	
-	path = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:mcd length:strlen(mcd)];
+	if (strlen(mcd) == 0) {
+		path = nil;
+	} else {
+		path = [NSURL fileURLWithFileSystemRepresentation:mcd isDirectory:NO relativeToURL:nil];
+	}
 	
 	[openDlg setAllowedFileTypes:[PcsxrMemCardHandler supportedUTIs]];
-    [openDlg setDirectoryURL:[NSURL fileURLWithPath:[path stringByDeletingLastPathComponent] isDirectory:YES]];
-    [openDlg setNameFieldStringValue:[path lastPathComponent]];
+	if (path) {
+		[openDlg setDirectoryURL:[path URLByDeletingLastPathComponent]];
+		[openDlg setNameFieldStringValue:[path lastPathComponent]];
+	}
 	[openDlg beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
 		if (result == NSFileHandlingPanelOKButton) {
 			NSURL *mcdURL = [openDlg URLs][0];
@@ -122,7 +129,7 @@ NSString *const memCardChangeNumberKey = @"PcsxrMemoryCardThatChangedKey";
 	NSInteger tag = [sender tag];
 	char *mcd;
 	NSSavePanel *openDlg = [NSSavePanel savePanel];
-	NSString *path;
+	NSURL *path;
 	
 	if (tag == 1) {
 		mcd = Config.Mcd1;
@@ -130,9 +137,15 @@ NSString *const memCardChangeNumberKey = @"PcsxrMemoryCardThatChangedKey";
 		mcd = Config.Mcd2;
 	}
 	
-    path = [[NSFileManager defaultManager] stringWithFileSystemRepresentation:mcd length:strlen(mcd)];
+	if (strlen(mcd) == 0) {
+		path = nil;
+	} else {
+		path = [NSURL fileURLWithFileSystemRepresentation:mcd isDirectory:NO relativeToURL:nil];
+	}
 	
-    [openDlg setDirectoryURL:[NSURL fileURLWithPath:[path stringByDeletingLastPathComponent] isDirectory:YES]];
+	if (path) {
+		[openDlg setDirectoryURL:[path URLByDeletingLastPathComponent]];
+	}
     [openDlg setNameFieldStringValue:NSLocalizedString(@"New Memory Card.mcd", nil)];
 	[openDlg setAllowedFileTypes:[PcsxrMemCardHandler supportedUTIs]];
     
@@ -302,9 +315,9 @@ NSString *const memCardChangeNumberKey = @"PcsxrMemoryCardThatChangedKey";
 {
     NSWindow *window = [self window];
     if(tabViewItem == hkTab) {
-        [window makeFirstResponder:(NSView*)hkController];
+        [window makeFirstResponder:hkController];
     }
-    else if([window firstResponder] == (NSView*)hkController) {
+    else if ([window firstResponder] == hkController) {
         [hkController resignFirstResponder];
     }
 }

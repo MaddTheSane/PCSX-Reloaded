@@ -427,7 +427,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5589A68424B26BAB001A74BA /* plugins.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -478,7 +477,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wobjc-interface-ivars",
@@ -512,7 +510,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5589A68424B26BAB001A74BA /* plugins.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -566,7 +563,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIP_INSTALLED_PRODUCT = NO;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
@@ -579,7 +575,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5589A68424B26BAB001A74BA /* plugins.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -630,7 +625,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wobjc-interface-ivars",

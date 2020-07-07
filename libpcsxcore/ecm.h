@@ -66,7 +66,9 @@
 //
 
 
+#ifndef MAX
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
+#endif
 #define ECM_HEADER_SIZE 4
 
 u32 len_decoded_ecm_buffer=0; // same as decoded ECM file length or 2x size

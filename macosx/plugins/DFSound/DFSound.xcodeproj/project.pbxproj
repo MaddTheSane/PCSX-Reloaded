@@ -608,7 +608,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
@@ -720,7 +719,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WARNING_CFLAGS = (
@@ -786,7 +784,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				WARNING_CFLAGS = (
 					"-Wno-comment",

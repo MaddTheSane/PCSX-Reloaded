@@ -1287,7 +1287,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					2BB3D68205427FE200831ACB = {
 						LastSwiftMigration = 0800;
@@ -2010,7 +2010,6 @@
 				GCC_UNROLL_LOOPS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GENERATE_PKGINFO_FILE = NO;
-				LLVM_VECTORIZE_LOOPS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2032,7 +2031,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GENERATE_PKGINFO_FILE = NO;
-				LLVM_VECTORIZE_LOOPS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2053,7 +2051,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GENERATE_PKGINFO_FILE = NO;
-				LLVM_VECTORIZE_LOOPS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2116,9 +2113,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					../include,
-					../libpcsxcore,
-					../macosx,
+					"$(SRCROOT)/../include",
+					"$(SRCROOT)/../libpcsxcore",
+					"$(SRCROOT)/../macosx",
 				);
 				INFOPLIST_FILE = "plugins/$(TARGET_NAME)/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2136,6 +2133,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PCSXR;
+				CODE_SIGN_IDENTITY = "-";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -2171,6 +2169,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PCSXR;
+				CODE_SIGN_IDENTITY = "-";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEBUG_PREPROCESSOR_DEFINITIONS = "$(inherited) EMU_LOG=__Log";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2207,6 +2206,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PCSXR;
+				CODE_SIGN_IDENTITY = "-";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -2299,9 +2299,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					../include,
-					../libpcsxcore,
-					../macosx,
+					"$(SRCROOT)/../include",
+					"$(SRCROOT)/../libpcsxcore",
+					"$(SRCROOT)/../macosx",
 				);
 				INFOPLIST_FILE = "plugins/$(TARGET_NAME)/Info.plist";
 				ONLY_ACTIVE_ARCH = YES;
@@ -2373,9 +2373,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_PKGINFO_FILE = YES;
 				HEADER_SEARCH_PATHS = (
-					../include,
-					../libpcsxcore,
-					../macosx,
+					"$(SRCROOT)/../include",
+					"$(SRCROOT)/../libpcsxcore",
+					"$(SRCROOT)/../macosx",
 				);
 				INFOPLIST_FILE = "plugins/$(TARGET_NAME)/Info.plist";
 				LLVM_LTO = YES;

@@ -5,7 +5,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-extern NSString *const memChangeNotifier;
+extern NSNotificationName const memChangeNotifier;
 extern NSString *const memCardChangeNumberKey;
 
 @class PcsxrMemCardController;

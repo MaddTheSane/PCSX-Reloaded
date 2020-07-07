@@ -50,14 +50,18 @@
 {
 	if ([obj isKindOfClass:[NSNumber class]]) {
 		return [NSString stringWithFormat:self.hexFormatString, (long)[obj integerValue]];
-	} else return nil;
+	} else {
+		return nil;
+	}
 }
 
 - (NSString *)editingStringForObjectValue:(id)obj
 {
 	if ([obj isKindOfClass:[NSNumber class]]) {
 		return [NSString stringWithFormat:@"%lx", (long)[obj integerValue]];
-	} else return nil;
+	} else {
+		return nil;
+	}
 }
 
 - (BOOL)getObjectValue:(out id *)obj forString:(NSString *)string errorDescription:(out NSString **)error
@@ -72,7 +76,7 @@
 		if ([string hasPrefix:@"0x"]) {
 			NSRange zeroXRange = [string rangeOfString:@"0x"];
 			tmpstr = [string stringByReplacingCharactersInRange:zeroXRange withString:@""];
-		}else {
+		} else {
 			tmpstr = string;
 		}
 		long tmpNum = 0;

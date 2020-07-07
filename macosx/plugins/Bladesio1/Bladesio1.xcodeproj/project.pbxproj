@@ -386,7 +386,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wobjc-interface-ivars",
@@ -468,7 +467,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				STRIP_INSTALLED_PRODUCT = NO;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
@@ -533,7 +531,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wobjc-interface-ivars",

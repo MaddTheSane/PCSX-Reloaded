@@ -21,11 +21,11 @@ final class RecentItemsMenu: NSMenu {
 		let recentDocuments = NSDocumentController.shared.recentDocumentURLs
 		for (i, url) in recentDocuments.enumerated() {
 			let tempItem = newMenuItem(url)
-			addMenuItem(tempItem, index: i)
+			addMenuItem(tempItem, at: i)
 		}
 	}
 	
-	private func addMenuItem(_ item: NSMenuItem, index: Int = 0) {
+	private func addMenuItem(_ item: NSMenuItem, at index: Int = 0) {
 		insertItem(item, at: index)
 		
 		// Prevent menu from overflowing; the -2 accounts for the "Clear..." and the separator items
