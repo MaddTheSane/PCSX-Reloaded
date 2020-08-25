@@ -57,19 +57,3 @@ long PADshutdown(void) {
 	return PSE_PAD_ERR_SUCCESS;
 }
 
-char *PSEgetLibName(void);
-uint32_t PSEgetLibType(void);
-uint32_t PSEgetLibVersion(void);
-long PADinit(long flags);
-long PADshutdown(void);
-long PADopen(unsigned long *Disp);
-long PADclose(void);
-long PADquery(void);
-unsigned char PADstartPoll(int pad);
-unsigned char PADpoll(unsigned char value);
-long PADreadPort1(PadDataS *pad);
-long PADreadPort2(PadDataS *pad);
-long PADkeypressed(void);
-long PADconfigure(void);
-void PADabout(void);
-long PADtest(void);

@@ -24,6 +24,12 @@ GLOBALDATA g;
 long DoConfiguration(void);
 void DoAbout(void);
 
+void PADabout(void) {
+	DoAbout();
+}
+
+#if 0
+
 long PADconfigure(void) {
 	if (SDL_WasInit(SDL_INIT_JOYSTICK))
 		return PSE_ERR_FATAL; // cannot change settings on the fly
@@ -31,10 +37,6 @@ long PADconfigure(void) {
 	DoConfiguration();
 	//LoadPADConfig();
 	return PSE_ERR_SUCCESS;
-}
-
-void PADabout(void) {
-	DoAbout();
 }
 
 struct {
@@ -455,3 +457,5 @@ end:
 	
 	return changed;
 }
+
+#endif

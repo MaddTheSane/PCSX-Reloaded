@@ -20,7 +20,7 @@
  */
 
 #import "ControllerList.h"
-#include "pad.h"
+#include "gcpad.h"
 #include "cfg.h"
 
 static int currentController;
@@ -28,16 +28,6 @@ static NSArray *labelText;
 static NSArray *GameControllerText;
 
 @implementation ControllerList
-
-- (BOOL)isUsingSDL2
-{
-	return g.cfg.PadDef[currentController].UseSDL2;
-}
-
-- (void)setUsingSDL2:(BOOL)_usingSDL2
-{
-	g.cfg.PadDef[currentController].UseSDL2 = _usingSDL2;
-}
 
 - (id)initWithConfig
 {
@@ -157,7 +147,7 @@ static const int DPad[DKEY_TOTAL] = {
 	} else {
 		char buf[256] = {0};
 		
-		if ([self isUsingSDL2]) {
+		if (1) {
 			NSString *keyBoardString, *gamePadStr = GameControllerText[rowIndex];
 			if (rowIndex < DKEY_TOTAL) {
 				GetKeyboardKeyDescription(buf, currentController, DPad[rowIndex]);

@@ -11,6 +11,11 @@
 #include <stdio.h>
 #include "psemu_plugin_defs.h"
 
+#import <GameController/GameController.h>
+#import <CoreHaptics/CoreHaptics.h>
+
+typedef void *Display;
+
 enum {
 	DKEY_SELECT = 0,
 	DKEY_L3,
@@ -54,10 +59,15 @@ enum {
 	ANALOG_TOTAL
 };
 
-enum { NONE = 0, AXIS, HAT, BUTTON };
+typedef NS_ENUM(uint8_t, JoyEvent) {
+	NONE = 0,
+	AXIS,
+	HAT,
+	BUTTON
+};
 
 typedef struct tagKeyDef {
-	uint8_t			JoyEvType;
+	JoyEvent		JoyEvType;
 	union {
 		int16_t		d;
 		int16_t		Axis;   // positive=axis+, negative=axis-, abs(Axis)-1=axis index
@@ -86,7 +96,7 @@ typedef struct tagEmuDef {
 
 typedef struct tagEmuDef2{
 	EMUDEF		EmuDef[EMU_TOTAL];
-	SDL_Joystick	*EmuKeyDev;
+	GCController	*EmuKeyDev;
 	int8_t		DevNum;
 } EMUDEF2;
 
@@ -99,7 +109,7 @@ typedef struct tagConfig {
 } CONFIG;
 
 typedef struct tagPadState {
-	SDL_Joystick		*JoyDev;
+	GCController		*JoyDev;
 	uint8_t				PadMode;
 	uint8_t				PadID;
 	uint8_t				PadModeKey;
@@ -111,17 +121,7 @@ typedef struct tagPadState {
 	volatile int8_t		MouseAxis[2][2];
 	uint8_t				Vib0, Vib1;
 	volatile uint8_t	VibF[2];
-#if SDL_VERSION_ATLEAST(2,0,0)
-	SDL_Haptic			*haptic;
-	SDL_GameController	*GCDev;
-#else
-#ifdef __linux__
-	int			VibrateDev;
-	int			VibrateEffect;
-	uint8_t			VibrLow, VibrHigh;
-	uint32_t		VibrSetTime;
-#endif
-#endif
+	CHHapticEngine		*haptic;
 } PADSTATE;
 
 typedef struct tagGlobalData {

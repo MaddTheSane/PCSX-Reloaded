@@ -20,7 +20,7 @@
  */
 
 #import "PadView.h"
-#include "pad.h"
+#include "gcpad.h"
 
 @implementation PadView
 @synthesize controllerList = controller;
@@ -52,13 +52,6 @@
 	g.cfg.PadDef[[ControllerList currentController]].DevNum = (int)[sender indexOfSelectedItem] - 1;
 }
 
-- (IBAction)toggleSDL2:(id)sender
-{
-	controller.usingSDL2 = !controller.usingSDL2;
-	
-	[self.tableView reloadData];
-}
-
 - (void)setController:(int)which
 {
 	int i;
@@ -71,17 +64,7 @@
 	
 	for (i = 0; i < SDL_NumJoysticks(); i++) {
 		NSMenuItem *joystickItem;
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-		NSString *tmpString;
-		if (SDL_IsGameController(i)) {
-			tmpString = @(SDL_GameControllerNameForIndex(i));
-		} else {
-			tmpString = @(SDL_JoystickNameForIndex(i));
-		}
-		joystickItem = [[NSMenuItem alloc] initWithTitle:tmpString action:NULL keyEquivalent:@""];
-#else
 		joystickItem = [[NSMenuItem alloc] initWithTitle:@(SDL_JoystickName(i)) action:NULL keyEquivalent:@""];
-#endif
 		[joystickItem setTag:i + 1];
         [[self.deviceMenu menu] addItem:joystickItem];
 	}
@@ -92,8 +75,6 @@
 	
 	[self.deviceMenu selectItemAtIndex:g.cfg.PadDef[which].DevNum + 1];
 	[self.typeMenu selectItemAtIndex:(g.cfg.PadDef[which].Type == PSE_PAD_TYPE_ANALOGPAD ? 1 : 0)];
-	
-	[self.useSDL2Check setState:g.cfg.PadDef[which].UseSDL2 ? NSOnState : NSOffState];
 	
 	[self.tableView reloadData];
 }

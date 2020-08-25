@@ -19,7 +19,7 @@
 #ifndef CFG_H
 #define CFG_H
 
-#include "pad.h"
+#include "gcpad.h"
 
 void GetKeyDescription(char *buf, int joynum, int key);
 void GetAnalogDescription(char *buf, int joynum, int analognum, int dir);

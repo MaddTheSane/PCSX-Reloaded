@@ -21,7 +21,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "PadController.h"
-#include "pad.h"
+#include "gcpad.h"
 
 static inline void RunOnMainThreadSync(dispatch_block_t block)
 {
@@ -341,13 +341,13 @@ void DoAbout()
 	NSBundle *bundle = [NSBundle bundleWithIdentifier:APP_ID];
 	
 	// Get Credits.rtf
-	NSString *path = [bundle pathForResource:@"Credits" ofType:@"rtf"];
+	NSURL *path = [bundle URLForResource:@"Credits" withExtension:@"rtf"];
 	NSAttributedString *credits;
 	if (!path) {
-		path = [bundle pathForResource:@"Credits" ofType:@"rtfd"];
+		path = [bundle URLForResource:@"Credits" withExtension:@"rtfd"];
 	}
 	if (path) {
-		credits = [[NSAttributedString alloc] initWithPath:path documentAttributes:NULL];
+		credits = [[NSAttributedString alloc] initWithURL:path options:@{} documentAttributes:nil error:NULL];
 	} else {
 		credits = [[NSAttributedString alloc] initWithString:@""];
 	}
@@ -372,11 +372,6 @@ void DoAbout()
 long DoConfiguration()
 {
 	RunOnMainThreadSync(^{
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-		SDL_InitSubSystem(SDL_INIT_JOYSTICK);
-#else
-		SDL_Init(SDL_INIT_JOYSTICK | SDL_INIT_NOPARACHUTE);
-#endif
 		LoadPADConfig();
 		
 		if (padWindow == nil) {
@@ -400,22 +395,12 @@ long DoConfiguration()
 
 - (IBAction)cancel:(id)sender
 {
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-	SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
-#else
-	SDL_Quit();
-#endif
 	[self close];
 }
 
 - (IBAction)ok:(id)sender
 {
 	SavePADConfig();
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-	SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
-#else
-	SDL_Quit();
-#endif
 	[self close];
 }
 
@@ -454,11 +439,6 @@ long DoConfiguration()
 - (void)windowWillClose:(NSNotification *)aNotification
 {
 	if ([aNotification object] == [self window]) {
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-		SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
-#else
-		SDL_Quit();
-#endif
 	}
 }
 

@@ -17,6 +17,7 @@
  */
 
 #include "gcpad.h"
+#include <Carbon/Carbon.h>
 
 void InitKeyboard() {
 	g.PadState[0].KeyStatus = 0xFFFF;

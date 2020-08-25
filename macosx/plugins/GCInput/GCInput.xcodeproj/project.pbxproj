@@ -11,18 +11,18 @@
 		550FFAEF17CEE37D0003A2F3 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A76B2178693EA0052D185 /* CoreFoundation.framework */; };
 		550FFAF117CEEECA0003A2F3 /* cfgHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 550FFAF017CEEEC90003A2F3 /* cfgHelper.m */; };
 		551A76891786919F0052D185 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A749E17868B110052D185 /* Cocoa.framework */; };
-		551A76951786923E0052D185 /* cfg.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A752717868BEB0052D185 /* cfg.c */; };
+		551A76951786923E0052D185 /* cfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A752717868BEB0052D185 /* cfg.m */; };
 		551A76961786923E0052D185 /* ControllerList.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A752A17868BEB0052D185 /* ControllerList.m */; };
 		551A76971786923E0052D185 /* MappingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A752C17868BEB0052D185 /* MappingCell.m */; };
 		551A76981786923E0052D185 /* PadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A752E17868BEB0052D185 /* PadController.m */; };
 		551A76991786923E0052D185 /* PadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A753017868BEB0052D185 /* PadView.m */; };
-		551A769A1786923E0052D185 /* xkb.c in Sources */ = {isa = PBXBuildFile; fileRef = 551A753117868BEB0052D185 /* xkb.c */; };
+		551A769A1786923E0052D185 /* xkb.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A753117868BEB0052D185 /* xkb.m */; };
 		551A769B178692470052D185 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 551A751D17868BEB0052D185 /* Credits.rtf */; };
 		551A769D178692470052D185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 551A752117868BEB0052D185 /* Localizable.strings */; };
 		551A769E178692470052D185 /* NetPcsxrGCInputPluginMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551A752317868BEB0052D185 /* NetPcsxrGCInputPluginMain.xib */; };
 		551A77E71786A4DD0052D185 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A76AC178693C60052D185 /* Carbon.framework */; };
 		55DEC01124F5BF6900376D3F /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEC01024F5BF6900376D3F /* GameController.framework */; };
-		55DEC01324F5C05100376D3F /* gcAnalog.c in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01224F5C05100376D3F /* gcAnalog.c */; };
+		55DEC01324F5C05100376D3F /* gcAnalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01224F5C05100376D3F /* gcAnalog.m */; };
 		55DEC01524F5C22D00376D3F /* gcpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01424F5C22D00376D3F /* gcpad.m */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +35,7 @@
 		551A74A217868B110052D185 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		551A74A317868B110052D185 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		551A752517868BEB0052D185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		551A752717868BEB0052D185 /* cfg.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cfg.c; sourceTree = "<group>"; };
+		551A752717868BEB0052D185 /* cfg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cfg.m; sourceTree = "<group>"; };
 		551A752817868BEB0052D185 /* cfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cfg.h; sourceTree = "<group>"; };
 		551A752917868BEB0052D185 /* ControllerList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControllerList.h; sourceTree = "<group>"; };
 		551A752A17868BEB0052D185 /* ControllerList.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ControllerList.m; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		551A752E17868BEB0052D185 /* PadController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PadController.m; sourceTree = "<group>"; };
 		551A752F17868BEB0052D185 /* PadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PadView.h; sourceTree = "<group>"; };
 		551A753017868BEB0052D185 /* PadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PadView.m; sourceTree = "<group>"; };
-		551A753117868BEB0052D185 /* xkb.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = xkb.c; sourceTree = "<group>"; };
+		551A753117868BEB0052D185 /* xkb.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xkb.m; sourceTree = "<group>"; };
 		551A768E1786919F0052D185 /* GCInput.psxplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GCInput.psxplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		551A76AC178693C60052D185 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		551A76AF178693D60052D185 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
@@ -63,7 +63,7 @@
 		5598AAFB17D2E9E90024F71D /* fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55DEC00D24F5BF4600376D3F /* gcpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gcpad.h; sourceTree = "<group>"; };
 		55DEC01024F5BF6900376D3F /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
-		55DEC01224F5C05100376D3F /* gcAnalog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gcAnalog.c; sourceTree = "<group>"; };
+		55DEC01224F5C05100376D3F /* gcAnalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gcAnalog.m; sourceTree = "<group>"; };
 		55DEC01424F5C22D00376D3F /* gcpad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gcpad.m; sourceTree = "<group>"; };
 		55E159AB1845BA78007983CB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/NetPcsxrGCInputPluginMain.strings; sourceTree = "<group>"; };
 		55E159AD1845BA7B007983CB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/NetPcsxrGCInputPluginMain.strings; sourceTree = "<group>"; };
@@ -132,8 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				550FFAF017CEEEC90003A2F3 /* cfgHelper.m */,
-				551A752717868BEB0052D185 /* cfg.c */,
 				551A752817868BEB0052D185 /* cfg.h */,
+				551A752717868BEB0052D185 /* cfg.m */,
 				551A752917868BEB0052D185 /* ControllerList.h */,
 				551A752A17868BEB0052D185 /* ControllerList.m */,
 				551A752B17868BEB0052D185 /* MappingCell.h */,
@@ -142,10 +142,10 @@
 				551A752E17868BEB0052D185 /* PadController.m */,
 				551A752F17868BEB0052D185 /* PadView.h */,
 				551A753017868BEB0052D185 /* PadView.m */,
-				551A753117868BEB0052D185 /* xkb.c */,
+				551A753117868BEB0052D185 /* xkb.m */,
 				55DEC00D24F5BF4600376D3F /* gcpad.h */,
 				55DEC01424F5C22D00376D3F /* gcpad.m */,
-				55DEC01224F5C05100376D3F /* gcAnalog.c */,
+				55DEC01224F5C05100376D3F /* gcAnalog.m */,
 			);
 			path = macsrc;
 			sourceTree = "<group>";
@@ -240,15 +240,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				551A76951786923E0052D185 /* cfg.c in Sources */,
+				551A76951786923E0052D185 /* cfg.m in Sources */,
 				55DEC01524F5C22D00376D3F /* gcpad.m in Sources */,
 				551A76961786923E0052D185 /* ControllerList.m in Sources */,
 				551A76971786923E0052D185 /* MappingCell.m in Sources */,
 				551A76981786923E0052D185 /* PadController.m in Sources */,
 				551A76991786923E0052D185 /* PadView.m in Sources */,
-				551A769A1786923E0052D185 /* xkb.c in Sources */,
+				551A769A1786923E0052D185 /* xkb.m in Sources */,
 				550FFAF117CEEECA0003A2F3 /* cfgHelper.m in Sources */,
-				55DEC01324F5C05100376D3F /* gcAnalog.c in Sources */,
+				55DEC01324F5C05100376D3F /* gcAnalog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,14 +304,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				EXPORTED_SYMBOLS_FILE = Resources/DFInput.exp;
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=DFInput";
-				HEADER_SEARCH_PATHS = (
-					/Library/Frameworks/SDL2.framework/Headers,
-					"$(inherited)",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
@@ -327,13 +323,9 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				EXPORTED_SYMBOLS_FILE = Resources/DFInput.exp;
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=DFInput";
-				HEADER_SEARCH_PATHS = (
-					/Library/Frameworks/SDL2.framework/Headers,
-					"$(inherited)",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
@@ -413,13 +405,9 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				EXPORTED_SYMBOLS_FILE = Resources/DFInput.exp;
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=DFInput";
-				HEADER_SEARCH_PATHS = (
-					/Library/Frameworks/SDL2.framework/Headers,
-					"$(inherited)",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";

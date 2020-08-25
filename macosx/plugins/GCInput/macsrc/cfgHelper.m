@@ -156,7 +156,6 @@ void LoadPadArray(int padnum, NSDictionary *nsPrefs)
 	curDef->DevNum = [nsPrefs[deviceNumber] charValue];
 	curDef->Type = [nsPrefs[padType] unsignedShortValue];
 	curDef->VisualVibration = [nsPrefs[VibrateOn] boolValue]; //Not implemented on OS X right now.
-	curDef->UseSDL2 = [nsPrefs[UseSDL2Mapping] boolValue];
 	
 	//Analog buttons
 	SetKeyFromDictionary(nsPrefs[dL3], &curDef->KeyDef[DKEY_L3]);
@@ -234,7 +233,6 @@ NSDictionary *SavePadArray(int padnum)
 			mutArray[dCircle] = DictionaryFromButtonDef(curDef->KeyDef[DKEY_CIRCLE]);
 			mutArray[dCross] = DictionaryFromButtonDef(curDef->KeyDef[DKEY_CROSS]);
 			mutArray[dSquare] = DictionaryFromButtonDef(curDef->KeyDef[DKEY_SQUARE]);
-			mutArray[UseSDL2Mapping] = @((BOOL)curDef->UseSDL2);
 			break;
 			
 		default:

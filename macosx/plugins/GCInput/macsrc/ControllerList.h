@@ -25,7 +25,6 @@
 #include "cfg.h"
 
 @interface ControllerList : NSObject <NSTableViewDataSource>
-@property (getter = isUsingSDL2) BOOL usingSDL2;
 
 - (id)initWithConfig;
 
