@@ -16,7 +16,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses>.
  */
 
-#include "pad.h"
+#include "gcpad.h"
 #include "cfg.h"
 
 GLOBALDATA g;

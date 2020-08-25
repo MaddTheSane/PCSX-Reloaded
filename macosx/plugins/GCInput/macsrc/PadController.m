@@ -35,7 +35,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t block)
 static NSWindow *padWindow = nil;
 static PadController *padController = nil;
 
-#define APP_ID @"net.pcsxr.DFInputPlugin"
+#define APP_ID @"net.pcsxr.GCInputPlugin"
 #define PrefsKey APP_ID @" Settings"
 
 #define kDFThreading @"Threading"
@@ -150,7 +150,7 @@ void LoadPADConfig()
 	
 	//Load the old preferences if present and we don't have new ones.
 	NSFileManager *fm = [NSFileManager defaultManager];
-	NSString *oldPrefPath = [NSString pathWithComponents:@[NSHomeDirectory(), @"Library", @"Preferences", @"net.pcsxr.DFInput.plist"]];
+	NSString *oldPrefPath = [NSString pathWithComponents:@[NSHomeDirectory(), @"Library", @"Preferences", @"net.pcsxr.GCInput.plist"]];
 	if ([fm fileExistsAtPath:oldPrefPath] && tryToLoadOld) {
 		char buf[256] = {0};
 		int current = 0, a = 0, b = 0, c = 0;
@@ -381,7 +381,7 @@ long DoConfiguration()
 		
 		if (padWindow == nil) {
 			if (padController == nil) {
-				padController = [[PadController alloc] initWithWindowNibName:@"NetPcsxrHIDInputPluginMain"];
+				padController = [[PadController alloc] initWithWindowNibName:@"NetPcsxrGCInputPluginMain"];
 			}
 			padWindow = [padController window];
 		}
@@ -463,6 +463,3 @@ long DoConfiguration()
 }
 
 @end
-
-#import "OSXPlugLocalization.h"
-PLUGLOCIMP([padController class])

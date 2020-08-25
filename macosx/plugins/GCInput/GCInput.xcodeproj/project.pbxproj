@@ -21,9 +21,9 @@
 		551A769D178692470052D185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 551A752117868BEB0052D185 /* Localizable.strings */; };
 		551A769E178692470052D185 /* NetPcsxrGCInputPluginMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551A752317868BEB0052D185 /* NetPcsxrGCInputPluginMain.xib */; };
 		551A77E71786A4DD0052D185 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A76AC178693C60052D185 /* Carbon.framework */; };
-		55DEC00F24F5BF4600376D3F /* gcpad.c in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC00E24F5BF4600376D3F /* gcpad.c */; };
 		55DEC01124F5BF6900376D3F /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEC01024F5BF6900376D3F /* GameController.framework */; };
 		55DEC01324F5C05100376D3F /* gcAnalog.c in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01224F5C05100376D3F /* gcAnalog.c */; };
+		55DEC01524F5C22D00376D3F /* gcpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01424F5C22D00376D3F /* gcpad.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,9 +62,9 @@
 		5593804E18F38C060022C282 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5598AAFB17D2E9E90024F71D /* fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55DEC00D24F5BF4600376D3F /* gcpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gcpad.h; sourceTree = "<group>"; };
-		55DEC00E24F5BF4600376D3F /* gcpad.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gcpad.c; sourceTree = "<group>"; };
 		55DEC01024F5BF6900376D3F /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
 		55DEC01224F5C05100376D3F /* gcAnalog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = gcAnalog.c; sourceTree = "<group>"; };
+		55DEC01424F5C22D00376D3F /* gcpad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gcpad.m; sourceTree = "<group>"; };
 		55E159AB1845BA78007983CB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/NetPcsxrGCInputPluginMain.strings; sourceTree = "<group>"; };
 		55E159AD1845BA7B007983CB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/NetPcsxrGCInputPluginMain.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,7 +89,7 @@
 			children = (
 				5589A68A24B26BF9001A74BA /* Pcsxr.xcconfig */,
 				5589A68924B26BF9001A74BA /* plugins.xcconfig */,
-				551A751817868BEB0052D185 /* DFInput */,
+				551A751817868BEB0052D185 /* GCInput */,
 				551A749D17868B110052D185 /* Frameworks */,
 				1AB674ADFE9D54B511CA2CBB /* Products */,
 			);
@@ -119,13 +119,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		551A751817868BEB0052D185 /* DFInput */ = {
+		551A751817868BEB0052D185 /* GCInput */ = {
 			isa = PBXGroup;
 			children = (
 				551A752617868BEB0052D185 /* macsrc */,
 				551A7671178690280052D185 /* Resources */,
 			);
-			name = DFInput;
+			name = GCInput;
 			sourceTree = "<group>";
 		};
 		551A752617868BEB0052D185 /* macsrc */ = {
@@ -144,7 +144,7 @@
 				551A753017868BEB0052D185 /* PadView.m */,
 				551A753117868BEB0052D185 /* xkb.c */,
 				55DEC00D24F5BF4600376D3F /* gcpad.h */,
-				55DEC00E24F5BF4600376D3F /* gcpad.c */,
+				55DEC01424F5C22D00376D3F /* gcpad.m */,
 				55DEC01224F5C05100376D3F /* gcAnalog.c */,
 			);
 			path = macsrc;
@@ -241,9 +241,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				551A76951786923E0052D185 /* cfg.c in Sources */,
+				55DEC01524F5C22D00376D3F /* gcpad.m in Sources */,
 				551A76961786923E0052D185 /* ControllerList.m in Sources */,
 				551A76971786923E0052D185 /* MappingCell.m in Sources */,
-				55DEC00F24F5BF4600376D3F /* gcpad.c in Sources */,
 				551A76981786923E0052D185 /* PadController.m in Sources */,
 				551A76991786923E0052D185 /* PadView.m in Sources */,
 				551A769A1786923E0052D185 /* xkb.c in Sources */,

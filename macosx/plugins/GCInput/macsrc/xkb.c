@@ -16,7 +16,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses>.
  */
 
-#include "pad.h"
+#include "gcpad.h"
 
 void InitKeyboard() {
 	g.PadState[0].KeyStatus = 0xFFFF;
