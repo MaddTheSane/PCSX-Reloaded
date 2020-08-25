@@ -1,0 +1,6 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "GCInput PSX Controller Plugin";
+CFBundleShortVersionString = "GCInput version 1.5";
+CFBundleGetInfoString = "GCInput PSX Controller Plugin version 0.9, Copyright © 2020 C.W. Betts.";
+NSHumanReadableCopyright = "Copyright © 2020 C.W. \"Madd the Sane\" Betts.";
