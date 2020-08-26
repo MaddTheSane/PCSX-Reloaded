@@ -4,4 +4,7 @@
    <FileRef
       location = "container:Pcsxr.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:plugins/GCInput/GCInput.xcodeproj">
+   </FileRef>
 </Workspace>

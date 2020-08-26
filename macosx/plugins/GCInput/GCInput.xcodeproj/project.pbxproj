@@ -34,7 +34,7 @@
 		551A74A117868B110052D185 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		551A74A217868B110052D185 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		551A74A317868B110052D185 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		551A752517868BEB0052D185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		551A752517868BEB0052D185 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		551A752717868BEB0052D185 /* cfg.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cfg.m; sourceTree = "<group>"; };
 		551A752817868BEB0052D185 /* cfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cfg.h; sourceTree = "<group>"; };
 		551A752917868BEB0052D185 /* ControllerList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ControllerList.h; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		551A76AC178693C60052D185 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		551A76AF178693D60052D185 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		551A76B2178693EA0052D185 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		554B391418EB4C66000ADF68 /* DFInput.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; name = DFInput.exp; path = Resources/DFInput.exp; sourceTree = "<group>"; };
+		554B391418EB4C66000ADF68 /* DFInput.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = DFInput.exp; sourceTree = "<group>"; };
 		5569B0A1182F0B4100991C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NetPcsxrGCInputPluginMain.xib; sourceTree = "<group>"; };
 		5569B0C1182F0BE100991C9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NetPcsxrGCInputPluginMain.strings; sourceTree = "<group>"; };
 		55707E901812357B007CC5D0 /* hu */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 				551A752317868BEB0052D185 /* NetPcsxrGCInputPluginMain.xib */,
 				551A752517868BEB0052D185 /* Info.plist */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
