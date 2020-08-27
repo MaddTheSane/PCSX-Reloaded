@@ -28,17 +28,16 @@ void PADabout(void) {
 	DoAbout();
 }
 
-#if 0
-
 long PADconfigure(void) {
-	if (SDL_WasInit(SDL_INIT_JOYSTICK))
-		return PSE_ERR_FATAL; // cannot change settings on the fly
+//	if (SDL_WasInit(SDL_INIT_JOYSTICK))
+//		return PSE_ERR_FATAL; // cannot change settings on the fly
 	
 	DoConfiguration();
 	//LoadPADConfig();
 	return PSE_ERR_SUCCESS;
 }
 
+#if 0
 struct {
 	uint16_t code;
 	const char *desc;

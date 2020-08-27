@@ -62,6 +62,7 @@
 	[self.deviceMenu removeAllItems];
 	[self.deviceMenu addItemWithTitle:[[NSBundle bundleForClass:[self class]] localizedStringForKey:@"(Keyboard only)" value:@"" table:nil]];
 	
+#if 0
 	for (i = 0; i < SDL_NumJoysticks(); i++) {
 		NSMenuItem *joystickItem;
 		joystickItem = [[NSMenuItem alloc] initWithTitle:@(SDL_JoystickName(i)) action:NULL keyEquivalent:@""];
@@ -72,6 +73,7 @@
 	if (g.cfg.PadDef[which].DevNum >= SDL_NumJoysticks()) {
 		g.cfg.PadDef[which].DevNum = -1;
 	}
+#endif
 	
 	[self.deviceMenu selectItemAtIndex:g.cfg.PadDef[which].DevNum + 1];
 	[self.typeMenu selectItemAtIndex:(g.cfg.PadDef[which].Type == PSE_PAD_TYPE_ANALOGPAD ? 1 : 0)];

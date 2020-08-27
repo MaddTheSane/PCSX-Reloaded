@@ -57,3 +57,68 @@ long PADshutdown(void) {
 	return PSE_PAD_ERR_SUCCESS;
 }
 
+
+long	PADquery(void)
+{
+	return PSE_PAD_USE_PORT1 | PSE_PAD_USE_PORT2;
+}
+
+unsigned char PADstartPoll(int pad)
+{
+	//CurPad = pad - 1;
+	//CurByte = 0;
+
+	return 0xFF;
+
+}
+
+unsigned char PADpoll(unsigned char value)
+{
+	return 0;
+}
+
+static long PADreadPort(int num, PadDataS *pad) {
+	return PSE_PAD_ERR_SUCCESS;
+}
+
+long PADreadPort1(PadDataS *pad) {
+	return PADreadPort(0, pad);
+}
+
+long PADreadPort2(PadDataS *pad) {
+	return PADreadPort(1, pad);
+}
+
+void PADregisterVibration(void (*callback)(uint32_t, uint32_t)) {
+	gpuVisualVibration = callback;
+}
+
+long PADkeypressed(void)
+{
+	return 0;
+}
+
+long PADclose(void) {
+	if (g.Opened) {
+		
+	}
+	g.Opened = 0;
+
+	return PSE_PAD_ERR_SUCCESS;
+}
+
+long PADopen(unsigned long *Disp) {
+	g.Disp = (Display *)*Disp;
+
+	if (!g.Opened) {
+		
+	}
+
+	g.Opened = 1;
+
+	return PSE_PAD_ERR_SUCCESS;
+}
+
+long PADtest(void) {
+	return PSE_PAD_ERR_SUCCESS;
+}

@@ -50,17 +50,17 @@
 	/* delay for a little while to allow user to release the button pressed to activate the element */
 	[NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.15]];
 
-	InitAxisPos(whichPad);
+	//InitAxisPos(whichPad);
 
 	/* wait for 10 seconds for user to press a key */
 	for (i = 0; i < 10; i++) {
 		[NSApp runModalSession:session];
 		row = [tableView selectedRow];
 		if (row < DKEY_TOTAL) {
-			changed = ReadDKeyEvent(whichPad, [ControllerList buttonOfRow:row]);
+			//changed = ReadDKeyEvent(whichPad, [ControllerList buttonOfRow:row]);
 		} else {
 			row -= DKEY_TOTAL;
-			changed = ReadAnalogEvent(whichPad, (int)(row / 4), row % 4);
+			//changed = ReadAnalogEvent(whichPad, (int)(row / 4), row % 4);
 		}
 
 		if (changed) break;
@@ -79,11 +79,11 @@
 		[tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:nextRow] byExtendingSelection:NO];
 
 		/* discard any events we have received while waiting for the button press */
-		endEvent = [NSEvent otherEventWithType:NSApplicationDefined location:where 
+		endEvent = [NSEvent otherEventWithType:NSEventTypeApplicationDefined location:where 
 									modifierFlags:0 timestamp:(NSTimeInterval)0
 									windowNumber:0 context:[NSGraphicsContext currentContext] subtype:0 data1:0 data2:0];
 		[NSApp postEvent:endEvent atStart:NO];
-		[NSApp discardEventsMatchingMask:NSAnyEventMask beforeEvent:endEvent];
+		[NSApp discardEventsMatchingMask:NSEventMaskAny beforeEvent:endEvent];
 	}
 	[[tableView window] makeFirstResponder:tableView];
 }

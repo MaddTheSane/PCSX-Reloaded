@@ -142,6 +142,7 @@ static const int DPad[DKEY_TOTAL] = {
 - (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn 
 		row:(NSInteger)rowIndex
 {
+	/*
 	if ([[aTableColumn identifier] isEqualToString:@"key"]) {
 		return labelText[rowIndex];
 	} else {
@@ -169,7 +170,8 @@ static const int DPad[DKEY_TOTAL] = {
 		
 		return @(buf);
 		}
-	}
+	}*/
+	return nil;
 }
 
 - (void)deleteRow:(NSInteger)which
