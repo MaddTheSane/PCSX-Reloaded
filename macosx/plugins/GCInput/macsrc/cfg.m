@@ -17,6 +17,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "GCInput-Swift.h"
 #include "gcpad.h"
 #include "cfg.h"
 
@@ -64,7 +65,7 @@ long PADconfigure(void) {
 //	if (SDL_WasInit(SDL_INIT_JOYSTICK))
 //		return PSE_ERR_FATAL; // cannot change settings on the fly
 	
-	DoConfiguration();
+	//DoConfiguration();
 	//LoadPADConfig();
 	return PSE_ERR_SUCCESS;
 }

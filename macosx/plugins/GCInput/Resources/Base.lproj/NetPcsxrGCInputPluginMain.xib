@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NetPcsxrHIDInputPluginPadController">
+        <customObject id="-2" userLabel="File's Owner" customClass="NetPcsxrGCInputPluginPadController">
             <connections>
                 <outlet property="controllerView" destination="16" id="152"/>
                 <outlet property="controllerView1" destination="167" id="168"/>
@@ -18,7 +19,7 @@
         <window title="Input Configuration" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" id="5" userLabel="Configuration">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <rect key="contentRect" x="87" y="281" width="469" height="474"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="6">
                 <rect key="frame" x="0.0" y="0.0" width="469" height="474"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -193,12 +194,12 @@ Gw
                 <scrollView horizontalLineScroll="16" horizontalPageScroll="10" verticalLineScroll="16" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="121">
                     <rect key="frame" x="20" y="42" width="383" height="283"/>
                     <clipView key="contentView" id="xit-lf-WfZ">
-                        <rect key="frame" x="1" y="0.0" width="381" height="282"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="1" y="0.0" width="366" height="282"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" tag="1" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" headerView="212" id="123">
-                                <rect key="frame" x="0.0" y="0.0" width="381" height="265"/>
-                                <autoresizingMask key="autoresizingMask"/>
+                                <rect key="frame" x="0.0" y="0.0" width="366" height="265"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <tableViewGridLines key="gridStyleMask" vertical="YES"/>
@@ -206,7 +207,6 @@ Gw
                                 <tableColumns>
                                     <tableColumn identifier="key" editable="NO" width="120" minWidth="100" maxWidth="1000" id="128">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Key">
-                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableHeaderCell>
@@ -216,9 +216,8 @@ Gw
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </textFieldCell>
                                     </tableColumn>
-                                    <tableColumn identifier="button" width="254.96499633789062" minWidth="46.965000152587891" maxWidth="1000" id="124">
+                                    <tableColumn identifier="button" width="239.96499633789062" minWidth="46.965000152587891" maxWidth="1000" id="124">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Button">
-                                            <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableHeaderCell>
@@ -241,11 +240,11 @@ Gw
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="210">
-                        <rect key="frame" x="366" y="17" width="16" height="265"/>
+                        <rect key="frame" x="367" y="17" width="15" height="265"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <tableHeaderView key="headerView" id="212">
-                        <rect key="frame" x="0.0" y="0.0" width="381" height="17"/>
+                        <rect key="frame" x="0.0" y="0.0" width="366" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>

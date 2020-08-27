@@ -4,3 +4,4 @@
 
 #include <stdio.h>
 #include "psemu_plugin_defs.h"
+#import "gcpad.h"

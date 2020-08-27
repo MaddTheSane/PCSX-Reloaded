@@ -6,6 +6,8 @@
 //
 
 import Cocoa
+import GameController
+import CoreHaptics
 
 struct KeyDef {
 	enum JoyEvent {
@@ -23,20 +25,36 @@ struct KeyDef {
 }
 
 class GlobalData: NSObject {
-	@objc(globalDataInstance) static var instance: GlobalData? = nil
+	@objc(globalDataInstance) private(set) static var instance: GlobalData? = nil
+	@objc static func setUp() {
+		instance = GlobalData()
+	}
+	
+	@objc static func shutDown() {
+		instance?.close()
+		instance = nil
+	}
+	
+	func close() {
+		NotificationCenter.default.removeObserver(self, name: .GCControllerDidConnect, object: nil)
+		NotificationCenter.default.removeObserver(self, name: .GCControllerDidDisconnect, object: nil)
+	}
+	
+	override init() {
+		super.init()
+		NotificationCenter.default.addObserver(self, selector: #selector(self.controllerDidConnect(_:)) , name: .GCControllerDidConnect, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(self.controllerDidDisconnect(_:)) , name: .GCControllerDidDisconnect, object: nil)
+	}
+	
+	@objc private func controllerDidConnect(_ note: Notification) {
+		
+	}
+
+	@objc private func controllerDidDisconnect(_ note: Notification) {
+		
+	}
+	
+	@objc func readPadPort(num: CInt, pad: UnsafeMutablePointer<PadDataS>) -> CLong {
+		return CLong(PSE_PAD_ERR_SUCCESS)
+	}
 }
-
-/*
-typedef struct tagKeyDef {
-	KeyJoyEvent		JoyEvType;
-	union {
-		int16_t		d;
-		int16_t		Axis;   // positive=axis+, negative=axis-, abs(Axis)-1=axis index
-		uint16_t	Hat;	// 8-bit for hat number, 8-bit for direction
-		uint16_t	Button; // button number
-	} J;
-	uint16_t		Key;
-	uint8_t			ReleaseEventPending;
-} KEYDEF;
-
-*/

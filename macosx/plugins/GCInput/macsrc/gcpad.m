@@ -6,10 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "gcpad.h"
+#import "GCInput-Swift.h"
+#import "gcpad.h"
 
 
-static void (*gpuVisualVibration)(uint32_t, uint32_t) = NULL;
+void (*gpuVisualVibration)(uint32_t, uint32_t) = NULL;
 
 char *PSEgetLibName(void) {
 	return "GameController framework Input";
@@ -42,7 +43,8 @@ void PADsetMode(const int pad, const int mode) {
 }
 
 long PADinit(long flags) {
-	LoadPADConfig();
+	[GlobalData setUp];
+	//LoadPADConfig();
 
 	PADsetMode(0, 0);
 	PADsetMode(1, 0);
@@ -78,7 +80,7 @@ unsigned char PADpoll(unsigned char value)
 }
 
 static long PADreadPort(int num, PadDataS *pad) {
-	return PSE_PAD_ERR_SUCCESS;
+	return [[GlobalData globalDataInstance] readPadPortWithNum:num pad:pad];
 }
 
 long PADreadPort1(PadDataS *pad) {
@@ -100,7 +102,7 @@ long PADkeypressed(void)
 
 long PADclose(void) {
 	if (g.Opened) {
-		
+		[GlobalData shutDown];
 	}
 	g.Opened = 0;
 
