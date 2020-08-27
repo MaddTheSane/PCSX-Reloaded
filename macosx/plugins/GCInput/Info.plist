@@ -17,7 +17,7 @@
 	<key>CFBundleSignature</key>
 	<string>DFI </string>
 	<key>CFBundleVersion</key>
-	<string>1.5</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSPrincipalClass</key>
 	<string>NetPcsxrGCInputPluginPadController</string>
 </dict>

@@ -17,6 +17,7 @@
 		551A769D178692470052D185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 551A752117868BEB0052D185 /* Localizable.strings */; };
 		551A769E178692470052D185 /* NetPcsxrGCInputPluginMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551A752317868BEB0052D185 /* NetPcsxrGCInputPluginMain.xib */; };
 		551A77E71786A4DD0052D185 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A76AC178693C60052D185 /* Carbon.framework */; };
+		551BBC6724F812920023DB5D /* PadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551BBC6624F812920023DB5D /* PadState.swift */; };
 		553C47A724F74591002278AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553C47A624F74591002278AC /* Config.swift */; };
 		55DEC01124F5BF6900376D3F /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEC01024F5BF6900376D3F /* GameController.framework */; };
 		55DEC01324F5C05100376D3F /* gcAnalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01224F5C05100376D3F /* gcAnalog.m */; };
@@ -47,6 +48,7 @@
 		551A76AC178693C60052D185 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		551A76AF178693D60052D185 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		551A76B2178693EA0052D185 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		551BBC6624F812920023DB5D /* PadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadState.swift; sourceTree = "<group>"; };
 		553C47A524F74591002278AC /* GCInput-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GCInput-Bridging-Header.h"; sourceTree = "<group>"; };
 		553C47A624F74591002278AC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		554B391418EB4C66000ADF68 /* DFInput.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = DFInput.exp; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				55DEC01224F5C05100376D3F /* gcAnalog.m */,
 				553C47A624F74591002278AC /* Config.swift */,
 				553C47A524F74591002278AC /* GCInput-Bridging-Header.h */,
+				551BBC6624F812920023DB5D /* PadState.swift */,
 			);
 			path = macsrc;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551BBC6724F812920023DB5D /* PadState.swift in Sources */,
 				551A76951786923E0052D185 /* cfg.m in Sources */,
 				55DEC01524F5C22D00376D3F /* gcpad.m in Sources */,
 				551A769A1786923E0052D185 /* xkb.m in Sources */,
@@ -307,6 +311,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 0.9;
 				EXPORTED_SYMBOLS_FILE = Resources/DFInput.exp;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = NO;
@@ -316,6 +321,7 @@
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pcsxr.GCInputPlugin;
 				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/GCInput-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -330,6 +336,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 0.9;
 				EXPORTED_SYMBOLS_FILE = Resources/DFInput.exp;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=DFInput";
@@ -338,6 +345,7 @@
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pcsxr.GCInputPlugin;
 				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/GCInput-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -415,6 +423,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 0.9;
 				EXPORTED_SYMBOLS_FILE = Resources/DFInput.exp;
 				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "PCSXRPLUG=DFInput";
@@ -423,6 +432,7 @@
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Playstation Emulator Plugins";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pcsxr.GCInputPlugin;
 				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/GCInput-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

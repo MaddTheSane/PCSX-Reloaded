@@ -10,8 +10,6 @@
 #import "gcpad.h"
 
 
-void (*gpuVisualVibration)(uint32_t, uint32_t) = NULL;
-
 char *PSEgetLibName(void) {
 	return "GameController framework Input";
 }
@@ -26,6 +24,7 @@ uint32_t PSEgetLibVersion(void) {
 
 static int padDataLenght[] = {0, 2, 3, 1, 1, 3, 3, 3};
 void PADsetMode(const int pad, const int mode) {
+	[[GlobalData globalDataInstance] setMode:mode forPad:pad];
 	g.PadState[pad].PadMode = mode;
     
     if (g.cfg.PadDef[pad].Type == PSE_PAD_TYPE_ANALOGPAD) {
@@ -49,8 +48,6 @@ long PADinit(long flags) {
 	PADsetMode(0, 0);
 	PADsetMode(1, 0);
 
-	gpuVisualVibration = NULL;
-
 	return PSE_PAD_ERR_SUCCESS;
 }
 
@@ -60,23 +57,19 @@ long PADshutdown(void) {
 }
 
 
-long	PADquery(void)
+long PADquery(void)
 {
 	return PSE_PAD_USE_PORT1 | PSE_PAD_USE_PORT2;
 }
 
 unsigned char PADstartPoll(int pad)
 {
-	//CurPad = pad - 1;
-	//CurByte = 0;
-
-	return 0xFF;
-
+	return [[GlobalData globalDataInstance] startPollWithPad:pad];
 }
 
 unsigned char PADpoll(unsigned char value)
 {
-	return 0;
+	return [[GlobalData globalDataInstance] pollWithValue:value];
 }
 
 static long PADreadPort(int num, PadDataS *pad) {
@@ -92,12 +85,12 @@ long PADreadPort2(PadDataS *pad) {
 }
 
 void PADregisterVibration(void (*callback)(uint32_t, uint32_t)) {
-	gpuVisualVibration = callback;
+	[GlobalData globalDataInstance].gpuVisualVibration = callback;
 }
 
 long PADkeypressed(void)
 {
-	return 0;
+	return [[GlobalData globalDataInstance] keyPressed];
 }
 
 long PADclose(void) {
@@ -110,15 +103,7 @@ long PADclose(void) {
 }
 
 long PADopen(unsigned long *Disp) {
-	g.Disp = (Display *)*Disp;
-
-	if (!g.Opened) {
-		
-	}
-
-	g.Opened = 1;
-
-	return PSE_PAD_ERR_SUCCESS;
+	return [[GlobalData globalDataInstance] openWithDisplay:Disp];
 }
 
 long PADtest(void) {

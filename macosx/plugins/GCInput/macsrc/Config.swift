@@ -26,18 +26,28 @@ struct KeyDef {
 
 class GlobalData: NSObject {
 	@objc(globalDataInstance) private(set) static var instance: GlobalData? = nil
+	
+	var display: Display? = nil
+	@objc var gpuVisualVibration: (@convention(c) (UInt32, UInt32) -> Void)? = nil
+	
 	@objc static func setUp() {
 		instance = GlobalData()
 	}
 	
 	@objc static func shutDown() {
-		instance?.close()
+		_=instance?.close()
 		instance = nil
 	}
 	
 	func close() {
 		NotificationCenter.default.removeObserver(self, name: .GCControllerDidConnect, object: nil)
 		NotificationCenter.default.removeObserver(self, name: .GCControllerDidDisconnect, object: nil)
+		display = nil
+	}
+	
+	@objc func open(display disp: UnsafeMutableRawPointer) -> CLong {
+		display = disp.assumingMemoryBound(to: UnsafeMutableRawPointer.self).pointee
+		return CLong(PSE_PAD_ERR_SUCCESS)
 	}
 	
 	override init() {
@@ -56,5 +66,23 @@ class GlobalData: NSObject {
 	
 	@objc func readPadPort(num: CInt, pad: UnsafeMutablePointer<PadDataS>) -> CLong {
 		return CLong(PSE_PAD_ERR_SUCCESS)
+	}
+	
+	@objc func startPoll(pad: CInt) -> UInt8 {
+		//CurPad = pad - 1;
+		//CurByte = 0;
+		return 0xff
+	}
+	
+	@objc func poll(value: UInt8) -> UInt8 {
+		return 0
+	}
+	
+	@objc func keyPressed() -> CLong {
+		return 0
+	}
+	
+	@objc func setMode(_ mode: CInt, forPad pad: CInt) {
+		
 	}
 }

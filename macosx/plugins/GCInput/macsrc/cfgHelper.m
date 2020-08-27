@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PadController.h"
+//#import "PadController.h"
 #include "cfg.h"
 
 #define padType @"Pad Type"

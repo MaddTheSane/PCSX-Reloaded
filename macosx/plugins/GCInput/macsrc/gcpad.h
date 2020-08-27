@@ -147,8 +147,6 @@ NS_ENUM(unsigned char) {
 	CMD_VIBRATION_TOGGLE = 0x4D
 };
 
-extern void (*gpuVisualVibration)(uint32_t, uint32_t);
-
 // cfg.c functions...
 void LoadPADConfig(void);
 void SavePADConfig(void);
