@@ -6,7 +6,7 @@
  Copyright 2011 __MyCompanyName__. All rights reserved.
  */
 
-"Gamepad/Keyboard/Mouse Input" = "Játékirányító/Billentyűzet bemenet";
+"GameController framework Input" = "GameController framework bemenet"; //fuzzy
 "Joystick: Button %d" = "Joystick: %d gomb";
 "Joystick: Axis %d%c" = "Joystick: %d%c irány";
 "Joystick: Hat %d %s" = "Joystick: %d %s hat";

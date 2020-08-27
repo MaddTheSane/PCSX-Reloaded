@@ -6,7 +6,7 @@
  Copyright 2011 __MyCompanyName__. All rights reserved.
  */
 
-"Gamepad/Keyboard/Mouse Input" = "Gamepad/Keyboard/Mouse Input";
+"GameController framework Input" = "GameController framework Input";
 "Joystick: Button %d" = "Joystick: Button %d";
 "Joystick: Axis %d%c" = "Joystick: Axis %d%c";
 "Joystick: Hat %d %s" = "Joystick: Hat %d %s";

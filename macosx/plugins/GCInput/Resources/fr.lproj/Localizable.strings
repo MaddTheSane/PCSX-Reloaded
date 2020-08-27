@@ -6,7 +6,7 @@
  Copyright 2011 __MyCompanyName__. All rights reserved.
  */
 
-"Gamepad/Keyboard/Mouse Input" = "Entrées clavier/manette";
+"GameController framework Input" = "Entrées GameController framework"; //fuzzy
 "Joystick: Button %d" = "Joystick : Bouton %d";
 "Joystick: Axis %d%c" = "Joystick: Axe %d%c";
 "Joystick: Hat %d %s" = "Joystick: Tête %d %s";

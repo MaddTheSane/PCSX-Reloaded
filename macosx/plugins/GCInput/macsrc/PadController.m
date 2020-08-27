@@ -335,40 +335,6 @@ void SavePADConfig()
 	[defaults synchronize];
 }
 
-void DoAbout()
-{
-	// Get parent application instance
-	NSBundle *bundle = [NSBundle bundleWithIdentifier:APP_ID];
-	
-	// Get Credits.rtf
-	NSURL *path = [bundle URLForResource:@"Credits" withExtension:@"rtf"];
-	NSAttributedString *credits;
-	if (!path) {
-		path = [bundle URLForResource:@"Credits" withExtension:@"rtfd"];
-	}
-	if (path) {
-		credits = [[NSAttributedString alloc] initWithURL:path options:@{} documentAttributes:nil error:NULL];
-	} else {
-		credits = [[NSAttributedString alloc] initWithString:@""];
-	}
-	
-	// Get Application Icon
-	NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:[bundle bundlePath]];
-	NSSize size = NSMakeSize(64, 64);
-	[icon setSize:size];
-	
-	NSDictionary *infoPaneDict =
-	@{@"ApplicationName": [bundle objectForInfoDictionaryKey:@"CFBundleName"],
-	  @"ApplicationIcon": icon,
-	  @"ApplicationVersion": [bundle objectForInfoDictionaryKey:@"CFBundleShortVersionString"],
-	  @"Version": [bundle objectForInfoDictionaryKey:@"CFBundleVersion"],
-	  @"Copyright": [bundle objectForInfoDictionaryKey:@"NSHumanReadableCopyright"],
-	  @"Credits": credits};
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[NSApp orderFrontStandardAboutPanelWithOptions:infoPaneDict];
-	});
-}
-
 long DoConfiguration()
 {
 	RunOnMainThreadSync(^{

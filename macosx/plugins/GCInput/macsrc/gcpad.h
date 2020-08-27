@@ -59,7 +59,7 @@ enum {
 	ANALOG_TOTAL
 };
 
-typedef NS_ENUM(uint8_t, JoyEvent) {
+typedef NS_ENUM(uint8_t, KeyJoyEvent) {
 	NONE = 0,
 	AXIS,
 	HAT,
@@ -67,7 +67,7 @@ typedef NS_ENUM(uint8_t, JoyEvent) {
 };
 
 typedef struct tagKeyDef {
-	JoyEvent		JoyEvType;
+	KeyJoyEvent		JoyEvType;
 	union {
 		int16_t		d;
 		int16_t		Axis;   // positive=axis+, negative=axis-, abs(Axis)-1=axis index
@@ -136,7 +136,7 @@ typedef struct tagGlobalData {
 
 extern GLOBALDATA		g;
 
-enum {
+NS_ENUM(unsigned char) {
 	CMD_READ_DATA_AND_VIBRATE = 0x42,
 	CMD_CONFIG_MODE = 0x43,
 	CMD_SET_MODE_AND_LOCK = 0x44,

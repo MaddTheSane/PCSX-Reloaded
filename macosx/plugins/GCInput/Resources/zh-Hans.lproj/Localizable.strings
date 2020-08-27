@@ -6,7 +6,7 @@
  Copyright 2011 __MyCompanyName__. All rights reserved.
  */
 
-"Gamepad/Keyboard/Mouse Input" = "手柄/键盘/鼠标 输入";
+"GameController framework Input" = "GameController framework Input"; //TODO: translate!
 "Joystick: Button %d" = "操纵杆: 按钮 %d";
 "Joystick: Axis %d%c" = "操纵杆: 坐标轴 %d%c";
 "Joystick: Hat %d %s" = "操纵杆: Hat %d %s";

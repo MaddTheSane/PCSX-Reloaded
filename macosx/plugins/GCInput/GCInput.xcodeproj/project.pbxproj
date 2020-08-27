@@ -12,15 +12,12 @@
 		550FFAF117CEEECA0003A2F3 /* cfgHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 550FFAF017CEEEC90003A2F3 /* cfgHelper.m */; };
 		551A76891786919F0052D185 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A749E17868B110052D185 /* Cocoa.framework */; };
 		551A76951786923E0052D185 /* cfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A752717868BEB0052D185 /* cfg.m */; };
-		551A76961786923E0052D185 /* ControllerList.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A752A17868BEB0052D185 /* ControllerList.m */; };
-		551A76971786923E0052D185 /* MappingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A752C17868BEB0052D185 /* MappingCell.m */; };
-		551A76981786923E0052D185 /* PadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A752E17868BEB0052D185 /* PadController.m */; };
-		551A76991786923E0052D185 /* PadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A753017868BEB0052D185 /* PadView.m */; };
 		551A769A1786923E0052D185 /* xkb.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A753117868BEB0052D185 /* xkb.m */; };
 		551A769B178692470052D185 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 551A751D17868BEB0052D185 /* Credits.rtf */; };
 		551A769D178692470052D185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 551A752117868BEB0052D185 /* Localizable.strings */; };
 		551A769E178692470052D185 /* NetPcsxrGCInputPluginMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551A752317868BEB0052D185 /* NetPcsxrGCInputPluginMain.xib */; };
 		551A77E71786A4DD0052D185 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A76AC178693C60052D185 /* Carbon.framework */; };
+		553C47A724F74591002278AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553C47A624F74591002278AC /* Config.swift */; };
 		55DEC01124F5BF6900376D3F /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEC01024F5BF6900376D3F /* GameController.framework */; };
 		55DEC01324F5C05100376D3F /* gcAnalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01224F5C05100376D3F /* gcAnalog.m */; };
 		55DEC01524F5C22D00376D3F /* gcpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01424F5C22D00376D3F /* gcpad.m */; };
@@ -50,6 +47,8 @@
 		551A76AC178693C60052D185 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		551A76AF178693D60052D185 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		551A76B2178693EA0052D185 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		553C47A524F74591002278AC /* GCInput-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GCInput-Bridging-Header.h"; sourceTree = "<group>"; };
+		553C47A624F74591002278AC /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		554B391418EB4C66000ADF68 /* DFInput.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = DFInput.exp; sourceTree = "<group>"; };
 		5569B0A1182F0B4100991C9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/NetPcsxrGCInputPluginMain.xib; sourceTree = "<group>"; };
 		5569B0C1182F0BE100991C9C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/NetPcsxrGCInputPluginMain.strings; sourceTree = "<group>"; };
@@ -146,6 +145,8 @@
 				55DEC00D24F5BF4600376D3F /* gcpad.h */,
 				55DEC01424F5C22D00376D3F /* gcpad.m */,
 				55DEC01224F5C05100376D3F /* gcAnalog.m */,
+				553C47A624F74591002278AC /* Config.swift */,
+				553C47A524F74591002278AC /* GCInput-Bridging-Header.h */,
 			);
 			path = macsrc;
 			sourceTree = "<group>";
@@ -191,6 +192,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					551A76861786919F0052D185 = {
+						LastSwiftMigration = 1200;
+					};
+				};
 			};
 			buildConfigurationList = 71F353F80FD98DFE00CBEC28 /* Build configuration list for PBXProject "GCInput" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -242,13 +248,10 @@
 			files = (
 				551A76951786923E0052D185 /* cfg.m in Sources */,
 				55DEC01524F5C22D00376D3F /* gcpad.m in Sources */,
-				551A76961786923E0052D185 /* ControllerList.m in Sources */,
-				551A76971786923E0052D185 /* MappingCell.m in Sources */,
-				551A76981786923E0052D185 /* PadController.m in Sources */,
-				551A76991786923E0052D185 /* PadView.m in Sources */,
 				551A769A1786923E0052D185 /* xkb.m in Sources */,
 				550FFAF117CEEECA0003A2F3 /* cfgHelper.m in Sources */,
 				55DEC01324F5C05100376D3F /* gcAnalog.m in Sources */,
+				553C47A724F74591002278AC /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +304,7 @@
 		551A768C1786919F0052D185 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				EXPORTED_SYMBOLS_FILE = Resources/DFInput.exp;
@@ -313,6 +317,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pcsxr.GCInputPlugin;
+				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/GCInput-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = psxplugin;
 			};
 			name = Debug;
@@ -320,6 +327,7 @@
 		551A768D1786919F0052D185 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				EXPORTED_SYMBOLS_FILE = Resources/DFInput.exp;
@@ -331,6 +339,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pcsxr.GCInputPlugin;
+				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/GCInput-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = psxplugin;
 			};
 			name = Release;
@@ -402,6 +412,7 @@
 		557649BE1786B09E007C4457 /* Instrument */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CODE_SIGN_IDENTITY = "";
 				EXPORTED_SYMBOLS_FILE = Resources/DFInput.exp;
@@ -413,6 +424,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pcsxr.GCInputPlugin;
+				SWIFT_OBJC_BRIDGING_HEADER = "macsrc/GCInput-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = psxplugin;
 			};
 			name = Instrument;
