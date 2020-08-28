@@ -24,9 +24,16 @@
 #define APP_ID @"net.pcsxr.GCInputPlugin"
 #define PrefsKey APP_ID @" Settings"
 
-GLOBALDATA g;
-
 extern long DoConfiguration(void);
+
+static inline void RunOnMainThreadSync(dispatch_block_t NS_NOESCAPE block)
+{
+	if ([NSThread isMainThread]) {
+		block();
+	} else {
+		dispatch_sync(dispatch_get_main_queue(), block);
+	}
+}
 
 void PADabout(void) {
 	// Get parent application instance
@@ -62,10 +69,12 @@ void PADabout(void) {
 }
 
 long PADconfigure(void) {
-//	if (SDL_WasInit(SDL_INIT_JOYSTICK))
-//		return PSE_ERR_FATAL; // cannot change settings on the fly
+	if ([GlobalData globalDataInstance] != nil)
+		return PSE_ERR_FATAL; // cannot change settings on the fly
 	
-	//DoConfiguration();
+	RunOnMainThreadSync(^{
+		[GlobalData startConfiguration];
+	});
 	//LoadPADConfig();
 	return PSE_ERR_SUCCESS;
 }

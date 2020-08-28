@@ -14,8 +14,27 @@
 #import <GameController/GameController.h>
 #import <CoreHaptics/CoreHaptics.h>
 
+
+typedef NS_ENUM(uint8_t, PSXPadType) {
+	/// MOUSE SCPH-1030
+	PSXPadTypeMouse = PSE_PAD_TYPE_MOUSE,
+	/// NEGCON - 16 button analog controller SLPH-00001
+	PSXPadTypeNEGCon = PSE_PAD_TYPE_NEGCON,
+	/// GUN CONTROLLER - gun controller SLPH-00014 from Konami
+	PSXPadTypeKonamiGun = PSE_PAD_TYPE_GUN,
+	/// STANDARD PAD SCPH-1080, SCPH-1150
+	PSXPadTypeStandard = PSE_PAD_TYPE_STANDARD,
+	/// ANALOG JOYSTICK SCPH-1110
+	PSXPadTypeAnalogJoystick = PSE_PAD_TYPE_ANALOGJOY,
+	/// GUNCON - gun controller SLPH-00034 from Namco
+	PSXPadTypeNamcoGun = PSE_PAD_TYPE_GUNCON,
+	/// ANALOG CONTROLLER SCPH-1150
+	PSXPadTypeAnalogPad = PSE_PAD_TYPE_ANALOGPAD
+};
+
 typedef void *Display;
 
+#if 0
 enum {
 	DKEY_SELECT = 0,
 	DKEY_L3,
@@ -135,6 +154,7 @@ typedef struct tagGlobalData {
 } GLOBALDATA;
 
 extern GLOBALDATA		g;
+#endif
 
 NS_ENUM(unsigned char) {
 	CMD_READ_DATA_AND_VIBRATE = 0x42,

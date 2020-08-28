@@ -45,6 +45,7 @@
 #define VibrateOn @"Visual Vibration"
 #define UseSDL2Mapping @"SDL2 Mapping"
 
+#if 0
 NSDictionary *DefaultPadArray(int padnum)
 {
 	NSMutableDictionary *mutArray =
@@ -241,3 +242,4 @@ NSDictionary *SavePadArray(int padnum)
 
 	return [NSDictionary dictionaryWithDictionary:mutArray];
 }
+#endif

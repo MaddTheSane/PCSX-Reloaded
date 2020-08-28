@@ -24,6 +24,8 @@ struct KeyDef {
 	var releaseEventPending: UInt8 = 0
 }
 
+let padDataLength: [PSXPadType: Int] = [.mouse: 2, .negCon: 3, .konamiGun: 1, .standard: 1, .analogJoystick: 3, .namcoGun: 3, .analogPad: 3]
+
 class GlobalData: NSObject {
 	@objc(globalDataInstance) private(set) static var instance: GlobalData? = nil
 	
@@ -48,6 +50,10 @@ class GlobalData: NSObject {
 	@objc func open(display disp: UnsafeMutableRawPointer) -> CLong {
 		display = disp.assumingMemoryBound(to: UnsafeMutableRawPointer.self).pointee
 		return CLong(PSE_PAD_ERR_SUCCESS)
+	}
+	
+	@objc class func startConfiguration() {
+		
 	}
 	
 	override init() {

@@ -22,23 +22,23 @@ uint32_t PSEgetLibVersion(void) {
 	return (0 << 16) | (9 << 8);
 }
 
-static int padDataLenght[] = {0, 2, 3, 1, 1, 3, 3, 3};
+//static int padDataLenght[] = {0, 2, 3, 1, 1, 3, 3, 3};
 void PADsetMode(const int pad, const int mode) {
 	[[GlobalData globalDataInstance] setMode:mode forPad:pad];
-	g.PadState[pad].PadMode = mode;
-    
-    if (g.cfg.PadDef[pad].Type == PSE_PAD_TYPE_ANALOGPAD) {
-        g.PadState[pad].PadID = mode ? 0x73 : 0x41;
-    }
-    else {
-        g.PadState[pad].PadID = (g.cfg.PadDef[pad].Type << 4) |
-                                 padDataLenght[g.cfg.PadDef[pad].Type];
-    }
-    
-	g.PadState[pad].Vib0 = 0;
-	g.PadState[pad].Vib1 = 0;
-	g.PadState[pad].VibF[0] = 0;
-	g.PadState[pad].VibF[1] = 0;
+//	g.PadState[pad].PadMode = mode;
+//
+//    if (g.cfg.PadDef[pad].Type == PSE_PAD_TYPE_ANALOGPAD) {
+//        g.PadState[pad].PadID = mode ? 0x73 : 0x41;
+//    }
+//    else {
+//        g.PadState[pad].PadID = (g.cfg.PadDef[pad].Type << 4) |
+//                                 padDataLenght[g.cfg.PadDef[pad].Type];
+//    }
+//
+//	g.PadState[pad].Vib0 = 0;
+//	g.PadState[pad].Vib1 = 0;
+//	g.PadState[pad].VibF[0] = 0;
+//	g.PadState[pad].VibF[1] = 0;
 }
 
 long PADinit(long flags) {
@@ -94,10 +94,9 @@ long PADkeypressed(void)
 }
 
 long PADclose(void) {
-	if (g.Opened) {
+	if ([GlobalData globalDataInstance] != nil) {
 		[GlobalData shutDown];
 	}
-	g.Opened = 0;
 
 	return PSE_PAD_ERR_SUCCESS;
 }

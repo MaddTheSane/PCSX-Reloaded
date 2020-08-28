@@ -13,6 +13,7 @@ struct PadState {
 	var device: GCController? = nil
 	var hapticsLeft: CHHapticEngine? = nil
 	var hapticsRight: CHHapticEngine? = nil
-	var mode: UInt8
-	var padIdentifier: UInt8
+	var mode: UInt8 = 0
+	var padIdentifier: UInt8 = 0
+	var padType: PSXPadType = .standard
 }

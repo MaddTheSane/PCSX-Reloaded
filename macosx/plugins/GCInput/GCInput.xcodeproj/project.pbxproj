@@ -12,7 +12,6 @@
 		550FFAF117CEEECA0003A2F3 /* cfgHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 550FFAF017CEEEC90003A2F3 /* cfgHelper.m */; };
 		551A76891786919F0052D185 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551A749E17868B110052D185 /* Cocoa.framework */; };
 		551A76951786923E0052D185 /* cfg.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A752717868BEB0052D185 /* cfg.m */; };
-		551A769A1786923E0052D185 /* xkb.m in Sources */ = {isa = PBXBuildFile; fileRef = 551A753117868BEB0052D185 /* xkb.m */; };
 		551A769B178692470052D185 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 551A751D17868BEB0052D185 /* Credits.rtf */; };
 		551A769D178692470052D185 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 551A752117868BEB0052D185 /* Localizable.strings */; };
 		551A769E178692470052D185 /* NetPcsxrGCInputPluginMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 551A752317868BEB0052D185 /* NetPcsxrGCInputPluginMain.xib */; };
@@ -20,7 +19,6 @@
 		551BBC6724F812920023DB5D /* PadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551BBC6624F812920023DB5D /* PadState.swift */; };
 		553C47A724F74591002278AC /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553C47A624F74591002278AC /* Config.swift */; };
 		55DEC01124F5BF6900376D3F /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DEC01024F5BF6900376D3F /* GameController.framework */; };
-		55DEC01324F5C05100376D3F /* gcAnalog.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01224F5C05100376D3F /* gcAnalog.m */; };
 		55DEC01524F5C22D00376D3F /* gcpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 55DEC01424F5C22D00376D3F /* gcpad.m */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +62,6 @@
 		5598AAFB17D2E9E90024F71D /* fr */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		55DEC00D24F5BF4600376D3F /* gcpad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gcpad.h; sourceTree = "<group>"; };
 		55DEC01024F5BF6900376D3F /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
-		55DEC01224F5C05100376D3F /* gcAnalog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gcAnalog.m; sourceTree = "<group>"; };
 		55DEC01424F5C22D00376D3F /* gcpad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = gcpad.m; sourceTree = "<group>"; };
 		55E159AB1845BA78007983CB /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/NetPcsxrGCInputPluginMain.strings; sourceTree = "<group>"; };
 		55E159AD1845BA7B007983CB /* hu */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hu; path = hu.lproj/NetPcsxrGCInputPluginMain.strings; sourceTree = "<group>"; };
@@ -132,6 +129,7 @@
 		551A752617868BEB0052D185 /* macsrc */ = {
 			isa = PBXGroup;
 			children = (
+				553C47A524F74591002278AC /* GCInput-Bridging-Header.h */,
 				550FFAF017CEEEC90003A2F3 /* cfgHelper.m */,
 				551A752817868BEB0052D185 /* cfg.h */,
 				551A752717868BEB0052D185 /* cfg.m */,
@@ -146,9 +144,7 @@
 				551A753117868BEB0052D185 /* xkb.m */,
 				55DEC00D24F5BF4600376D3F /* gcpad.h */,
 				55DEC01424F5C22D00376D3F /* gcpad.m */,
-				55DEC01224F5C05100376D3F /* gcAnalog.m */,
 				553C47A624F74591002278AC /* Config.swift */,
-				553C47A524F74591002278AC /* GCInput-Bridging-Header.h */,
 				551BBC6624F812920023DB5D /* PadState.swift */,
 			);
 			path = macsrc;
@@ -252,9 +248,7 @@
 				551BBC6724F812920023DB5D /* PadState.swift in Sources */,
 				551A76951786923E0052D185 /* cfg.m in Sources */,
 				55DEC01524F5C22D00376D3F /* gcpad.m in Sources */,
-				551A769A1786923E0052D185 /* xkb.m in Sources */,
 				550FFAF117CEEECA0003A2F3 /* cfgHelper.m in Sources */,
-				55DEC01324F5C05100376D3F /* gcAnalog.m in Sources */,
 				553C47A724F74591002278AC /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
