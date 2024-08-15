@@ -36,7 +36,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t block)
 
 static PluginConfigController *windowController = nil;
 
-void AboutDlgProc()
+void AboutDlgProc(void)
 {
 	// Get parent application instance
 	NSBundle *bundle = [NSBundle bundleWithIdentifier:APP_ID];
@@ -70,7 +70,7 @@ void AboutDlgProc()
 	});
 }
 
-void ConfDlgProc()
+void ConfDlgProc(void)
 {
 	RunOnMainThreadSync(^{
 		NSWindow *window;
@@ -87,7 +87,7 @@ void ConfDlgProc()
 	});
 }
 
-void ReadConfig()
+void ReadConfig(void)
 {
 	NSDictionary *keyValues;
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

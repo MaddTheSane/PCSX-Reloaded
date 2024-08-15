@@ -149,7 +149,7 @@ OSStatus GenerateThumbnailForMemCard(void *thisInterface, QLThumbnailRequestRef 
 		} else {
 			curImage = blankImage;
 		}
-		[curImage drawInRect:NSMakeRect(x, y, ImageDivider, ImageDivider) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+		[curImage drawInRect:NSMakeRect(x, y, ImageDivider, ImageDivider) fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0];
 		if (QLThumbnailRequestIsCancelled(thumbnail)) {
 			[memImages unlockFocus];
 			return kQLReturnNoError;
@@ -157,7 +157,7 @@ OSStatus GenerateThumbnailForMemCard(void *thisInterface, QLThumbnailRequestRef 
 	}
 	NSImage *psxMemIcon = [Bundle imageForResource:@"pcsxrmemcard"];
 	psxMemIcon.size = NSMakeSize(ImageDivider, ImageDivider);
-	[psxMemIcon drawInRect:NSMakeRect(0, 3 * ImageDivider, ImageDivider, ImageDivider) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
+	[psxMemIcon drawInRect:NSMakeRect(0, 3 * ImageDivider, ImageDivider, ImageDivider) fromRect:NSZeroRect operation:NSCompositingOperationSourceOver fraction:1.0];
 	
 	[memImages unlockFocus];
 	

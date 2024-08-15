@@ -31,7 +31,7 @@
 R3000Acpu *psxCpu = NULL;
 psxRegisters psxRegs;
 
-int psxInit() {
+int psxInit(void) {
 	SysPrintf(_("Running PCSXR Version %s (%s).\n"), PACKAGE_VERSION, __DATE__);
 
 #ifdef PSXREC
@@ -51,7 +51,7 @@ int psxInit() {
 	return psxCpu->Init();
 }
 
-void psxReset() {
+void psxReset(void) {
 	psxCpu->Reset();
 
 	psxMemReset();
@@ -75,7 +75,7 @@ void psxReset() {
 	Log = 0;
 }
 
-void psxShutdown() {
+void psxShutdown(void) {
 	psxMemShutdown();
 	psxBiosShutdown();
 
@@ -109,7 +109,7 @@ void psxException(u32 code, u32 bd) {
 	if (Config.HLE) psxBiosException();
 }
 
-void psxBranchTest() {
+void psxBranchTest(void) {
 	// GameShark Sampler: Give VSync pin some delay before exception eats it
 	if (psxHu32(0x1070) & psxHu32(0x1074)) {
 		if ((psxRegs.CP0.n.Status & 0x401) == 0x401) {
@@ -233,7 +233,7 @@ void psxBranchTest() {
 	}
 }
 
-void psxJumpTest() {
+void psxJumpTest(void) {
 	if (!Config.HLE && Config.PsxOut) {
 		u32 call = psxRegs.GPR.n.t1 & 0xff;
 		switch (psxRegs.pc & 0x1fffff) {
@@ -272,7 +272,7 @@ void psxJumpTest() {
 	}
 }
 
-void psxExecuteBios() {
+void psxExecuteBios(void) {
 	while (psxRegs.pc != 0x80030000)
 		psxCpu->ExecuteBlock();
 }

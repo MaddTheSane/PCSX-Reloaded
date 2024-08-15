@@ -162,7 +162,7 @@ u32 _psxRcntRcount( u32 index )
 /******************************************************************************/
 
 static
-void psxRcntSet()
+void psxRcntSet(void)
 {
     s32 countToUpdate;
     u32 i;
@@ -249,7 +249,7 @@ void psxRcntReset( u32 index )
     psxRcntSet();
 }
 
-void psxRcntUpdate()
+void psxRcntUpdate(void)
 {
     u32 cycle;
 
@@ -467,7 +467,7 @@ u32 psxRcntRtarget( u32 index )
 
 /******************************************************************************/
 
-void psxHsyncCalculate()
+void psxHsyncCalculate(void)
 {
     HSyncTotal[PSX_TYPE_NTSC] = 263; HSyncTotal[PSX_TYPE_PAL] = 313;
     if (Config.VSyncWA) {
@@ -477,7 +477,7 @@ void psxHsyncCalculate()
     }
 }
 
-void psxRcntInit()
+void psxRcntInit(void)
 {
     s32 i;
 

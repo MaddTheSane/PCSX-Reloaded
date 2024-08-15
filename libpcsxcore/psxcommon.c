@@ -37,20 +37,20 @@ u8 vblank_count_hideafter=0;
 // Used for overclocking
 u32 PsxClockSpeed = 33868800;
 
-int EmuInit() {
+int EmuInit(void) {
 	int ret = psxInit();
 	EmuSetPGXPMode(Config.PGXP_Mode);
 	return ret;
 }
 
-void EmuReset() {
+void EmuReset(void) {
 	FreeCheatSearchResults();
 	FreeCheatSearchMem();
 
 	psxReset();
 }
 
-void EmuShutdown() {
+void EmuShutdown(void) {
 	ClearAllCheats();
 	FreeCheatSearchResults();
 	FreeCheatSearchMem();
@@ -62,7 +62,7 @@ void EmuShutdown() {
 	CleanupMemSaveStates();
 }
 
-void EmuUpdate() {
+void EmuUpdate(void) {
 	// Do not allow hotkeys inside a softcall from HLE BIOS
 	if (!Config.HLE || !hleSoftCall)
 		SysUpdate();

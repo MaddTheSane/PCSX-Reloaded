@@ -37,7 +37,7 @@ static int NumSearchResultsAllocated = 0;
 
 #define ALLOC_INCREMENT		100
 
-void ClearAllCheats() {
+void ClearAllCheats(void) {
 	int i;
 
 	if (Cheats != NULL) {
@@ -181,7 +181,7 @@ void SaveCheats(const char *filename) {
 }
 
 // apply all enabled cheats
-void ApplyCheats() {
+void ApplyCheats(void) {
 	int		i, j, k, endindex;
 
 	for (i = 0; i < NumCheats; i++) {
@@ -448,7 +448,7 @@ int EditCheat(int index, const char *descr, char *code) {
 	return 0;
 }
 
-void FreeCheatSearchResults() {
+void FreeCheatSearchResults(void) {
 	if (SearchResults != NULL) {
 		free(SearchResults);
 	}
@@ -458,20 +458,20 @@ void FreeCheatSearchResults() {
 	NumSearchResultsAllocated = 0;
 }
 
-void FreeCheatSearchMem() {
+void FreeCheatSearchMem(void) {
 	if (prevM != NULL) {
 		free(prevM);
 	}
 	prevM = NULL;
 }
 
-void CheatSearchBackupMemory() {
+void CheatSearchBackupMemory(void) {
 	if (prevM != NULL) {
 		memcpy(prevM, psxM, 0x200000);
 	}
 }
 
-static void CheatSearchInitBackupMemory() {
+static void CheatSearchInitBackupMemory(void) {
 	if (prevM == NULL) {
 		prevM = (s8 *)malloc(0x200000);
 		CheatSearchBackupMemory();
@@ -832,7 +832,7 @@ void CheatSearchDecreasedBy32(u32 val) {
 	NumSearchResults = j;
 }
 
-void CheatSearchIncreased8() {
+void CheatSearchIncreased8(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -848,7 +848,7 @@ void CheatSearchIncreased8() {
 	NumSearchResults = j;
 }
 
-void CheatSearchIncreased16() {
+void CheatSearchIncreased16(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -864,7 +864,7 @@ void CheatSearchIncreased16() {
 	NumSearchResults = j;
 }
 
-void CheatSearchIncreased32() {
+void CheatSearchIncreased32(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -880,7 +880,7 @@ void CheatSearchIncreased32() {
 	NumSearchResults = j;
 }
 
-void CheatSearchDecreased8() {
+void CheatSearchDecreased8(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -896,7 +896,7 @@ void CheatSearchDecreased8() {
 	NumSearchResults = j;
 }
 
-void CheatSearchDecreased16() {
+void CheatSearchDecreased16(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -912,7 +912,7 @@ void CheatSearchDecreased16() {
 	NumSearchResults = j;
 }
 
-void CheatSearchDecreased32() {
+void CheatSearchDecreased32(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -928,7 +928,7 @@ void CheatSearchDecreased32() {
 	NumSearchResults = j;
 }
 
-void CheatSearchDifferent8() {
+void CheatSearchDifferent8(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -944,7 +944,7 @@ void CheatSearchDifferent8() {
 	NumSearchResults = j;
 }
 
-void CheatSearchDifferent16() {
+void CheatSearchDifferent16(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -960,7 +960,7 @@ void CheatSearchDifferent16() {
 	NumSearchResults = j;
 }
 
-void CheatSearchDifferent32() {
+void CheatSearchDifferent32(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -976,7 +976,7 @@ void CheatSearchDifferent32() {
 	NumSearchResults = j;
 }
 
-void CheatSearchNoChange8() {
+void CheatSearchNoChange8(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -992,7 +992,7 @@ void CheatSearchNoChange8() {
 	NumSearchResults = j;
 }
 
-void CheatSearchNoChange16() {
+void CheatSearchNoChange16(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search
@@ -1008,7 +1008,7 @@ void CheatSearchNoChange16() {
 	NumSearchResults = j;
 }
 
-void CheatSearchNoChange32() {
+void CheatSearchNoChange32(void) {
 	u32 i, j;
 
 	assert(prevM != NULL); // not possible for the first search

@@ -75,7 +75,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t block)
 	}
 }
 
-void ConfDlgProc()
+void ConfDlgProc(void)
 {
 	//We need this block due to the xib's use of auto layout
 	RunOnMainThreadSync(^{
@@ -92,7 +92,7 @@ void ConfDlgProc()
 	});
 }
 
-void ReadConfig()
+void ReadConfig(void)
 {
 	NSDictionary *keyValues;
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

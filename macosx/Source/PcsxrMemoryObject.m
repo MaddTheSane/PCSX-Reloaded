@@ -241,9 +241,9 @@ static NSString *MemLabelMultiSave;
 static inline void SetupAttrStr(NSMutableAttributedString *mutStr, NSColor *txtclr)
 {
 	NSRange wholeStrRange = NSMakeRange(0, mutStr.string.length);
-	[mutStr addAttribute:NSFontAttributeName value:[NSFont userFontOfSize:[NSFont systemFontSizeForControlSize:NSSmallControlSize]] range:wholeStrRange];
+	[mutStr addAttribute:NSFontAttributeName value:[NSFont userFontOfSize:[NSFont systemFontSizeForControlSize:NSControlSizeSmall]] range:wholeStrRange];
 	[mutStr addAttribute:NSForegroundColorAttributeName value:txtclr range:wholeStrRange];
-	[mutStr setAlignment:NSCenterTextAlignment range:wholeStrRange];
+	[mutStr setAlignment:NSTextAlignmentCenter range:wholeStrRange];
 }
 
 - (NSAttributedString*)attributedFlagName

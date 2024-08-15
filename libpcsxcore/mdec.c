@@ -529,7 +529,7 @@ void psxDma0(u32 adr, u32 bcr, u32 chcr) {
 	DMA_INTERRUPT(0);
 }
 
-void mdec0Interrupt()
+void mdec0Interrupt(void)
 {
 	HW_DMA0_CHCR &= SWAP32(~0x01000000);
 	DMA_INTERRUPT(0);
@@ -626,7 +626,7 @@ void psxDma1(u32 adr, u32 bcr, u32 chcr) {
 	}
 }
 
-void mdec1Interrupt() {
+void mdec1Interrupt(void) {
 	/* Author : gschwind
 	 *
 	 * in that case we have done all decoding stuff

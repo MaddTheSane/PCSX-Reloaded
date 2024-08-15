@@ -248,7 +248,7 @@ static void adjustTransferIndex(void)
 }
 
 // FIXME: do this in SPU instead
-void cdrDecodedBufferInterrupt()
+void cdrDecodedBufferInterrupt(void)
 {
 #if 0
 	return;
@@ -289,7 +289,7 @@ void cdrDecodedBufferInterrupt()
 
 // timing used in this function was taken from tests on real hardware
 // (yes it's slow, but you probably don't want to modify it)
-void cdrLidSeekInterrupt()
+void cdrLidSeekInterrupt(void)
 {
 	switch (cdr.DriveState) {
 	default:
@@ -491,7 +491,7 @@ static void AddIrqQueue(unsigned short irq, unsigned long ecycle) {
 	CDR_INT(ecycle);
 }
 
-static void cdrPlayInterrupt_Autopause()
+static void cdrPlayInterrupt_Autopause(void)
 {
 	if ((cdr.Mode & MODE_AUTOPAUSE) && cdr.TrackChanged) {
 #ifdef CDR_LOG
@@ -538,7 +538,7 @@ static void cdrPlayInterrupt_Autopause()
 }
 
 // also handles seek
-void cdrPlayInterrupt()
+void cdrPlayInterrupt(void)
 {
 	if (cdr.Seeked == SEEK_PENDING) {
 		if (cdr.Stat) {
@@ -604,7 +604,7 @@ void cdrPlayInterrupt()
 	generate_subq(cdr.SetSectorPlay);
 }
 
-void cdrInterrupt() {
+void cdrInterrupt(void) {
 	u16 Irq = cdr.Irq;
 	int no_busy_error = 0;
 	int start_rotating = 0;
@@ -1133,7 +1133,7 @@ void cdrAttenuate(s16 *buf, int samples, int stereo)
 	}
 }
 
-void cdrReadInterrupt() {
+void cdrReadInterrupt(void) {
 	u8 *buf;
 
 	if (!cdr.Reading)
@@ -1539,7 +1539,7 @@ void psxDma3(u32 madr, u32 bcr, u32 chcr) {
 	DMA_INTERRUPT(3);
 }
 
-void cdrDmaInterrupt()
+void cdrDmaInterrupt(void)
 {
 	if (HW_DMA3_CHCR & SWAP32(0x01000000))
 	{
@@ -1559,7 +1559,7 @@ static void getCdInfo(void)
 	cdr.SetSectorEnd[2] = tmp;
 }
 
-void cdrReset() {
+void cdrReset(void) {
 	memset(&cdr, 0, sizeof(cdr));
 	cdr.CurTrack = 1;
 	cdr.File = 1;
@@ -1608,7 +1608,7 @@ int cdrFreeze(gzFile f, int Mode) {
 	return 0;
 }
 
-void LidInterrupt() {
+void LidInterrupt(void) {
 	getCdInfo();
 	StopCdda();
 	cdrLidSeekInterrupt();

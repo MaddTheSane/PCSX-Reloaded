@@ -144,7 +144,7 @@ int GetCdromFile(u8 *mdir, u8 *time, s8 *filename) {
 	return 0;
 }
 
-int LoadCdrom() {
+int LoadCdrom(void) {
 	EXE_HEADER tmpHead;
 	struct iso_directory_record *dir;
 	u8 time[4], *buf;
@@ -285,7 +285,7 @@ int LoadCdromFile(const char *filename, EXE_HEADER *head) {
 	return 0;
 }
 
-int CheckCdrom() {
+int CheckCdrom(void) {
 	struct iso_directory_record *dir;
 	unsigned char time[4], *buf;
 	unsigned char mdir[4096];
@@ -427,7 +427,7 @@ static int PSXGetFileType(FILE *f) {
 	return INVALID_EXE;
 }
 
-static void LoadLibPS() {
+static void LoadLibPS(void) {
 	char buf[MAXPATHLEN];
 	FILE *f;
 
@@ -664,7 +664,7 @@ int LoadState(const char *file) {
 u32 mem_cur_save_count=0, mem_last_save;
 boolean mem_wrapped=FALSE; // Whether we went past max count and restarted counting
 
-void CreateRewindState() {
+void CreateRewindState(void) {
 	if (Config.RewindCount > 0) {
 		SaveStateMem(mem_last_save=mem_cur_save_count++);
 
@@ -675,7 +675,7 @@ void CreateRewindState() {
 	}
 }
 
-void RewindState() {
+void RewindState(void) {
 	mem_cur_save_count--;
 	if (mem_cur_save_count > Config.RewindCount && mem_wrapped) {
 		mem_cur_save_count = Config.RewindCount;
@@ -757,7 +757,7 @@ int LoadStateMem(const u32 id) {
 	return ret;
 }
 
-void CleanupMemSaveStates() {
+void CleanupMemSaveStates(void) {
 	char name[32];
 	u32 i;
 	
@@ -916,7 +916,7 @@ int CheckState(const char *file) {
 
 // NET Function Helpers
 
-int SendPcsxInfo() {
+int SendPcsxInfo(void) {
 	if (NET_recvData == NULL || NET_sendData == NULL)
 		return 0;
 
@@ -930,7 +930,7 @@ int SendPcsxInfo() {
 	return 0;
 }
 
-int RecvPcsxInfo() {
+int RecvPcsxInfo(void) {
 	int tmp;
 
 	if (NET_recvData == NULL || NET_sendData == NULL)
@@ -1006,7 +1006,7 @@ void split( char* str, char key, char* pout )
 }
 
 // lookup table for crc calculation
-static unsigned short crctab[256] = {
+static const unsigned short crctab[256] = {
 	0x0000, 0x1021, 0x2042, 0x3063, 0x4084, 0x50A5, 0x60C6, 0x70E7, 0x8108,
 	0x9129, 0xA14A, 0xB16B, 0xC18C, 0xD1AD, 0xE1CE, 0xF1EF, 0x1231, 0x0210,
 	0x3273, 0x2252, 0x52B5, 0x4294, 0x72F7, 0x62D6, 0x9339, 0x8318, 0xB37B,

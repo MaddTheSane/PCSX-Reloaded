@@ -39,7 +39,7 @@ static int ptr = 0;
 
 #define PORT_NUMBER 12345
 
-int StartServer() {
+int StartServer(void) {
     struct in_addr localhostaddr;
     struct sockaddr_in localsocketaddr;
 
@@ -83,7 +83,7 @@ int StartServer() {
     return 0;
 }
 
-void StopServer() {
+void StopServer(void) {
 #ifdef _WIN32
     shutdown(server_socket, SD_BOTH);
     closesocket(server_socket);
@@ -94,7 +94,7 @@ void StopServer() {
 #endif
 }
 
-void GetClient() {
+void GetClient(void) {
     int new_socket;
     char hello[256];
 
@@ -124,7 +124,7 @@ void GetClient() {
     ptr = 0;
 }
 
-void CloseClient() {
+void CloseClient(void) {
     if (client_socket) {
 #ifdef _WIN32
         shutdown(client_socket, SD_BOTH);
@@ -137,7 +137,7 @@ void CloseClient() {
     }
 }
 
-int HasClient() {
+int HasClient(void) {
     return client_socket ? 1 : 0;
 }
 
@@ -233,7 +233,7 @@ void WriteSocket(char * buffer, int len) {
     send(client_socket, buffer, len, 0);
 }
 
-void SetsBlock() {
+void SetsBlock(void) {
 #ifdef _WIN32
     u_long b = 0;
     ioctlsocket(server_socket, FIONBIO, &b);
@@ -243,7 +243,7 @@ void SetsBlock() {
 #endif
 }
 
-void SetsNonblock() {
+void SetsNonblock(void) {
 #ifdef _WIN32
     u_long b = 1;
     ioctlsocket(server_socket, FIONBIO, &b);

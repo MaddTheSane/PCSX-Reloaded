@@ -35,7 +35,7 @@ void setIrq( u32 irq )
 	psxHu32ref(0x1070) |= SWAPu32(irq);
 }
 
-void psxHwReset() {
+void psxHwReset(void) {
 	if (Config.SioIrq) psxHu32ref(0x1070) |= SWAP32(0x80);
 	if (Config.SpuIrq) psxHu32ref(0x1070) |= SWAP32(0x200);
 

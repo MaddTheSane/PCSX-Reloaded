@@ -170,7 +170,7 @@ static void PSXDiscAppearedCallback(DADiskRef disk, void *context)
 		NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 		[openDlg setAllowedFileTypes:[PcsxrDiscHandler supportedUTIs]];
 		
-		if ([openDlg runModal] == NSFileHandlingPanelOKButton) {
+		if ([openDlg runModal] == NSModalResponseOK) {
 			NSArray* files = [openDlg URLs];
 			SetIsoFile([files[0] fileSystemRepresentation]);
 			SetCdOpenCaseTime(time(NULL) + 2);
@@ -283,7 +283,7 @@ static void PSXDiscAppearedCallback(DADiskRef disk, void *context)
 	NSOpenPanel* openDlg = [NSOpenPanel openPanel];
 	[openDlg setAllowedFileTypes:[PcsxrDiscHandler supportedUTIs]];
 
-	if ([openDlg runModal] == NSFileHandlingPanelOKButton) {
+	if ([openDlg runModal] == NSModalResponseOK) {
         NSURL *url = [openDlg URLs][0];
         [recentItems addRecentItem:url];
 		[self runURL:url];
@@ -422,7 +422,7 @@ static void PSXDiscAppearedCallback(DADiskRef disk, void *context)
 		NSAlert *memDidMove = [[NSAlert alloc] init];
 		memDidMove.messageText = NSLocalizedString(@"PSX Mem moved Desc", @"Playstation Cards did move");
 		memDidMove.informativeText = NSLocalizedString(@"Psx Mem Moved", @"Playstation Cards did move");
-		memDidMove.alertStyle = NSInformationalAlertStyle;
+		memDidMove.alertStyle = NSAlertStyleInformational;
 		[memDidMove runModal];
 		[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"DidMoveMemoryObjects"];
 	}
@@ -995,7 +995,7 @@ otherblock();\
 			[biosInfo addButtonWithTitle:NSLocalizedString(@"BIOS_Copy", @"copy the BIOS over")];
 			[biosInfo addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
 			[biosInfo addButtonWithTitle:NSLocalizedString(@"BIOS_Move", @"Move the bios over")];
-			biosInfo.alertStyle = NSInformationalAlertStyle;
+			biosInfo.alertStyle = NSAlertStyleInformational;
 			switch ([biosInfo runModal]) {
 				case NSAlertFirstButtonReturn:
 				{
@@ -1006,7 +1006,7 @@ otherblock();\
 						NSAlert *alreadyThere = [NSAlert new];
 						alreadyThere.messageText = NSLocalizedString(@"BIOS Already Exists", @"BIOS file already there.");
 						alreadyThere.informativeText = [NSString stringWithFormat:NSLocalizedString(@"There already exists a BIOS file at \"%1$@\": not copying the file at \"%2$@\".\n\nIf you do want to use the BIOS file at \"%2$@\", delete the BIOS at \"%1$@\".", @"What to do"), [biosPath path], filename];
-						alreadyThere.alertStyle = NSCriticalAlertStyle;
+						alreadyThere.alertStyle = NSAlertStyleCritical;
 						[alreadyThere runModal];
 						return NO;
 					}
@@ -1026,7 +1026,7 @@ otherblock();\
 						NSAlert *alreadyThere = [NSAlert new];
 						alreadyThere.messageText = NSLocalizedString(@"BIOS Already Exists", @"BIOS file already there.");
 						alreadyThere.informativeText = [NSString stringWithFormat:NSLocalizedString(@"There already exists a BIOS file at \"%1$@\": not copying the file at \"%2$@\".\n\nIf you do want to use the BIOS file at \"%2$@\", delete the BIOS at \"%1$@\".", @"What to do"), [biosPath path], filename];
-						alreadyThere.alertStyle = NSCriticalAlertStyle;
+						alreadyThere.alertStyle = NSAlertStyleCritical;
 						[alreadyThere runModal];
 						return NO;
 					}

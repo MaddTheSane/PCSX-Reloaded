@@ -38,7 +38,7 @@ int StatesC = 0;
 extern int UseGui;
 int ShowPic=0;
 
-void gpuShowPic() {
+void gpuShowPic(void) {
 }
 
 void PADhandleKey(int key) {
@@ -71,7 +71,7 @@ void SignalExit(int sig) {
 		strcpy(dst, ptr+1); \
 	}
 
-static int _OpenPlugins() {
+static int _OpenPlugins(void) {
 	long ret;
 
 	GPU_clearDynarec(clearDynarec);
@@ -154,7 +154,7 @@ static int _OpenPlugins() {
 	return 0;
 }
 
-int OpenPlugins() {
+int OpenPlugins(void) {
 	int ret;
 
 	while ((ret = _OpenPlugins()) == -2) {
@@ -165,7 +165,7 @@ int OpenPlugins() {
 	return ret;
 }
 
-void ClosePlugins() {
+void ClosePlugins(void) {
 	long ret;
 
 	//signal(SIGINT, SIG_DFL);
@@ -190,7 +190,7 @@ void ClosePlugins() {
 	}
 }
 
-void ResetPlugins() {
+void ResetPlugins(void) {
 	long ret;
 
 	CDR_shutdown();

@@ -61,7 +61,7 @@ static inline void CopyMemcardData(char *from, char *to, int srci, int dsti, cha
 	SaveMcd(str, to, (dsti + 1) * 1024 * 8, 1024 * 8);
 }
 
-static inline char* BlankHeader()
+static inline char* BlankHeader(void)
 {
 	struct PSXMemHeader {
 		unsigned int allocState;

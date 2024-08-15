@@ -491,7 +491,7 @@ long CALLBACK PAD1__configure(void) { return 0; }
 void CALLBACK PAD1__about(void) {}
 long CALLBACK PAD1__test(void) { return 0; }
 long CALLBACK PAD1__query(void) { return 3; }
-long CALLBACK PAD1__keypressed() { return 0; }
+long CALLBACK PAD1__keypressed(void) { return 0; }
 void CALLBACK PAD1__registerVibration(void (CALLBACK *callback)(unsigned long, unsigned long)) {}
 void CALLBACK PAD1__registerCursor(void (CALLBACK *callback)(int, int, int)) {}
 
@@ -550,7 +550,7 @@ long CALLBACK PAD2__configure(void) { return 0; }
 void CALLBACK PAD2__about(void) {}
 long CALLBACK PAD2__test(void) { return 0; }
 long CALLBACK PAD2__query(void) { return PSE_PAD_USE_PORT1 | PSE_PAD_USE_PORT2; }
-long CALLBACK PAD2__keypressed() { return 0; }
+long CALLBACK PAD2__keypressed(void) { return 0; }
 void CALLBACK PAD2__registerVibration(void (CALLBACK *callback)(unsigned long, unsigned long)) {}
 void CALLBACK PAD2__registerCursor(void (CALLBACK *callback)(int, int, int)) {}
 
@@ -743,7 +743,7 @@ void CALLBACK clearDynarec(void) {
 	psxCpu->Reset();
 }
 
-int LoadPlugins() {
+int LoadPlugins(void) {
 	long ret;
 	char Plugin[MAXPATHLEN];
 
@@ -806,7 +806,7 @@ int LoadPlugins() {
 	return 0;
 }
 
-void ReleasePlugins() {
+void ReleasePlugins(void) {
 	if (Config.UseNet) {
 		long ret = NET_close();
 		if (ret < 0) Config.UseNet = FALSE;

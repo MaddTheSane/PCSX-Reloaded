@@ -28,14 +28,14 @@ typedef NS_ENUM(int, PCSXR_HotKey) {
     HK_FRAME_LIMIT
 };
 
-void nextState() {
+void nextState(void) {
     currentState++;
     if(currentState == HK_MAX_STATE) {
         currentState = 0;
     }
 }
 
-void prevState() {
+void prevState(void) {
     currentState--;
     if(currentState < 0) {
         currentState = HK_MAX_STATE-1;
@@ -97,7 +97,7 @@ void setupHotkey(PCSXR_HotKey hk, NSString *label, NSDictionary *binding) {
 		hotkeys[binding[@"keyCode"]] = @(hk);
 }
 
-void setupHotkeys() {
+void setupHotkeys(void) {
     NSDictionary *bindings = [[NSUserDefaults standardUserDefaults] objectForKey:@"HotkeyBindings"];
     hotkeys = [[NSMutableDictionary alloc] initWithCapacity:[bindings count]];
     
@@ -111,7 +111,7 @@ void setupHotkeys() {
     currentState = 0;
 }
 
-void attachHotkeys() {
+void attachHotkeys(void) {
     // Configurable hotkeys
     NSEvent* (^handler)(NSEvent*) = ^(NSEvent *event) {
         if(handleHotkey([NSString stringWithFormat:@"%d", [event keyCode]])) {
@@ -122,11 +122,11 @@ void attachHotkeys() {
         return event;
     };
     setupHotkeys();
-    monitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyUpMask handler:handler];
+	monitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyUp handler:handler];
     
     // GPU key presses
     NSEvent* (^gpuKeypress)(NSEvent*) = ^(NSEvent *event) {
-		if (event.modifierFlags & NSControlKeyMask) {
+		if (event.modifierFlags & NSEventModifierFlagControl) {
 			if ([event keyCode] == 0x67) {	// F11
 				GPU_toggleDebug();
 			} else {
@@ -137,10 +137,10 @@ void attachHotkeys() {
 			return event;
 		}
     };
-    gpuMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSKeyUpMask handler:gpuKeypress];
+	gpuMonitor = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyUp handler:gpuKeypress];
 }
 
-void detachHotkeys() {
+void detachHotkeys(void) {
 	hotkeys = nil;
     [NSEvent removeMonitor:monitor];
     [NSEvent removeMonitor:gpuMonitor];

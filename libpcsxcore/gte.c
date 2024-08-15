@@ -250,33 +250,33 @@ static void CTC2(u32 value, int reg) {
 	psxRegs.CP2C.p[reg].d = value;
 }
 
-void gteMFC2() {
+void gteMFC2(void) {
 	// CPU[Rt] = GTE_D[Rd]
 	if (!_Rt_) return;
 	psxRegs.GPR.r[_Rt_] = MFC2(_Rd_);
 }
 
-void gteCFC2() {
+void gteCFC2(void) {
 	// CPU[Rt] = GTE_C[Rd]
 	if (!_Rt_) return;
 	psxRegs.GPR.r[_Rt_] = psxRegs.CP2C.p[_Rd_].d;
 }
 
-void gteMTC2() {
+void gteMTC2(void) {
 	MTC2(psxRegs.GPR.r[_Rt_], _Rd_);
 }
 
-void gteCTC2() {
+void gteCTC2(void) {
 	CTC2(psxRegs.GPR.r[_Rt_], _Rd_);
 }
 
 #define _oB_ (psxRegs.GPR.r[_Rs_] + _Imm_)
 
-void gteLWC2() {
+void gteLWC2(void) {
 	MTC2(psxMemRead32(_oB_), _Rt_);
 }
 
-void gteSWC2() {
+void gteSWC2(void) {
 	psxMemWrite32(_oB_, MFC2(_Rt_));
 }
 
@@ -979,90 +979,90 @@ int docop2(int op) {
 	return 0;
 }
 
-void gteRTPS() {
+void gteRTPS(void) {
 	docop2(gteop);
 }
 
-void gteNCLIP() {
+void gteNCLIP(void) {
 	docop2(gteop);
 }
 
-void gteOP() {
+void gteOP(void) {
 	docop2(gteop);
 }
 
-void gteDPCS() {
+void gteDPCS(void) {
 	docop2(gteop);
 }
 
-void gteINTPL() {
+void gteINTPL(void) {
 	docop2(gteop);
 }
 
-void gteMVMVA() {
+void gteMVMVA(void) {
 	docop2(gteop);
 }
 
-void gteNCDS() {
+void gteNCDS(void) {
 	docop2(gteop);
 }
 
-void gteCDP() {
+void gteCDP(void) {
 	docop2(gteop);
 }
 
-void gteNCDT() {
+void gteNCDT(void) {
 	docop2(gteop);
 }
 
-void gteNCCS() {
+void gteNCCS(void) {
 	docop2(gteop);
 }
 
-void gteCC() {
+void gteCC(void) {
 	docop2(gteop);
 }
 
-void gteNCS() {
+void gteNCS(void) {
 	docop2(gteop);
 }
 
-void gteNCT() {
+void gteNCT(void) {
 	docop2(gteop);
 }
 
-void gteSQR() {
+void gteSQR(void) {
 	docop2(gteop);
 }
 
-void gteDCPL() {
+void gteDCPL(void) {
 	docop2(gteop);
 }
 
-void gteDPCT() {
+void gteDPCT(void) {
 	docop2(gteop);
 }
 
-void gteAVSZ3() {
+void gteAVSZ3(void) {
 	docop2(gteop);
 }
 
-void gteAVSZ4() {
+void gteAVSZ4(void) {
 	docop2(gteop);
 }
 
-void gteRTPT() {
+void gteRTPT(void) {
 	docop2(gteop);
 }
 
-void gteGPF() {
+void gteGPF(void) {
 	docop2(gteop);
 }
 
-void gteGPL() {
+void gteGPL(void) {
 	docop2(gteop);
 }
 
-void gteNCCT() {
+void gteNCCT(void) {
 	docop2(gteop);
 }

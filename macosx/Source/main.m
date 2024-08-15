@@ -35,14 +35,14 @@ static IOPMAssertionID powerAssertion = kIOPMNullAssertionID;
 
 void PADhandleKey(int key);
 
-static inline BOOL IsRootCwd()
+static inline BOOL IsRootCwd(void)
 {
 	char buf[MAXPATHLEN];
 	char *cwd = getcwd(buf, sizeof(buf));
 	return (cwd && (strcmp(cwd, "/") == 0));
 }
 
-static inline BOOL IsTenPointNineOrLater()
+static inline BOOL IsTenPointNineOrLater(void)
 {
 	int curFoundNum = floor(NSFoundationVersionNumber), tenPointEightFoundNum = floor(NSFoundationVersionNumber10_8_4);
 	return curFoundNum > tenPointEightFoundNum;
@@ -103,7 +103,7 @@ int main(int argc, const char *argv[])
     return NSApplicationMain(argc, argv);
 }
 
-int SysInit()
+int SysInit(void)
 {
 	if (!sysInited) {
 #ifdef EMU_LOG
@@ -145,7 +145,7 @@ int SysInit()
 	return 0;
 }
 
-void SysReset()
+void SysReset(void)
 {
 	[EmuThread resetNow];
 	//EmuReset();
@@ -221,7 +221,7 @@ void *SysLoadSym(void *lib, const char *sym)
 	return dlsym(lib, sym);
 }
 
-const char *SysLibError()
+const char *SysLibError(void)
 {
 #ifdef DEBUG
 	const char *theErr = dlerror();
@@ -241,7 +241,7 @@ void SysCloseLibrary(void *lib) {
 }
 
 // Called periodically from the emu thread
-void SysUpdate()
+void SysUpdate(void)
 {
 #if 0
 	PADhandleKey(PAD1_keypressed() & 0xffffffff);
@@ -254,7 +254,7 @@ void SysUpdate()
 }
 
 // Returns to the Gui
-void SysRunGui()
+void SysRunGui(void)
 {
 	if (powerAssertion != kIOPMNullAssertionID) {
 		IOPMAssertionRelease(powerAssertion);
@@ -263,7 +263,7 @@ void SysRunGui()
 }
 
 // Close mem and plugins
-void SysClose()
+void SysClose(void)
 {
 	EmuShutdown();
 	ReleasePlugins();
@@ -296,7 +296,7 @@ void SysClose()
 	});
 }
 
-void OnFile_Exit()
+void OnFile_Exit(void)
 {
     SysClose();
 	[NSApp stop:nil];

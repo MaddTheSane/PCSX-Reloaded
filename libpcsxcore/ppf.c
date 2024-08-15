@@ -41,7 +41,7 @@ static PPF_DATA			*ppfHead = NULL, *ppfLast = NULL;
 static int				iPPFNum = 0;
 
 // using a linked data list, and address array
-static void FillPPFCache() {
+static void FillPPFCache(void) {
 	PPF_DATA		*p;
 	PPF_CACHE		*pc;
 	s32				lastaddr;
@@ -75,7 +75,7 @@ static void FillPPFCache() {
 	}
 }
 
-void FreePPFCache() {
+void FreePPFCache(void) {
 	PPF_DATA *p = ppfHead;
 	void *pn;
 
@@ -178,7 +178,7 @@ static void AddToPPF(s32 ladr, s32 pos, s32 anz, unsigned char *ppfmem) {
 	}
 }
 
-void BuildPPFCache() {
+void BuildPPFCache(void) {
 	FILE			*ppffile;
 	char			buffer[12];
 	char			method, undo = 0, blockcheck = 0;
