@@ -83,7 +83,7 @@ static u32 gpuDmaChainSize(u32 addr) {
 	return size;
 }
 
-int gpuReadStatus() {
+int gpuReadStatus(void) {
 	int hard;
 
 
@@ -185,7 +185,7 @@ void psxDma2(u32 madr, u32 bcr, u32 chcr) { // GPU
 	DMA_INTERRUPT(2);
 }
 
-void gpuInterrupt() {
+void gpuInterrupt(void) {
 	HW_DMA2_CHCR &= SWAP32(~0x01000000);
 	DMA_INTERRUPT(2);
 }

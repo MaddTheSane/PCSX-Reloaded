@@ -140,7 +140,7 @@ static void recSetPGXPMode(u32 pgxpMode)
 }
 
 #define STACKSIZE		0x18
-static void StackRes()
+static void StackRes(void)
 {
 #ifdef __x86_64__
 	ADD64ItoR(RSP, STACKSIZE);
@@ -183,7 +183,7 @@ static inline void iDump(const iRegisters* iRegsParam) {
 #endif
 }
 
-static void iFlushRegs() {
+static void iFlushRegs(void) {
 	int i;
 
 	for (i=1; i<32; i++) {
@@ -191,18 +191,18 @@ static void iFlushRegs() {
 	}
 }
 
-static void iStoreCycle() {
+static void iStoreCycle(void) {
 	count = ((pc - pcold) / 4) * BIAS;
 	ADD32ItoM((uptr)&psxRegs.cycle, count);
 }
 
-static void iRet() {
+static void iRet(void) {
 	iStoreCycle();
 	StackRes();
 	RET();
 }
 
-static int iLoadTest() {
+static int iLoadTest(void) {
 	u32 tmp;
 
 	// check for load delay
@@ -238,7 +238,7 @@ static int iLoadTest() {
 }
 
 /* set a pending branch */
-static void SetBranch() {
+static void SetBranch(void) {
 	branch = 1;
 	psxRegs.code = PSXMu32(pc);
 #ifdef PSXCPU_LOG
@@ -436,7 +436,7 @@ void iLogX86() {
 }
 */
 
-void iLogEAX() {
+void iLogEAX(void) {
 	PUSH64R  (EAX);
 	PUSH64M  ((uptr)&txt1);
 	CALLFunc((uptr)SysPrintf);
@@ -451,7 +451,7 @@ void iLogM32(u32 mem) {
 }
 
 #if 0
-static void iDumpRegs() {
+static void iDumpRegs(void) {
 	int i, j;
 
 	printf("%x %x\n", psxRegs.pc, psxRegs.cycle);
@@ -513,7 +513,7 @@ static void rec##f() { \
 
 static void recRecompile(void);
 
-static int recInit() {
+static int recInit(void) {
 	int i;
 
 	psxRecLUT = (uptr*) malloc(0x010000 * sizeof(uptr));
@@ -546,7 +546,7 @@ static int recInit() {
 	return 0;
 }
 
-static void recReset() {
+static void recReset(void) {
 	memset(recRAM, 0, 0x200000 * PTRMULT);
 	memset(recROM, 0, 0x080000 * PTRMULT);
 
@@ -558,7 +558,7 @@ static void recReset() {
 	iRegs[0].k     = 0;
 }
 
-static void recShutdown() {
+static void recShutdown(void) {
 	if (recMem == NULL) return;
 	free(psxRecLUT);
 	munmap(recMem, RECMEM_SIZE + PTRMULT*0x1000);
@@ -566,14 +566,14 @@ static void recShutdown() {
 	x86Shutdown();
 }
 
-static void recError() {
+static void recError(void) {
 	SysReset();
 	ClosePlugins();
 	SysMessage("Unrecoverable error while running recompiler\n");
 	SysRunGui();
 }
 
-/*__inline*/ static void execute() {
+/*__inline*/ static void execute(void) {
 	void (*recFunc)(void);
 	uptr *p;
 
@@ -600,11 +600,11 @@ static void recError() {
 	(*recFunc)();
 }
 
-static void recExecute() {
+static void recExecute(void) {
 	for (;;) execute();
 }
 
-static void recExecuteBlock() {
+static void recExecuteBlock(void) {
 	execute();
 }
 
@@ -612,7 +612,7 @@ static void recClear(u32 Addr, u32 Size) {
 	memset((void *)PC_REC(Addr), 0, Size * sizeof(uptr));
 }
 
-static void recNULL() {
+static void recNULL(void) {
 //	SysMessage("recUNK: %8.8x\n", psxRegs.code);
 }
 
@@ -623,22 +623,22 @@ static void recNULL() {
 
 //REC_SYS(SPECIAL);
 #if 1
-static void recSPECIAL() {
+static void recSPECIAL(void) {
 	pRecSPC[_Funct_]();
 }
 #endif
 
-static void recREGIMM() {
+static void recREGIMM(void) {
 	pRecREG[_Rt_]();
 }
 
-static void recCOP0() {
+static void recCOP0(void) {
 	pRecCP0[_Rs_]();
 }
 
 //REC_SYS(COP2);
 #if 1
-static void recCOP2() {
+static void recCOP2(void) {
 	MOV32MtoR(EAX, (uptr)&psxRegs.CP0.n.Status);
 	AND32ItoR(EAX, 0x40000000);
 	j32Ptr[31] = JZ32(0);
@@ -649,7 +649,7 @@ static void recCOP2() {
 }
 #endif
 
-static void recBASIC() {
+static void recBASIC(void) {
 	pRecCP2BSC[_Rs_]();
 }
 
@@ -671,7 +671,7 @@ REC_FUNC(SLTIU);
 #endif
 
 #if 1
-static void recADDIU()  {
+static void recADDIU(void)  {
 // Rt = Rs + Im
 	if (!_Rt_) return;
 
@@ -708,12 +708,12 @@ static void recADDIU()  {
 	}
 }
 
-static void recADDI()  {
+static void recADDI(void)  {
 // Rt = Rs + Im
 	recADDIU();
 }
 
-static void recSLTI() {
+static void recSLTI(void) {
 // Rt = Rs < Im (signed)
 	if (!_Rt_) return;
 
@@ -732,7 +732,7 @@ static void recSLTI() {
 	}
 }
 
-static void recSLTIU() {
+static void recSLTIU(void) {
 // Rt = Rs < Im (unsigned)
 	if (!_Rt_) return;
 
@@ -751,7 +751,7 @@ static void recSLTIU() {
 	}
 }
 
-static void recANDI() {
+static void recANDI(void) {
 // Rt = Rs And Im
 	if (!_Rt_) return;
 
@@ -776,7 +776,7 @@ static void recANDI() {
 	}
 }
 
-static void recORI() {
+static void recORI(void) {
 // Rt = Rs Or Im
 	if (!_Rt_) return;
 
@@ -801,7 +801,7 @@ static void recORI() {
 	}
 }
 
-static void recXORI() {
+static void recXORI(void) {
 // Rt = Rs Xor Im
 	if (!_Rt_) return;
 
@@ -834,7 +834,7 @@ static void recXORI() {
 *********************************************************/
 //REC_FUNC(LUI);
 #if 1
-static void recLUI()  {
+static void recLUI(void)  {
 // Rt = Imm << 16
 	if (!_Rt_) return;
 	//iFlushReg(_Rt_);
@@ -864,7 +864,7 @@ REC_FUNC(SLTU);
 #endif
 
 #if 1
-static void recADDU() {
+static void recADDU(void) {
 // Rd = Rs + Rt
 	if (!_Rd_) return;
 
@@ -933,12 +933,12 @@ static void recADDU() {
 	}
 }
 
-static void recADD() {
+static void recADD(void) {
 // Rd = Rs + Rt
 	recADDU();
 }
 
-static void recSUBU() {
+static void recSUBU(void) {
 // Rd = Rs - Rt
 	if (!_Rd_) return;
 
@@ -967,12 +967,12 @@ static void recSUBU() {
 	}
 }
 
-static void recSUB() {
+static void recSUB(void) {
 // Rd = Rs - Rt
 	recSUBU();
 }
 
-static void recAND() {
+static void recAND(void) {
 // Rd = Rs And Rt
 	if (!_Rd_) return;
 
@@ -1017,7 +1017,7 @@ static void recAND() {
 	}
 }
 
-static void recOR() {
+static void recOR(void) {
 // Rd = Rs Or Rt
 	if (!_Rd_) return;
 
@@ -1046,7 +1046,7 @@ static void recOR() {
 	}
 }
 
-static void recXOR() {
+static void recXOR(void) {
 // Rd = Rs Xor Rt
 	if (!_Rd_) return;
 
@@ -1075,7 +1075,7 @@ static void recXOR() {
 	}
 }
 
-static void recNOR() {
+static void recNOR(void) {
 // Rd = Rs Nor Rt
 	if (!_Rd_) return;
 
@@ -1107,7 +1107,7 @@ static void recNOR() {
 	}
 }
 
-static void recSLT() {
+static void recSLT(void) {
 // Rd = Rs < Rt (signed)
 	if (!_Rd_) return;
 
@@ -1142,7 +1142,7 @@ static void recSLT() {
 	}
 }
 
-static void recSLTU() {
+static void recSLTU(void) {
 // Rd = Rs < Rt (unsigned)
 	if (!_Rd_) return;
 
@@ -1192,7 +1192,7 @@ REC_FUNC(DIVU);
 #endif
 
 #if 1
-static void recMULT() {
+static void recMULT(void) {
 // Lo/Hi = Rs * Rt (signed)
 
 //	iFlushRegs();
@@ -1220,7 +1220,7 @@ static void recMULT() {
 	MOV32RtoM((uptr)&psxRegs.GPR.n.hi, EDX);
 }
 
-static void recMULTU() {
+static void recMULTU(void) {
 // Lo/Hi = Rs * Rt (unsigned)
 
 //	iFlushRegs();
@@ -1248,7 +1248,7 @@ static void recMULTU() {
 	MOV32RtoM((uptr)&psxRegs.GPR.n.hi, EDX);
 }
 
-static void recDIV() {
+static void recDIV(void) {
 // Lo/Hi = Rs / Rt (signed)
 
 //	iFlushRegs();
@@ -1296,7 +1296,7 @@ static void recDIV() {
 	}
 }
 
-static void recDIVU() {
+static void recDIVU(void) {
 // Lo/Hi = Rs / Rt (unsigned)
 
 //	iFlushRegs();
@@ -1393,7 +1393,7 @@ static void SetArg_OfB(x86IntRegType arg) {
 
 #if 1
 
-static void recLB() {
+static void recLB(void) {
 // Rt = mem[Rs + Im] (signed)
 
 //	iFlushRegs();
@@ -1437,7 +1437,7 @@ static void recLB() {
 //	ADD32ItoR(ESP, 4);
 }
 
-static void recLBU() {
+static void recLBU(void) {
 // Rt = mem[Rs + Im] (unsigned)
 
 //	iFlushRegs();
@@ -1481,7 +1481,7 @@ static void recLBU() {
 //	ADD32ItoR(ESP, 4);
 }
 
-static void recLH() {
+static void recLH(void) {
 // Rt = mem[Rs + Im] (signed)
 
 //	iFlushRegs();
@@ -1525,7 +1525,7 @@ static void recLH() {
 //	ADD32ItoR(ESP, 4);
 }
 
-static void recLHU() {
+static void recLHU(void) {
 // Rt = mem[Rs + Im] (unsigned)
 
 //	iFlushRegs();
@@ -1623,7 +1623,7 @@ static void recLHU() {
 }
 
 
-static void recLW() {
+static void recLW(void) {
 // Rt = mem[Rs + Im] (unsigned)
 
 //	iFlushRegs();
@@ -1720,7 +1720,7 @@ void iLWLk(u32 shift) {
 	OR32RtoR (EAX, ECX);
 }
 
-void recLWL() {
+void recLWL(void) {
 // Rt = Rt Merge mem[Rs + Im]
 
 	if (IsConst(_Rs_)) {
@@ -1879,7 +1879,7 @@ void iLWRk(u32 shift) {
 	OR32RtoR (EAX, ECX);
 }
 
-void recLWR() {
+void recLWR(void) {
 // Rt = Rt Merge mem[Rs + Im]
 
 	if (IsConst(_Rs_)) {
@@ -1941,7 +1941,7 @@ void recLWR() {
 	}
 }
 
-static void recSB() {
+static void recSB(void) {
 // mem[Rs + Im] = Rt
 
 //	iFlushRegs();
@@ -1985,7 +1985,7 @@ static void recSB() {
 //	ADD32ItoR(ESP, 8);
 }
 
-static void recSH() {
+static void recSH(void) {
 // mem[Rs + Im] = Rt
 
 //	iFlushRegs();
@@ -2043,7 +2043,7 @@ static void recSH() {
 //	ADD32ItoR(ESP, 8);
 }
 
-static void recSW() {
+static void recSW(void) {
 // mem[Rs + Im] = Rt
 
 //	iFlushRegs();
@@ -2211,7 +2211,7 @@ void iSWLk(u32 shift) {
 	OR32RtoR (EAX, ECX);
 }
 
-void recSWL() {
+void recSWL(void) {
 // mem[Rs + Im] = Rt Merge mem[Rs + Im]
 
 	if (IsConst(_Rs_)) {
@@ -2289,7 +2289,7 @@ void iSWRk(u32 shift) {
 	OR32RtoR (EAX, ECX);
 }
 
-void recSWR() {
+void recSWR(void) {
 // mem[Rs + Im] = Rt Merge mem[Rs + Im]
 
 	if (IsConst(_Rs_)) {
@@ -2361,7 +2361,7 @@ REC_FUNC(SRL);
 REC_FUNC(SRA);
 #endif
 #if 1
-static void recSLL() {
+static void recSLL(void) {
 // Rd = Rt << Sa
 	if (!_Rd_) return;
 
@@ -2378,7 +2378,7 @@ static void recSLL() {
 	}
 }
 
-static void recSRL() {
+static void recSRL(void) {
 // Rd = Rt >> Sa
 	if (!_Rd_) return;
 
@@ -2395,7 +2395,7 @@ static void recSRL() {
 	}
 }
 
-static void recSRA() {
+static void recSRA(void) {
 // Rd = Rt >> Sa
 	if (!_Rd_) return;
 
@@ -2420,7 +2420,7 @@ REC_FUNC(SRAV);
 #endif
 
 #if 1
-static void recSLLV() {
+static void recSLLV(void) {
 // Rd = Rt << Rs
 	if (!_Rd_) return;
 
@@ -2452,7 +2452,7 @@ static void recSLLV() {
 	}
 }
 
-static void recSRLV() {
+static void recSRLV(void) {
 // Rd = Rt >> Rs
 	if (!_Rd_) return;
 
@@ -2484,7 +2484,7 @@ static void recSRLV() {
 	}
 }
 
-static void recSRAV() {
+static void recSRAV(void) {
 // Rd = Rt >> Rs
 	if (!_Rd_) return;
 
@@ -2523,7 +2523,7 @@ REC_SYS(BREAK);
 #endif
 
 #if 1
-static void recSYSCALL() {
+static void recSYSCALL(void) {
 //	dump=1;
 	iFlushRegs();
 
@@ -2538,7 +2538,7 @@ static void recSYSCALL() {
 	iRet();
 }
 
-static void recBREAK() {
+static void recBREAK(void) {
 }
 #endif
 
@@ -2549,7 +2549,7 @@ REC_FUNC(MFLO);
 REC_FUNC(MTLO);
 #endif
 #if 1
-static void recMFHI() {
+static void recMFHI(void) {
 // Rd = Hi
 	if (!_Rd_) return;
 
@@ -2558,7 +2558,7 @@ static void recMFHI() {
 	MOV32RtoM((uptr)&psxRegs.GPR.r[_Rd_], EAX);
 }
 
-static void recMTHI() {
+static void recMTHI(void) {
 // Hi = Rs
 
 	if (IsConst(_Rs_)) {
@@ -2569,7 +2569,7 @@ static void recMTHI() {
 	}
 }
 
-static void recMFLO() {
+static void recMFLO(void) {
 // Rd = Lo
 	if (!_Rd_) return;
 
@@ -2578,7 +2578,7 @@ static void recMFLO() {
 	MOV32RtoM((uptr)&psxRegs.GPR.r[_Rd_], EAX);
 }
 
-static void recMTLO() {
+static void recMTLO(void) {
 // Lo = Rs
 
 	if (IsConst(_Rs_)) {
@@ -2605,7 +2605,7 @@ REC_BRANCH(BLEZ);
 REC_BRANCH(BGEZ);
 #endif
 #if 1
-static void recBLTZ() {
+static void recBLTZ(void) {
 // Branch if Rs < 0
 	u32 bpc = _Imm_ * 4 + pc;
 
@@ -2634,7 +2634,7 @@ static void recBLTZ() {
 	pc+=4;
 }
 
-static void recBGTZ() {
+static void recBGTZ(void) {
 // Branch if Rs > 0
 	u32 bpc = _Imm_ * 4 + pc;
 
@@ -2662,7 +2662,7 @@ static void recBGTZ() {
 	pc+=4;
 }
 
-static void recBLTZAL() {
+static void recBLTZAL(void) {
 // Branch if Rs < 0
 	u32 bpc = _Imm_ * 4 + pc;
 
@@ -2692,7 +2692,7 @@ static void recBLTZAL() {
 	pc+=4;
 }
 
-static void recBGEZAL() {
+static void recBGEZAL(void) {
 // Branch if Rs >= 0
 	u32 bpc = _Imm_ * 4 + pc;
 
@@ -2722,13 +2722,13 @@ static void recBGEZAL() {
 	pc+=4;
 }
 
-static void recJ() {
+static void recJ(void) {
 // j target
 
 	iJump(_Target_ * 4 + (pc & 0xf0000000));
 }
 
-static void recJAL() {
+static void recJAL(void) {
 // jal target
 
 	MapConst(31, pc + 4);
@@ -2736,7 +2736,7 @@ static void recJAL() {
 	iJump(_Target_ * 4 + (pc & 0xf0000000));
 }
 
-static void recJR() {
+static void recJR(void) {
 // jr Rs
 
 	if (IsConst(_Rs_)) {
@@ -2749,7 +2749,7 @@ static void recJR() {
 	SetBranch();
 }
 
-static void recJALR() {
+static void recJALR(void) {
 // jalr Rs
 
 	if (IsConst(_Rs_)) {
@@ -2766,7 +2766,7 @@ static void recJALR() {
 	SetBranch();
 }
 
-static void recBEQ() {
+static void recBEQ(void) {
 // Branch if Rs == Rt
 	u32 bpc = _Imm_ * 4 + pc;
 
@@ -2804,7 +2804,7 @@ static void recBEQ() {
 	}
 }
 
-static void recBNE() {
+static void recBNE(void) {
 // Branch if Rs != Rt
 	u32 bpc = _Imm_ * 4 + pc;
 
@@ -2837,7 +2837,7 @@ static void recBNE() {
 	pc+=4;
 }
 
-static void recBLEZ() {
+static void recBLEZ(void) {
 // Branch if Rs <= 0
 	u32 bpc = _Imm_ * 4 + pc;
 
@@ -2865,7 +2865,7 @@ static void recBLEZ() {
 	pc+=4;
 }
 
-static void recBGEZ() {
+static void recBGEZ(void) {
 // Branch if Rs >= 0
 	u32 bpc = _Imm_ * 4 + pc;
 
@@ -2903,7 +2903,7 @@ REC_FUNC(RFE);
 #endif
 //REC_SYS(MTC0);
 #if 1
-static void recMFC0() {
+static void recMFC0(void) {
 // Rt = Cop0->Rd
 	if (!_Rt_) return;
 
@@ -2912,7 +2912,7 @@ static void recMFC0() {
 	MOV32RtoM((uptr)&psxRegs.GPR.r[_Rt_], EAX);
 }
 
-static void recCFC0() {
+static void recCFC0(void) {
 // Rt = Cop0->Rd
 
 	recMFC0();
@@ -2920,7 +2920,7 @@ static void recCFC0() {
 
 //*
 void psxMTC0(void);
-static void recMTC0() {
+static void recMTC0(void) {
 // Cop0->Rd = Rt
 
 	if (IsConst(_Rt_)) {
@@ -2956,13 +2956,13 @@ static void recMTC0() {
 	}
 }//*/
 
-static void recCTC0() {
+static void recCTC0(void) {
 // Cop0->Rd = Rt
 
 	recMTC0();
 }
 
-static void recRFE() {
+static void recRFE(void) {
 	MOV32MtoR(EAX, (uptr)&psxRegs.CP0.n.Status);
 	MOV32RtoR(ECX, EAX);
 	AND32ItoR(EAX, 0xfffffff0);
@@ -2985,7 +2985,7 @@ static void recRFE() {
 
 //
 
-static void recHLE() {
+static void recHLE(void) {
 	iFlushRegs();
 
 	CALLFunc((uptr)psxHLEt[psxRegs.code & 0xffff]);
@@ -3100,7 +3100,7 @@ static void(*pgxpRecBSCMem[64])(void) = {
 	recNULL   , recNULL  , pgxpRecSWC2, recHLE  , recNULL, recNULL, recNULL, recNULL
 };
 
-static void recRecompile() {
+static void recRecompile(void) {
 	char *p;
 	char *ptr;
 	resp = 0;

@@ -44,19 +44,19 @@ static PluginConfigController *windowController = nil;
 
 #define kWindowSize @"Window Size"
 
-void AboutDlgProc()
+void AboutDlgProc(void)
 {
 	// Get parent application instance
 	NSBundle *bundle = [NSBundle bundleWithIdentifier:APP_ID];
 	
 	// Get Credits.rtf
-	NSString *path = [bundle pathForResource:@"Credits" ofType:@"rtf"];
+	NSURL *path = [bundle URLForResource:@"Credits" withExtension:@"rtf"];
 	NSAttributedString *credits;
 	if (!path) {
-		path = [bundle pathForResource:@"Credits" ofType:@"rtfd"];
+		path = [bundle URLForResource:@"Credits" withExtension:@"rtfd"];
 	}
 	if (path) {
-		credits = [[NSAttributedString alloc] initWithPath:path documentAttributes:NULL];
+		credits = [[NSAttributedString alloc] initWithURL:path options:@{} documentAttributes:NULL error:NULL];
 	} else {
 		credits = [[NSAttributedString alloc] initWithString:@""];
 	}
@@ -78,7 +78,7 @@ void AboutDlgProc()
 	});
 }
 
-void SoftDlgProc()
+void SoftDlgProc(void)
 {
 	RunOnMainThreadSync(^{
 		NSWindow *window;
@@ -96,28 +96,28 @@ void SoftDlgProc()
 	});
 }
 
-BOOL isShaderEnabled()
+BOOL isShaderEnabled(void)
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary *keyValues = [defaults dictionaryForKey:PrefsKey];
 	return [keyValues[@"UseShader"] boolValue];
 }
 
-NSURL *PSXVertexShader()
+NSURL *PSXVertexShader(void)
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary *keyValues = [defaults dictionaryForKey:PrefsKey];
 	return [NSURL URLByResolvingBookmarkData:keyValues[@"VertexShader"] options:NSURLBookmarkResolutionWithoutUI relativeToURL:nil bookmarkDataIsStale:NULL error:nil];
 }
 
-NSURL *PSXFragmentShader()
+NSURL *PSXFragmentShader(void)
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary *keyValues = [defaults dictionaryForKey:PrefsKey];
 	return [NSURL URLByResolvingBookmarkData:keyValues[@"FragmentShader"] options:NSURLBookmarkResolutionWithoutUI relativeToURL:nil bookmarkDataIsStale:NULL error:nil];
 }
 
-float PSXShaderQuality()
+float PSXShaderQuality(void)
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSDictionary *keyValues = [defaults dictionaryForKey:PrefsKey];
@@ -323,7 +323,7 @@ void ReadConfig(void)
 	[openPanel setAllowsMultipleSelection:NO];
 	[openPanel setCanChooseDirectories:NO];
 	[openPanel setCanChooseFiles:YES];
-	if ([openPanel runModal] == NSFileHandlingPanelOKButton) {
+	if ([openPanel runModal] == NSModalResponseOK) {
 		if ([sender tag] == 1) {
 			[self setVertexPathInfo:[openPanel URL]];
 		} else {

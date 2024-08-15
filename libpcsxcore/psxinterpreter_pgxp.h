@@ -6,7 +6,7 @@
 // PGXP wrapper functions
 /////////////////////////////////////////////
 
-void pgxpPsxNULL() {}
+void pgxpPsxNULL(void) {}
 
 #define psxMTC2 gteMTC2
 #define psxCTC2 gteCTC2
@@ -23,13 +23,13 @@ void pgxpPsxNULL() {}
 #endif
 
 #define PGXP_INT_FUNC(pu, op) \
-static void pgxpPsx##op() { \
+static void pgxpPsx##op(void) { \
 	PGXP_PSX_FUNC_OP(pu, op, )(PGXP_DBG_OP_E(op) psxRegs.code); \
 	psx##op(); \
 }
 
 #define PGXP_INT_FUNC_0_1(pu, op, test, nReg, reg1) \
-static void pgxpPsx##op()	\
+static void pgxpPsx##op(void)	\
 { \
 	if (test) {psx##op(); return;} \
 	u32 tempInstr = psxRegs.code;\
@@ -38,7 +38,7 @@ static void pgxpPsx##op()	\
 }
 
 #define PGXP_INT_FUNC_1_0(pu, op, test, nReg, reg1)\
-static void pgxpPsx##op()	\
+static void pgxpPsx##op(void)	\
 { \
 	if (test) {psx##op(); return;} \
 	PGXP_PSX_FUNC_OP(pu, op, nReg)(PGXP_DBG_OP_E(op) psxRegs.code, reg1); \
@@ -46,7 +46,7 @@ static void pgxpPsx##op()	\
 }
 
 #define PGXP_INT_FUNC_1_1(pu, op, test, nReg, reg1, reg2)\
-static void pgxpPsx##op()	\
+static void pgxpPsx##op(void)	\
 { \
 	if (test) {psx##op(); return;} \
 	u32 tempInstr = psxRegs.code;\
@@ -56,7 +56,7 @@ static void pgxpPsx##op()	\
 }
 
 #define PGXP_INT_FUNC_0_2(pu, op, test, nReg, reg1, reg2) \
-static void pgxpPsx##op()	\
+static void pgxpPsx##op(void)	\
 { \
 	if (test) {psx##op(); return;} \
 	u32 tempInstr = psxRegs.code;\
@@ -65,7 +65,7 @@ static void pgxpPsx##op()	\
 }
 
 #define PGXP_INT_FUNC_2_0(pu, op, test, nReg, reg1, reg2) \
-static void pgxpPsx##op()	\
+static void pgxpPsx##op(void)	\
 { \
 	if (test) {psx##op(); return;} \
 	u32 tempInstr = psxRegs.code;\
@@ -76,7 +76,7 @@ static void pgxpPsx##op()	\
 }
 
 #define PGXP_INT_FUNC_2_1(pu, op, test, nReg, reg1, reg2, reg3) \
-static void pgxpPsx##op()	\
+static void pgxpPsx##op(void)	\
 { \
 	if (test) {psx##op(); return;} \
 	u32 tempInstr = psxRegs.code;\
@@ -87,7 +87,7 @@ static void pgxpPsx##op()	\
 }
 
 #define PGXP_INT_FUNC_2_2(pu, op, test, nReg, reg1, reg2, reg3, reg4) \
-static void pgxpPsx##op()	\
+static void pgxpPsx##op(void)	\
 { \
 	if (test) {psx##op(); return;} \
 	u32 tempInstr = psxRegs.code;\

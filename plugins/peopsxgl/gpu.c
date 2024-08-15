@@ -517,7 +517,7 @@ void CALLBACK GPUmakeSnapshot(void)
 // GPU INIT... here starts it all (first func called by emu)
 ////////////////////////////////////////////////////////////////////////
 
-long CALLBACK GPUinit()
+long CALLBACK GPUinit(void)
 {
  memset(ulStatusControl,0,256*sizeof(uint32_t));
 
@@ -1130,7 +1130,7 @@ long CALLBACK GPUclose()                               // WINDOWS CLOSE
 
 #else
 
-long GPUclose()                                        // LINUX CLOSE
+long GPUclose(void)                                        // LINUX CLOSE
 {
  GLcleanup();                                          // close OGL
 
@@ -1150,7 +1150,7 @@ long GPUclose()                                        // LINUX CLOSE
 // I shot the sheriff... last function called from emu 
 ////////////////////////////////////////////////////////////////////////
 
-long CALLBACK GPUshutdown()
+long CALLBACK GPUshutdown(void)
 {
  if(psxVSecure) free(psxVSecure);                      // kill emulated vram memory
  psxVSecure=0;

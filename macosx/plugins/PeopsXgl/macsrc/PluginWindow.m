@@ -33,8 +33,8 @@
 - (void)sendEvent:(NSEvent *)theEvent
 {
 	NSEventType type = [theEvent type];
-	if (type == NSKeyDown || type == NSKeyUp) {
-		if (type == NSKeyDown && [theEvent keyCode] == 53 /* escape */) {
+	if (type == NSEventTypeKeyDown || type == NSEventTypeKeyUp) {
+		if (type == NSEventTypeKeyDown && [theEvent keyCode] == 53 /* escape */) {
 			// reroute to menu event
 			[[NSApp mainMenu] performKeyEquivalent:theEvent];
 		}

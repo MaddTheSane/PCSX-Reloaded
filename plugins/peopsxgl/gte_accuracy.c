@@ -38,7 +38,7 @@ void CALLBACK GPUaddVertex(short sx, short sy, long long fx, long long fy, long 
 	}
 }
 
-void resetGteVertices()
+void resetGteVertices(void)
 {
 	if(bGteAccuracy)
 	{

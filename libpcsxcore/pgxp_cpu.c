@@ -22,7 +22,7 @@ PGXP_value* CP0_reg = CP0_reg_mem;
 #define rs(_instr)		((_instr >> 21) & 0x1F)	// The rs part of the instruction register 
 #define imm(_instr)		(_instr & 0xFFFF)		// The immediate part of the instruction register
 
-void PGXP_InitCPU()
+void PGXP_InitCPU(void)
 {
 	memset(CPU_reg_mem, 0, sizeof(CPU_reg_mem));
 	memset(CP0_reg_mem, 0, sizeof(CP0_reg_mem));

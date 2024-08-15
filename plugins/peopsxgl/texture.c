@@ -551,7 +551,7 @@ void CheckTextureMemory(void)
 // Main init of textures
 ////////////////////////////////////////////////////////////////////////
 
-void InitializeTextureStore()
+void InitializeTextureStore(void)
 {
  int i,j;
 
@@ -604,7 +604,7 @@ void InitializeTextureStore()
 // Clean up on exit
 ////////////////////////////////////////////////////////////////////////
 
-void CleanupTextureStore()
+void CleanupTextureStore(void)
 {
  int i,j;textureWndCacheEntry * tsx;
  //----------------------------------------------------//

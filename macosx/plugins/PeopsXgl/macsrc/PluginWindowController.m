@@ -313,7 +313,7 @@ NSRect FitRectInRect(NSRect source, NSRect destination)
 
     return proposedFrameSize;
         
-	if (!(([sender resizeFlags] & NSShiftKeyMask) == NSShiftKeyMask)) {
+	if (!(([sender resizeFlags] & NSEventModifierFlagShift) == NSEventModifierFlagShift)) {
 		NSRect oldSize = [sender frame];
 		NSRect viewSize = [self.glView frame];
 		

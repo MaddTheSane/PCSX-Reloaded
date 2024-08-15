@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import FoundationAdditions
 import SwiftAdditions
 
 private func imagesFromMcd(_ theBlock: UnsafePointer<McdBlock>) -> [NSImage] {

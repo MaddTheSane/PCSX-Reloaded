@@ -33,8 +33,8 @@ void FLD32( uptr from )
 // fld st(i)
 void FLD(int st) { write16(0xc0d9+(st<<8)); }
 
-void FLD1() { write16(0xe8d9); }
-void FLDL2E() { write16(0xead9); }
+void FLD1(void) { write16(0xe8d9); }
+void FLDL2E(void) { write16(0xead9); }
 
 /* fst m32 from fpu reg stack */
 void FST32( uptr to ) 
@@ -68,16 +68,16 @@ void FNSTSWtoAX( void )
 	write16( 0xE0DF );
 }
 
-void FXAM()
+void FXAM(void)
 {
 	write16(0xe5d9);
 }
 
-void FDECSTP() { write16(0xf6d9); }
-void FRNDINT() { write16(0xfcd9); }
+void FDECSTP(void) { write16(0xf6d9); }
+void FRNDINT(void) { write16(0xfcd9); }
 void FXCH(int st) { write16(0xc8d9+(st<<8)); }
-void F2XM1() { write16(0xf0d9); }
-void FSCALE_() { write16(0xfdd9); }
+void F2XM1(void) { write16(0xf0d9); }
+void FSCALE_(void) { write16(0xfdd9); }
 
 /* fadd ST(src) to fpu reg stack ST(0) */
 void FADD32Rto0( x86IntRegType src )

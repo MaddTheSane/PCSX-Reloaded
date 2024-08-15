@@ -58,6 +58,7 @@
 		553FECF718DF5A8300C7B007 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 553FECCA18DF5A8300C7B007 /* InfoPlist.strings */; };
 		553FECF818DF5A8300C7B007 /* KeyNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 553FECCC18DF5A8300C7B007 /* KeyNames.plist */; };
 		553FECF918DF5A8300C7B007 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 553FECCE18DF5A8300C7B007 /* Localizable.strings */; };
+		5541C9E42C6D91C600A61EB9 /* FoundationAdditions.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 5541C9D32C6D914D00A61EB9 /* FoundationAdditions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55534AF518183BFB006D6BCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 55534AF418183BFB006D6BCB /* main.m */; };
 		5557769A17EBE7D60019D008 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5557769917EBE7D60019D008 /* Media.xcassets */; };
 		556C37A9197C815C001A4265 /* PSXMemEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 556C37A8197C815C001A4265 /* PSXMemEnumerator.m */; };
@@ -165,6 +166,83 @@
 			remoteGlobalIDString = 5525BC5C19421A750018AF2F;
 			remoteInfo = "Psx-Memcard";
 		};
+		5541C9CE2C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5518F05A251D5D6600528AED;
+			remoteInfo = SIMDAdditions;
+		};
+		5541C9D02C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5518F062251D5D6600528AED;
+			remoteInfo = SIMDAdditionsTests;
+		};
+		5541C9D22C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5560389426BF2CC800CD1984;
+			remoteInfo = FoundationAdditions;
+		};
+		5541C9D42C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5560389C26BF2CC800CD1984;
+			remoteInfo = FoundationAdditionsTests;
+		};
+		5541C9D62C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55BE4B2D270BC16600100A7D;
+			remoteInfo = TISAdditions;
+		};
+		5541C9D82C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 55BE4B36270BC16600100A7D;
+			remoteInfo = TISAdditionsTests;
+		};
+		5541C9DA2C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 559E68CF273FC0D90030C3DB;
+			remoteInfo = UTTypeOSTypes;
+		};
+		5541C9DC2C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 559E68D8273FC0DA0030C3DB;
+			remoteInfo = UTTypeOSTypesTests;
+		};
+		5541C9DE2C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 554FE7A828C74A3400418258;
+			remoteInfo = ColorSyncHelpers;
+		};
+		5541C9E02C6D914D00A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 554FE7AF28C74A3400418258;
+			remoteInfo = ColorSyncHelpersTests;
+		};
+		5541C9E22C6D91B100A61EB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5560389326BF2CC800CD1984;
+			remoteInfo = FoundationAdditions;
+		};
 		555192101FB3975E00E99E4E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
@@ -185,20 +263,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 55534AEF18183BFA006D6BCB;
 			remoteInfo = updateInfoPlist;
-		};
-		5554C8251AF1462F00CEA242 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 55403A011A745003007A488E;
-			remoteInfo = ForceFeedbackAdditions;
-		};
-		5554C8271AF1462F00CEA242 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55E80E481A101872009C98F6 /* SwiftAdditions.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 55403A0B1A745003007A488E;
-			remoteInfo = ForceFeedbackAdditionsTests;
 		};
 		5554C8291AF1462F00CEA242 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -420,6 +484,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5541C9E42C6D91C600A61EB9 /* FoundationAdditions.framework in Copy Frameworks */,
 				55E80E571A1018A5009C98F6 /* SwiftAdditions.framework in Copy Frameworks */,
 				556C37AD197D94C8001A4265 /* SDL2.framework in Copy Frameworks */,
 			);
@@ -1166,14 +1231,22 @@
 				55E80E501A101873009C98F6 /* SwiftAdditionsTests.xctest */,
 				55D086EA1A6C7EC100E0A00A /* SwiftIOKitAdditions.framework */,
 				55D086EC1A6C7EC100E0A00A /* SwiftIOKitAdditionsTests.xctest */,
-				5554C8261AF1462F00CEA242 /* ForceFeedbackAdditions.framework */,
-				5554C8281AF1462F00CEA242 /* ForceFeedbackAdditionsTests.xctest */,
 				5554C82A1AF1462F00CEA242 /* SwiftAudioAdditions.framework */,
 				5554C82C1AF1462F00CEA242 /* SwiftAudioAdditionsTests.xctest */,
 				555192111FB3975E00E99E4E /* CoreTextAdditions.framework */,
 				555192131FB3975E00E99E4E /* CoreTextAdditionsTests.xctest */,
 				55F007FE24620B0D007BB0F3 /* QuartzAdditions.framework */,
 				55F0080024620B0D007BB0F3 /* QuartzAdditionsTests.xctest */,
+				5541C9CF2C6D914D00A61EB9 /* SIMDAdditions.framework */,
+				5541C9D12C6D914D00A61EB9 /* SIMDAdditionsTests.xctest */,
+				5541C9D32C6D914D00A61EB9 /* FoundationAdditions.framework */,
+				5541C9D52C6D914D00A61EB9 /* FoundationAdditionsTests.xctest */,
+				5541C9D72C6D914D00A61EB9 /* TISAdditions.framework */,
+				5541C9D92C6D914D00A61EB9 /* TISAdditionsTests.xctest */,
+				5541C9DB2C6D914D00A61EB9 /* UTTypeOSTypes.framework */,
+				5541C9DD2C6D914D00A61EB9 /* UTTypeOSTypesTests.xctest */,
+				5541C9DF2C6D914D00A61EB9 /* ColorSyncHelpers.framework */,
+				5541C9E12C6D914D00A61EB9 /* ColorSyncHelpersTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1208,6 +1281,7 @@
 				2BB3D6D005427FE200831ACB /* PBXBuildRule */,
 			);
 			dependencies = (
+				5541C9E32C6D91B100A61EB9 /* PBXTargetDependency */,
 				5589A79324B2D249001A74BA /* PBXTargetDependency */,
 				55E80E561A10189B009C98F6 /* PBXTargetDependency */,
 				5525BC7619421A810018AF2F /* PBXTargetDependency */,
@@ -1365,6 +1439,76 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		5541C9CF2C6D914D00A61EB9 /* SIMDAdditions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SIMDAdditions.framework;
+			remoteRef = 5541C9CE2C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5541C9D12C6D914D00A61EB9 /* SIMDAdditionsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SIMDAdditionsTests.xctest;
+			remoteRef = 5541C9D02C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5541C9D32C6D914D00A61EB9 /* FoundationAdditions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FoundationAdditions.framework;
+			remoteRef = 5541C9D22C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5541C9D52C6D914D00A61EB9 /* FoundationAdditionsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FoundationAdditionsTests.xctest;
+			remoteRef = 5541C9D42C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5541C9D72C6D914D00A61EB9 /* TISAdditions.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TISAdditions.framework;
+			remoteRef = 5541C9D62C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5541C9D92C6D914D00A61EB9 /* TISAdditionsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TISAdditionsTests.xctest;
+			remoteRef = 5541C9D82C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5541C9DB2C6D914D00A61EB9 /* UTTypeOSTypes.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = UTTypeOSTypes.framework;
+			remoteRef = 5541C9DA2C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5541C9DD2C6D914D00A61EB9 /* UTTypeOSTypesTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UTTypeOSTypesTests.xctest;
+			remoteRef = 5541C9DC2C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5541C9DF2C6D914D00A61EB9 /* ColorSyncHelpers.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ColorSyncHelpers.framework;
+			remoteRef = 5541C9DE2C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5541C9E12C6D914D00A61EB9 /* ColorSyncHelpersTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ColorSyncHelpersTests.xctest;
+			remoteRef = 5541C9E02C6D914D00A61EB9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		555192111FB3975E00E99E4E /* CoreTextAdditions.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1377,20 +1521,6 @@
 			fileType = wrapper.cfbundle;
 			path = CoreTextAdditionsTests.xctest;
 			remoteRef = 555192121FB3975E00E99E4E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5554C8261AF1462F00CEA242 /* ForceFeedbackAdditions.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ForceFeedbackAdditions.framework;
-			remoteRef = 5554C8251AF1462F00CEA242 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5554C8281AF1462F00CEA242 /* ForceFeedbackAdditionsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ForceFeedbackAdditionsTests.xctest;
-			remoteRef = 5554C8271AF1462F00CEA242 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5554C82A1AF1462F00CEA242 /* SwiftAudioAdditions.framework */ = {
@@ -1724,6 +1854,11 @@
 			isa = PBXTargetDependency;
 			target = 5525BC5C19421A750018AF2F /* Psx-Memcard */;
 			targetProxy = 5525BC7519421A810018AF2F /* PBXContainerItemProxy */;
+		};
+		5541C9E32C6D91B100A61EB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FoundationAdditions;
+			targetProxy = 5541C9E22C6D91B100A61EB9 /* PBXContainerItemProxy */;
 		};
 		55534B0018183E5B006D6BCB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2134,6 +2269,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PCSXR;
 				CODE_SIGN_IDENTITY = "-";
+				EXCLUDED_ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
@@ -2172,6 +2308,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEBUG_PREPROCESSOR_DEFINITIONS = "$(inherited) EMU_LOG=__Log";
+				EXCLUDED_ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2207,6 +2344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = PCSXR;
 				CODE_SIGN_IDENTITY = "-";
+				EXCLUDED_ARCHS = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;

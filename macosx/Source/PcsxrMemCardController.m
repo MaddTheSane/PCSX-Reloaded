@@ -129,9 +129,12 @@
 		NSAlert *alert = [NSAlert new];
 		alert.messageText = NSLocalizedString(@"Free Size", nil);
 		alert.informativeText = [NSString stringWithFormat:NSLocalizedString(@"Memory card %i does not have enough free consecutive blocks.\n\nIn order to copy over \"%@,\" memory card %i must be compressed. Compressing memory cards will make deleted blocks unrecoverable.\n\nDo you want to continue?", nil), cardnum, tmpmemobj.name, cardnum];
-		[alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
+		NSButton *destructive = [alert addButtonWithTitle:NSLocalizedString(@"Yes", nil)];
 		[alert addButtonWithTitle:NSLocalizedString(@"No", nil)];
 		alert.alertStyle = NSAlertStyleInformational;
+		if (@available(macOS 11.0, *)) {
+			destructive.hasDestructiveAction = YES;
+		}
 		
 		NSInteger copyOK = [alert runModal];
 		if (copyOK != NSAlertFirstButtonReturn) {
@@ -162,7 +165,10 @@
 	alert.messageText = NSLocalizedString(@"Format Card", nil);
 	alert.informativeText = NSLocalizedString(@"Formatting a memory card will remove all data on it.\n\nThis cannot be undone.", nil);
 	[alert addButtonWithTitle:NSLocalizedString(@"Cancel", nil)];
-	[alert addButtonWithTitle:NSLocalizedString(@"Format", nil)];
+	NSButton *destructive = [alert addButtonWithTitle:NSLocalizedString(@"Format", nil)];
+	if (@available(macOS 11.0, *)) {
+		destructive.hasDestructiveAction = YES;
+	}
 	NSInteger formatOkay = [alert runModal];
 	if (formatOkay == NSAlertSecondButtonReturn) {
 		NSInteger memCardSelect = [sender tag];
@@ -219,7 +225,11 @@
 	alert.informativeText = NSLocalizedString(@"Delete Block", @"The block will be deleted");
 	alert.messageText = NSLocalizedString(@"Deleting a block will remove all saved data on that block.\n\nThis cannot be undone.", @"Delete block cannot be undone");
 	[alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
-	[alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
+	NSButton *destructive = [alert addButtonWithTitle:NSLocalizedString(@"Delete", nil)];
+	if (@available(macOS 11.0, *)) {
+		destructive.hasDestructiveAction = YES;
+	}
+	
 	NSInteger deleteOkay = [alert runModal];
 	if (deleteOkay == NSAlertSecondButtonReturn) {
 		[self deleteMemoryBlocksAtIndex:(int)selectedIndex card:(int)memCardSelect];

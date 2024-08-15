@@ -150,7 +150,7 @@ u64 GetCPUTick( void )
 #include <sys/time.h>
 #include <errno.h>
 //*
-unsigned long timeGetTime2()
+unsigned long timeGetTime2(void)
 {
  struct timeval tv;
  gettimeofday(&tv, 0);                                 // well, maybe there are better ways

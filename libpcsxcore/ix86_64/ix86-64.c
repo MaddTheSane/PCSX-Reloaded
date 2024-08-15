@@ -3016,14 +3016,14 @@ void RET2( void ) { write16( 0xc3f3 ); }
 void CBW( void ) { write16( 0x9866 );  }
 void CWD( void )  { write8( 0x98 ); }
 void CDQ( void ) { write8( 0x99 ); }
-void CWDE() { write8(0x98); }
+void CWDE(void) { write8(0x98); }
 
 #ifdef __x86_64__
 void CDQE( void ) { RexR(1,0); write8( 0x98 ); }
 #endif
 
-void LAHF() { write8(0x9f); }
-void SAHF() { write8(0x9e); }
+void LAHF(void) { write8(0x9f); }
+void SAHF(void) { write8(0x9e); }
 
 void BT32ItoR( x86IntRegType to, x86IntRegType from ) 
 {

@@ -42,7 +42,7 @@ static PadController *padController = nil;
 #define kDFPad1 @"Pad 1"
 #define kDFPad2 @"Pad 2"
 
-static void SetDefaultConfig() {
+static void SetDefaultConfig(void) {
 	memset(&g.cfg, 0, sizeof(g.cfg));
 	
 	g.cfg.Threaded = 1;
@@ -131,7 +131,7 @@ static void SetDefaultConfig() {
 	g.cfg.PadDef[1].KeyDef[DKEY_SQUARE].J.Button = 3;
 }
 
-void LoadPADConfig()
+void LoadPADConfig(void)
 {
 	SetDefaultConfig();
 	BOOL tryToLoadOld = YES;
@@ -317,7 +317,7 @@ void LoadPADConfig()
 	}
 }
 
-void SavePADConfig()
+void SavePADConfig(void)
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	NSMutableDictionary *pad1Dict, *pad2Dict;
@@ -335,23 +335,23 @@ void SavePADConfig()
 	[defaults synchronize];
 }
 
-void DoAbout()
+void DoAbout(void)
 {
 	// Get parent application instance
 	NSBundle *bundle = [NSBundle bundleWithIdentifier:APP_ID];
 	
 	// Get Credits.rtf
-	NSString *path = [bundle pathForResource:@"Credits" ofType:@"rtf"];
+	NSURL *path = [bundle URLForResource:@"Credits" withExtension:@"rtf"];
 	NSAttributedString *credits;
 	if (!path) {
-		path = [bundle pathForResource:@"Credits" ofType:@"rtfd"];
+		path = [bundle URLForResource:@"Credits" withExtension:@"rtfd"];
 	}
 	if (path) {
-		credits = [[NSAttributedString alloc] initWithPath:path documentAttributes:NULL];
+		credits = [[NSAttributedString alloc] initWithURL:path options:@{} documentAttributes:NULL error:NULL];
 	} else {
 		credits = [[NSAttributedString alloc] initWithString:@""];
 	}
-	
+
 	// Get Application Icon
 	NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:[bundle bundlePath]];
 	NSSize size = NSMakeSize(64, 64);
@@ -369,7 +369,7 @@ void DoAbout()
 	});
 }
 
-long DoConfiguration()
+long DoConfiguration(void)
 {
 	RunOnMainThreadSync(^{
 #if SDL_VERSION_ATLEAST(2, 0, 0)

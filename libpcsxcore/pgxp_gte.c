@@ -44,7 +44,7 @@ PGXP_value GTE_ctrl_reg_mem[32];
 PGXP_value* GTE_data_reg = GTE_data_reg_mem;
 PGXP_value* GTE_ctrl_reg = GTE_ctrl_reg_mem;
 
-void PGXP_InitGTE()
+void PGXP_InitGTE(void)
 {
 	memset(GTE_data_reg_mem, 0, sizeof(GTE_data_reg_mem));
 	memset(GTE_ctrl_reg_mem, 0, sizeof(GTE_ctrl_reg_mem));
@@ -187,7 +187,7 @@ int PGXP_NLCIP_valid(u32 sxy0, u32 sxy1, u32 sxy2)
 	return 0;
 }
 
-float PGXP_NCLIP()
+float PGXP_NCLIP(void)
 {
 	float nclip = ((SX0 * SY1) + (SX1 * SY2) + (SX2 * SY0) - (SX0 * SY2) - (SX1 * SY0) - (SX2 * SY1));
 

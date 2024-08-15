@@ -24,7 +24,7 @@
 // PGXP wrapper functions
 /////////////////////////////////////////////
 
-void pgxpRecNULL() {}
+void pgxpRecNULL(void) {}
 
 // Debug wrappers for x86_64 (because eOp will be last)
 #ifdef PGXP_CPU_DEBUG
@@ -55,12 +55,12 @@ static void PGXP64_psxTraceOp4(u32 code, u32 op1, u32 op2, u32 op3, u32 op4, u32
 #endif
 
 #define PGXP_REC_FUNC_PASS(pu, op) \
-static void pgxpRec##op() { \
+static void pgxpRec##op(void) { \
 	rec##op();\
 }
 
 #define PGXP_REC_FUNC(pu, op) \
-static void pgxpRec##op() { \
+static void pgxpRec##op(void) { \
 	MOV32ItoR(X86ARG1, psxRegs.code); \
 	PGXP_DBG_OP_E(op, X86ARG2) \
 	CALLFunc((uptr)PGXP_REC_FUNC_OP(pu, op, )); \
@@ -68,7 +68,7 @@ static void pgxpRec##op() { \
 }
 
 #define PGXP_REC_FUNC_1(pu, op, reg1) \
-static void pgxpRec##op() { \
+static void pgxpRec##op(void) { \
 	reg1;\
 	MOV32ItoR(X86ARG1, psxRegs.code); \
 	POP64R(X86ARG2); \
@@ -92,7 +92,7 @@ static void pgxpRec##op() { \
 //}
 
 #define PGXP_REC_FUNC_2(pu, op, reg1, reg2) \
-static void pgxpRec##op() { \
+static void pgxpRec##op(void) { \
 	reg1;\
 	reg2;\
 	MOV32ItoR(X86ARG1, psxRegs.code); \
@@ -105,7 +105,7 @@ static void pgxpRec##op() { \
 
 static u32 gTempAddr = 0;
 #define PGXP_REC_FUNC_ADDR_1(pu, op, reg1) \
-static void pgxpRec##op()	\
+static void pgxpRec##op(void)	\
 {	\
 	if (IsConst(_Rs_))	\
 	{	\
@@ -146,7 +146,7 @@ static u32 gTempInstr = 0;
 static u32 gTempReg1 = 0;
 static u32 gTempReg2 = 0;
 #define PGXP_REC_FUNC_R1_1(pu, op, test, reg1, reg2) \
-static void pgxpRec##op()	\
+static void pgxpRec##op(void)	\
 {	\
 	if(test) { rec##op(); return; }\
 	reg1;\
@@ -161,7 +161,7 @@ static void pgxpRec##op()	\
 }
 
 #define PGXP_REC_FUNC_R2_1(pu, op, test, reg1, reg2, reg3) \
-static void pgxpRec##op()	\
+static void pgxpRec##op(void)	\
 {	\
 	if(test) { rec##op(); return; }\
 	reg1;\
@@ -179,7 +179,7 @@ static void pgxpRec##op()	\
 }
 
 #define PGXP_REC_FUNC_R2_2(pu, op, test, reg1, reg2, reg3, reg4) \
-static void pgxpRec##op()	\
+static void pgxpRec##op(void)	\
 {	\
 	if(test) { rec##op(); return; }\
 	reg1;\
@@ -240,7 +240,7 @@ PGXP_REC_FUNC_R1_1(CPU, SLTIU,	!_Rt_, CPU_REG(_Rs_), iPushReg(_Rt_))
 // Rt = imm
 //PGXP_REC_FUNC_2_2(CPU, LUI, !_Rt_, 1, , , iPushReg(_Rt_), )
 //This macro is harder to implement for x86_64, and only used once, so... :) MrL
-static void pgxpRecLUI()
+static void pgxpRecLUI(void)
 {
 	if (!_Rt_) { recLUI(); return; }
 	recLUI();

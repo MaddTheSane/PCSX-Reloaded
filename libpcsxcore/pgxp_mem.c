@@ -9,19 +9,19 @@ const u32 ScratchOffset = 2048 * 1024 / 4;
 const u32 RegisterOffset = 2 * 2048 * 1024 / 4;
 const u32 InvalidAddress = 3 * 2048 * 1024 / 4;
 
-void PGXP_InitMem()
+void PGXP_InitMem(void)
 {
 	memset(Mem, 0, sizeof(Mem));
 }
 
-void PGXP_Init()
+void PGXP_Init(void)
 {
 	PGXP_InitMem();
 	PGXP_InitCPU();
 	PGXP_InitGTE();
 }
 
-char* PGXP_GetMem()
+char* PGXP_GetMem(void)
 {
 	return (char*)(Mem); // Config.PGXP_GTE ? (char*)(Mem) : NULL;
 }

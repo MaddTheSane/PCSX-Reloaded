@@ -1863,7 +1863,7 @@ void PrepareRGB24Upload(void)
 
 ////////////////////////////////////////////////////////////////////////
 
-void CheckWriteUpdate()
+void CheckWriteUpdate(void)
 {
  int iX=0,iY=0;
 

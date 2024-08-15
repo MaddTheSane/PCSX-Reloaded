@@ -49,9 +49,9 @@ typedef struct
 	void(*funcPtr)(void);
 } PGXP_CPU_OpData;
 
-void PGXP_CPU_EMPTY() {}
-void PGXP_CPU_NULL() { int* pi = NULL; *pi = 5; }
-void PGXP_CPU_ERROR() { int* pi = NULL; *pi = 5; }
+void PGXP_CPU_EMPTY(void) {}
+void PGXP_CPU_NULL(void) { int* pi = NULL; *pi = 5; }
+void PGXP_CPU_ERROR(void) { int* pi = NULL; *pi = 5; }
 
 #define PGXP_Data_ERROR		{ DBG_E_ERROR,		0, 0, 0, 0, "", "ERROR",	(void(*)(void))PGXP_CPU_ERROR }
 #define PGXP_Data_NULL		{ DBG_E_NULL,		0, 0, 0, 0, "", "NULL",		(void(*)(void))PGXP_CPU_NULL }

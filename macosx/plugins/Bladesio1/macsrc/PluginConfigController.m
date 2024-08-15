@@ -33,19 +33,19 @@ static PluginConfigController *windowController;
 #define kSioPlayer @"Player"
 #define kSioIPAddress @"IP address"
 
-void AboutDlgProc()
+void AboutDlgProc(void)
 {
 	// Get parent application instance
 	NSBundle *bundle = [NSBundle bundleWithIdentifier:APP_ID];
 	
 	// Get Credits.rtf
-	NSString *path = [bundle pathForResource:@"Credits" ofType:@"rtf"];
+	NSURL *path = [bundle URLForResource:@"Credits" withExtension:@"rtf"];
 	NSAttributedString *credits;
 	if (!path) {
-		path = [bundle pathForResource:@"Credits" ofType:@"rtfd"];
+		path = [bundle URLForResource:@"Credits" withExtension:@"rtfd"];
 	}
 	if (path) {
-		credits = [[NSAttributedString alloc] initWithPath:path documentAttributes:NULL];
+		credits = [[NSAttributedString alloc] initWithURL:path options:@{} documentAttributes:NULL error:NULL];
 	} else {
 		credits = [[NSAttributedString alloc] initWithString:@""];
 	}
