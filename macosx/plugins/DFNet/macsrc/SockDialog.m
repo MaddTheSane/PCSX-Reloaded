@@ -23,7 +23,7 @@ void SysMessage(const char *fmt, ...)
 	alert.informativeText = @"Error";
 	alert.messageText = errString;
 	[alert addButtonWithTitle:@"Stop"];
-	[alert setAlertStyle:NSCriticalAlertStyle];
+	[alert setAlertStyle:NSAlertStyleCritical];
 	NSInteger result = [alert runModal];
 	if (result == NSAlertFirstButtonReturn) {
 		Class theEmuClass = NSClassFromString(@"EmuThread");
@@ -52,7 +52,7 @@ static inline void RunOnMainThreadSync(dispatch_block_t block)
 
 static SockDialog *globalSock = nil;
 
-void sockCreateWaitDlg()
+void sockCreateWaitDlg(void)
 {
 	RunOnMainThreadSync(^{
 		if (globalSock == nil) {
@@ -65,19 +65,19 @@ void sockCreateWaitDlg()
 	});
 }
 
-void sockDlgUpdate()
+void sockDlgUpdate(void)
 {
 	
 }
 
-long sockOpen()
+long sockOpen(void)
 {
 	LoadConf();
 	
 	return 0;
 }
 
-void sockDestroyWaitDlg()
+void sockDestroyWaitDlg(void)
 {
 	RunOnMainThreadSync(^{
 		if (globalSock != nil) {

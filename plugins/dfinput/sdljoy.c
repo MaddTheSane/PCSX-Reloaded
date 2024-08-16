@@ -18,7 +18,7 @@
 
 #include "pad.h"
 
-void JoyInitHaptic()
+void JoyInitHaptic(void)
 {
 #if SDL_VERSION_ATLEAST(2,0,0)
 	uint8_t i;
@@ -82,7 +82,7 @@ int JoyHapticRumble(int pad, uint32_t low, uint32_t high)
   return 0;
 }
 
-void InitSDLJoy() {
+void InitSDLJoy(void) {
 	uint8_t				i;
 	g.PadState[0].JoyKeyStatus = 0xFFFF;
 	g.PadState[1].JoyKeyStatus = 0xFFFF;
@@ -132,7 +132,7 @@ void InitSDLJoy() {
 	InitAnalog();
 }
 
-void DestroySDLJoy() {
+void DestroySDLJoy(void) {
 	uint8_t				i;
 
 	if (SDL_WasInit(SDL_INIT_JOYSTICK)) {
@@ -186,7 +186,7 @@ static void bup(int pad, int bit)
 		g.PadState[pad].PadModeKey = 0;
 }
 
-void CheckJoy() {
+void CheckJoy(void) {
 	uint8_t				i, j, n;
 #if SDL_VERSION_ATLEAST(2,0,0)
 	SDL_GameControllerUpdate();

@@ -247,7 +247,7 @@ static INLINE void MixXA(void)
 
 #ifndef _WINDOWS
 
-unsigned long timeGetTime_spu()
+unsigned long timeGetTime_spu(void)
 {
  struct timeval tv;
  gettimeofday(&tv, 0);                                 // well, maybe there are better ways

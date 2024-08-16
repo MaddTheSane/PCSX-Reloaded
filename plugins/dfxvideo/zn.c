@@ -97,7 +97,7 @@ void CALLBACK ZN_GPUmakeSnapshot(void)
 
 // --------------------------------------------------- //
 
-long CALLBACK ZN_GPUinit()
+long CALLBACK ZN_GPUinit(void)
 {                                                      // we always set the vram size to 2MB, if the ZN interface is used
  iGPUHeight=1024;
  iGPUHeightMask=1023;
@@ -141,14 +141,14 @@ long CALLBACK ZN_GPUopen(void * vcfg)
 
 // --------------------------------------------------- //
 
-long CALLBACK ZN_GPUclose()
+long CALLBACK ZN_GPUclose(void)
 {
  return GPUclose();
 }
 
 // --------------------------------------------------- // 
 
-long CALLBACK ZN_GPUshutdown()
+long CALLBACK ZN_GPUshutdown(void)
 {
  return GPUshutdown();
 }

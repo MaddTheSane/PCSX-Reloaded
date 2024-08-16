@@ -45,7 +45,7 @@ static void SOUND_FillAudio(void *unused, Uint8 *stream, int len) {
 	}
 }
 
-static void InitSDL() {
+static void InitSDL(void) {
 	if (SDL_WasInit(SDL_INIT_EVERYTHING)) {
 		SDL_InitSubSystem(SDL_INIT_AUDIO);
 	} else {
@@ -53,7 +53,7 @@ static void InitSDL() {
 	}
 }
 
-static void DestroySDL() {
+static void DestroySDL(void) {
 	if (SDL_WasInit(SDL_INIT_EVERYTHING & ~SDL_INIT_AUDIO)) {
 		SDL_QuitSubSystem(SDL_INIT_AUDIO);
 	} else {

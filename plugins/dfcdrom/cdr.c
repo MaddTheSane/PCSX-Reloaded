@@ -188,19 +188,19 @@ long CDRgetTD(unsigned char track, unsigned char *buffer) {
 }
 
 // normal reading
-long ReadNormal() {
+long ReadNormal(void) {
 	if (ReadSector(&cr) == -1)
 		return -1;
 
 	return 0;
 }
 
-unsigned char *GetBNormal() {
+unsigned char *GetBNormal(void) {
 	return (unsigned char *)cdbuffer;
 }
 
 // threaded reading (with cache)
-long ReadThreaded() {
+long ReadThreaded(void) {
 	int addr = msf_to_lba(cr.msf.cdmsf_min0, cr.msf.cdmsf_sec0, cr.msf.cdmsf_frame0);
 	int i;
 
@@ -239,7 +239,7 @@ long ReadThreaded() {
 	return 0;
 }
 
-unsigned char *GetBThreaded() {
+unsigned char *GetBThreaded(void) {
 	PRINTF("threadc %d\n", found);
 
 	if (found == 1) return (unsigned char *)cdbuffer;

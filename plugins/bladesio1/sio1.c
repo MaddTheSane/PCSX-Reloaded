@@ -127,11 +127,11 @@ typedef struct EXC_DATA {
 
 /***************************************************************************/
 
-long CALLBACK SIO1init() {
+long CALLBACK SIO1init(void) {
 	return 0;
 }
 
-long CALLBACK SIO1shutdown() {
+long CALLBACK SIO1shutdown(void) {
 	return 0;
 }
 
@@ -153,7 +153,7 @@ long CALLBACK SIO1open(unsigned long *gpuDisp) {
 	return 0;
 }
 
-long CALLBACK SIO1close() {
+long CALLBACK SIO1close(void) {
 	fifoClose();
 	connectionClose();
 
@@ -162,10 +162,10 @@ long CALLBACK SIO1close() {
 
 /***************************************************************************/
 
-void CALLBACK SIO1pause() {
+void CALLBACK SIO1pause(void) {
 }
 
-void CALLBACK SIO1resume() {
+void CALLBACK SIO1resume(void) {
 }
 
 /***************************************************************************/
@@ -411,7 +411,7 @@ void CALLBACK SIO1writeBaud32(u32 baud) {
 /* Read.
  */
 
-u8 CALLBACK SIO1readData8() {
+u8 CALLBACK SIO1readData8(void) {
 	u8 data[1];
 
 	fifoPop(&data[0]);
@@ -424,7 +424,7 @@ u8 CALLBACK SIO1readData8() {
 	return *(u8*)data;
 }
 
-u16 CALLBACK SIO1readData16() {
+u16 CALLBACK SIO1readData16(void) {
 	u8 data[2];
 
 	fifoPop(&data[0]);
@@ -438,7 +438,7 @@ u16 CALLBACK SIO1readData16() {
 	return *(u16*)data;
 }
 
-u32 CALLBACK SIO1readData32() {
+u32 CALLBACK SIO1readData32(void) {
 	u8 data[4];
 
 	fifoPop(&data[0]);
@@ -454,7 +454,7 @@ u32 CALLBACK SIO1readData32() {
 	return *(u32*)data;
 }
 
-u16 CALLBACK SIO1readStat16() {
+u16 CALLBACK SIO1readStat16(void) {
 	Exchange(-1);
 #if defined SIO1_DEBUG
 	printf("SIO1readStat16() : %.4x\n", statReg);
@@ -462,7 +462,7 @@ u16 CALLBACK SIO1readStat16() {
 	return statReg;
 }
 
-u32 CALLBACK SIO1readStat32() {
+u32 CALLBACK SIO1readStat32(void) {
 	Exchange(-1);
 #if defined SIO1_DEBUG
 	printf("SIO1readStat32() : %.4x\n", statReg);
@@ -470,7 +470,7 @@ u32 CALLBACK SIO1readStat32() {
 	return statReg;
 }
 
-u16 CALLBACK SIO1readMode16() {
+u16 CALLBACK SIO1readMode16(void) {
 	Exchange(-1);
 #if defined SIO1_DEBUG
 	printf("SIO1readMode16() : %.4x\n", modeReg);
@@ -478,7 +478,7 @@ u16 CALLBACK SIO1readMode16() {
 	return modeReg;
 }
 
-u32 CALLBACK SIO1readMode32() {
+u32 CALLBACK SIO1readMode32(void) {
 	Exchange(-1);
 #if defined SIO1_DEBUG
 	printf("SIO1readMode32() : %.4x\n", modeReg);
@@ -486,7 +486,7 @@ u32 CALLBACK SIO1readMode32() {
 	return modeReg;
 }
 
-u16 CALLBACK SIO1readCtrl16() {
+u16 CALLBACK SIO1readCtrl16(void) {
 	Exchange(-1);
 #if defined SIO1_DEBUG
 	printf("SIO1readCtrl16() : %.4x\n", ctrlReg);
@@ -494,7 +494,7 @@ u16 CALLBACK SIO1readCtrl16() {
 	return ctrlReg;
 }
 
-u32 CALLBACK SIO1readCtrl32() {
+u32 CALLBACK SIO1readCtrl32(void) {
 	Exchange(-1);
 #if defined SIO1_DEBU
 	printf("SIO1readCtrl32() : %.4x\n", ctrlReg);
@@ -502,7 +502,7 @@ u32 CALLBACK SIO1readCtrl32() {
 	return ctrlReg;
 }
 
-u16 CALLBACK SIO1readBaud16() {
+u16 CALLBACK SIO1readBaud16(void) {
 	Exchange(-1);
 #if defined SIO1_DEBUG
 	printf("SIO1readBaud16() : %.4x\n", baudReg);
@@ -510,7 +510,7 @@ u16 CALLBACK SIO1readBaud16() {
 	return baudReg;
 }
 
-u32 CALLBACK SIO1readBaud32() {
+u32 CALLBACK SIO1readBaud32(void) {
 	Exchange(-1);
 #if defined SIO1_DEBUG
 	printf("SIO1readBaud32() : %.4x\n", baudReg);
@@ -530,19 +530,19 @@ void CALLBACK SIO1registerCallback(void (CALLBACK *callback)(void)) {
 
 /***************************************************************************/
 
-unsigned long CALLBACK PSEgetLibType() {
+unsigned long CALLBACK PSEgetLibType(void) {
 	return PSE_LT_SIO1;
 }
 
-char* CALLBACK PSEgetLibName() {
+char* CALLBACK PSEgetLibName(void) {
 	return _(pluginName);
 }
 
-unsigned long CALLBACK PSEgetLibVersion() {
+unsigned long CALLBACK PSEgetLibVersion(void) {
 	return version << 16 | revision << 8 | build;
 }
 
-long CALLBACK SIO1test() {
+long CALLBACK SIO1test(void) {
 	return 0;
 }
 
@@ -585,7 +585,7 @@ void ExecCfg(char *arg) {
 }
 #endif
 
-void CALLBACK SIO1about() {
+void CALLBACK SIO1about(void) {
 #if defined _WINDOWS
 	DialogBox(hInst,MAKEINTRESOURCE(IDD_ABOUT), GetActiveWindow(),(DLGPROC)AboutDlgProc);
 #elif defined _MACOSX
@@ -595,7 +595,7 @@ void CALLBACK SIO1about() {
 #endif
 }
 
-void CALLBACK SIO1configure() {
+void CALLBACK SIO1configure(void) {
 #if defined _WINDOWS
 	DialogBox(hInst,MAKEINTRESOURCE(IDD_CFGDLG), GetActiveWindow(),(DLGPROC)Sio1DlgProc);
 #elif defined _MACOSX

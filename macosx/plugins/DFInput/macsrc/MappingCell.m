@@ -79,11 +79,11 @@
 		[tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:nextRow] byExtendingSelection:NO];
 
 		/* discard any events we have received while waiting for the button press */
-		endEvent = [NSEvent otherEventWithType:NSApplicationDefined location:where 
+		endEvent = [NSEvent otherEventWithType:NSEventTypeApplicationDefined location:where 
 									modifierFlags:0 timestamp:(NSTimeInterval)0
 									windowNumber:0 context:[NSGraphicsContext currentContext] subtype:0 data1:0 data2:0];
 		[NSApp postEvent:endEvent atStart:NO];
-		[NSApp discardEventsMatchingMask:NSAnyEventMask beforeEvent:endEvent];
+		[NSApp discardEventsMatchingMask:NSEventMaskAny beforeEvent:endEvent];
 	}
 	[[tableView window] makeFirstResponder:tableView];
 }

@@ -155,7 +155,7 @@ static __inline void SetRenderMode(uint32_t DrawAttributes)
 #define CHKMAX_X 1024
 #define CHKMAX_Y 512
 
-static void AdjustCoord4()
+static void AdjustCoord4(void)
 {
  lx0=(short)(((int)lx0<<SIGNSHIFT)>>SIGNSHIFT);
  lx1=(short)(((int)lx1<<SIGNSHIFT)>>SIGNSHIFT);
@@ -167,7 +167,7 @@ static void AdjustCoord4()
  ly3=(short)(((int)ly3<<SIGNSHIFT)>>SIGNSHIFT);
 }
 
-static void AdjustCoord3()
+static void AdjustCoord3(void)
 {
  lx0=(short)(((int)lx0<<SIGNSHIFT)>>SIGNSHIFT);
  lx1=(short)(((int)lx1<<SIGNSHIFT)>>SIGNSHIFT);
@@ -177,7 +177,7 @@ static void AdjustCoord3()
  ly2=(short)(((int)ly2<<SIGNSHIFT)>>SIGNSHIFT);
 }
 
-static void AdjustCoord2()
+static void AdjustCoord2(void)
 {
  lx0=(short)(((int)lx0<<SIGNSHIFT)>>SIGNSHIFT);
  lx1=(short)(((int)lx1<<SIGNSHIFT)>>SIGNSHIFT);
@@ -185,7 +185,7 @@ static void AdjustCoord2()
  ly1=(short)(((int)ly1<<SIGNSHIFT)>>SIGNSHIFT);
 }
 
-static void AdjustCoord1()
+static void AdjustCoord1(void)
 {
  lx0=(short)(((int)lx0<<SIGNSHIFT)>>SIGNSHIFT);
  ly0=(short)(((int)ly0<<SIGNSHIFT)>>SIGNSHIFT);
@@ -211,7 +211,7 @@ static void AdjustCoord1()
 //  \ / \ 
 //   2___3
 
-static __inline BOOL CheckCoord4()
+static __inline BOOL CheckCoord4(void)
 {
  if(lx0<0)
   {
@@ -277,7 +277,7 @@ static __inline BOOL CheckCoord4()
  return FALSE;
 }
 
-static __inline BOOL CheckCoord3()
+static __inline BOOL CheckCoord3(void)
 {
  if(lx0<0)
   {
@@ -314,7 +314,7 @@ static __inline BOOL CheckCoord3()
 }
 
 
-static __inline BOOL CheckCoord2()
+static __inline BOOL CheckCoord2(void)
 {
  if(lx0<0)
   {

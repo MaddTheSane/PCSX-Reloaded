@@ -247,7 +247,7 @@ void GetAnalogDescription(char *buf, int joynum, int analognum, int dir)
 	}
 }
 
-int CheckKeyDown() {
+int CheckKeyDown(void) {
 	KeyMap theKeys;
 	unsigned char *keybytes;
 	int i;

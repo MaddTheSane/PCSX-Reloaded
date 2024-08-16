@@ -431,7 +431,7 @@ void CALLBACK GPUmakeSnapshot(void)
 // INIT, will be called after lib load... well, just do some var init...
 ////////////////////////////////////////////////////////////////////////
 
-long CALLBACK GPUinit()                                // GPU INIT
+long CALLBACK GPUinit(void)                                // GPU INIT
 {
  memset(ulStatusControl,0,256*sizeof(uint32_t));  // init save state scontrol field
 
@@ -555,7 +555,7 @@ long GPUopen(unsigned long * disp,char * CapText,char * CfgFile)
 // time to leave...
 ////////////////////////////////////////////////////////////////////////
 
-long CALLBACK GPUclose()                               // GPU CLOSE
+long CALLBACK GPUclose(void)                               // GPU CLOSE
 {
 #ifdef _WINDOWS
  if(RECORD_RECORDING==TRUE) {RECORD_Stop();RECORD_RECORDING=FALSE;BuildDispMenu(0);}
@@ -577,7 +577,7 @@ long CALLBACK GPUclose()                               // GPU CLOSE
 // I shot the sheriff
 ////////////////////////////////////////////////////////////////////////
 
-long CALLBACK GPUshutdown()                            // GPU SHUTDOWN
+long CALLBACK GPUshutdown(void)                            // GPU SHUTDOWN
 {
  // screensaver: release the handle for kernel32.dll
  FreeKernel32();

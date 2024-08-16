@@ -32,7 +32,7 @@ long CacheSize;
 long CdrSpeed;
 long SpinDown;
 
-void LoadConf() {
+void LoadConf(void) {
 	strcpy(CdromDev, "");
 	ReadMode = THREADED;
 	UseSubQ = 0;
@@ -43,11 +43,11 @@ void LoadConf() {
 	ReadConfig();
 }
 
-long CDRconfigure() {
+long CDRconfigure(void) {
 	ConfDlgProc();
 	return 0;
 }
 
-void CDRabout() {
+void CDRabout(void) {
 	AboutDlgProc();
 }

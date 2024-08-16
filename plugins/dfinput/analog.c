@@ -27,7 +27,7 @@ static SDL_GameControllerAxis PsxAxisMap[] = {
 };
 #endif
 
-void InitAnalog() {
+void InitAnalog(void) {
 	g.PadState[0].AnalogStatus[ANALOG_LEFT][0] = 127;
 	g.PadState[0].AnalogStatus[ANALOG_LEFT][1] = 127;
 	g.PadState[0].AnalogStatus[ANALOG_RIGHT][0] = 127;
@@ -41,7 +41,7 @@ void InitAnalog() {
 	memset((void *)g.PadState[1].AnalogKeyStatus, 0, sizeof(g.PadState[1].AnalogKeyStatus));
 }
 
-void CheckAnalog() {
+void CheckAnalog(void) {
 	int			i, j, k, val;
 	uint8_t		n;
 

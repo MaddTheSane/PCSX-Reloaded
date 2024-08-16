@@ -100,11 +100,11 @@ static u16 baudReg; // 0x1f80105E: 0x0
 
 /***************************************************************************/
 
-long CALLBACK SIO1init() {
+long CALLBACK SIO1init(void) {
 	return 0;
 }
 
-long CALLBACK SIO1shutdown() {
+long CALLBACK SIO1shutdown(void) {
 	return 0;
 }
 
@@ -118,16 +118,16 @@ long CALLBACK SIO1open(unsigned long *gpuDisp) {
 	return 0;
 }
 
-long CALLBACK SIO1close() {
+long CALLBACK SIO1close(void) {
 	return 0;
 }
 
 /***************************************************************************/
 
-void CALLBACK SIO1pause() {
+void CALLBACK SIO1pause(void) {
 }
 
-void CALLBACK SIO1resume() {
+void CALLBACK SIO1resume(void) {
 }
 
 /***************************************************************************/
@@ -206,50 +206,50 @@ void CALLBACK SIO1writeBaud32(u32 baud) {
 /* Read.
  */
 
-u8 CALLBACK SIO1readData8() {
+u8 CALLBACK SIO1readData8(void) {
 	u8 data[1] = {0};
 	return *(u8*)data;
 }
 
-u16 CALLBACK SIO1readData16() {
+u16 CALLBACK SIO1readData16(void) {
 	u8 data[2] = {0, 0};
 	return *(u16*)data;
 }
 
-u32 CALLBACK SIO1readData32() {
+u32 CALLBACK SIO1readData32(void) {
 	u8 data[4] = {0, 0, 0, 0};
 	return *(u32*)data;
 }
 
-u16 CALLBACK SIO1readStat16() {
+u16 CALLBACK SIO1readStat16(void) {
 	return statReg;
 }
 
-u32 CALLBACK SIO1readStat32() {
+u32 CALLBACK SIO1readStat32(void) {
 	return statReg;
 }
 
-u16 CALLBACK SIO1readMode16() {
+u16 CALLBACK SIO1readMode16(void) {
 	return modeReg;
 }
 
-u32 CALLBACK SIO1readMode32() {
+u32 CALLBACK SIO1readMode32(void) {
 	return modeReg;
 }
 
-u16 CALLBACK SIO1readCtrl16() {
+u16 CALLBACK SIO1readCtrl16(void) {
 	return ctrlReg;
 }
 
-u32 CALLBACK SIO1readCtrl32() {
+u32 CALLBACK SIO1readCtrl32(void) {
 	return ctrlReg;
 }
 
-u16 CALLBACK SIO1readBaud16() {
+u16 CALLBACK SIO1readBaud16(void) {
 	return baudReg;
 }
 
-u32 CALLBACK SIO1readBaud32() {
+u32 CALLBACK SIO1readBaud32(void) {
 	return baudReg;
 }
 
@@ -264,26 +264,26 @@ void CALLBACK SIO1registerCallback(void (CALLBACK *callback)(void)) {
 
 /***************************************************************************/
 
-unsigned long CALLBACK PSEgetLibType() {
+unsigned long CALLBACK PSEgetLibType(void) {
 	return PSE_LT_SIO1;
 }
 
-char* CALLBACK PSEgetLibName() {
+char* CALLBACK PSEgetLibName(void) {
 	return pluginName;
 }
 
-unsigned long CALLBACK PSEgetLibVersion() {
+unsigned long CALLBACK PSEgetLibVersion(void) {
 	return version << 16 | revision << 8 | build;
 }
 
-long CALLBACK SIO1test() {
+long CALLBACK SIO1test(void) {
 	return 0;
 }
 
-void CALLBACK SIO1about() {
+void CALLBACK SIO1about(void) {
 }
 
-void CALLBACK SIO1configure() {
+void CALLBACK SIO1configure(void) {
 }
 
 /***************************************************************************/

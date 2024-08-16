@@ -47,7 +47,7 @@ static struct hostent *hostinfo;
 
 /***************************************************************************/
 
-int connectionOpen() {
+int connectionOpen(void) {
 #if defined _WINDOWS
 	WSADATA wsaData;
 	if(WSAStartup(0x202, &wsaData))
@@ -136,7 +136,7 @@ int connectionOpen() {
 	return 0;
 }
 
-void connectionClose() {
+void connectionClose(void) {
 	if(clientsock >= 0) {
 		//close(clientsock);
 		clientsock = -1;

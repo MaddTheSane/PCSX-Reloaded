@@ -568,7 +568,7 @@ void CreateScanLines(void)
 HGLRC GLCONTEXT=NULL;
 #endif
 
-int GLinitialize() 
+int GLinitialize(void)
 {
 #ifdef _WINDOWS
  HGLRC objectRC;
@@ -715,8 +715,8 @@ int GLinitialize()
 // clean up OGL stuff
 ////////////////////////////////////////////////////////////////////////
 
-void GLcleanup() 
-{                                                     
+void GLcleanup(void)
+{
  KillDisplayLists();                                   // bye display lists
 
  if(iUseScanLines)                                     // scanlines used?
@@ -756,7 +756,7 @@ void GLcleanup()
 //              real psx polygon coord mapping right... the following
 //              works not to bad with many games, though
 
-static __inline BOOL CheckCoord4()
+static __inline BOOL CheckCoord4(void)
 {
  if(lx0<0)
   {
@@ -822,7 +822,7 @@ static __inline BOOL CheckCoord4()
  return FALSE;
 }
 
-static __inline BOOL CheckCoord3()
+static __inline BOOL CheckCoord3(void)
 {
  if(lx0<0)
   {
@@ -859,7 +859,7 @@ static __inline BOOL CheckCoord3()
 }
 
 
-static __inline BOOL CheckCoord2()
+static __inline BOOL CheckCoord2(void)
 {
  if(lx0<0)
   {

@@ -40,7 +40,7 @@ NSRect windowFrame;
 	
 	windowFrame = NSMakeRect(0, 0, iResX + 8, iResY + 4);
 	
-	windowFrame = [NSWindow contentRectForFrameRect:windowFrame styleMask:NSTitledWindowMask];
+	windowFrame = [NSWindow contentRectForFrameRect:windowFrame styleMask:NSWindowStyleMaskTitled];
 
 	
 	if (windowFrame.size.width != 0) {
@@ -128,8 +128,8 @@ NSRect windowFrame;
 		fullWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect((CGDisplayPixelsWide(display)-width)/2, 
 																						  (CGDisplayPixelsHigh(display)-height)/2, 
 																						  width, height)
-							styleMask:NSBorderlessWindowMask
-							backing:NSBackingStoreRetained
+												 styleMask:NSWindowStyleMaskBorderless
+												   backing:NSBackingStoreBuffered
 							defer:NO
 							screen:screen];
 		
@@ -178,7 +178,7 @@ NSRect windowFrame;
 
 - (NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)proposedFrameSize
 {
-	if (!(([sender resizeFlags] & NSShiftKeyMask) == NSShiftKeyMask)) {
+	if (!(([sender resizeFlags] & NSEventModifierFlagShift) == NSEventModifierFlagShift)) {
 		NSRect oldSize = [sender frame];
 		NSRect viewSize = [self.glView frame];
 		

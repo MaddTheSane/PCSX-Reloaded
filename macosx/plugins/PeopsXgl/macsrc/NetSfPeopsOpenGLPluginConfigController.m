@@ -166,7 +166,7 @@ void PrepFactoryDefaultPreferences(void)
 			 kWindowSize: NSStringFromSize(NSMakeSize(800, 600)),
 			 @"Draw Scanlines": @NO,
 			 // nasty:
-			 @"Scanline Color": [NSArchiver archivedDataWithRootObject: [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.25]],
+			 @"Scanline Color": [NSKeyedArchiver archivedDataWithRootObject: [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.25]],
 			 @"Advanced Blending": @NO,
 			 @"Opaque Pass": @NO,
 			 @"Blur": @NO,
@@ -224,7 +224,10 @@ void ReadConfig(void)
 	
 	iBlurBuffer = [keyValues[@"Blur"] boolValue]; // not noticeable, but doesn't harm
 	iUseScanLines = [keyValues[@"Draw Scanlines"] boolValue]; // works
-	NSColor* scanColor = [NSUnarchiver unarchiveObjectWithData:keyValues[@"Scanline Color"]];
+	NSColor* scanColor = [NSKeyedUnarchiver unarchiveObjectWithData:keyValues[@"Scanline Color"]];
+	if (!scanColor) {
+		scanColor = [NSUnarchiver unarchiveObjectWithData:keyValues[@"Scanline Color"]];
+	}
 	scanColor = [scanColor colorUsingColorSpace:[NSColorSpace deviceRGBColorSpace]];
 	iScanlineColor[0] = [scanColor redComponent];
 	iScanlineColor[1] = [scanColor greenComponent];
@@ -343,7 +346,7 @@ void ReadConfig(void)
 	
 	NSMutableDictionary *writeDic = [keyValues mutableCopy];
 	writeDic[kFPSCounter] = ([fpsCounter integerValue] ? @YES : @NO);
-	writeDic[@"Scanline Color"] = [NSArchiver archivedDataWithRootObject:[scanlineColorWell color]];
+	writeDic[@"Scanline Color"] = [NSKeyedArchiver archivedDataWithRootObject:[scanlineColorWell color]];
 	writeDic[kFrameSkipping] = ([frameSkipping integerValue] ? @YES : @NO);
 	writeDic[kAutoFullScreen] = ([autoFullScreen integerValue] ? @YES : @NO);
 	writeDic[kFrameLimit] = ([limitFrameRate integerValue] ? @YES : @NO);
@@ -420,7 +423,11 @@ void ReadConfig(void)
 	[autoFullScreen setIntegerValue:[keyValues[kAutoFullScreen] boolValue]];
 	[limitFrameRate setIntegerValue:[keyValues[kFrameLimit] boolValue]];
 	[fpsCounter setIntegerValue:[keyValues[kFPSCounter] boolValue]];
-	[scanlineColorWell setColor:[NSUnarchiver unarchiveObjectWithData: keyValues[@"Scanline Color"]]];
+	NSColor *scanColor = [NSKeyedUnarchiver unarchiveObjectWithData: keyValues[@"Scanline Color"]];
+	if (!scanColor) {
+		scanColor = [NSUnarchiver unarchiveObjectWithData: keyValues[@"Scanline Color"]];
+	}
+	[scanlineColorWell setColor:scanColor];
 	[frameSkipping setIntegerValue:[keyValues[kFrameSkipping] boolValue]];
 	[advancedBlending setIntegerValue:[keyValues[@"Advanced Blending"] boolValue]];
 	[texFiltering setIntegerValue:[keyValues[@"Texture Filter Level"] integerValue]];

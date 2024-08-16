@@ -148,12 +148,12 @@ int OpenCdHandle(const char *dev) {
 	return 0;
 }
 
-void CloseCdHandle() {
+void CloseCdHandle(void) {
 	if (cdHandle != -1) close(cdHandle);
 	cdHandle = -1;
 }
 
-int IsCdHandleOpen() {
+int IsCdHandleOpen(void) {
 	return (cdHandle != -1);
 }
 
@@ -208,7 +208,7 @@ long PlayCDDA(unsigned char *sector) {
 	return 0; // TODO
 }
 
-long StopCDDA() {
+long StopCDDA(void) {
 	return 0; // TODO
 }
 

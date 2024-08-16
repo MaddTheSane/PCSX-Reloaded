@@ -39,41 +39,41 @@ static s32 _overrun;
 
 /***************************************************************************/
 
-void fifoOpen() {
+void fifoOpen(void) {
 	fifoReset();
 	fifoResetErr();
 }
 
-void fifoClose() {
+void fifoClose(void) {
 }
 
 /***************************************************************************/
 
-void fifoReset() {
+void fifoReset(void) {
 	_indexw		= 0;
 	_indexr		= 0;
 	_employment = 0;
 }
 
-void fifoResetErr() {
+void fifoResetErr(void) {
 	_overrun  = 0;
 }
 
 /***************************************************************************/
 
-s32 fifoEmployment() {
+s32 fifoEmployment(void) {
 	return _employment;
 }
 
-s32 fifoEmpty() {
+s32 fifoEmpty(void) {
 	return (_employment == 0);
 }
 
-s32 fifoFull() {
+s32 fifoFull(void) {
 	return (_employment == 8);
 }
 
-s32 fifoOverrun() {
+s32 fifoOverrun(void) {
 	return _overrun;
 }
 

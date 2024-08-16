@@ -30,7 +30,7 @@ void ReadConfig(void);
 
 Settings settings;
 
-void settingsRead() {
+void settingsRead(void) {
 	settings.player = PLAYER_DISABLED;
 	strcpy(settings.ip, "127.0.0.1");
 	settings.port = 33307;

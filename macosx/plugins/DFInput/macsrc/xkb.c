@@ -18,12 +18,12 @@
 
 #include "pad.h"
 
-void InitKeyboard() {
+void InitKeyboard(void) {
 	g.PadState[0].KeyStatus = 0xFFFF;
 	g.PadState[1].KeyStatus = 0xFFFF;
 }
 
-void DestroyKeyboard() {
+void DestroyKeyboard(void) {
 }
 
 static void bdown(int pad, int bit)
@@ -40,7 +40,7 @@ static void bup(int pad, int bit)
 		g.PadState[pad].KeyStatus |= (1 << bit);
 }
 
-void CheckKeyboard() {
+void CheckKeyboard(void) {
 	int i, j, k;
 	uint16_t key;
 

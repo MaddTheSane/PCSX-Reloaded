@@ -122,7 +122,7 @@ char* GetALCErrorString(ALenum error)
     return "ALC_UNKNOWN_ERROR";
 }
 
-int checkALError()
+int checkALError(void)
 {
     char *pErrorString = GetALErrorString(alGetError());
     if(pErrorString)
@@ -134,7 +134,7 @@ int checkALError()
     return 0;
 }
 
-int checkALCError()
+int checkALCError(void)
 {
     char *pErrorString = GetALCErrorString(alcGetError(pDevice));
     if(pErrorString)
@@ -148,7 +148,7 @@ int checkALCError()
 
 /******************************************************************************/
 
-void SetupSound()
+void SetupSound(void)
 {
     unsigned char buf[BUFFER_SIZE];
     int i;
@@ -233,7 +233,7 @@ void SetupSound()
     checkALError();
 }
 
-void RemoveSound()
+void RemoveSound(void)
 {
     alSourceStop(source);
     checkALError();
@@ -254,7 +254,7 @@ void RemoveSound()
 
 /******************************************************************************/
 
-unsigned long SoundGetBytesBuffered()
+unsigned long SoundGetBytesBuffered(void)
 {
     ALint processed;
 	int buffered;

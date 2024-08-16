@@ -787,7 +787,7 @@ void sioWriteBaud16(unsigned short value) {
 	BaudReg = value;
 }
 
-unsigned char sioRead8() {
+unsigned char sioRead8(void) {
 	unsigned char ret = 0;
 
 	if ((StatReg & RX_RDY)/* && (CtrlReg & RX_PERM)*/) {
@@ -825,7 +825,7 @@ unsigned char sioRead8() {
 	return ret;
 }
 
-unsigned short sioReadStat16() {
+unsigned short sioReadStat16(void) {
 	u16 hard;
 
 	hard = StatReg;
@@ -843,19 +843,19 @@ unsigned short sioReadStat16() {
 	return hard;
 }
 
-unsigned short sioReadMode16() {
+unsigned short sioReadMode16(void) {
 	return ModeReg;
 }
 
-unsigned short sioReadCtrl16() {
+unsigned short sioReadCtrl16(void) {
 	return CtrlReg;
 }
 
-unsigned short sioReadBaud16() {
+unsigned short sioReadBaud16(void) {
 	return BaudReg;
 }
 
-void netError() {
+void netError(void) {
 	ClosePlugins();
 	SysMessage("%s", _("Connection closed!\n"));
 
@@ -865,7 +865,7 @@ void netError() {
 	SysRunGui();
 }
 
-void sioInterrupt() {
+void sioInterrupt(void) {
 #ifdef PAD_LOG
 	PAD_LOG("Sio Interrupt (CP0.Status = %x)\n", psxRegs.CP0.n.Status);
 #endif

@@ -388,7 +388,7 @@ unsigned short NoiseFreqAdd[5] = {
 	0, 84, 140, 180, 210
 };
 
-static INLINE void NoiseClock()
+static INLINE void NoiseClock(void)
 {
 	unsigned int level;
 
