@@ -31,7 +31,7 @@
 #define KEY_BADTEXTURES   128
 #define KEY_CHECKTHISOUT  256
 
-#if !defined(__BIG_ENDIAN__) || defined(__x86_64__) || defined(__i386__)
+#if !defined(__BIG_ENDIAN__) || defined(__x86_64__) || defined(__i386__) || defined(__arm64__)
 #ifndef __LITTLE_ENDIAN__
 #define __LITTLE_ENDIAN__
 #endif

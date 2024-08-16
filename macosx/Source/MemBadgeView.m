@@ -44,7 +44,7 @@
 	if (tmpDraw) {
 		[tmpDraw unlockFocus];
 		
-		[tmpDraw drawInRect:dirtyRect fromRect:dirtyRect operation:NSCompositeSourceOver fraction:1.0];
+		[tmpDraw drawInRect:dirtyRect fromRect:dirtyRect operation:NSCompositingOperationSourceOver fraction:1.0];
 	}
 }
 

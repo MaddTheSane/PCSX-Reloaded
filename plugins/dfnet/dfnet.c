@@ -24,19 +24,19 @@ const unsigned char build    = 3;    // increase that with each version
 
 static char *libraryName      = N_("Socket Driver");
 
-unsigned long CALLBACK PSEgetLibType() {
+unsigned long CALLBACK PSEgetLibType(void) {
 	return PSE_LT_NET;
 }
 
-char* CALLBACK PSEgetLibName() {
+char* CALLBACK PSEgetLibName(void) {
 	return _(libraryName);
 }
 
-unsigned long CALLBACK PSEgetLibVersion() {
+unsigned long CALLBACK PSEgetLibVersion(void) {
 	return version << 16 | revision << 8 | build;
 }
 
-long CALLBACK NETinit() {
+long CALLBACK NETinit(void) {
 	return sockInit();
 }
 
@@ -192,23 +192,23 @@ long CALLBACK NETopen(unsigned long *gpuDisp) {
 	return ret;
 }
 
-long CALLBACK NETclose() {
+long CALLBACK NETclose(void) {
 	close(sock);
 
 	return 0;
 }
 
-long CALLBACK NETshutdown() {
+long CALLBACK NETshutdown(void) {
 	return sockShutdown();
 }
 
-void CALLBACK NETpause() {
+void CALLBACK NETpause(void) {
 /*	unsigned char Code = 0x80;
 
 	SEND(&Code, 1, PSE_NET_BLOCKING);*/
 }
 
-void CALLBACK NETresume() {
+void CALLBACK NETresume(void) {
 /*	unsigned char Code = 0x80;
 
 	SEND(&Code, 1, PSE_NET_BLOCKING);*/
@@ -267,10 +267,10 @@ long CALLBACK NETrecvPadData(void *pData, int Pad) {
 	return 0;
 }
 
-long CALLBACK NETqueryPlayer() {
+long CALLBACK NETqueryPlayer(void) {
 	return conf.PlayerNum;
 }
 
-long CALLBACK NETtest() {
+long CALLBACK NETtest(void) {
 	return 0;
 }

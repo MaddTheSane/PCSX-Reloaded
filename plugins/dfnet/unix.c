@@ -36,7 +36,7 @@ int ExecCfg(const char *arg, int f) {
 	return system(cfg);
 }
 
-long sockInit() {
+long sockInit(void) {
 	conf.PlayerNum = 0;
 	tm.tv_sec = 0;
 	tm.tv_usec = 0;
@@ -44,11 +44,11 @@ long sockInit() {
 	return 0;
 }
 
-long sockShutdown() {
+long sockShutdown(void) {
 	return 0;
 }
 
-int sockPing() {
+int sockPing(void) {
 	char data[32];
 	struct timeval tv, tvn;
 
@@ -122,7 +122,7 @@ void sockDestroyWaitDlg() {
 }
 #endif
 
-long timeGetTime() {
+long timeGetTime(void) {
 	struct timeval tv;
 
 	gettimeofday(&tv, NULL);

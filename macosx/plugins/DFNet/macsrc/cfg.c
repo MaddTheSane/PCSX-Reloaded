@@ -15,16 +15,16 @@ void AboutDlgProc(void);
 void ConfDlgProc(void);
 void ReadConfig(void);
 
-void NETabout() {
+void NETabout(void) {
 	AboutDlgProc();
 }
 
-long NETconfigure() {
+long NETconfigure(void) {
 	ConfDlgProc();
 	
 	return 0;
 }
 
-void LoadConf() {
+void LoadConf(void) {
 	ReadConfig();
 }

@@ -116,7 +116,7 @@ NSString *const memCardChangeNumberKey = @"PcsxrMemoryCardThatChangedKey";
 		[openDlg setNameFieldStringValue:[path lastPathComponent]];
 	}
 	[openDlg beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
-		if (result == NSFileHandlingPanelOKButton) {
+		if (result == NSModalResponseOK) {
 			NSURL *mcdURL = [openDlg URLs][0];
 			
 			[ConfigurationController setMemoryCard:tag toURL:mcdURL];
@@ -150,7 +150,7 @@ NSString *const memCardChangeNumberKey = @"PcsxrMemoryCardThatChangedKey";
 	[openDlg setAllowedFileTypes:[PcsxrMemCardHandler supportedUTIs]];
     
 	[openDlg beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
-		if (result == NSFileHandlingPanelOKButton) {
+		if (result == NSModalResponseOK) {
 			NSURL *mcdURL = [openDlg URL];
 			const char *fileSysRep = [mcdURL fileSystemRepresentation];
 			

@@ -1724,7 +1724,7 @@ static void buopen(int mcd, u8 *ptr, u8 *cfg)
 			pptr = fptr2 = fptr;
 			for(j=2; j<=nblk; j++) {
 				int k;
-				// TODO: i = 0 instead?
+				// FIXME: i = 0 instead?
 				for(i++; i<16; i++) {
 					fptr2 += 128;
 					
